@@ -1,5 +1,47 @@
 {
 	"Index": {
-	  "title": "Hello world!"
+	  	"title": "SMART PHARMACY",
+	  	"lang-1":"En",
+	  	"lagn-2":"Ar",
+	  	"password-forget":"Forgot your password?",
+	  	"register-instead":"Don’t have an account, Register now?",
+	  	"email-or-username":"Email or Username",
+	  	"password": "Password",
+	 	"continue-with-google": "Continue with google",
+	  	"continue-with-facebook": "Continue with facebook",
+		"Login":"LOG IN",
+		"Register":"Register",
+
+
+
+
+		"first-name":"First name",
+		"first-name-placeholder": "Muhammed",
+		"last-name-placeholder":"Karim",
+		"last-name":"Last name",
+		"email":"Email",
+		"email-placeholder":"example@email.com",
+		"username":"Username",
+		"username-placeholder":"muh.karem123",
+		"male":"Male",
+		"female":"Female",
+		"prefer-not-to-say":"Prefer not to say",
+		"already-have-account":"Already have an account, Login now?",
+
+
+
+
+		"phone-number": "phone-number",
+		"phone-number-explain":"Phone number is required for main features in the app",
+		"continue-to-confirm":"Continue to confirm",
+		"skip":"Skip",
+
+
+
+
+		"confirm-phone-number": "Confirm phone number",
+		"confirm-phone-message":"Please enter the code in the SMS message sent to you",
+		"didn’t-get-the-code?":"Didn’t get the code?",
+		"resent":"Resend"
 	}
-  }
+}
