@@ -1,9 +1,8 @@
 import "./globals.css";
 import Providers from "../../components/darkTheme/provider";
 import {notFound} from 'next/navigation';
-import NavBar from "@/components/Navbar/navbar";
 import {useTranslations} from 'next-intl';
-
+import GuestNavBar from "../../components/Navbar/guestNavbar"
 
 export const metadata = {
   title: "Create Next App",
@@ -26,8 +25,7 @@ export default function RootLayout({ children, params: {locale} }: RootLayoutPro
     <html lang={locale}>
       <body>
         <Providers>
-            <NavBar title={t('title')} login={t('login')}
-              register={t('password-forget')}/>
+            <GuestNavBar title={t('title')} login={t('Log in')} register={t('Register')}/>
             {children}
         </Providers>
       </body>

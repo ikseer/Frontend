@@ -1,10 +1,10 @@
 
-import NavBar from "@/components/Navbar/navbar";
+import GuestNavBar from "../../components/Navbar/guestNavbar"
 export default function Home() {
   
   return (
     <main>
-       Main Page
+        Yousef
     </main>
   )
 }

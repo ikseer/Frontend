@@ -1,6 +1,5 @@
-
-	{
-	  	"title": "SMART PHARMACY Test",
+{
+	  	"title": "SMART PHARMACY",
 	  	"lang-1":"En",
 	  	"lagn-2":"Ar",
 	  	"password-forget":"Forgot your password?",
@@ -9,7 +8,8 @@
 	  	"password": "Password",
 	 	"continue-with-google": "Continue with google",
 	  	"continue-with-facebook": "Continue with facebook",
-		"Login":"LOG IN",
+		"Log in":"LOG IN",
+		"Register": "Register",
 
 
 
