@@ -1,10 +1,6 @@
 "use client"
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Logo from "../../public/images/Logo.svg"
@@ -12,7 +8,10 @@ import Image from "next/image";
 import ChangeLanguage from './changeLanguage';
 import ThemeSwitcher from "../darkTheme/switchMode";
 import {Link} from "../../navigation"
-import "./guestNavbar.module.css"
+import "../../app/[locale]/globals.css"
+import "./guestNavbar.css"
+import { usePathname } from 'next/navigation'
+
 
 
 interface translatedValues {
@@ -23,6 +22,7 @@ interface translatedValues {
 
 
 export default function GuestNavBar({title, login, register}:translatedValues) {
+  const pathname = usePathname()
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -33,9 +33,9 @@ export default function GuestNavBar({title, login, register}:translatedValues) {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLButtonElement>):void => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    setMobileMoreAnchorEl(event.currentTarget as unknown as React.SetStateAction<null>);
+};
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -63,50 +63,46 @@ export default function GuestNavBar({title, login, register}:translatedValues) {
   );
   
 const renderDesktopMenu = (
-  <AppBar position="static">
-        <Toolbar >
+  <div className="flex sticky top-0">
           {/* left side */}
-          <Link href="/">
-              <Image src={Logo} alt="Logo images" />
-          </Link>
-            <Link href="/">
-                <h1>{title}</h1>
+          <section className="nav-left-side flex items-center">
+            <Link href="/" className="mr-2">
+                <Image src={Logo} alt="Logo images" />
             </Link>
+              <Link href="/">
+                  <h1>{title}</h1>
+              </Link>
+          </section>
 
           {/* make space between them */}
           <div className="grow"/>
 
           {/* right side */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            
+          <section className="nav-right-side xs: hidden md:flex items-center justify-between">
               <ChangeLanguage />
               <ThemeSwitcher />
-        
-              <Link href="/login">{login}</Link>
-            <Link href="/register">{register}</Link>
-          </Box>
+              <Link href="/login" className={pathname.slice(3,) === "/login"?     "active": ""}>{login}</Link>
+            <Link href="/register" className={pathname.slice(3,) === "/register"? "active": ""}>{register}</Link>
+          </section>
 
 
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <div className="flex xs:block md:hidden justify-items-center">
             <IconButton onClick={handleMobileMenuOpen} >
               <MoreIcon />
             </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+          </div>
+      </div>
 )
 
 
-// const navbarStyl2e = {
-//   backgroundColor: "red",
-//   color:"red",
-//   flexGrow: 1,
-// };
-
   return (
-    <div className="guest-navbar">
-      {renderDesktopMenu}
-      {renderMobileMenu}
-    </div>
+    <main className="guest-navbar">
+      <div className="md:container md:mx-auto"> 
+
+        {renderDesktopMenu}
+        {renderMobileMenu}
+
+      </div>
+    </main>
   );
 }

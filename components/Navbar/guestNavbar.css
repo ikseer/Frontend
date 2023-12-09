@@ -1,0 +1,29 @@
+.guest-navbar {
+    background-color:var(--white);
+    color:var(--black);
+    padding:10px 20px;
+    border-width:0px 0px 1px 0px;
+    border-color:var(--gray);
+    border-style:solid;
+}
+select {
+    /* width:50px; */
+    background-color:var(--white);
+    color:var(--black);
+    border:none;
+    outline:none;
+    cursor: pointer;
+}
+select:focus {
+    outline:none;
+}
+.nav-right-side {
+    width:max(20vw, 200px);
+}
+.active {
+    text-align:center;
+    padding:5px 15px;
+    background-color:var(--teal);
+    border-radius:30px;
+    color:#fff;
+}

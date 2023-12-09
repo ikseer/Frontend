@@ -5,12 +5,20 @@
 
 /* To change color using css */
 
-/* body {
-  color: #000;
-  background-color: #fff;
+body {
+  margin:0px;
+  padding:0px;
+  box-sizing:border-box;
+  /* colors */
+  --teal: #0B9992;
+  --black:#2B2B2B;
+  --gray: #D9D9D9;
+  --white: #FFFFFF;
 }
 
 [class="dark"] body {
-  background-color: #000;
-  color: white;
-} */
+  --white: #000;
+  --gray: #222;
+  --black:#eee;
+}
+

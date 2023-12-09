@@ -25,7 +25,7 @@ export default function RootLayout({ children, params: {locale} }: RootLayoutPro
     <html lang={locale}>
       <body>
         <Providers>
-            <GuestNavBar title={t('title')} login={t('Log in')} register={t('Register')}/>
+            <GuestNavBar title={t('SMART PHARMACY')} login={t('Log in')} register={t('Register')}/>
             {children}
         </Providers>
       </body>

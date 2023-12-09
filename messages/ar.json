@@ -1,5 +1,5 @@
 {
-	  	"title": "SMART PHARMACY",
+	  	"SMART PHARMACY": "SMART PHARMACY",
 	  	"lang-1":"En",
 	  	"lagn-2":"Ar",
 	  	"password-forget":"Forgot your password?",
@@ -8,8 +8,8 @@
 	  	"password": "Password",
 	 	"continue-with-google": "Continue with google",
 	  	"continue-with-facebook": "Continue with facebook",
-		"Log in":"LOG IN",
-		"Register": "Register",
+		"Log in":"تسجيل دخول",
+		"Register": "انضمام",
 
 
 

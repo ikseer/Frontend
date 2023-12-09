@@ -14,6 +14,7 @@ export default function ChangeLanguage() {
         if (newPath) location.href = `/${local}/${newPath}`
         else location.href = `/${local}`
     }
+    
 return (
     <select onChange={(e) => handleLanguageChange(e.target.value) }>
     {/* There are some limitation on using Select and option with Link component in nextjs "can't use it."*/}
