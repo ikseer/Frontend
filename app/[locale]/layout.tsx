@@ -2,7 +2,7 @@ import "./globals.css";
 import Providers from "../../components/darkTheme/provider";
 import {notFound} from 'next/navigation';
 import NavBar from "@/components/Navbar/navbar";
-
+import {useTranslations} from 'next-intl';
 
 
 export const metadata = {
@@ -21,11 +21,13 @@ const locales = ['en', 'ar'];
 
 export default function RootLayout({ children, params: {locale} }: RootLayoutProps) {
   if (!locales.includes(locale as any)) notFound();
+  const t = useTranslations("")
   return (
     <html lang={locale}>
       <body>
         <Providers>
-            <NavBar/>
+            <NavBar title={t('title')} login={t('login')}
+              register={t('password-forget')}/>
             {children}
         </Providers>
       </body>

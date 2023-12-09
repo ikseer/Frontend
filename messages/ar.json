@@ -1,5 +1,5 @@
-{
-	"Index": {
+
+	{
 	  	"title": "SMART PHARMACY Test",
 	  	"lang-1":"En",
 	  	"lagn-2":"Ar",
@@ -10,6 +10,7 @@
 	 	"continue-with-google": "Continue with google",
 	  	"continue-with-facebook": "Continue with facebook",
 		"Login":"LOG IN",
+
 
 
 
@@ -43,4 +44,3 @@
 		"didn’t-get-the-code?":"Didn’t get the code?",
 		"resent":"Resend"
 	}
-}
