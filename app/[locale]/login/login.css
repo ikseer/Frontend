@@ -1,0 +1,9 @@
+.login-parent {
+    height: calc(100vh - 80px);
+    
+    .login {
+        background-color:red;
+        width: 550px;
+        height: 580px;
+    }
+}
