@@ -1,9 +1,39 @@
 .login-parent {
     height: calc(100vh - 80px);
+    background-image:url("../../../public/images/auth/Main.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
     
     .login {
-        background-color:red;
+        h1 {
+            color:var(--black);
+            font-size:32px;
+            font-weight:700;
+        }
+        background-color: var(--gray-50);
+        color:var(--black);
         width: 550px;
         height: 580px;
+        border:1px solid var(--gray);
+        .input-field {
+            width:76%;
+            .icon {
+                top:55%;
+            }
+            .setColor {
+                color:var(--black);
+            }
+            input {
+                color:var(--black);
+                font-weight:500px;
+            }
+
+        }
+        .auth-actions {
+            width:76%;
+            * {
+                width:100%;
+            }
+        }
     }
 }

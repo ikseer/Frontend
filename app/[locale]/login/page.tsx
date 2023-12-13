@@ -17,23 +17,30 @@ export default function Login() {
 	}
 return (
 
-	<form className="login-parent flex item-center justify-center">
-		<article className="login flex item-center justify-center flex-col">
+	<form className="login-parent flex items-center justify-center" autoComplete="off">
+		<article className="login flex items-center justify-center flex-col rounded-lg">
 			<h1>Welcome to IKSIR</h1>
-			<section >
-				<TextField label="Email or Username" variant="standard" />
-					<EmailIcon />
-			</section>
-			<section> 
-				<TextField label="password" variant="standard" type='password' />
-				<RemoveRedEyeIcon />
-			</section>
-			<AuthButton title="Login" width="420px" height="42px" onClick={handleLogin}/>
-			<p>Forgot your password?</p>
-			<section>
-				<span>Don’t have an account, </span>
-				<Link href="/register">Register now?</Link>
-			</section>
+			<div className="input-field">
+				<section className="relative">
+					<TextField InputLabelProps={{className:"setColor"}}
+					className="w-full mt-5 " label="Email or Username" variant="standard" />
+					<EmailIcon className="icon absolute right-2"/>
+				</section>
+				<section className="relative"> 
+					<TextField  InputLabelProps={{className:"setColor"}}
+					className="w-full mt-3" label="password" variant="standard" type='password' />
+					<RemoveRedEyeIcon  className="icon absolute right-2"/>
+				</section>
+			</div>
+			<AuthButton title="Login" width="76%" height="42px" onClick={handleLogin}/>
+
+			<div className="auth-actions">
+				<Link href="/register">Forgot your password?</Link>
+				<section>
+					<span>Don’t have an account, </span>
+					<Link href="/register" >Register now?</Link>
+				</section>
+			</div>
 			<DividerText text="or"/>
 			<AuthShape authImage={Google}  text="google"/>
 			<AuthShape authImage={Facebook}  text="facebook"/>
