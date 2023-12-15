@@ -17,16 +17,6 @@
         border:1px solid var(--gray);
         .input-field {
             width:76%;
-            .icon {
-                top:55%;
-            }
-            .setColor {
-                color:var(--black);
-            }
-            input {
-                color:var(--black);
-                font-weight:500px;
-            }
 
         }
         .auth-actions {

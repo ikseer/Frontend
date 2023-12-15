@@ -6,15 +6,14 @@ interface buttonProps {
     title:string,
     width:string,
     height:string,
-    onClick:MouseEventHandler<HTMLButtonElement>,
 };
 
 
-export default function AuthButton({title, width, height, onClick}:buttonProps) {
+export default function AuthButton({title, width, height}:buttonProps) {
     const buttonStyle = {width, height}
     
     return (
-        <button style={buttonStyle} className="auth-button mt-5 mb-3.5" onClick={onClick}>
+        <button style={buttonStyle} className="auth-button mt-5 mb-3.5" >
             {title}
         </button>
     )

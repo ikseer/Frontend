@@ -1,0 +1,7 @@
+.auth-input {
+    svg, .setColor, input {
+        color:var(--black);
+    }
+}
+
+
