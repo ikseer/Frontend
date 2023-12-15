@@ -53,7 +53,7 @@ return (
 				<Link href="/register">Forgot your password?</Link>
 				<section>
 					<span>Don’t have an account, </span>
-					<Link href="/register" >Register now?</Link>
+					<Link href="/register" style={{color:"#0B9992", fontWeight:"600"}}>Register now</Link>?
 				</section>
 			</div>
 			<DividerText text="or"/>

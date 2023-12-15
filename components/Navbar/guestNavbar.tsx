@@ -11,6 +11,7 @@ import {Link} from "../../navigation"
 import "../../app/[locale]/globals.css"
 import "./guestNavbar.css"
 import { usePathname } from 'next/navigation'
+import { Stack} from "@mui/material"
 
 
 
@@ -54,16 +55,18 @@ export default function GuestNavBar({title, login, register}:translatedValues) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      
-       <ChangeLanguage />
-        <ThemeSwitcher />
-        <Link href="/login">{login}</Link>
-        <Link href="/register">{register}</Link>
+      <Stack className="mobile-menu"> 
+          <ChangeLanguage />
+          <ThemeSwitcher />
+          <Link href="/login" className={pathname.slice(3,) === "/login"? "active2": ""}>{login}</Link>
+          <Link href="/register" className={pathname.slice(3,) === "/register"? "active2": ""}>{register}</Link>
+  
+      </Stack>
     </Menu>
   );
   
 const renderDesktopMenu = (
-  <div className="flex sticky top-0">
+  <div className="flex w-full">
           {/* left side */}
           <section className="nav-left-side flex items-center">
             <Link href="/" className="mr-2">
@@ -86,18 +89,18 @@ const renderDesktopMenu = (
           </section>
 
 
-          <div className="flex xs:block md:hidden justify-items-center">
+          <section className="xs:block md:hidden ">
             <IconButton onClick={handleMobileMenuOpen} >
-              <MoreIcon />
+              <MoreIcon />  
             </IconButton>
-          </div>
+          </section>
       </div>
 )
 
 
   return (
-    <main className="guest-navbar">
-      <div className="md:container md:mx-auto"> 
+    <main className="guest-navbar w-screen">
+      <div className="md:container md:mx-auto w-full"> 
 
         {renderDesktopMenu}
         {renderMobileMenu}

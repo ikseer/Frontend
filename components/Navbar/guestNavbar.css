@@ -16,17 +16,40 @@ select {
     border:none;
     outline:none;
     cursor: pointer;
-}
-select:focus {
-    outline:none;
+    :focus {
+        outline:none;
+    }
 }
 .nav-right-side {
     width:max(20vw, 200px);
 }
-.active {
+.active, .active2 {
     text-align:center;
     padding:5px 15px;
     background-color:var(--teal);
     border-radius:30px;
     color:#fff;
+}
+.active2 {
+    padding:3px 10px;
+}
+
+svg {
+    color:var(--black);
+}
+
+ul:has(.mobile-menu) {
+    background-color:var(--white);
+    color:var(--black);
+    min-width:100px;
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    border:2px solid var(--gray-50);
+    padding:12px 0px;
+    .mobile-menu > *{
+        margin-top:10px;
+    }
+
 }
