@@ -1,21 +1,24 @@
 "use client"
+// main
+// icons
+
 import * as React from 'react';
 import Logo from "../../public/images/Logo.svg"
 import Image from "next/image";
-import ChangeLanguage from './changeLanguage';
-import ThemeSwitcher from "../darkTheme/switchMode";
+import ChangeLanguage from './ChangeLanguage';
+import ThemeSwitcher from "../darkTheme/SwitchMode";
 import {Link} from "../../navigation"
 import "../../app/[locale]/globals.css"
-import "./guestNavbar.css"
 import { usePathname } from 'next/navigation'
+import "./guestNavbar.css"
 
 
 
 export default function GuestNavBar() {
     const pathname = usePathname()
     return (
-        <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
-            <nav className=" guest-navbar relative max-w-[85rem] w-full  border border-gray-200  py-3 px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto  dark:border-gray-700" aria-label="Global">
+        <header className="min-h-16 md:h-16 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
+            <nav className="relative max-w-[85rem] w-full  border border-gray-200  py-3 px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto  dark:border-gray-700" aria-label="Global">
                 <div className="flex items-center justify-between">
                 <a className="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">SMART PHARMACY</a>
 
@@ -40,8 +43,8 @@ export default function GuestNavBar() {
                     </a>
 
 
-                    <Link href="/login" className={pathname.slice(3,) === "/login"?     "active": ""}>login</Link>
-                    <Link href="/register" className={pathname.slice(3,) === "/register"? "active": ""}>register</Link>
+                    <Link href="/login" className={pathname.slice(3,) === "/login"?     "active-bar": ""}>login</Link>
+                    <Link href="/register" className={pathname.slice(3,) === "/register"? "active-bar": ""}>register</Link>
                 </div>
             </div>
         </nav>

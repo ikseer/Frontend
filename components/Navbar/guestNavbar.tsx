@@ -1,111 +1,54 @@
 "use client"
+// main
+// icons
+
 import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import Logo from "../../public/images/Logo.svg"
 import Image from "next/image";
-import ChangeLanguage from './changeLanguage';
-import ThemeSwitcher from "../darkTheme/switchMode";
+import ChangeLanguage from './ChangeLanguage';
+import ThemeSwitcher from "../darkTheme/SwitchMode";
 import {Link} from "../../navigation"
 import "../../app/[locale]/globals.css"
-import "./guestNavbar.css"
 import { usePathname } from 'next/navigation'
-import { Stack} from "@mui/material"
+import "./guestNavbar.css"
 
 
 
-interface translatedValues {
-  title: string,
-  login:string,
-  register:string
-}
+export default function GuestNavBar() {
+    const pathname = usePathname()
+    return (
+        <header className="min-h-16 md:h-16 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
+            <nav className="relative max-w-[85rem] w-full  border border-gray-200  py-3 px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto  dark:border-gray-700" aria-label="Global">
+                <div className="flex items-center justify-between">
+                <a className="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">SMART PHARMACY</a>
+
+                <div className="md:hidden">
+                    <button type="button" className="hs-collapse-toggle w-8 h-8 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
+                    <svg className="hs-collapse-open:hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+                    <svg className="hs-collapse-open:block hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+
+                </div>
+                <div id="navbar-collapse-with-animation" className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block">
+                <div className="flex flex-col gap-y-4 gap-x-0 mt-5 md:flex-row md:items-center md:justify-end md:gap-y-0 md:gap-x-7 md:mt-0 md:ps-7">
+                
+
+                    <a className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="#">
+                        <ChangeLanguage />
+
+                    </a>
+                    <a className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="#">
+                        <ThemeSwitcher />
+                    </a>
 
 
-export default function GuestNavBar({title, login, register}:translatedValues) {
-  const pathname = usePathname()
-
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    setMobileMoreAnchorEl(event.currentTarget as unknown as React.SetStateAction<null>);
-};
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <Stack className="mobile-menu"> 
-          <ChangeLanguage />
-          <ThemeSwitcher />
-          <Link href="/login" className={pathname.slice(3,) === "/login"? "active2": ""}>{login}</Link>
-          <Link href="/register" className={pathname.slice(3,) === "/register"? "active2": ""}>{register}</Link>
-  
-      </Stack>
-    </Menu>
-  );
-  
-const renderDesktopMenu = (
-  <div className="flex w-full">
-          {/* left side */}
-          <section className="nav-left-side flex items-center">
-            <Link href="/" className="mr-2">
-                <Image src={Logo} alt="Logo images" />
-            </Link>
-              <Link href="/">
-                  <h1>{title}</h1>
-              </Link>
-          </section>
-
-          {/* make space between them */}
-          <div className="grow"/>
-
-          {/* right side */}
-          <section className="nav-right-side xs: hidden md:flex items-center justify-between">
-              <ChangeLanguage />
-              <ThemeSwitcher />
-              <Link href="/login" className={pathname.slice(3,) === "/login"?     "active": ""}>{login}</Link>
-            <Link href="/register" className={pathname.slice(3,) === "/register"? "active": ""}>{register}</Link>
-          </section>
-
-
-          <section className="xs:block md:hidden ">
-            <IconButton onClick={handleMobileMenuOpen} >
-              <MoreIcon />  
-            </IconButton>
-          </section>
-      </div>
+                    <Link href="/login" className={pathname.slice(3,) === "/login"?     "active-bar": ""}>login</Link>
+                    <Link href="/register" className={pathname.slice(3,) === "/register"? "active-bar": ""}>register</Link>
+                </div>
+            </div>
+        </nav>
+    </header>
 )
 
-
-  return (
-    <main className="guest-navbar w-screen">
-      <div className="md:container md:mx-auto w-full"> 
-
-        {renderDesktopMenu}
-        {renderMobileMenu}
-
-      </div>
-    </main>
-  );
 }

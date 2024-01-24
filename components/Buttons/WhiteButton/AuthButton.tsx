@@ -1,6 +1,6 @@
 'use client'
 import { MouseEventHandler } from "react"
-import "./AuthButton.css"
+import "./authButton.css"
 
 interface buttonProps {
     title:string,

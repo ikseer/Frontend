@@ -8,8 +8,6 @@ interface radioDataType {
     onChange:(event:string) => void,
 }
 
-
-
 export default function Radio({text, onChange}: radioDataType){
     const radioRef = useRef<HTMLInputElement>(null)
 
@@ -18,12 +16,13 @@ export default function Radio({text, onChange}: radioDataType){
         if(inputRadio) inputRadio.focus()
     }
     return (
-        <div className="flex" >
+        <div className="flex mt-3" >
               <input
                 ref={radioRef}
                 type="radio"
                 name="hs-radio-group"
-                className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                className="shrink-0 mt-0.5 rounded-full border-zinc-600  text-zinc-600 focus:ring-zinc-800 checked:border-zinc-800 disabled:opacity-50 disabled:pointer-events-none \
+                dark:text-gray-50 dark:bg-gray-200 dark:border-gray-200 dark:checked:bg-gray-500 dark:checked:border-gray-500 dark:focus:ring-offset-gray-800"
                 id={text} // unique Id
                 onChange={(e) => onChange(e.target.value)}
                 />
