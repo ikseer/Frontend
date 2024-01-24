@@ -1,30 +1,20 @@
 
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
 import "../../app/[locale]/globals.css"
-import "./divider.css"
 
-const Root = styled('div')(({ theme }) => ({
-  width: '100%',
-  display:"flex",
-  justifyContent:"center",
-  margin:"20px 0px",
-  ...theme.typography.body2,
-  '& > :not(style) ~ :not(style)': {
-    marginTop: theme.spacing(2),
-  },
-}));
 interface DividerProps {
   text:string,
+}
+const DividerStyle = {
+  "width":"60%",
 }
 
 
 export default function DividerText({text}:DividerProps) {
   
   return (
-    <Root>
-      <Divider  role="presentation"  className="or-divider">{text}</Divider>
-    </Root>
+    <div style={DividerStyle} className="or-divider py-3 flex items-center text-sm text-gray-800 before:flex-[1_1_0%] before:border-t before:border-gray-600 before:me-6 after:flex-[1_1_0%] after:border-t after:border-gray-600 after:ms-6 dark:text-white dark:before:border-gray-600 dark:after:border-gray-600">
+      {text}
+    </div>
   );
 }

@@ -2,7 +2,8 @@ import "./globals.css";
 import Providers from "../../components/darkTheme/provider";
 import {notFound} from 'next/navigation';
 import {useTranslations} from 'next-intl';
-import GuestNavBar from "../../components/Navbar/guestNavbar"
+import GuestNavBar from "../../components/Navbar/testChanges"
+import PrelineScript from "./components/PrelineScript";
 
 export const metadata = {
   title: "Create Next App",
@@ -25,10 +26,11 @@ export default function RootLayout({ children, params: {locale} }: RootLayoutPro
     <html lang={locale}>
       <body>
         <Providers>
-            <GuestNavBar title={t('SMART PHARMACY')} login={t('Log in')} register={t('Register')}/>
+            <GuestNavBar />
             {children}
         </Providers>
       </body>
+            <PrelineScript />
     </html>
   );
 }

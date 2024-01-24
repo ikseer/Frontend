@@ -1,14 +1,11 @@
 .guest-navbar {
     background-color:var(--white);
     color:var(--black);
-    border-width:0px 0px 1px 0px;
+    /* border-width:0px 0px 1px 0px; */
     border-color:var(--gray);
-    border-style:solid;
-    display:flex;
-    align-items:center;
-    height:80px;
-    padding:0px 20px;
+    min-height:70px;
 }
+
 select {
     /* width:50px; */
     background-color:var(--white);
@@ -38,18 +35,11 @@ svg {
     color:var(--black);
 }
 
-ul:has(.mobile-menu) {
-    background-color:var(--white);
-    color:var(--black);
-    min-width:100px;
-    display:flex;
-    flex-direction:column;
 
-    align-items:center;
-    border:2px solid var(--gray-50);
-    padding:12px 0px;
-    .mobile-menu > *{
-        margin-top:10px;
-    }
 
-}
+@media (min-width: 768px) {
+    .guest-navbar  {
+        height: 70px;
+
+    } 
+ }

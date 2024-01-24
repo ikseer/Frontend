@@ -14,16 +14,15 @@ export const pathnames = {
   '/': '/',
   '/login': '/login',
   '/register': '/register',
-  
+  '/yousef':'/yousef',
   // If locales use different paths, you can
   // specify each external path per locale.
   '/about': {
     en: '/about',
     ar: '/ueber-uns'
   },
- 
 
 } satisfies Pathnames<typeof locales>;
- 
+
 export const {Link, redirect, usePathname, useRouter, getPathname} =
   createLocalizedPathnamesNavigation({locales, localePrefix, pathnames});

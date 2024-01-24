@@ -4,6 +4,7 @@ import React from 'react'
 import { usePathname } from 'next/navigation'
 import {useState} from 'react'
 
+
 export default function ChangeLanguage() {
     const pathname = usePathname()
     const three = pathname.slice(1,3)   

@@ -1,10 +1,11 @@
-.login-parent {
-    height: calc(100vh - 80px);
-    background-image:url("../../../public/images/auth/Main.svg");
+.register-parent {
+    min-height: calc(100vh - 60px);
+    background-image:url("../../../../public/images/auth/Main.svg");
     background-size: cover;
     background-repeat: no-repeat;
-    
-    .login {
+
+
+    .register {
         h1 {
             color:var(--black);
             font-size:32px;
@@ -13,7 +14,6 @@
         background-color: var(--gray-50);
         color:var(--black);
         width: 550px;
-        height: 580px;
         border:1px solid var(--gray);
         .input-field {
             width:76%;
