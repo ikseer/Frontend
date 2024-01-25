@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import { useTheme } from 'next-themes'
 
@@ -7,14 +7,14 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'; // dark theme
 import WbSunnyIcon from '@mui/icons-material/WbSunny';  // light theme
 
 const SwitchMode = () => {
-    const {systemTheme, theme, setTheme} = useTheme()
-    const currentTheme = theme === "system"? systemTheme: theme
+  const {systemTheme, theme, setTheme} = useTheme()
+  const currentTheme = theme === 'system'? systemTheme: theme
 
   return (
     <div>
-        <button onClick ={() => theme === "dark"? setTheme("light"): setTheme("dark")}>
-            {theme ==="dark" ? <WbSunnyIcon />: <DarkModeIcon /> }
-        </button>
+      <button onClick ={() => theme === 'dark'? setTheme('light'): setTheme('dark')}>
+        {theme ==='dark' ? <WbSunnyIcon />: <DarkModeIcon /> }
+      </button>
     </div>
   )
 }

@@ -2,56 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* To change color using css */
 
 body {
-  margin:0px;
-  padding:0px;
-  box-sizing:border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
   /* colors */
-  --teal: #0B9992;
-  --black:#2B2B2B;
-  --gray: #D9D9D9;
-  --white: #FFFFFF;
-  --gray-50:#F4F4F4;
-  --gray-border:#AEAEAE;
-/* #AEAEAE */
+  --teal: #0b9992;
+  --black: #2b2b2b;
+  --gray: #d9d9d9;
+  --white: #ffffff;
+  --gray-50: #f4f4f4;
+  --gray-border: #aeaeae;
+  /* #AEAEAE */
 }
 
 [class="dark"] body {
   --white: #000;
   --gray: #222;
-  --black:#eee;
-  --gray-50:#222;
+  --black: #eee;
+  --gray-50: #222;
   --gray-border: #414141;
 }
 
-/* 
-
-
-  light-teal: #0B9992;
-  light-black:#2B2B2B;
-  light-gray: #D9D9D9;
-  light-white: #FFFFFF;
-  light-gray-50:#F4F4F4;
-  light-gray-border:#AEAEAE;
-
-  dark-white: #000;
-  dark-gray: #222;
-  dark-black:#eee;
-  dark-gray-50:#222;
-  dark-gray-border: #414141;
-}
-
-
-
-
-
-
-
-
-
-
-
-*/

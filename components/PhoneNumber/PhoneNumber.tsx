@@ -13,32 +13,30 @@ const PhoneNumberValidation = () => {
   };
 
   const validatePhoneNumber = (phoneNumber:string) => {
-    const phoneNumberPattern = /^\+?[1-9]\d{1,14}$/;
-
+    const phoneNumberPattern = /^\+?[1-9]\d{3,14}$/;
     return phoneNumberPattern.test(phoneNumber);
   };
   const mainStyle = {
-    color: "red"
+    color: 'red'
   }
 
   return (
-    <div>
-      <label>
-        Phone Number:
-        <PhoneInput
-          country={'in'}
-          value={phoneNumber}
-          className="text-black"
-          onChange={handleChange}
-          inputProps={{
-            required: true,
-          }}
-        />
-      </label>
+    <>
+      <PhoneInput
+        country={'in'}
+        value={phoneNumber}
+        className="text-black"
+        onChange={handleChange}
+        style={{width:'75%'}}
+        inputProps={{
+          required: true,
+        }}
+      />
+
       {!valid && (
-        <p >Please enter a valid phone number.</p>
+        <p className="text-red-600 text-xs">Please enter a valid phone number.</p>
       )}
-    </div>
+    </>
   );
 };
 

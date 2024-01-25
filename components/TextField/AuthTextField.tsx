@@ -1,7 +1,7 @@
-"use client"
+'use client'
 // main
 import React from 'react'
-import "../../app/[locale]/globals.css"
+import '../../app/[locale]/globals.css'
 import { useRef } from 'react';
 
 
@@ -16,44 +16,44 @@ interface styleType {
 }
 
 export default function AuthTextField({Icon, placeholder, onChange, width}:propsType) {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const handleOnClick = () => {
-        console.log(inputRef)
-        if(inputRef.current)
-        {
-            const currInput = inputRef.current?.querySelector("input")
-            console.log(currInput)
-            if(currInput)
-                currInput.focus();
-        }
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleOnClick = () => {
+    console.log(inputRef)
+    if(inputRef.current)
+    {
+      const currInput = inputRef.current?.querySelector('input')
+      console.log(currInput)
+      if(currInput)
+        currInput.focus();
     }
-    const mainStyle:styleType = {
-        width: width || "100%"
-    }
+  }
+  const mainStyle:styleType = {
+    width: width || '100%'
+  }
 
-return (
+  return (
     <div className="auth-input mt-3" style={mainStyle}>
-        <div className="flex rounded-lg shadow-sm" ref={inputRef}>
-            {Icon && <span  onClick={handleOnClick} 
-                className="cursor-pointer px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">
-                {Icon} 
-                </span>}
+      <div className="flex rounded-lg shadow-sm" ref={inputRef}>
+        {Icon && <span  onClick={handleOnClick} 
+          className="cursor-pointer px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">
+          {Icon} 
+        </span>}
 
-            <input 
-            className={`py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-e-lg text-sm focus:z-10 focus:border-gray-300 focus:ring-gray-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 ${Icon ? '': 'rounded-lg'}` }
-            placeholder={placeholder}
-            type="text"
-            onChange={(e) => onChange(e.target.value)} 
-            required
-            />
-        </div>
+        <input 
+          className={`py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-e-lg text-sm focus:z-10 focus:border-gray-300 focus:ring-gray-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 ${Icon ? '': 'rounded-lg'}` }
+          placeholder={placeholder}
+          type="text"
+          onChange={(e) => onChange(e.target.value)} 
+          required
+        />
+      </div>
 
 
     </div>
   )
 }
 
- {/* <div className="relative">
+{/* <div className="relative">
         <input type="text" id="hs-floating-underline-input-passowrd" 
         className="auth-input peer py-4 px-0 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm placeholder:text-transparent focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 dark:focus:border-b-gray-600
         focus:pt-6

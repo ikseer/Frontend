@@ -1,12 +1,12 @@
 
 import * as React from 'react';
-import "../../app/[locale]/globals.css"
+import '../../app/[locale]/globals.css'
 
 interface DividerProps {
   text:string,
 }
 const DividerStyle = {
-  "width":"60%",
+  'width':'60%',
 }
 
 

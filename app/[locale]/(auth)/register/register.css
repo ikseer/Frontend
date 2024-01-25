@@ -1,29 +1,6 @@
-.register-parent {
-    min-height: calc(100vh - 64px);
-    background-image:url("../../../../public/images/auth/Main.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-
-
-    .register {
-        h1 {
-            color:var(--black);
-            font-size:32px;
-            font-weight:700;
-        }
-        background-color: var(--gray-50);
-        color:var(--black);
-        width: 550px;
-        border:1px solid var(--gray);
-        .input-field {
-            width:76%;
-
-        }
-        .auth-actions {
-            width:76%;
-            * {
-                width:100%;
-            }
-        }
-    }
+.auth-parent {
+  min-height: calc(100vh - 72px);
+  background-image: url("../../../../public/images/auth/Main.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }

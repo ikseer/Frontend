@@ -1,6 +1,6 @@
 'use client'
-import { MouseEventHandler } from "react"
-import "./authButton.css"
+import { MouseEventHandler } from 'react'
+import './authButton.css'
 
 interface buttonProps {
     title:string,
@@ -10,11 +10,11 @@ interface buttonProps {
 
 
 export default function AuthButton({title, width, height}:buttonProps) {
-    const buttonStyle = {width, height}
+  const buttonStyle = {width, height}
     
-    return (
-        <button style={buttonStyle} className="auth-button mt-5 mb-3.5" >
-            {title}
-        </button>
-    )
+  return (
+    <button style={buttonStyle} className="auth-button mt-5 mb-3.5" >
+      {title}
+    </button>
+  )
 }

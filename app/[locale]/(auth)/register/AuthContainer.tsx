@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { ReactNode } from 'react'
 
 interface childrenDataType {
@@ -8,13 +8,13 @@ interface childrenDataType {
 
 export default function RegisterContainer({children}:childrenDataType) {
   const mainStyle = {
-    width: "550px",
-    margin:"auto"
+    maxWidth: '550px',
+    margin:'auto'
   }
-  
+
   return (
-    <article style = {mainStyle} className="rounded-lg bg-zinc-800" data-hs-stepper>
-        {children}
+    <article style = {mainStyle} className="rounded-lg bg-gray-100 dark:bg-zinc-950" data-hs-stepper>
+      {children}
     </article>
   );
 }

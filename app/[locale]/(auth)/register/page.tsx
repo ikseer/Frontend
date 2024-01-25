@@ -1,18 +1,18 @@
-"use client";
+'use client';
 // main
-import React, { useContext, useRef, createContext, useState } from "react";
+import React, {createContext, useState } from 'react';
 
 // components
-import RegisterFirstStep from "./RegisterFirstStep";
-import RegisterSecondStep from "./RegisterSecondStep";
-import RegisterThridStep from "./RegisterThridStep";
-import StepperNav from "@/components/Stepper/StepperNav";
-import StepperComponent from "@/components/Stepper/StepperComponent";
-import StepperNavigationButtons from "@/components/Stepper/StepperNavigationButtons";
-import RegisterContainer from "./RegisterContainer";
+import RegisterFirstStep from './RegisterFirstStep';
+import RegisterSecondStep from './RegisterSecondStep';
+import RegisterThridStep from './RegisterThridStep';
+import StepperNav from '@/components/Stepper/StepperNav';
+// import StepperComponent from '@/components/Stepper/StepperComponent';
+import StepperNavigationButtons from '@/components/Stepper/StepperNavigationButtons';
+import RegisterContainer from './AuthContainer';
 
 // css
-import "./register.css";
+import './register.css';
 
 // interface
 interface providerType {
@@ -23,18 +23,18 @@ interface providerType {
 export const nextRefProvider = createContext(null);
 
 export default function Register() {
-  const [triggerFunction, setTriggerFunction] = useState<string>("");
+  const [triggerFunction, setTriggerFunction] = useState<string>('');
   const value: providerType = { triggerFunction, setTriggerFunction };
 
   const stepperNavLists = [
-    ["1", "First", "Basic Data"],
-    ["2", "Second", "Phone Number"],
-    ["3", "Third", "Confirm Email"],
+    ['1', 'First', 'Basic Data'],
+    ['2', 'Second', 'Phone Number'],
+    ['3', 'Third', 'Confirm Email'],
   ];
   // const stepperComponent = [<RegisterFirstStep />, <RegisterSecondStep />, <RegisterThridStep  />]
 
   return (
-    <div className="register-parent ">
+    <div className="auth-parent ">
       <div data-hs-stepper>
         <StepperNav stepperNavLists={stepperNavLists} />
 
@@ -45,11 +45,13 @@ export default function Register() {
           {/* <StepperComponent stepperComponent={stepperComponent} /> */}
           <div className="mt-5 sm:mt-8">
             <div data-hs-stepper-content-item='{"index": 1}'>
-              <RegisterFirstStep />
+              <RegisterContainer>
+                <RegisterFirstStep />
+              </RegisterContainer>
             </div>
             <div
               data-hs-stepper-content-item='{"index": 2}'
-              style={{ display: "none;" }}
+              style={{ display: 'none;' }}
             >
               <RegisterContainer>
                 <RegisterSecondStep />
@@ -57,7 +59,7 @@ export default function Register() {
             </div>
             <div
               data-hs-stepper-content-item='{"index": 3, "isFinal": true} '
-              style={{ display: "none" }}
+              style={{ display: 'none' }}
             >
               <RegisterContainer>
                 <RegisterThridStep />

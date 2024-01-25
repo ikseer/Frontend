@@ -1,6 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next", "prettier"],
   "rules" :{
-    // My Custom Rules Here.
+    "no-var":"error",
+    "quotes": ["error", "single"],
+    "camelcase": ["error", { "properties": "never" }],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
+    "indent": ["error", 2, {"SwitchCase": 1}]
   }
 }
