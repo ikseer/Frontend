@@ -1,5 +1,5 @@
 'use client'
-import './AuthButton.css'
+
 
 interface buttonProps {
     title:string,
@@ -13,7 +13,7 @@ export default function AuthButton({title, width, height, background}:buttonProp
   const buttonStyle = {width, height}
 
   return (
-    <button style={buttonStyle} className={`auth-button mt-5 mb-3.5 bg-teal-600 ${background? background: ''}`} >
+    <button style={buttonStyle} className={` rounded mt-5 mb-3.5 ${background? background: 'bg-teal-600'}`} >
       {title}
     </button>
   )

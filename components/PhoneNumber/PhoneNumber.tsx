@@ -1,42 +1,46 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+
+
+// css
+import '@/app/[locale]/globals.css'
+import './PhoneNumber.css'
 
 const PhoneNumberValidation = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [valid, setValid] = useState<boolean>(true);
 
-  const handleChange = (value:string) => {
+  const handleChange = (value: string) => {
     setPhoneNumber(value);
     setValid(validatePhoneNumber(value));
   };
 
-  const validatePhoneNumber = (phoneNumber:string) => {
+  const validatePhoneNumber = (phoneNumber: string) => {
     const phoneNumberPattern = /^\+?[1-9]\d{3,14}$/;
     return phoneNumberPattern.test(phoneNumber);
   };
-  const mainStyle = {
-    color: 'red'
-  }
 
   return (
-    <>
+    <div className="text-black w-3/4">
       <PhoneInput
-        country={'in'}
+        country={'eg'}
         value={phoneNumber}
-        className="text-black"
         onChange={handleChange}
-        style={{width:'75%'}}
+        excludeCountries={['is']}
+        placeholder='Phone number'
         inputProps={{
           required: true,
-        }}
+        }} 
       />
 
       {!valid && (
-        <p className="text-red-600 text-xs">Please enter a valid phone number.</p>
+        <p className="text-red-600 text-xs text-start">
+          Please enter a valid phone number.
+        </p>
       )}
-    </>
+    </div>
   );
 };
 

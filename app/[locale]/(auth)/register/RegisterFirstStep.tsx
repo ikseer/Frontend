@@ -6,7 +6,7 @@ import { useState, useContext } from 'react';
 import { Link } from '@/navigation';
 
 // components
-import AuthButton from '@/components/Buttons/TealButton/AuthButton';
+import AuthButton from '@/components/Buttons/AuthButton';
 import DividerText from '@/components/Divider/Divider';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/TextField/AuthTextField';

@@ -1,10 +1,10 @@
 'use client';
-// 
+//
 import * as React from 'react';
 import { useState } from 'react';
 
 // conponents
-import AuthButton from '@/components/Buttons/TealButton/AuthButton';
+import AuthButton from '@/components/Buttons/AuthButton';
 import DividerText from '@/components/Divider/Divider';
 import Google from '@/public/images/auth/Google.svg';
 import Facebook from '@/public/images/auth/Facebook.svg';
@@ -36,7 +36,6 @@ export default function Login() {
   const handleInputChange = (fieldName: string, fieldValue: string) => {
     setFormData({ ...formData, [fieldName]: fieldValue });
   };
-
 
   return (
     <form
