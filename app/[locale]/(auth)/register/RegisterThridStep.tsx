@@ -1,12 +1,21 @@
+// main
 import React from 'react'
 
-export default function RegisterConfirmPhone() {
+// components
+import PinNumber from '@/components/PinNumber/PinNumber'
+import Button from '@/components/Buttons/AuthButton'
+
+
+
+
+export default function RegisterConfirmEmail() {
   return (
-    <div className="flex space-x-3 justify-center" data-hs-pin-input>
-      <input type="text" className="block w-[38px] text-center border-gray-200 rounded-md text-sm focus:scale-110 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="-" data-hs-pin-input-item autoFocus />
-      <input type="text" className="block w-[38px] text-center border-gray-200 rounded-md text-sm focus:scale-110 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="-" data-hs-pin-input-item />
-      <input type="text" className="block w-[38px] text-center border-gray-200 rounded-md text-sm focus:scale-110 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="-" data-hs-pin-input-item />
-      <input type="text" className="block w-[38px] text-center border-gray-200 rounded-md text-sm focus:scale-110 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="-" data-hs-pin-input-item /> 
-    </div>
+    <div className="flex flex-col items-center content-center">
+      <h1 className="mt-6 text-slate-800 dark:text-slate-100 text-2xl">Confirm your email</h1>
+      <p className="my-4 w-1/2 text-slate-700 dark:text-slate-300 text-sm text-center"> Please enter the code sent to your email. It expires after 10 minutes.</p> 
+      <PinNumber count={4} PinNumberClassName="my-5"/>
+      <span className="text-xs text-slate-700 dark:text-slate-300">Didn’t get the code? </span>
+      <Button title = "Resent" width = "155px" height = "46px"  ButtonClassName='mt-2 mb-5 bg-white text-zinc-950 dark:bg-zinc-900 dark:text-slate-100'/>
+    </div>  
   )
 }

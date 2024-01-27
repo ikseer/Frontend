@@ -1,19 +1,22 @@
 // main
-import React from 'react';
+import React, { useContext } from 'react';
+import { nextRefProvider } from './page';
 
 // components
 import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
 import SaveAndContinue from '@/components/Buttons/AuthButton';
 
-
-
-
-const handleOnSubmit = (e:React.FormEvent<HTMLInputElement>) => {
-  e.preventDefault();
-  console.log('OTP page');
-};
-
 export default function RegisterSecondStep() {
+  const contextValue = useContext(nextRefProvider);
+  if (!contextValue) throw new Error('Context is null');
+  const { triggerFunction } = contextValue;
+  const handleOnSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    console.log(triggerFunction);
+    if (triggerFunction && triggerFunction.current)
+      triggerFunction.current.click();
+  };
+
   return (
     <form
       className="flex flex-col justify-center items-center "
@@ -23,7 +26,7 @@ export default function RegisterSecondStep() {
         <h1 className="text-4xl dark:text-white my-5 text-center">
           Phone number
         </h1>
-        <p className="text-center mb-5">
+        <p className="text-center mb-5 text-sm">
           Phone number is required for main features in the app
         </p>
       </div>

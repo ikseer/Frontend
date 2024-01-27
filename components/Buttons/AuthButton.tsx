@@ -6,14 +6,15 @@ interface buttonProps {
     width:string,
     height:string,
     background?:string,
+    ButtonClassName?:string,
 };
 
 
-export default function AuthButton({title, width, height, background}:buttonProps) {
+export default function AuthButton({title, width, height, background, ButtonClassName}:buttonProps) {
   const buttonStyle = {width, height}
 
   return (
-    <button style={buttonStyle} className={` rounded mt-5 mb-3.5 ${background? background: 'bg-teal-600'}`} >
+    <button style={buttonStyle} className={` rounded  ${background? background: 'bg-teal-600'} ${ButtonClassName? ButtonClassName : 'mt-5 mb-3.5' }`} >
       {title}
     </button>
   )

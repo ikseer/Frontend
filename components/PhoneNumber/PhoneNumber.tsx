@@ -23,7 +23,7 @@ const PhoneNumberValidation = () => {
   };
 
   return (
-    <div className="text-black w-3/4">
+    <div className="text-black w-3/4" >
       <PhoneInput
         country={'eg'}
         value={phoneNumber}
