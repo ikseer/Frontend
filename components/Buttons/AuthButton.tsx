@@ -6,7 +6,7 @@ interface buttonProps {
     width:string,
     height:string,
     background?:string,
-    ButtonClassName?:string,
+    ButtonClassName?:string
 };
 
 

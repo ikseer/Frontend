@@ -69,9 +69,6 @@ export default function Register() {
           <StepperNavigationButtons />
         </nextRefProvider.Provider>
         {/* <!-- End Content --> */}
-
-        {/* <!-- Button Group --> */}
-        {/* <!-- End Button Group --> */}
       </div>
 
       {/* <!-- End Stepper Content --> */}

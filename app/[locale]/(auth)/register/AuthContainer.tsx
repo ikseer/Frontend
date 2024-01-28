@@ -13,7 +13,7 @@ export default function RegisterContainer({children}:childrenDataType) {
   }
 
   return (
-    <article style = {mainStyle} className="rounded-lg bg-gray-100 dark:bg-zinc-950" data-hs-stepper>
+    <article style = {mainStyle} className= "rounded-lg bg-gray-100 dark:bg-zinc-950" data-hs-stepper>
       {children}
     </article>
   );

@@ -5,10 +5,11 @@ import {useRef} from'react'
 
 interface radioDataType {
     text: string,
-    onChange:(event:string) => void,
+    register: any,
+    object: any,
 }
 
-export default function Radio({text, onChange}: radioDataType){
+export default function Radio({text, register, object}: radioDataType){
   const radioRef = useRef<HTMLInputElement>(null)
 
   const handleOnClick = () => {
@@ -21,10 +22,11 @@ export default function Radio({text, onChange}: radioDataType){
         ref={radioRef}
         type="radio"
         name="hs-radio-group"
+        value={text}
         className="shrink-0 mt-0.5 rounded-full border-zinc-600  text-zinc-600 focus:ring-zinc-800 checked:border-zinc-800 disabled:opacity-50 disabled:pointer-events-none \
                 dark:text-gray-50 dark:bg-gray-200 dark:border-gray-200 dark:checked:bg-gray-500 dark:checked:border-gray-500 dark:focus:ring-offset-gray-800"
         id={text} // unique Id
-        onChange={(e) => onChange(e.target.value)}
+        {...register('gender',object)}
       />
       <label
         onClick={handleOnClick}
@@ -34,8 +36,5 @@ export default function Radio({text, onChange}: radioDataType){
         {text}
       </label>
     </div>
-
-            
-          
   )   
 }
