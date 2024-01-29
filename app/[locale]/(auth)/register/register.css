@@ -1,0 +1,6 @@
+.auth-parent {
+  min-height: calc(100vh - 72px);
+  background-image: url("../../../../public/images/auth/Main.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

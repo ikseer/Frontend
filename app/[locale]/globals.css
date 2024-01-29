@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* To change color using css */
+
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  /* colors */
+  --teal: #0b9992;
+  --black: #2b2b2b;
+  --gray: #d9d9d9;
+  --white: #ffffff;
+  --gray-50: #f4f4f4;
+  --gray-border: #aeaeae;
+  /* #AEAEAE */
+
+
+  /* important filed */
+  --phone-text:#696d74;
+  --phone-bg:#fff;
+  --phone-border:#cbd5e1;
+  --phone-hover:#e2e8f0;
+}
+
+[class="dark"] body {
+  --white: #000;
+  --gray: #222;
+  --black: #eee;
+  --gray-50: #222;
+  --gray-border: #414141;
+
+
+   /* important filed */
+  --phone-text: rgb(245 245 244);
+  --phone-bg:#18181b;
+  --phone-border:#71717a;
+  --phone-hover:#3f3f46;
+
+}
+
+
+
+
+/* --phone-placholder:#696d74; */
