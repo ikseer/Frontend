@@ -1,6 +1,9 @@
 import React from 'react';
+interface BrandNameAndLogoType {
+  name: string
+}
 
-export default function BrandNameAndLogo({ name }) {
+export default function BrandNameAndLogo({ name }: BrandNameAndLogoType) {
   return (
     <div>
       <a

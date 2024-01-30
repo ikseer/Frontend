@@ -20,19 +20,19 @@ import { LuKeyRound } from 'react-icons/lu';
 // css
 import '../register/register.css';
 
-interface formDataType {
+interface FormDataType {
   username: string;
   password: string;
 }
+interface LoginType {
+  keys: string[]
+}
 
-export default function Login({ keys }) {
-  const { register, formState, handleSubmit } = useForm<formDataType>({
-    username: '',
-    password: '',
-  });
+export default function Login({ keys }: LoginType) {
+  const { register, formState, handleSubmit } = useForm<FormDataType>();
   const { errors } = formState;
 
-  const handleLoginSubmit = (data: formDataType) => {
+  const handleLoginSubmit = (data: FormDataType) => {
     console.log(data);
   };
 

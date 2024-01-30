@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 
+
+
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -20,15 +22,9 @@ const config: Config = {
   plugins: [
     require('@tailwindcss/forms'),
     require('preline/plugin'),
-    function ({ addVariant }) {
-      addVariant('rtl', ({ container }) => {
-        container.walkRules((rule) => {
-          rule.selector = rule.selector.replace(/\./g, '&.rtl .');
-        });
-      });
-    },
   ],
   darkMode: 'class',
 };
 
 export default config;
+

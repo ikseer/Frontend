@@ -40,14 +40,7 @@ interface formDataType {
 export default function RegisterMainData({
   firstStepKeys,
 }: RegisterMainDataType) {
-  const { register, handleSubmit, formState } = useForm<formDataType>({
-    username: '',
-    email: '',
-    first_name: '',
-    last_name: '',
-    password: '',
-    gender: '',
-  });
+  const { register, handleSubmit, formState } = useForm<formDataType>();
   const { errors } = formState;
 
   const contextData = useContext(nextRefProvider);
@@ -117,7 +110,7 @@ export default function RegisterMainData({
     ],
   ] as const;
 
-  const radioList = [firstStepKeys[6], , firstStepKeys[7], firstStepKeys[8]];
+  const radioList = [firstStepKeys[6] , firstStepKeys[7] , firstStepKeys[8]] as const;
   const txt0 = firstStepKeys[9];
   const txt1 = firstStepKeys[10];
   const txt2 = firstStepKeys[11];
@@ -165,9 +158,9 @@ export default function RegisterMainData({
 
           <div>
             <div className="flex gap-x-6">
-              {radioList.map((e, indx) => (
+              {radioList.map((e) => (
                 <Radio
-                  key={indx}
+                  key={e}
                   text={e}
                   register={register}
                   object={GenderOjbect}

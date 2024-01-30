@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "style": "prettier -w ."
+    "style": "prettier -w .",
+    "checkts": "tsc --noEmit"
   },
   "dependencies": {
     "next": "14.0.1",

@@ -11,7 +11,7 @@ export default function PinNumber({
     const firstComponent = (
       <input
         type="text"
-        className="rtl:ml-2 block w-[38px] text-center border-gray-200 rounded-md text-sm focus:scale-110 focus:border-slate-200 focus:ring-slate-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+        className="rtl:ml-3 block w-[38px] text-center border-gray-200 rounded-md text-sm focus:scale-110 focus:border-slate-200 focus:ring-slate-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
         placeholder="-"
         data-hs-pin-input-item
         autoFocus

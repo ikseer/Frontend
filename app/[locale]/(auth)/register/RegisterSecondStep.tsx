@@ -20,7 +20,7 @@ export default function RegisterSecondStep({
   const { triggerFunction } = contextValue;
   const handleOnSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log(triggerFunction);
+    // console.log(triggerFunction);
     if (triggerFunction && triggerFunction.current)
       triggerFunction.current.click();
   };

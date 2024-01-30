@@ -17,9 +17,7 @@ type ResetPasswordDataType = {
 };
 
 export default function ResetPassword() {
-  const { register, formState, handleSubmit } = useForm<ResetPasswordDataType>({
-    email: '',
-  });
+  const { register, formState, handleSubmit } = useForm<ResetPasswordDataType>();
   const { errors } = formState;
   const handleResetPassword = (data: ResetPasswordDataType) => {
     console.log(data);

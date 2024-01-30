@@ -17,18 +17,18 @@ interface RegisterAllThreeStepType {
   thirdStepKeys: string[];
 }
 interface providerType {
-  triggerFunction: string;
+  triggerFunction: React.RefObject<string> ;
   setTriggerFunction: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const nextRefProvider = createContext(null);
+export const nextRefProvider = createContext<providerType | null>(null);
 
 export default function RegisterAllThreeStep({
   firstStepKeys,
   secondStepKeys,
   thirdStepKeys,
 }: RegisterAllThreeStepType) {
-  const [triggerFunction, setTriggerFunction] = useState<string>('');
+  const [triggerFunction, setTriggerFunction] = useState<React.RefObject<string> | null>(null);
   const value: providerType = { triggerFunction, setTriggerFunction };
 
   return (
