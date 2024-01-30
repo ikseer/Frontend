@@ -1,11 +1,11 @@
 // main
 'use client';
-import React, { useContext } from 'react';
-import { nextRefProvider } from './RegisterALLThreeStep';
+import React from 'react';
 
 // components
 import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
 import SaveAndContinue from '@/components/Buttons/AuthButton';
+import { useRegisterContext } from './RegisterContext';
 
 interface RegisterSecondStepType {
   thirdStepKeys: string[];
@@ -14,15 +14,11 @@ interface RegisterSecondStepType {
 export default function RegisterSecondStep({
   thirdStepKeys,
 }: RegisterSecondStepType) {
-  const contextValue = useContext(nextRefProvider);
-  if (!contextValue) throw new Error('Context is null');
-  // if(!secondStepKeys) throw new Error('Second Step word is null');
-  const { triggerFunction } = contextValue;
-  const handleOnSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+  const { triggerFunction } = useRegisterContext();
+
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(triggerFunction);
-    if (triggerFunction && triggerFunction.current)
-      triggerFunction.current.click();
+    triggerFunction.current?.click();
   };
 
   return (

@@ -1,7 +1,4 @@
 'use client';
-//main
-import React, { createContext, useState } from 'react';
-
 //components
 
 import RegisterFirstStep from './RegisterFirstStep';
@@ -9,6 +6,7 @@ import RegisterSecondStep from './RegisterThridStep';
 import RegisterThridStep from './RegisterSecondStep';
 import RegisterContainer from './AuthContainer';
 import StepperNavigationButtons from '@/components/Stepper/StepperNavigationButtons';
+import RegisterContextProvider from './RegisterContext';
 
 // interface
 interface RegisterAllThreeStepType {
@@ -16,23 +14,14 @@ interface RegisterAllThreeStepType {
   secondStepKeys: string[];
   thirdStepKeys: string[];
 }
-interface providerType {
-  triggerFunction: React.RefObject<string> ;
-  setTriggerFunction: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const nextRefProvider = createContext<providerType | null>(null);
 
 export default function RegisterAllThreeStep({
   firstStepKeys,
   secondStepKeys,
   thirdStepKeys,
 }: RegisterAllThreeStepType) {
-  const [triggerFunction, setTriggerFunction] = useState<React.RefObject<string> | null>(null);
-  const value: providerType = { triggerFunction, setTriggerFunction };
-
   return (
-    <nextRefProvider.Provider value={value as providerType}>
+    <RegisterContextProvider>
       {/* <StepperComponent stepperComponent={stepperComponent} /> */}
       <div className="mt-5 sm:mt-8">
         <div data-hs-stepper-content-item='{"index": 1}'>
@@ -58,6 +47,6 @@ export default function RegisterAllThreeStep({
         </div>
       </div>
       <StepperNavigationButtons />
-    </nextRefProvider.Provider>
+    </RegisterContextProvider>
   );
 }

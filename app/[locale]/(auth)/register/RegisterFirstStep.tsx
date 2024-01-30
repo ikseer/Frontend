@@ -1,8 +1,6 @@
 'use client';
 
 // main
-import * as React from 'react';
-import { useContext } from 'react';
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
 // import { DevTool } from '@hookform/devtools';
@@ -13,7 +11,6 @@ import DividerText from '@/components/Divider/Divider';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/TextField/AuthTextField';
 import Radio from '@/components/Radio/Radio';
-import { nextRefProvider } from './RegisterALLThreeStep';
 
 // icons & images
 import Google from '@/public/images/auth/Google.svg';
@@ -23,6 +20,7 @@ import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 // css
 import './register.css';
+import { useRegisterContext } from './RegisterContext';
 
 // interface
 interface RegisterMainDataType {
@@ -43,15 +41,11 @@ export default function RegisterMainData({
   const { register, handleSubmit, formState } = useForm<formDataType>();
   const { errors } = formState;
 
-  const contextData = useContext(nextRefProvider);
-  if (!contextData) throw new Error('Context is null');
-  const { triggerFunction }: any = contextData;
+  const { triggerFunction } = useRegisterContext();
 
   const handleLoginSubmit = (data: formDataType) => {
     console.log(data);
-    console.log('error', errors);
-    if (triggerFunction && triggerFunction.current)
-      triggerFunction.current.click();
+    triggerFunction.current?.click();
   };
 
   const firstNameObject = {
@@ -110,7 +104,11 @@ export default function RegisterMainData({
     ],
   ] as const;
 
-  const radioList = [firstStepKeys[6] , firstStepKeys[7] , firstStepKeys[8]] as const;
+  const radioList = [
+    firstStepKeys[6],
+    firstStepKeys[7],
+    firstStepKeys[8],
+  ] as const;
   const txt0 = firstStepKeys[9];
   const txt1 = firstStepKeys[10];
   const txt2 = firstStepKeys[11];

@@ -1,7 +1,5 @@
 import type { Config } from 'tailwindcss';
 
-
-
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -19,12 +17,8 @@ const config: Config = {
       colors: {},
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('preline/plugin'),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('preline/plugin')],
   darkMode: 'class',
 };
 
 export default config;
-

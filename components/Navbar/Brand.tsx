@@ -1,6 +1,6 @@
 import React from 'react';
 interface BrandNameAndLogoType {
-  name: string
+  name: string;
 }
 
 export default function BrandNameAndLogo({ name }: BrandNameAndLogoType) {

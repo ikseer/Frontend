@@ -25,7 +25,7 @@ interface FormDataType {
   password: string;
 }
 interface LoginType {
-  keys: string[]
+  keys: string[];
 }
 
 export default function Login({ keys }: LoginType) {
