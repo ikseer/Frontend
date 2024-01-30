@@ -7,7 +7,9 @@
 
 
 ### Interfaces:
- - PascalCase (e.g., UserDetails, ProductOptions)
+ - PascalCase => `componentName` + `Type` string
+   - (e.g., Component `X`, then interface `XType`)
+    
 
 ### Variables:
  - camelCase (e.g., firstName, isLoading, totalCount)
