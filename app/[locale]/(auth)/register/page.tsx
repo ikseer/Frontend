@@ -1,77 +1,64 @@
-'use client';
 // main
-import React, {createContext, useState } from 'react';
+import React from 'react';
+import { useTranslations } from 'next-intl';
 
 // components
-import RegisterFirstStep from './RegisterFirstStep';
-import RegisterSecondStep from './RegisterSecondStep';
-import RegisterThridStep from './RegisterThridStep';
+import RegisterAllThreeStep from './RegisterALLThreeStep';
 import StepperNav from '@/components/Stepper/StepperNav';
-// import StepperComponent from '@/components/Stepper/StepperComponent';
-import StepperNavigationButtons from '@/components/Stepper/StepperNavigationButtons';
-import RegisterContainer from './AuthContainer';
 
 // css
 import './register.css';
 
-// interface
-interface providerType {
-  triggerFunction: string;
-  setTriggerFunction: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const nextRefProvider = createContext(null);
-
 export default function Register() {
-  const [triggerFunction, setTriggerFunction] = useState<string>('');
-  const value: providerType = { triggerFunction, setTriggerFunction };
+  const t = useTranslations('');
+  const firstStepKeys = [
+    t('Welcome to IKSIR'),
+    t('First name'),
+    t('Last name'),
+    t('Email'),
+    t('username'),
+    t('Password'),
+    t('Male'),
+    t('Female'),
+    t('Prefer not to say'),
+    t('Login'),
+    t('Already have an account,'),
+    t('Login Now?'),
+    t('or'),
+    t('continue with google'),
+    t('continue with facebook'),
+    t('This field is required'),
+  ];
+
+  const secondStepKeys = [
+    t('Confirm your email'),
+    t('Please enter the code sent to your email It expires after 10 minutes'),
+    t('Didn’t get the code?'),
+    t('Resend'),
+  ];
+  const thirdStepKeys = [
+    t('Phone number'),
+    t('Phone number is required for main features in the app'),
+    t('Save and continue'),
+    t('Skip for now'),
+  ];
 
   const stepperNavLists = [
-    ['1', 'First', 'Basic Data'],
-    ['2', 'Second', 'Phone Number'],
-    ['3', 'Third', 'Confirm Email'],
+    ['1', t('First'), t('Basic details')],
+    ['2', t('Second'), t('Confirm Email')],
+    ['3', t('Third'), t('Phone number')],
   ];
-  // const stepperComponent = [<RegisterFirstStep />, <RegisterSecondStep />, <RegisterThridStep  />]
 
   return (
-    <div className="auth-parent ">
+    <div className="auth-parent">
       <div data-hs-stepper>
         <StepperNav stepperNavLists={stepperNavLists} />
-
-        {/* didn't work */}
-
-        {/* <!-- Stepper Content --> */}
-        <nextRefProvider.Provider value={value as providerType}>
-          {/* <StepperComponent stepperComponent={stepperComponent} /> */}
-          <div className="mt-5 sm:mt-8">
-            <div data-hs-stepper-content-item='{"index": 1}'>
-              <RegisterContainer>
-                <RegisterFirstStep />
-              </RegisterContainer>
-            </div>
-            <div
-              data-hs-stepper-content-item='{"index": 2}'
-              style={{ display: 'none;' }}
-            >
-              <RegisterContainer>
-                <RegisterSecondStep />
-              </RegisterContainer>
-            </div>
-            <div
-              data-hs-stepper-content-item='{"index": 3, "isFinal": true} '
-              style={{ display: 'none' }}
-            >
-              <RegisterContainer>
-                <RegisterThridStep />
-              </RegisterContainer>
-            </div>
-          </div>
-          <StepperNavigationButtons />
-        </nextRefProvider.Provider>
-        {/* <!-- End Content --> */}
+        <RegisterAllThreeStep
+          firstStepKeys={firstStepKeys}
+          secondStepKeys={secondStepKeys}
+          thirdStepKeys={thirdStepKeys}
+        />
       </div>
-
-      {/* <!-- End Stepper Content --> */}
     </div>
   );
 }

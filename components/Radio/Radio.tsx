@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import React from 'react'
-import {useRef} from'react'
+import React from 'react';
+import { useRef } from 'react';
 
 interface radioDataType {
-    text: string,
-    register: any,
-    object: any,
+  text: string;
+  register: any;
+  object: any;
 }
 
-export default function Radio({text, register, object}: radioDataType){
-  const radioRef = useRef<HTMLInputElement>(null)
+export default function Radio({ text, register, object }: radioDataType) {
+  const radioRef = useRef<HTMLInputElement>(null);
 
   const handleOnClick = () => {
-    let inputRadio = radioRef.current
-    if(inputRadio) inputRadio.focus()
-  }
+    let inputRadio = radioRef.current;
+    if (inputRadio) inputRadio.focus();
+  };
   return (
-    <div className="flex mt-3" >
+    <div className="flex mt-3">
       <input
         ref={radioRef}
         type="radio"
@@ -26,7 +26,7 @@ export default function Radio({text, register, object}: radioDataType){
         className="shrink-0 mt-0.5 rounded-full border-zinc-600  text-zinc-600 focus:ring-zinc-800 checked:border-zinc-800 disabled:opacity-50 disabled:pointer-events-none \
                 dark:text-gray-50 dark:bg-gray-200 dark:border-gray-200 dark:checked:bg-gray-500 dark:checked:border-gray-500 dark:focus:ring-offset-gray-800"
         id={text} // unique Id
-        {...register('gender',object)}
+        {...register('gender', object)}
       />
       <label
         onClick={handleOnClick}
@@ -36,5 +36,5 @@ export default function Radio({text, register, object}: radioDataType){
         {text}
       </label>
     </div>
-  )   
+  );
 }

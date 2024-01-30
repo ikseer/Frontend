@@ -1,8 +1,6 @@
 'use client';
 
 // main
-import * as React from 'react';
-import { useContext } from 'react';
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
 // import { DevTool } from '@hookform/devtools';
@@ -13,7 +11,6 @@ import DividerText from '@/components/Divider/Divider';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/TextField/AuthTextField';
 import Radio from '@/components/Radio/Radio';
-import { nextRefProvider } from './page';
 
 // icons & images
 import Google from '@/public/images/auth/Google.svg';
@@ -23,9 +20,12 @@ import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 // css
 import './register.css';
+import { useRegisterContext } from './RegisterContext';
 
 // interface
-
+interface RegisterMainDataType {
+  firstStepKeys: string[];
+}
 interface formDataType {
   username: string;
   email: string;
@@ -35,77 +35,88 @@ interface formDataType {
   gender: string;
 }
 
-export default function RegisterMainData() {
-  const { register, handleSubmit, formState } = useForm<formDataType>({
-    username: '',
-    email: '',
-    first_name: '',
-    last_name: '',
-    password: '',
-    gender: '',
-  });
+export default function RegisterMainData({
+  firstStepKeys,
+}: RegisterMainDataType) {
+  const { register, handleSubmit, formState } = useForm<formDataType>();
   const { errors } = formState;
 
-  const contextData = useContext(nextRefProvider);
-  if (!contextData) throw new Error('Context is null');
-  const { triggerFunction }: any = contextData;
+  const { triggerFunction } = useRegisterContext();
 
   const handleLoginSubmit = (data: formDataType) => {
     console.log(data);
-    console.log('error', errors);
-    if (triggerFunction && triggerFunction.current)
-      triggerFunction.current.click();
+    triggerFunction.current?.click();
   };
 
   const firstNameObject = {
     required: {
       value: true,
-      message: 'First Name is required',
+      message: firstStepKeys[15],
     },
   };
   const lastNameObject = {
     required: {
       value: true,
-      message: 'Last Name is required',
+      message: firstStepKeys[15],
     },
   };
 
   const emailObject = {
     required: {
-      value: true, 
-      message: 'this field required'
-    }
-    
+      value: true,
+      message: firstStepKeys[15],
+    },
   };
 
   const userObject = {
     required: {
       value: true,
-      message: 'Username is required',
+      message: firstStepKeys[15],
     },
   };
   const passwordObject = {
     required: {
       value: true,
-      message: 'password is required',
+      message: firstStepKeys[15],
     },
   };
-  const radioList = ['male', 'female', 'Prefer not to say'];
+  const GenderOjbect = {
+    required: {
+      value: true,
+      message: firstStepKeys[15],
+    },
+  };
+  const welcomeMessage = firstStepKeys[0];
   const TextFieldName = [
-    ['First name', 'first_name', firstNameObject],
-    ['Last name', 'last_name', lastNameObject],
+    [firstStepKeys[1], 'first_name', firstNameObject],
+    [firstStepKeys[2], 'last_name', lastNameObject],
   ] as const;
 
   // icon, placeholder, id, object
   const TextFieldOther = [
-    [<LuMail key="email" />, 'Email', 'email', , emailObject],
-    [<LuUser key="username" />, 'Username', 'username', userObject],
-    [<LuKeyRound key="password" />, 'Password', 'password', passwordObject],
+    [<LuMail key="email" />, firstStepKeys[3], 'email', , emailObject],
+    [<LuUser key="username" />, firstStepKeys[4], 'username', userObject],
+    [
+      <LuKeyRound key="password" />,
+      firstStepKeys[5],
+      'password',
+      passwordObject,
+    ],
   ] as const;
 
+  const radioList = [
+    firstStepKeys[6],
+    firstStepKeys[7],
+    firstStepKeys[8],
+  ] as const;
+  const txt0 = firstStepKeys[9];
+  const txt1 = firstStepKeys[10];
+  const txt2 = firstStepKeys[11];
+  const txt3 = firstStepKeys[12];
+
   const authShape = [
-    [Google, 'google'],
-    [Facebook, 'facebook'],
+    [Google, firstStepKeys[13]],
+    [Facebook, firstStepKeys[14]],
   ];
 
   return (
@@ -117,7 +128,7 @@ export default function RegisterMainData() {
         data-hs-stepper
         noValidate
       >
-        <h1 className="pt-5 text-2xl font-bold">Welcome to IKSIR</h1>
+        <h1 className="pt-5 text-2xl font-bold">{welcomeMessage}</h1>
         <div className="w-3/4 mt-5">
           <div className="grid grid-cols-2 gap-5">
             {TextFieldName.map((textField, indx) => (
@@ -145,17 +156,12 @@ export default function RegisterMainData() {
 
           <div>
             <div className="flex gap-x-6">
-              {radioList.map((e, indx) => (
+              {radioList.map((e) => (
                 <Radio
-                  key={indx}
+                  key={e}
                   text={e}
                   register={register}
-                  object={{
-                    required: {
-                      value: true,
-                      message: 'Gender is required',
-                    },
-                  }}
+                  object={GenderOjbect}
                 />
               ))}
             </div>
@@ -173,20 +179,19 @@ export default function RegisterMainData() {
 
         {/* <StepperNavigationButtons /> */}
         <AuthButton
-          title="Login"
+          title={txt0}
           width="75%"
           height="42px"
           data-hs-stepper-next-btn
         />
 
         <section className="w-3/4">
-          <span>Already have an account, </span>
+          <span>{txt1} </span>
           <Link href="/login" style={{ color: '#0B9992', fontWeight: '600' }}>
-            Login now
+            {txt2}
           </Link>
-          ?
         </section>
-        <DividerText text="or" />
+        <DividerText text={txt3} />
         <div className="grid grid-cols-2 w-full px-4 gap-2">
           {authShape.map((shape, indx) => (
             <AuthShape key={indx} authImage={shape[0]} text={shape[1]} />

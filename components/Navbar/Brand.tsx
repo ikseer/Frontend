@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+interface BrandNameAndLogoType {
+  name: string;
+}
 
-export default function BrandNameAndLogo() {
+export default function BrandNameAndLogo({ name }: BrandNameAndLogoType) {
   return (
     <div>
       <a
@@ -8,11 +11,8 @@ export default function BrandNameAndLogo() {
         href="#"
         aria-label="Brand"
       >
-            SMART PHARMACY
+        {name}
       </a>
-
-
     </div>
-
-  )
+  );
 }
