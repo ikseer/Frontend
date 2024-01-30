@@ -25,7 +25,7 @@ interface formDataType {
   password: string;
 }
 
-export default function Login() {
+export default function Login({keys}) {
   const { register, formState, handleSubmit } =
     useForm<formDataType>({
       username:'',
@@ -53,12 +53,12 @@ export default function Login() {
           style={{ width: '550px' }}
           className="flex items-center justify-center flex-col rounded-lg bg-gray-100 dark:bg-zinc-950"
         >
-          <h1 className="mt-4 text-2xl font-bold ">Welcome to IKSIR</h1>
+          <h1 className="mt-4 text-2xl font-bold ">{keys[0]}</h1>
           <div className="w-3/4 mt-5">
             <AuthTextField
               id="username"
               Icon={<LuMail />}
-              placeholder="Email or Username"
+              placeholder={keys[1]}
               register={register}
               errors={errors}
               object={{
@@ -72,7 +72,7 @@ export default function Login() {
             <AuthTextField
               id="password"
               Icon={<LuKeyRound />}
-              placeholder="password"
+              placeholder={keys[2]}
               register={register}
               errors={errors}
               object={{
@@ -84,24 +84,24 @@ export default function Login() {
             />
           </div>
 
-          <AuthButton title="Login" width="75%" height="42px" />
+          <AuthButton title={keys[3]} width="75%" height="42px" />
 
           <div className="w-3/4">
-            <Link href="/reset-password">Forgot your password?</Link>
+            <Link href="/reset-password">{keys[4]}</Link>
             <section>
-              <span>Don’t have an account, </span>
+              <span>{keys[5]}</span>
               <Link
                 href="/register"
                 style={{ color: '#0B9992', fontWeight: '600' }}
               >
-                Register now
+               {keys[6]}
               </Link>
-              ?
+
             </section>
           </div>
-          <DividerText text="or"/>
-          <AuthShape authImage={Google} text="google" width="76%" />
-          <AuthShape authImage={Facebook} text="facebook" width="76%" />
+          <DividerText text={keys[7]}/>
+          <AuthShape authImage={Google} text={keys[8]} width="76%" />
+          <AuthShape authImage={Facebook} text={keys[9]} width="76%" />
         </article>
       </form>
       {/* <DevTool control={control} /> */}

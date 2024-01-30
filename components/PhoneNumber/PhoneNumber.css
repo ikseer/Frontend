@@ -1,4 +1,5 @@
 .react-tel-input {
+    direction:ltr;
     input.form-control {
         background-color:var(--phone-bg) !important;
         color:var(--phone-text) !important;

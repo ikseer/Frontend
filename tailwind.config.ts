@@ -24,6 +24,13 @@ const config: Config = {
   plugins: [
     require('@tailwindcss/forms'),
     require('preline/plugin'),
+    function ({ addVariant }) {
+      addVariant('rtl', ({ container }) => {
+        container.walkRules((rule) => {
+          rule.selector = rule.selector.replace(/\./g, '&.rtl .');
+        });
+      });
+    },
   ],
   darkMode: 'class',
 }

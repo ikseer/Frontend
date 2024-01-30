@@ -6,15 +6,18 @@ import React from 'react';
 //   children: string[][]
 // }
 // {children}:HoverDropDownDataType
-
+interface HoverDropDownType {
+  dropDownWords: string[]
+}
 
 // Data will passed as map of list of list.
 
-export default function HoverDropDown() {
+
+export default function HoverDropDown({dropDownWords}: HoverDropDownType) {
   return (
     <div className="hs-dropdown [--strategy:static] md:[--strategy:absolute] [--adaptive:none] md:[--trigger:hover] py-3 md:py-4">
       <button type="button" className="flex items-center w-full text-gray-500 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                Resources
+                {dropDownWords[0]}
         <svg className="flex-shrink-0 ms-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </button>
 

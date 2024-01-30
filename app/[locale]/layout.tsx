@@ -1,7 +1,7 @@
 import './globals.css';
 import Providers from '../../components/darkTheme/Provider';
 import { notFound } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 import GuestNavBar from '../../components/Navbar/GuestNavbar';
 import PrelineScript from './components/PrelineScript';
 
@@ -26,9 +26,11 @@ export default function RootLayout({
   params: { locale },
 }: RootLayoutProps) {
   if (!locales.includes(locale as any)) notFound();
-  const t = useTranslations('');
+  // console.log(locales)
+  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={dir} >
       <body>
         <Providers>
           <GuestNavBar />

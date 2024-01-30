@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BrandNameAndLogo() {
+export default function BrandNameAndLogo({name}) {
   return (
     <div>
       <a
@@ -8,7 +8,7 @@ export default function BrandNameAndLogo() {
         href="#"
         aria-label="Brand"
       >
-            SMART PHARMACY
+            {name}
       </a>
 
 

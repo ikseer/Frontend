@@ -1,7 +1,6 @@
 'use client'
 import React, {useContext, useRef, useEffect} from 'react'
-import {nextRefProvider} from '@/app/[locale]/(auth)/register/page'
-
+import {nextRefProvider} from '@/app/[locale]/(auth)/register/RegisterALLThreeStep'
 
 
 export default function StepperNavigationButtons () {
