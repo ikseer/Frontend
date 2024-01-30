@@ -5,7 +5,6 @@ import { Link } from '../../navigation';
 import { usePathname } from 'next/navigation';
 // interfaces
 interface AuthorProfileDataType {
-    pathname: string,
     login: string,
     register: string,
 }
