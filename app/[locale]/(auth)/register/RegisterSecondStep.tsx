@@ -1,5 +1,5 @@
 // main
-'use client'
+'use client';
 import React, { useContext } from 'react';
 import { nextRefProvider } from './RegisterALLThreeStep';
 
@@ -8,12 +8,12 @@ import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
 import SaveAndContinue from '@/components/Buttons/AuthButton';
 
 interface RegisterSecondStepType {
-  thirdStepKeys: string[]
-
+  thirdStepKeys: string[];
 }
 
-
-export default function RegisterSecondStep({thirdStepKeys}:RegisterSecondStepType ) {
+export default function RegisterSecondStep({
+  thirdStepKeys,
+}: RegisterSecondStepType) {
   const contextValue = useContext(nextRefProvider);
   if (!contextValue) throw new Error('Context is null');
   // if(!secondStepKeys) throw new Error('Second Step word is null');
@@ -25,7 +25,6 @@ export default function RegisterSecondStep({thirdStepKeys}:RegisterSecondStepTyp
       triggerFunction.current.click();
   };
 
-
   return (
     <form
       className="flex flex-col justify-center items-center "
@@ -33,11 +32,9 @@ export default function RegisterSecondStep({thirdStepKeys}:RegisterSecondStepTyp
     >
       <div>
         <h1 className="text-4xl dark:text-white my-5 text-center">
-        {thirdStepKeys[0]}
+          {thirdStepKeys[0]}
         </h1>
-        <p className="text-center mb-5 text-sm">
-        {thirdStepKeys[1]}
-        </p>
+        <p className="text-center mb-5 text-sm">{thirdStepKeys[1]}</p>
       </div>
       <PhoneNumberValidation />
       <SaveAndContinue title={thirdStepKeys[2]} width="75%" height="42px" />

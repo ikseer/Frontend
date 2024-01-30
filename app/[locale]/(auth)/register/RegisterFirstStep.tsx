@@ -23,7 +23,6 @@ import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 // css
 import './register.css';
-import RegisterMainData from './RegisterFirstStep';
 
 // interface
 interface RegisterMainDataType {
@@ -99,8 +98,8 @@ export default function RegisterMainData({
       value: true,
       message: firstStepKeys[15],
     },
-  }
-  const welcomeMessage =  firstStepKeys[0]
+  };
+  const welcomeMessage = firstStepKeys[0];
   const TextFieldName = [
     [firstStepKeys[1], 'first_name', firstNameObject],
     [firstStepKeys[2], 'last_name', lastNameObject],

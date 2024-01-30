@@ -1,63 +1,51 @@
 {
-	"IKSIR": "إكسير",
-	"En": "انجليزي",
-	"Ar": "عربي",
-	"resourse":"مصارد",
+  "IKSIR": "إكسير",
+  "En": "انجليزي",
+  "Ar": "عربي",
+  "resourse": "مصارد",
 
+  "Welcome to IKSIR": "مرحباً بكم في إكسير",
+  "Email or username": "البريد الإلكتروني",
+  "Password": "كلمة المرور",
+  "Log in": "تسجيل دخول",
+  "Register": "انضمام",
+  "Forgot your password?": "نسيت كلمة المرور؟",
+  "Don’t have an account,": " ليس لديك حساب ",
+  "Register Now?": " سجل الآن؟ ",
+  "continue with google": "متابعة مع جوجل",
+  "continue with facebook": "متابعة مع فيسبوك",
+  "or": "أو",
 
-	"Welcome to IKSIR":"مرحباً بكم في إكسير",
-	"Email or username": "البريد الإلكتروني",
-	"Password": "كلمة المرور",
-	"Log in": "تسجيل دخول",
-	"Register": "انضمام",
-	"Forgot your password?": "نسيت كلمة المرور؟",
-	"Don’t have an account,": " ليس لديك حساب " ,
-	"Register Now?":" سجل الآن؟ ",
-	"continue with google": "متابعة مع جوجل",
-	"continue with facebook": "متابعة مع فيسبوك",
-	"or": "أو",
+  "First": "أولًا",
+  "Basic details": "البيانات الأساسية",
+  "Second": "ثانيًا",
+  "Confirm Email": "تأكيد البريد الإلكتروني",
+  "Third": "ثالثًا",
+  "Phone number": "رقم الهاتف",
 
+  "First name": "الاسم الأول",
+  "Last name": "اسم العائلة",
+  "Email": "البريد الإلكتروني",
+  "username": "اسم المستخدم",
+  "Male": "ذكر",
+  "Female": "أنثى",
+  "Prefer not to say": "لا أريد الإفصاح عن ذلك",
+  "Already have an account,": "لديك حساب بالفعل، ",
+  "Login Now?": "سجل الآن ",
+  "Login": "تسجيل دخول",
+  "This field is required": "هذا الحقل مطلوب",
 
+  "Confirm your email": "تأكيد البريد الإلكتروني",
+  "Please enter the code sent to your email It expires after 10 minutes": "يرجى إدخال الرمز المرسل إلى بريدك الإلكتروني. سينتهي صلاحيته بعد 10 دقائق",
+  "Didn’t get the code?": "لم تتلق الرمز؟",
+  "Resend": "إعادة الإرسال",
 
-	"First": "أولًا",
-	"Basic details": "البيانات الأساسية",
-	"Second": "ثانيًا",
-	"Confirm Email": "تأكيد البريد الإلكتروني",
-	"Third": "ثالثًا",
-	"Phone number": "رقم الهاتف",
+  "Phone number is required for main features in the app": "رقم الهاتف مطلوب لتشغيل الميزات الرئيسية في التطبيق",
+  "Save and continue": "حفظ ومتابعة",
+  "Skip for now": "تخطى الآن",
 
-
-
-	"First name": "الاسم الأول",
-	"Last name": "اسم العائلة",
-	"Email": "البريد الإلكتروني",
-	"username": "اسم المستخدم",
-	"Male": "ذكر",
-	"Female": "أنثى",
-	"Prefer not to say": "لا أريد الإفصاح عن ذلك",
-	"Already have an account,": "لديك حساب بالفعل، ",
-	"Login Now?": "سجل الآن ",
-	"Login":  "تسجيل دخول",
-	"This field is required": "هذا الحقل مطلوب",
-
-
-
-	"Confirm your email": "تأكيد البريد الإلكتروني",
-	"Please enter the code sent to your email. It expires after 10 minutes": "يرجى إدخال الرمز المرسل إلى بريدك الإلكتروني. سينتهي صلاحيته بعد 10 دقائق",
-	"Didn’t get the code?": "لم تتلق الرمز؟",
-	"Resend": "إعادة الإرسال",
-
-
-
-	"Phone number is required for main features in the app": "رقم الهاتف مطلوب لتشغيل الميزات الرئيسية في التطبيق",
-	"Save and continue": "حفظ ومتابعة",
-	"Skip for now": "تخطى الآن",
-
-
-
-	"Reset password": "إعادة تعيين كلمة المرور",
-	"If you forgot your password, please enter your email below to rest it.": "إذا نسيت كلمة المرور الخاصة بك، يرجى إدخال بريدك الإلكتروني أدناه لإعادة تعيينها.",
-	"example@email.com": "example@email.com",
-	"Reset Password": "إعادة تعيين كلمة المرور"
-
+  "Reset password": "إعادة تعيين كلمة المرور",
+  "If you forgot your password, please enter your email below to rest it.": "إذا نسيت كلمة المرور الخاصة بك، يرجى إدخال بريدك الإلكتروني أدناه لإعادة تعيينها.",
+  "example@email.com": "example@email.com",
+  "Reset Password": "إعادة تعيين كلمة المرور"
 }

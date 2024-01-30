@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 import { IStaticMethods } from 'preline/preline';
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Window {
     HSStaticMethods: IStaticMethods;
   }

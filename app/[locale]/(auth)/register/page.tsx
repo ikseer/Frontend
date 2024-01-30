@@ -32,7 +32,7 @@ export default function Register() {
 
   const secondStepKeys = [
     t('Confirm your email'),
-    t('Please enter the code sent to your email. It expires after 10 minutes'),
+    t('Please enter the code sent to your email It expires after 10 minutes'),
     t('Didn’t get the code?'),
     t('Resend'),
   ];

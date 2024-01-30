@@ -1,3 +1,3 @@
 export default function FooterContainer() {
-    return <div>FooterContainer</div>;
+  return <div>FooterContainer</div>;
 }

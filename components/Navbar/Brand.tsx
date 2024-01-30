@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export default function BrandNameAndLogo({name}) {
+export default function BrandNameAndLogo({ name }) {
   return (
     <div>
       <a
@@ -8,11 +8,8 @@ export default function BrandNameAndLogo({name}) {
         href="#"
         aria-label="Brand"
       >
-            {name}
+        {name}
       </a>
-
-
     </div>
-
-  )
+  );
 }

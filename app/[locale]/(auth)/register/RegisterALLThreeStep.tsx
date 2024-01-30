@@ -45,7 +45,7 @@ export default function RegisterAllThreeStep({
           style={{ display: 'none;' }}
         >
           <RegisterContainer>
-            <RegisterSecondStep  secondStepKeys={secondStepKeys} />
+            <RegisterSecondStep secondStepKeys={secondStepKeys} />
           </RegisterContainer>
         </div>
         <div
@@ -53,7 +53,7 @@ export default function RegisterAllThreeStep({
           style={{ display: 'none' }}
         >
           <RegisterContainer>
-            <RegisterThridStep thirdStepKeys={thirdStepKeys}  />
+            <RegisterThridStep thirdStepKeys={thirdStepKeys} />
           </RegisterContainer>
         </div>
       </div>

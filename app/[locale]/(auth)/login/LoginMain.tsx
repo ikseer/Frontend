@@ -25,21 +25,16 @@ interface formDataType {
   password: string;
 }
 
-export default function Login({keys}) {
-  const { register, formState, handleSubmit } =
-    useForm<formDataType>({
-      username:'',
-      password:''
-    });
+export default function Login({ keys }) {
+  const { register, formState, handleSubmit } = useForm<formDataType>({
+    username: '',
+    password: '',
+  });
   const { errors } = formState;
 
-
-
-  const handleLoginSubmit = (data:formDataType) => {
-    console.log(data)
-  
+  const handleLoginSubmit = (data: formDataType) => {
+    console.log(data);
   };
-
 
   return (
     <div>
@@ -94,12 +89,11 @@ export default function Login({keys}) {
                 href="/register"
                 style={{ color: '#0B9992', fontWeight: '600' }}
               >
-               {keys[6]}
+                {keys[6]}
               </Link>
-
             </section>
           </div>
-          <DividerText text={keys[7]}/>
+          <DividerText text={keys[7]} />
           <AuthShape authImage={Google} text={keys[8]} width="76%" />
           <AuthShape authImage={Facebook} text={keys[9]} width="76%" />
         </article>

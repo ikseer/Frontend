@@ -1,9 +1,12 @@
 interface PinNumberDataType {
   count: number;
-  PinNumberClassName?: string,
+  PinNumberClassName?: string;
 }
 
-export default function PinNumber({ count, PinNumberClassName }: PinNumberDataType) {
+export default function PinNumber({
+  count,
+  PinNumberClassName,
+}: PinNumberDataType) {
   const prepareContent = () => {
     const firstComponent = (
       <input
@@ -31,9 +34,11 @@ export default function PinNumber({ count, PinNumberClassName }: PinNumberDataTy
   };
 
   return (
-    <div className={`flex space-x-3 justify-center ${PinNumberClassName? PinNumberClassName: ''} `} data-hs-pin-input>
-        {...prepareContent()}
+    <div
+      className={`flex space-x-3 justify-center ${PinNumberClassName ? PinNumberClassName : ''} `}
+      data-hs-pin-input
+    >
+      {...prepareContent()}
     </div>
   );
 }
-

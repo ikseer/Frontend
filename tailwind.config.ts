@@ -1,11 +1,11 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/preline/preline.js'
+    './node_modules/preline/preline.js',
   ],
   theme: {
     extend: {
@@ -14,11 +14,7 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      colors: {
-
-      }
-
-     
+      colors: {},
     },
   },
   plugins: [
@@ -33,6 +29,6 @@ const config: Config = {
     },
   ],
   darkMode: 'class',
-}
+};
 
-export default config
+export default config;

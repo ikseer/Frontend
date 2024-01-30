@@ -17,32 +17,25 @@ body {
   --gray-border: #aeaeae;
   /* #AEAEAE */
 
-
   /* important filed */
-  --phone-text:#696d74;
-  --phone-bg:#fff;
-  --phone-border:#cbd5e1;
-  --phone-hover:#e2e8f0;
+  --phone-text: #696d74;
+  --phone-bg: #fff;
+  --phone-border: #cbd5e1;
+  --phone-hover: #e2e8f0;
 }
 
-[class="dark"] body {
+[class='dark'] body {
   --white: #000;
   --gray: #222;
   --black: #eee;
   --gray-50: #222;
   --gray-border: #414141;
 
-
-   /* important filed */
+  /* important filed */
   --phone-text: rgb(245 245 244);
-  --phone-bg:#18181b;
-  --phone-border:#71717a;
-  --phone-hover:#3f3f46;
-
+  --phone-bg: #18181b;
+  --phone-border: #71717a;
+  --phone-hover: #3f3f46;
 }
-
-
-
-
 
 /* --phone-placholder:#696d74; */

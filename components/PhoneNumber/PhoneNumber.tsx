@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-
 // css
-import '@/app/[locale]/globals.css'
-import './PhoneNumber.css'
+import '@/app/[locale]/globals.css';
+import './PhoneNumber.css';
 
 const PhoneNumberValidation = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -23,16 +22,16 @@ const PhoneNumberValidation = () => {
   };
 
   return (
-    <div className="text-black w-3/4" >
+    <div className="text-black w-3/4">
       <PhoneInput
         country={'eg'}
         value={phoneNumber}
         onChange={handleChange}
         excludeCountries={['is']}
-        placeholder='Phone number'
+        placeholder="Phone number"
         inputProps={{
           required: true,
-        }} 
+        }}
       />
 
       {!valid && (
