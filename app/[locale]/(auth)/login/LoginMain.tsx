@@ -13,7 +13,9 @@ import Facebook from '@/public/images/auth/Facebook.svg';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/TextField/AuthTextField';
 
+// hooks
 import { useLogin } from '@/customHooks/Auth/useLogin';
+import Auth from '@/modules/Auth/Auth';
 
 
 // icons
@@ -37,7 +39,15 @@ export default function Login({ keys }: LoginType) {
   const {mutate} = useLogin()
 
   const handleLoginSubmit = (data: FormDataType) => {
-    mutate(data)
+    
+      mutate(data)
+      // Auth.setUser({
+      //   id: '1',
+      //   token:'yousef'
+      // })
+
+
+    
   };
 
   return (

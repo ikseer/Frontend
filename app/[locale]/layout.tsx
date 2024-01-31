@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 // import { useTranslations } from 'next-intl';
 import GuestNavBar from '../../components/Navbar/GuestNavbar';
 import PrelineScript from './components/PrelineScript';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ReactQueryProvider from '@/utils/reactQueryProvider';
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +12,6 @@ export const metadata = {
 };
 
 
-const queryClient = new QueryClient();
 interface RootLayoutProps {
   children: React.ReactNode;
   params: {
@@ -32,15 +31,15 @@ export default function RootLayout({
 
   return (
     <html lang={locale} dir={dir}>
-      <QueryClientProvider client={queryClient}>
         <body>
           <Providers>
             <GuestNavBar />
-            {children}
+            <ReactQueryProvider>
+              {children}
+            </ReactQueryProvider>
           </Providers>
         </body>
         <PrelineScript />
-      </QueryClientProvider>
     </html>
   );
 }
