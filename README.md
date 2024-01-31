@@ -1,20 +1,18 @@
 ## General Links
 
-- [Figma Design](https://www.figma.com/file/PWvpXr7sBIi4weYD9uIIX8/Smary-pharmacy-%5Bgrad-project%5D?type=design&node-id=6604-10666&mode=design)
-- [Linear Link](https://linear.app/13-ronins/team/RONIN/all)
+- [Figma Design](https://www.figma.com/file/d1be54h5fLgBFgdgsrZ4qt/IKSIRS?type=design&node-id=1-8248&mode=design&t=0Z0G00Sy4HChrepQ-0)
+- [Linear Link](https://linear.app/iksirs/team/SOFT/all)
+- [swagger] (https://mohamedham.pythonanywhere.com/swagger/)
 
 ## Technical Links & info
-
-- Font Family
-
-1. [Roboto](https://fonts.google.com/specimen/Roboto?query=Roboto)
-
-- Dark Mode Resource
-
-1. [css Tricks](https://css-tricks.com/easy-dark-mode-and-multiple-color-themes-in-react/)
 
 - Localization Resource
 
 1. [next-intl-docs](https://next-intl-docs.vercel.app/docs/getting-started)
 
-- MultiStep Form 1.[Youtube Example](https://www.youtube.com/watch?v=YFHuaOl7frk)
+- preline
+<!-- add link here -->
+
+- tailwind
+<!-- add link here -->
+- 

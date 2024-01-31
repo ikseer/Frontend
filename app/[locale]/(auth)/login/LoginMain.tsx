@@ -13,6 +13,9 @@ import Facebook from '@/public/images/auth/Facebook.svg';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/TextField/AuthTextField';
 
+import { useLogin } from '@/customHooks/Auth/useLogin';
+
+
 // icons
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
@@ -31,9 +34,10 @@ interface LoginType {
 export default function Login({ keys }: LoginType) {
   const { register, formState, handleSubmit } = useForm<FormDataType>();
   const { errors } = formState;
+  const {mutate} = useLogin()
 
   const handleLoginSubmit = (data: FormDataType) => {
-    console.log(data);
+    mutate(data)
   };
 
   return (
