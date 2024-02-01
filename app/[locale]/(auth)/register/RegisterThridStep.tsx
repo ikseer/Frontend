@@ -31,9 +31,9 @@ export default function RegisterConfirmEmail({
   useEffect(() => {
     if(pinCode.pin1 && pinCode.pin2 && pinCode.pin3 && pinCode.pin4) {
       // trigger function here.
-      const handlePinCdoe = Object.values(pinCode).join("")
+      const handlePinCdoe = Object.values(pinCode).join('')
       mutate({pin: handlePinCdoe})
-      console.log("trigger", pinCode)
+      console.log('trigger', pinCode)
     }
   }, [pinCode])
 
@@ -48,7 +48,7 @@ export default function RegisterConfirmEmail({
           {' '}
           {secondStepKeys[1]}
         </p>
-        <div className={`flex space-x-3 justify-center my-5`} data-hs-pin-input>
+        <div className={'flex space-x-3 justify-center my-5'} data-hs-pin-input>
           <PinNumber   id="pin1" onChange={(e) => setPinCode({...pinCode, pin1: e.target.value})}/>
           <PinNumber   id="pin2" onChange={(e) => setPinCode({...pinCode, pin2: e.target.value})}/>
           <PinNumber   id="pin3" onChange={(e) => setPinCode({...pinCode, pin3: e.target.value})}/>

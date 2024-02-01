@@ -44,15 +44,15 @@ const register = async (data: RegisterType) => {
         password2: data.password
     }
     console.log(newData)
-    const response = await nonAuthRequest.post('/accounts/register', newData)
+    const response = await nonAuthRequest.post('/accounts/register/', newData)
     return response
 }
 const confirmEmail = async (data: RegisterType) => {
-    const response = await nonAuthRequest.post('/accounts/otp-by-email', data)
+    const response = await nonAuthRequest.post('/accounts/otp-by-email/', data)
     return response
 }
 const sendPhoneNumber = async (data: RegisterType) => {
-    const response = await nonAuthRequest.post('/accounts/phone', data)
+    const response = await nonAuthRequest.post('/accounts/phone/', data)
     return response
 }
 

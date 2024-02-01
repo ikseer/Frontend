@@ -36,7 +36,7 @@ export default function RegisterSecondStep({
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate({phone: phoneNumber})
-    console.log("fix", phoneNumber)
+    console.log('fix', phoneNumber)
     
   };
 

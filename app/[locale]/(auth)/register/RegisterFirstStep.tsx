@@ -66,12 +66,20 @@ export default function RegisterMainData({
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 20,
+      message: "maxlenght is 20 characters",
+    }
   };
   const lastNameObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 20,
+      message: "maxlenght is 20 characters",
+    }
   };
 
   const emailObject = {
@@ -79,20 +87,39 @@ export default function RegisterMainData({
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 20,
+      message: "maxlenght is 20 characters",
+    }
   };
+
 
   const userObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 30,
+      message: "maxlenght is 30 characters",
+    }
   };
+  // didn't tranlate yet.
   const passwordObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
     },
+    minLength: {
+      value: 8,
+      message: "minlenght is 8 characters",
+    },
+    maxLength: {
+      value: 20,
+      message: "maxlenght is 20 characters",
+    }
   };
+
   const GenderOjbect = {
     required: {
       value: true,
@@ -147,24 +174,24 @@ export default function RegisterMainData({
           <div className="grid grid-cols-2 gap-5">
             {TextFieldName.map((textField, indx) => (
               <AuthTextField
-                key={indx}
+                key={`${textField} - ${indx}`}
                 placeholder={textField[0] as string}
                 id={textField[1] as string}
                 register={register}
                 errors={errors}
-                object={textField[2] as any}
+                object={textField[2] as object}
               />
             ))}
           </div>
           {TextFieldOther.map((textField, indx) => (
             <AuthTextField
-              key={indx}
+              key={`${textField} - ${indx}`}
               Icon={textField[0]}
               placeholder={textField[1] as string}
               id={textField[2] as string}
               register={register}
               errors={errors}
-              object={textField[3] as any}
+              object={textField[3] as object}
             />
           ))}
 

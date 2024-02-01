@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from 'react';
 
 interface buttonProps {
   title: string;
@@ -24,7 +24,7 @@ export default function AuthButton({
   return (
     <button
       style={buttonStyle}
-      type={type?type:"submit"}
+      type={type?type:'submit'}
       className={` rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
     >
       {title}
