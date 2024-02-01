@@ -6,42 +6,17 @@ interface RegisterType {
     first_name: string;
     last_name: string;
     username: string;
-    email: string;
+    user_email: string;
     password: string;
     gender: string;
 }
-// we can send extra field to backend so we will send password & pasword1 & password2 
-// instead send passwod1 & password2 only.
-
-// let newData = {
-//     first_name: '',
-//     last_name: '',
-//     username: '',
-//     email: '',
-//     password1: '',
-//     password2: '',
-//     gender: ''
-// }
-
-// function handleDataSend(data: RegisterType) {
-//     for (const [key, value] of Object.entries(data)) {
-//         if (key === "password") {
-//             console.log("Enter Hereo")
-//           newData.password1 = value;
-//           newData.password2 = value;
-//         } else {
-//         // @ts-ignore
-//           newData[key] = value;
-//         }
-//       }
-// }
 
 const register = async (data: RegisterType) => {
-    // handleDataSend(data)
     const newData = {
         ...data,
         password1: data.password,
-        password2: data.password
+        password2: data.password,
+        email: data.user_email
     }
     console.log(newData)
     const response = await nonAuthRequest.post('/accounts/register/', newData)

@@ -34,7 +34,7 @@ interface RegisterMainDataType {
 }
 interface formDataType {
   username: string;
-  mail: string;
+  user_email: string;
   first_name: string;
   last_name: string;
   password: string;
@@ -81,15 +81,15 @@ export default function RegisterMainData({
       message: "maxlenght is 20 characters",
     }
   };
-
+  // didn't tranlate yet.
   const emailObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
     },
-    maxLength: {
-      value: 20,
-      message: "maxlenght is 20 characters",
+    pattern: {
+      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: "Enter a valid email",
     }
   };
 
@@ -134,7 +134,7 @@ export default function RegisterMainData({
 
   // icon, placeholder, id, object
   const TextFieldOther = [
-    [<LuMail key="email" />, firstStepKeys[3], 'email', , emailObject],
+    [<LuMail key="user_email" />, firstStepKeys[3], 'user_email', emailObject],
     [<LuUser key="username" />, firstStepKeys[4], 'username', userObject],
     [
       <LuKeyRound key="password" />,
@@ -185,7 +185,7 @@ export default function RegisterMainData({
           </div>
           {TextFieldOther.map((textField, indx) => (
             <AuthTextField
-              key={`${textField} - ${indx}`}
+              key={`${textField[2]} - ${indx}`}
               Icon={textField[0]}
               placeholder={textField[1] as string}
               id={textField[2] as string}
