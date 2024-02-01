@@ -1,7 +1,12 @@
 import { useMutation } from "@tanstack/react-query"
-// import axios from 'axios'
 import nonAuthRequest from "@/api/nonAuthRequest"
+import Auth from "@/modules/Auth/Auth"
+import {useRouter} from "next/navigation"
+import { useRegisterContext } from '@/contexts/Register/RegisterContext';
 
+
+
+// Register first step 
 interface RegisterType {
     first_name: string;
     last_name: string;
@@ -22,59 +27,79 @@ const register = async (data: RegisterType) => {
     const response = await nonAuthRequest.post('/accounts/register/', newData)
     return response
 }
-const confirmEmail = async (data: RegisterType) => {
-    const response = await nonAuthRequest.post('/accounts/otp-by-email/', data)
-    return response
-}
-const sendPhoneNumber = async (data: RegisterType) => {
-    const response = await nonAuthRequest.post('/accounts/phone/', data)
-    return response
-}
 
+// let userObject  = {}
 
 export const useRegister = () => {
+    const {triggerFunction} = useRegisterContext()
+
     return useMutation({
         mutationFn: register,
         onMutate: (data) => {
-            console.log(data)
+            console.log("from mutate","data")
+            
+        },
+        onSuccess: (data) => {
+            // userObject = {...data}
+            triggerFunction.current?.click()
         },
         onError: (error) => {
             console.log(error)
         },
-        onSettled: () => {
-            console.log('Done from settled')
-        }
+
     })
 }
 
+// Register second step 
+interface PinNumberType {
+    opt: string
+}
+const confirmEmail = async (data: PinNumberType) => {
+    const response = await nonAuthRequest.post('/accounts/verify-email-otp/', data)
+    return response
+}
 
 export const usePinCode = () => {
+    const {triggerFunction} = useRegisterContext()
     return useMutation({
         mutationFn: confirmEmail,
         onMutate: (data) => {
             console.log(data)
         },
+        onSuccess: () => {
+            triggerFunction.current?.click()
+        },
         onError: (error) => {
             console.log(error)
-        },
-        onSettled: () => {
-            console.log('Done from settled')
         }
     })
 }
 
 
+
+
+
+// Register third step
+
+interface PhoneNumberType {
+    phone: string
+}
+
+const sendPhoneNumber = async (data: PhoneNumberType) => {
+    const response = await nonAuthRequest.post('/accounts/phone/', data)
+    return response
+}
+
+
 export const usePhoneNumber = ()    => {
+    const route = useRouter()
     return useMutation({
         mutationFn: sendPhoneNumber,
-        onMutate: (data) => {
-            console.log(data)
+        onSuccess: () => {
+            route.push("/login")
         },
         onError: (error) => {
             console.log(error)
         },
-        onSettled: () => {
-            console.log('Done from settled')
-        }
     })
 }

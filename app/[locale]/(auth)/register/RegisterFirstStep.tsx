@@ -20,8 +20,6 @@ import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 import Auth from '@/modules/Auth/Auth';
 
-// context
-import { useRegisterContext } from '@/contexts/Register/RegisterContext';
 //hooks
 import { useRegister } from '@/customHooks/Auth/useRegister';
 
@@ -47,18 +45,11 @@ export default function RegisterMainData({
   const { register, handleSubmit, formState } = useForm<formDataType>();
   const { errors } = formState;
 
-  const { triggerFunction } = useRegisterContext();
-  const { mutate, isError, error } = useRegister();
+  const { mutate } = useRegister();
 
   const handleLoginSubmit = (data: formDataType) => {
-    mutate(data);
-    if (!isError) {
-      // triggerFunction.current?.click();
-      Auth.setUser({
-        id: '1',
-        token: 'yousef'
-      })
-    }
+     mutate(data);
+
   };
 
   const firstNameObject = {

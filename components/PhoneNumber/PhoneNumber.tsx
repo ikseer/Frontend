@@ -8,7 +8,7 @@ import '@/app/[locale]/globals.css';
 import './PhoneNumber.css';
 
 interface PhoneNumberValidationType {
-  passPhoneNumber: React.Dispatch<React.SetStateAction<string>>
+  passPhoneNumber: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
 const PhoneNumberValidation = ({passPhoneNumber}: PhoneNumberValidationType) => {
