@@ -1,16 +1,15 @@
-import Image from 'next/image';
-import Main from '../../public/images/auth/Main.svg';
-import './globals.css';
+'use client'
+import Auth from '@/modules/Auth/Auth';
 
+const auth = new Auth()
 export default function Home() {
-  const stylediv = {
-    height: '88vh',
-    width: '100vw',
-  };
+  const user = auth.getUserInfo()
 
   return (
-    <main>
-      <Image style={stylediv} src={Main} alt="main iamge" />
+    <main className="mt-4 text-3xl font-bold ml-5">
+        Home page here
+        current user is:
+        {JSON.stringify(user)}
     </main>
   );
 }

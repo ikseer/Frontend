@@ -26,7 +26,8 @@ export default function RootLayout({
   params: { locale },
 }: RootLayoutProps) {
   if (!locales.includes(locale as any)) notFound();
-  // console.log(locales)
+  
+  
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
   return (
