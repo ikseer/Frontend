@@ -4,6 +4,9 @@ import React, {useEffect, useState} from 'react';
 import PinNumber from '@/components/PinNumber/PinNumber';
 import Button from '@/components/Buttons/AuthButton';
 
+// custom hooks
+import { usePinCode } from '@/customHooks/Auth/useRegister';
+
 interface RegisterConfirmEmailType {
   secondStepKeys: string[];
 }
@@ -24,9 +27,12 @@ export default function RegisterConfirmEmail({
     pin3: '',
     pin4: '',
   })
+  const { mutate } = usePinCode()
   useEffect(() => {
     if(pinCode.pin1 && pinCode.pin2 && pinCode.pin3 && pinCode.pin4) {
       // trigger function here.
+      const handlePinCdoe = Object.values(pinCode).join("")
+      mutate({pin: handlePinCdoe})
       console.log("trigger", pinCode)
     }
   }, [pinCode])

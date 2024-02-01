@@ -20,12 +20,13 @@ import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 import Auth from '@/modules/Auth/Auth';
 
+// context
+import { useRegisterContext } from '@/contexts/Register/RegisterContext';
 //hooks
 import { useRegister } from '@/customHooks/Auth/useRegister';
 
 // css
 import './register.css';
-import { useRegisterContext } from './RegisterContext';
 
 // interface
 interface RegisterMainDataType {
@@ -51,11 +52,11 @@ export default function RegisterMainData({
 
   const handleLoginSubmit = (data: formDataType) => {
     mutate(data);
-    if(!isError) {
+    if (!isError) {
       // triggerFunction.current?.click();
       Auth.setUser({
         id: '1',
-        token:'yousef'
+        token: 'yousef'
       })
     }
   };
@@ -179,9 +180,8 @@ export default function RegisterMainData({
               ))}
             </div>
             <p
-              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${
-                errors.gender && errors.gender.message ? '' : 'invisible'
-              }`}
+              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${errors.gender && errors.gender.message ? '' : 'invisible'
+                }`}
             >
               {errors.gender && errors.gender.message
                 ? errors.gender.message
