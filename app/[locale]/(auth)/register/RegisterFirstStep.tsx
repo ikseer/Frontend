@@ -34,7 +34,7 @@ interface RegisterMainDataType {
 }
 interface formDataType {
   username: string;
-  email: string;
+  mail: string;
   first_name: string;
   last_name: string;
   password: string;
