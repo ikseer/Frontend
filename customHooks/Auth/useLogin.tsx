@@ -29,7 +29,7 @@ const handleSendData = (data: LoginType) => {
 const login = async (data: LoginType) => {
     handleSendData(data)
     // console.log(newData)
-    const response = await nonAuthRequest.post('/accounts/login', newData)
+    const response = await nonAuthRequest.post('/accounts/login/', newData)
     return response
 }
 
