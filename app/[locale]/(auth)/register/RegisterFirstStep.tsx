@@ -18,6 +18,11 @@ import Facebook from '@/public/images/auth/Facebook.svg';
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
+import Auth from '@/modules/Auth/Auth';
+
+//hooks
+import { useRegister } from '@/customHooks/Auth/useRegister';
+
 // css
 import './register.css';
 import { useRegisterContext } from './RegisterContext';
@@ -42,10 +47,17 @@ export default function RegisterMainData({
   const { errors } = formState;
 
   const { triggerFunction } = useRegisterContext();
+  const { mutate, isError, error } = useRegister();
 
   const handleLoginSubmit = (data: formDataType) => {
-    console.log(data);
-    triggerFunction.current?.click();
+    mutate(data);
+    if(!isError) {
+      // triggerFunction.current?.click();
+      Auth.setUser({
+        id: '1',
+        token:'yousef'
+      })
+    }
   };
 
   const firstNameObject = {
@@ -118,6 +130,7 @@ export default function RegisterMainData({
     [Google, firstStepKeys[13]],
     [Facebook, firstStepKeys[14]],
   ];
+  console.log(errors)
 
   return (
     <>

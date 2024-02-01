@@ -39,15 +39,11 @@ export default function Login({ keys }: LoginType) {
   const {mutate} = useLogin()
 
   const handleLoginSubmit = (data: FormDataType) => {
-    
       mutate(data)
-      // Auth.setUser({
-      //   id: '1',
-      //   token:'yousef'
-      // })
-
-
-    
+      Auth.setUser({
+        id: '1',
+        token:'yousef'
+      })  
   };
 
   return (

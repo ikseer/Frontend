@@ -6,9 +6,30 @@ interface LoginType {
     username: string
     password: string
 }
+interface NewDataType {
+    email: string
+    password: string
+}
+let newData:NewDataType = {
+    email: '',
+    password: '',
+}
+const handleSendData = (data: LoginType) => {
+    for (const [key, value] of Object.entries(data)) {
+        if (key === "username") {
+          newData.email = value;
+        } else {
+        // @ts-ignore
+          newData[key] = value;
+        }
+      }
+}
+
 
 const login = async (data: LoginType) => {
-    const response = await nonAuthRequest.post('/accounts/login', data)
+    handleSendData(data)
+    // console.log(newData)
+    const response = await nonAuthRequest.post('/accounts/login', newData)
     return response
 }
 

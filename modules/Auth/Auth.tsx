@@ -27,3 +27,5 @@ class Auth {
         this.user = {token: "", id: ""}
     }
 }
+let auth = new Auth()
+export default auth

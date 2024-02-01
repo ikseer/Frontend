@@ -1,7 +1,7 @@
 // main
 'use client';
 import React from 'react';
-
+import {useState} from 'react'
 // components
 import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
 import SaveAndContinue from '@/components/Buttons/AuthButton';
@@ -16,9 +16,11 @@ export default function RegisterSecondStep({
 }: RegisterSecondStepType) {
   const { triggerFunction } = useRegisterContext();
 
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    triggerFunction.current?.click();
+   console.log(phoneNumber)
   };
 
   return (
