@@ -8,12 +8,9 @@ import '@/app/[locale]/globals.css';
 import './PhoneNumber.css';
 
 interface PhoneNumberValidationType {
-  passPhoneNumber: (value: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  passPhoneNumber: (_value: string) => void;
 }
-const consoledd = (data: string) => {
-  console.log('yousf');
-};
-// consoledd("data")
 
 const PhoneNumberValidation = ({
   passPhoneNumber,

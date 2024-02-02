@@ -1,3 +1,4 @@
+import React from 'react';
 import './globals.css';
 import Providers from '../../components/darkTheme/Provider';
 import { notFound } from 'next/navigation';
