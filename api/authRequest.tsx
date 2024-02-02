@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 import Auth from '@/modules/Auth/Auth';
-import Router from '@/modules/Router/Router';
+// import { redirect } from 'next/navigation'
 
 // env didn't work properly with codespace, if run local uncoment next line and comment the next 2 line.
 // const baseUrl = process.env.BASEURL
@@ -11,8 +11,6 @@ const auth = new Auth();
 const authRequest = axios.create({
   baseURL: baseUrl,
 });
-
-const route = Router();
 
 authRequest.interceptors.request.use(
   (config) => {
@@ -25,7 +23,7 @@ authRequest.interceptors.request.use(
     return config;
   },
   (error) => {
-    route.push('/login');
+    // redirect('/login')
     return Promise.reject(error);
   },
 );
