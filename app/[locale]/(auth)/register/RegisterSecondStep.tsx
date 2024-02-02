@@ -17,10 +17,10 @@ interface RegisterSecondStepType {
 export default function RegisterSecondStep({
   thirdStepKeys,
 }: RegisterSecondStepType) {
-  const [phoneNumber, setPhoneNumber] = useState<number>();
+  const [phoneNumber, setPhoneNumber] = useState<string>();
   const passPhoneNumber = (value: string) => {
-    setPhoneNumber(value);           
-  };
+    setPhoneNumber(value);                   
+  };   
 
   const route = useRouter();
   const { mutate } = usePhoneNumber();
