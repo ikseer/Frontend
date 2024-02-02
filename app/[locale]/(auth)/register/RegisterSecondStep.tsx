@@ -1,16 +1,14 @@
 // main
 'use client';
 import React, { useState } from 'react';
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 // components
 import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
 import SaveAndContinue from '@/components/Buttons/AuthButton';
 
-
 // custom hooks
 import { usePhoneNumber } from '@/customHooks/Auth/useRegister';
-
 
 interface RegisterSecondStepType {
   thirdStepKeys: string[];
@@ -19,19 +17,16 @@ interface RegisterSecondStepType {
 export default function RegisterSecondStep({
   thirdStepKeys,
 }: RegisterSecondStepType) {
-  
-
   const [phoneNumber, setPhoneNumber] = useState<number>();
   const passPhoneNumber = (value: string) => {
-    setPhoneNumber(value)
-  }
+    setPhoneNumber(value);
+  };
 
-  const route = useRouter()
-  const { mutate } = usePhoneNumber()
+  const route = useRouter();
+  const { mutate } = usePhoneNumber();
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({ phone: phoneNumber})
- 
+    mutate({ phone: phoneNumber });
   };
 
   return (

@@ -19,7 +19,6 @@ import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 
-
 //hooks
 import { useRegister } from '@/customHooks/Auth/useRegister';
 
@@ -48,8 +47,7 @@ export default function RegisterMainData({
   const { mutate } = useRegister();
 
   const handleLoginSubmit = (data: formDataType) => {
-     mutate(data);
-
+    mutate(data);
   };
 
   const firstNameObject = {
@@ -60,7 +58,7 @@ export default function RegisterMainData({
     maxLength: {
       value: 20,
       message: 'maxlenght is 20 characters',
-    }
+    },
   };
   const lastNameObject = {
     required: {
@@ -70,7 +68,7 @@ export default function RegisterMainData({
     maxLength: {
       value: 20,
       message: 'maxlenght is 20 characters',
-    }
+    },
   };
   // didn't tranlate yet.
   const emailObject = {
@@ -81,9 +79,8 @@ export default function RegisterMainData({
     pattern: {
       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       message: 'Enter a valid email',
-    }
+    },
   };
-
 
   const userObject = {
     required: {
@@ -93,7 +90,7 @@ export default function RegisterMainData({
     maxLength: {
       value: 30,
       message: 'maxlenght is 30 characters',
-    }
+    },
   };
   // didn't tranlate yet.
   const passwordObject = {
@@ -108,7 +105,7 @@ export default function RegisterMainData({
     maxLength: {
       value: 20,
       message: 'maxlenght is 20 characters',
-    }
+    },
   };
 
   const GenderOjbect = {
@@ -149,7 +146,7 @@ export default function RegisterMainData({
     [Google, firstStepKeys[13]],
     [Facebook, firstStepKeys[14]],
   ];
-  console.log(errors)
+  console.log(errors);
 
   return (
     <>
@@ -198,8 +195,9 @@ export default function RegisterMainData({
               ))}
             </div>
             <p
-              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${errors.gender && errors.gender.message ? '' : 'invisible'
-                }`}
+              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${
+                errors.gender && errors.gender.message ? '' : 'invisible'
+              }`}
             >
               {errors.gender && errors.gender.message
                 ? errors.gender.message

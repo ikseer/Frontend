@@ -10,7 +10,7 @@
     "lint:fix": "next lint --fix",
     "style": "prettier -w .",
     "checkts": "tsc --noEmit",
-   "prepare": "git config --local core.hooksPath .githook || echo 'Can not set git hooks'"
+    "prepare": "git config --local core.hooksPath .githook || echo 'Can not set git hooks'"
   },
   "lint-staged": {
     "*.{ts,tsx}, !node_modules/*.{ts,tsx, js, jsx}, !package-lock.json, !package.json": [

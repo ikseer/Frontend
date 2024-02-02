@@ -1,5 +1,5 @@
 // main
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // components
 import PinNumber from '@/components/PinNumber/PinNumber';
 import Button from '@/components/Buttons/AuthButton';
@@ -22,7 +22,6 @@ interface PinCodeDataType {
 export default function RegisterConfirmEmail({
   secondStepKeys,
 }: RegisterConfirmEmailType) {
-
   const [pinCode, setPinCode] = useState<PinCodeDataType>({
     pin1: '',
     pin2: '',
@@ -30,16 +29,22 @@ export default function RegisterConfirmEmail({
     pin4: '',
     pin5: '',
     pin6: '',
-  })
-  const { mutate } = usePinCode()
+  });
+  const { mutate } = usePinCode();
   useEffect(() => {
-    console.log(pinCode)
-    if(pinCode.pin1 && pinCode.pin2 && pinCode.pin3 && pinCode.pin4 && pinCode.pin5 && pinCode.pin6) {
-      const handlePinCdoe = Object.values(pinCode).join('')
-      mutate({opt: handlePinCdoe})
+    console.log(pinCode);
+    if (
+      pinCode.pin1 &&
+      pinCode.pin2 &&
+      pinCode.pin3 &&
+      pinCode.pin4 &&
+      pinCode.pin5 &&
+      pinCode.pin6
+    ) {
+      const handlePinCdoe = Object.values(pinCode).join('');
+      mutate({ opt: handlePinCdoe });
     }
-  }, [pinCode, mutate])
-
+  }, [pinCode, mutate]);
 
   return (
     <form>
@@ -52,14 +57,31 @@ export default function RegisterConfirmEmail({
           {secondStepKeys[1]}
         </p>
         <div className={'flex space-x-3 justify-center my-5'} data-hs-pin-input>
-          <PinNumber   id="pin1" onChange={(e) => setPinCode({...pinCode, pin1: e.target.value})}/>
-          <PinNumber   id="pin2" onChange={(e) => setPinCode({...pinCode, pin2: e.target.value})}/>
-          <PinNumber   id="pin3" onChange={(e) => setPinCode({...pinCode, pin3: e.target.value})}/>
-          <PinNumber   id="pin4" onChange={(e) => setPinCode({...pinCode, pin4: e.target.value})}/>
-          <PinNumber   id="pin5" onChange={(e) => setPinCode({...pinCode, pin5: e.target.value})}/>
-          <PinNumber   id="pin6" onChange={(e) => setPinCode({...pinCode, pin6: e.target.value})}/>
+          <PinNumber
+            id="pin1"
+            onChange={(e) => setPinCode({ ...pinCode, pin1: e.target.value })}
+          />
+          <PinNumber
+            id="pin2"
+            onChange={(e) => setPinCode({ ...pinCode, pin2: e.target.value })}
+          />
+          <PinNumber
+            id="pin3"
+            onChange={(e) => setPinCode({ ...pinCode, pin3: e.target.value })}
+          />
+          <PinNumber
+            id="pin4"
+            onChange={(e) => setPinCode({ ...pinCode, pin4: e.target.value })}
+          />
+          <PinNumber
+            id="pin5"
+            onChange={(e) => setPinCode({ ...pinCode, pin5: e.target.value })}
+          />
+          <PinNumber
+            id="pin6"
+            onChange={(e) => setPinCode({ ...pinCode, pin6: e.target.value })}
+          />
         </div>
-
 
         <span className="text-xs text-slate-700 dark:text-slate-300">
           {secondStepKeys[2]}{' '}
@@ -72,6 +94,5 @@ export default function RegisterConfirmEmail({
         />
       </div>
     </form>
-
   );
 }

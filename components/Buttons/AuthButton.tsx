@@ -8,8 +8,8 @@ interface buttonProps {
   height: string;
   background?: string;
   ButtonClassName?: string;
-  type?:ButtonHTMLAttributes<HTMLButtonElement>['type']
-  onClick?: () => void
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  onClick?: () => void;
 }
 
 export default function AuthButton({
@@ -19,14 +19,14 @@ export default function AuthButton({
   background,
   ButtonClassName,
   type,
-  onClick
+  onClick,
 }: buttonProps) {
   const buttonStyle = { width, height };
 
   return (
     <button
       style={buttonStyle}
-      type={type?type:'submit'}
+      type={type ? type : 'submit'}
       className={` rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
       onClick={onClick}
     >

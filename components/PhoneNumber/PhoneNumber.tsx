@@ -9,17 +9,17 @@ import './PhoneNumber.css';
 
 interface PhoneNumberValidationType {
   passPhoneNumber: (value: string) => void;
-  
 }
 
-const PhoneNumberValidation = ({passPhoneNumber}: PhoneNumberValidationType) => {
+const PhoneNumberValidation = ({
+  passPhoneNumber,
+}: PhoneNumberValidationType) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [valid, setValid] = useState<boolean>(true);
 
-
   const handleChange = (value: string) => {
     setPhoneNumber(value);
-    passPhoneNumber(value)
+    passPhoneNumber(value);
     setValid(validatePhoneNumber(value));
   };
 
