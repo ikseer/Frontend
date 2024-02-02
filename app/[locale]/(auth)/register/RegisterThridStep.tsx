@@ -42,7 +42,7 @@ export default function RegisterConfirmEmail({
       pinCode.pin6
     ) {
       const handlePinCdoe = Object.values(pinCode).join('');
-      mutate({ opt: handlePinCdoe });
+      mutate({ otp: handlePinCdoe });
     }
   }, [pinCode, mutate]);
 
