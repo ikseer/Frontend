@@ -10,6 +10,10 @@ import './PhoneNumber.css';
 interface PhoneNumberValidationType {
   passPhoneNumber: (value: string) => void;
 }
+const consoledd = (data: string) => {
+  console.log('yousf');
+};
+// consoledd("data")
 
 const PhoneNumberValidation = ({
   passPhoneNumber,
