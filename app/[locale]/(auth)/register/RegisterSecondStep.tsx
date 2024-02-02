@@ -17,7 +17,7 @@ interface RegisterSecondStepType {
 export default function RegisterSecondStep({
   thirdStepKeys,
 }: RegisterSecondStepType) {
-  const [phoneNumber, setPhoneNumber] = useState<string>();
+  const [phoneNumber, setPhoneNumber] = useState<number>();
   const passPhoneNumber = (value: string) => {
     setPhoneNumber(value);                   
   };   
