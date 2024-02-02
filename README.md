@@ -2,17 +2,21 @@
 
 - [Figma Design](https://www.figma.com/file/d1be54h5fLgBFgdgsrZ4qt/IKSIRS?type=design&node-id=1-8248&mode=design&t=0Z0G00Sy4HChrepQ-0)
 - [Linear Link](https://linear.app/iksirs/team/SOFT/all)
-- [swagger] (https://mohamedham.pythonanywhere.com/swagger/)
+- [swagger](https://mohamedham.pythonanywhere.com/swagger/)
 
-## Technical Links & info
+## Localization
+- [next-intl-docs](https://next-intl-docs.vercel.app/docs/getting-started)
 
-- Localization Resource
+## utility-first CSS framework
+- [tailwind](https://tailwindcss.com/)
 
-1. [next-intl-docs](https://next-intl-docs.vercel.app/docs/getting-started)
 
-- preline
-<!-- add link here -->
+## design system library(UI component library)
+- [preline](https://preline.co/)
 
-- tailwind
-<!-- add link here -->
--
+## form management library
+- [React hook form](https://react-hook-form.com/)
+
+## data fetching and state management library 
+- [tanStack react query](https://tanstack.com/query/latest)
+
