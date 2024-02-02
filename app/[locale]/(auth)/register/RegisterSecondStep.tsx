@@ -20,7 +20,7 @@ export default function RegisterSecondStep({
   const [phoneNumber, setPhoneNumber] = useState<number>();
   const passPhoneNumber = (value: string) => {
     setPhoneNumber(value);                   
-  };   
+  };          
 
   const route = useRouter();
   const { mutate } = usePhoneNumber();

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="mt-4 text-3xl font-bold ml-5">
       Home page here current user is:
-      {JSON.stringify(user)}
+      {JSON.stringify(user)}      
     </main>
   );
 }
