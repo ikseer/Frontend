@@ -1,2 +1,2 @@
 #bin/sh
-npm run lint-staged
+npx --no-install lint-staged
