@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import AuthButton from '@/components/Buttons/AuthButton';
 import DividerText from '@/components/Divider/Divider';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
-import AuthTextField from '@/components/TextField/AuthTextField';
+import AuthTextField from '@/components/InputField/AuthTextField';
 import Radio from '@/components/Radio/Radio';
 
 // icons & images
@@ -195,9 +195,8 @@ export default function RegisterMainData({
               ))}
             </div>
             <p
-              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${
-                errors.gender && errors.gender.message ? '' : 'invisible'
-              }`}
+              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${errors.gender && errors.gender.message ? '' : 'invisible'
+                }`}
             >
               {errors.gender && errors.gender.message
                 ? errors.gender.message

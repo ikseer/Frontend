@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 
 // components
 import AuthButton from '@/components/Buttons/AuthButton';
-import AuthTextField from '@/components/TextField/AuthTextField';
+import AuthTextField from '@/components/InputField/AuthTextField';
 
 // css
 import '../register/register.css';

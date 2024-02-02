@@ -11,7 +11,7 @@ import DividerText from '@/components/Divider/Divider';
 import Google from '@/public/images/auth/Google.svg';
 import Facebook from '@/public/images/auth/Facebook.svg';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
-import AuthTextField from '@/components/TextField/AuthTextField';
+import AuthTextField from '@/components/InputField/AuthTextField';
 
 // hooks
 import { useLogin } from '@/customHooks/Auth/useLogin';

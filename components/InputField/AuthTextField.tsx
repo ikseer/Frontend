@@ -1,17 +1,18 @@
 'use client';
 // main
-import React from 'react';
-import '../../app/[locale]/globals.css';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+import '@/app/[locale]/globals.css';
+
 
 interface propsType {
-  placeholder: string;
+  placeholder?: string;
   Icon?: React.ReactElement | string;
   width?: string | undefined;
   id: string;
   object?: object;
-  errors: any;
+  errors?: any;
   register: any;
+  value?:string
 }
 interface styleType {
   width: string | undefined;
@@ -25,6 +26,7 @@ export default function AuthTextField({
   register,
   errors,
   object,
+  value
 }: propsType) {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleOnClick = () => {
@@ -57,7 +59,7 @@ export default function AuthTextField({
           placeholder={placeholder}
           type="text"
           // onChange={(e) => onChange(e.target.value)}
-          {...register(id, object)}
+          { ...register(id, object)}
         />
       </div>
       <p
