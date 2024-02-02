@@ -18,7 +18,7 @@ import Facebook from '@/public/images/auth/Facebook.svg';
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
-import Auth from '@/modules/Auth/Auth';
+
 
 //hooks
 import { useRegister } from '@/customHooks/Auth/useRegister';
@@ -59,7 +59,7 @@ export default function RegisterMainData({
     },
     maxLength: {
       value: 20,
-      message: "maxlenght is 20 characters",
+      message: 'maxlenght is 20 characters',
     }
   };
   const lastNameObject = {
@@ -69,7 +69,7 @@ export default function RegisterMainData({
     },
     maxLength: {
       value: 20,
-      message: "maxlenght is 20 characters",
+      message: 'maxlenght is 20 characters',
     }
   };
   // didn't tranlate yet.
@@ -80,7 +80,7 @@ export default function RegisterMainData({
     },
     pattern: {
       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "Enter a valid email",
+      message: 'Enter a valid email',
     }
   };
 
@@ -92,7 +92,7 @@ export default function RegisterMainData({
     },
     maxLength: {
       value: 30,
-      message: "maxlenght is 30 characters",
+      message: 'maxlenght is 30 characters',
     }
   };
   // didn't tranlate yet.
@@ -103,11 +103,11 @@ export default function RegisterMainData({
     },
     minLength: {
       value: 8,
-      message: "minlenght is 8 characters",
+      message: 'minlenght is 8 characters',
     },
     maxLength: {
       value: 20,
-      message: "maxlenght is 20 characters",
+      message: 'maxlenght is 20 characters',
     }
   };
 

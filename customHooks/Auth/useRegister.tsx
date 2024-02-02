@@ -82,7 +82,7 @@ export const usePinCode = () => {
 // Register third step
 
 interface PhoneNumberType {
-    phone: string
+    phone: string | undefined
 }
 
 const sendPhoneNumber = async (data: PhoneNumberType) => {

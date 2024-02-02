@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
@@ -8,7 +8,8 @@ import '@/app/[locale]/globals.css';
 import './PhoneNumber.css';
 
 interface PhoneNumberValidationType {
-  passPhoneNumber: React.Dispatch<React.SetStateAction<string | undefined>>
+  passPhoneNumber: (value: string) => void;
+  
 }
 
 const PhoneNumberValidation = ({passPhoneNumber}: PhoneNumberValidationType) => {

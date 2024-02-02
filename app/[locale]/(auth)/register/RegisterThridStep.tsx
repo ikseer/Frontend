@@ -38,7 +38,7 @@ export default function RegisterConfirmEmail({
       const handlePinCdoe = Object.values(pinCode).join('')
       mutate({opt: handlePinCdoe})
     }
-  }, [pinCode])
+  }, [pinCode, mutate])
 
 
   return (

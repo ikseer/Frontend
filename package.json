@@ -10,11 +10,16 @@
     "lint:fix": "next lint --fix",
     "style": "prettier -w .",
     "checkts": "tsc --noEmit",
-    "prepare": "git config --local core.hooksPath .git-hooks || echo \"failed to hook the git hooks\""
+   "prepare": "git config --local core.hooksPath .githook || echo 'Can not set git hooks'"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "npm run lint:fix",
-    "*.{ts,tsx,css}": "prettier -w ."
+    "*.{ts,tsx}": [
+      "next lint --fix",
+      "tsc --noEmit",
+      "prettier -w ."
+
+    ]
+
   },
   "dependencies": {
     "@tanstack/react-query": "^5.18.0",
