@@ -13,7 +13,7 @@
     "prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'"
   },
   "lint-staged": {
-    "*.{ts,tsx}, !node_modules/*.{ts,tsx, js, jsx}, !package-lock.json, !package.json": [
+    "*.{ts,tsx}": [
       "next lint --fix",
       "tsc --noEmit",
       "prettier -w ."
