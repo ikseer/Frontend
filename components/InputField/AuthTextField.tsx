@@ -3,7 +3,6 @@
 import React, { useRef } from 'react';
 import '@/app/[locale]/globals.css';
 
-
 interface propsType {
   placeholder?: string;
   Icon?: React.ReactElement | string;
@@ -12,7 +11,7 @@ interface propsType {
   object?: object;
   errors?: any;
   register: any;
-  value?:string
+  value?: string;
 }
 interface styleType {
   width: string | undefined;
@@ -26,7 +25,7 @@ export default function AuthTextField({
   register,
   errors,
   object,
-  value
+  value,
 }: propsType) {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleOnClick = () => {
@@ -58,8 +57,9 @@ export default function AuthTextField({
           }`}
           placeholder={placeholder}
           type="text"
+          value={value}
           // onChange={(e) => onChange(e.target.value)}
-          { ...register(id, object)}
+          {...register(id, object)}
         />
       </div>
       <p
