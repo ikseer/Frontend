@@ -1,22 +1,25 @@
 # contribution Rules
+
 ## Naming convension
- ### Files:
- - Page files: page.tsx (remain as is)
- - Component files: PascalCase (e.g., CustomButton.tsx, HeaderNavigation.tsx)
 
+### Files:
 
+- Page files: page.tsx (remain as is)
+- Component files: PascalCase (e.g., CustomButton.tsx, HeaderNavigation.tsx)
 
 ### Interfaces:
- - PascalCase => `componentName` + `Type` string
-   - (e.g., Component `X`, then interface `XType`)
-    
+
+- PascalCase => `componentName` + `Type` string
+  - (e.g., Component `X`, then interface `XType`)
 
 ### Variables:
- - camelCase (e.g., firstName, isLoading, totalCount)
 
+- camelCase (e.g., firstName, isLoading, totalCount)
 
 ## File structure
+
 ### comment order
+
 - main => contain all react & next imports
 - components => contain all component import
 - icons & images => contain all icons & images imports.
@@ -24,11 +27,12 @@
 - interface
 
 ## main color
+
 ### dark them
 
 - zinc-950
 - zinc-800
 
 ## Typology
-- didn't determined yet.
 
+- didn't determined yet.

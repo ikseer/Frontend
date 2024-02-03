@@ -18,9 +18,12 @@ import Facebook from '@/public/images/auth/Facebook.svg';
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
+
+//hooks
+import { useRegister } from '@/customHooks/Auth/useRegister';
+
 // css
 import './register.css';
-import { useRegisterContext } from './RegisterContext';
 
 // interface
 interface RegisterMainDataType {
@@ -28,7 +31,7 @@ interface RegisterMainDataType {
 }
 interface formDataType {
   username: string;
-  email: string;
+  user_email: string;
   first_name: string;
   last_name: string;
   password: string;
@@ -41,11 +44,10 @@ export default function RegisterMainData({
   const { register, handleSubmit, formState } = useForm<formDataType>();
   const { errors } = formState;
 
-  const { triggerFunction } = useRegisterContext();
+  const { mutate } = useRegister();
 
   const handleLoginSubmit = (data: formDataType) => {
-    console.log(data);
-    triggerFunction.current?.click();
+    mutate(data);
   };
 
   const firstNameObject = {
@@ -53,18 +55,30 @@ export default function RegisterMainData({
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 20,
+      message: 'maxlenght is 20 characters',
+    },
   };
   const lastNameObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 20,
+      message: 'maxlenght is 20 characters',
+    },
   };
-
+  // didn't tranlate yet.
   const emailObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
+    },
+    pattern: {
+      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: 'Enter a valid email',
     },
   };
 
@@ -73,13 +87,27 @@ export default function RegisterMainData({
       value: true,
       message: firstStepKeys[15],
     },
+    maxLength: {
+      value: 30,
+      message: 'maxlenght is 30 characters',
+    },
   };
+  // didn't tranlate yet.
   const passwordObject = {
     required: {
       value: true,
       message: firstStepKeys[15],
     },
+    minLength: {
+      value: 8,
+      message: 'minlenght is 8 characters',
+    },
+    maxLength: {
+      value: 20,
+      message: 'maxlenght is 20 characters',
+    },
   };
+
   const GenderOjbect = {
     required: {
       value: true,
@@ -94,7 +122,7 @@ export default function RegisterMainData({
 
   // icon, placeholder, id, object
   const TextFieldOther = [
-    [<LuMail key="email" />, firstStepKeys[3], 'email', , emailObject],
+    [<LuMail key="user_email" />, firstStepKeys[3], 'user_email', emailObject],
     [<LuUser key="username" />, firstStepKeys[4], 'username', userObject],
     [
       <LuKeyRound key="password" />,
@@ -118,6 +146,7 @@ export default function RegisterMainData({
     [Google, firstStepKeys[13]],
     [Facebook, firstStepKeys[14]],
   ];
+  console.log(errors);
 
   return (
     <>
@@ -133,24 +162,24 @@ export default function RegisterMainData({
           <div className="grid grid-cols-2 gap-5">
             {TextFieldName.map((textField, indx) => (
               <AuthTextField
-                key={indx}
+                key={`${textField} - ${indx}`}
                 placeholder={textField[0] as string}
                 id={textField[1] as string}
                 register={register}
                 errors={errors}
-                object={textField[2] as any}
+                object={textField[2] as object}
               />
             ))}
           </div>
           {TextFieldOther.map((textField, indx) => (
             <AuthTextField
-              key={indx}
+              key={`${textField[2]} - ${indx}`}
               Icon={textField[0]}
               placeholder={textField[1] as string}
               id={textField[2] as string}
               register={register}
               errors={errors}
-              object={textField[3] as any}
+              object={textField[3] as object}
             />
           ))}
 

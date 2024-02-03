@@ -1,5 +1,5 @@
 'use client';
-import { useRegisterContext } from '@/app/[locale]/(auth)/register/RegisterContext';
+import { useRegisterContext } from '@/contexts/Register/RegisterContext';
 
 export default function StepperNavigationButtons() {
   const { triggerFunction: ref } = useRegisterContext();
@@ -15,7 +15,7 @@ export default function StepperNavigationButtons() {
       <button
         ref={ref}
         type="button"
-        className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+        className="hidden py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
         data-hs-stepper-next-btn
       >
         Next
@@ -37,7 +37,7 @@ export default function StepperNavigationButtons() {
 
       <button
         type="button"
-        className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+        className="hidden py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
         data-hs-stepper-finish-btn
         style={{ display: 'none' }}
       >

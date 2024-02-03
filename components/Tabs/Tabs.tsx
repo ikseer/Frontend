@@ -1,5 +1,12 @@
 import React from 'react'
-export default function Tabs() {
+interface TabsType {
+  profileSetting: React.ReactNode
+  paymentSetting: React.ReactNode
+  securitySetting: React.ReactNode
+}
+
+export default function Tabs({ profileSetting, paymentSetting, securitySetting }: TabsType) {
+
   return (
     <>
       <div className="border-b border-gray-200 dark:border-gray-700">
@@ -87,14 +94,8 @@ export default function Tabs() {
           id="tabs-with-icons-1"
           role="tabpanel"
           aria-labelledby="tabs-with-icons-item-1"
-        >
-          <p className="text-gray-500 dark:text-gray-400">
-            This is the{' '}
-            <em className="font-semibold text-gray-800 dark:text-gray-200">
-              first
-            </em>{' '}
-            items tab body.
-          </p>
+        > 
+        {profileSetting}
         </div>
         <div
           id="tabs-with-icons-2"

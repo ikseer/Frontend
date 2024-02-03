@@ -7,17 +7,25 @@ import 'react-phone-input-2/lib/style.css';
 import '@/app/[locale]/globals.css';
 import './PhoneNumber.css';
 
-const PhoneNumberValidation = () => {
+interface PhoneNumberValidationType {
+  // eslint-disable-next-line no-unused-vars
+  passPhoneNumber: (_value: string) => void;
+}
+
+const PhoneNumberValidation = ({
+  passPhoneNumber,
+}: PhoneNumberValidationType) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [valid, setValid] = useState<boolean>(true);
 
   const handleChange = (value: string) => {
     setPhoneNumber(value);
+    passPhoneNumber(value);
     setValid(validatePhoneNumber(value));
   };
 
   const validatePhoneNumber = (phoneNumber: string) => {
-    const phoneNumberPattern = /^\+?[1-9]\d{3,14}$/;
+    const phoneNumberPattern = /^\+?[1-9]\d{5,14}$/;
     return phoneNumberPattern.test(phoneNumber);
   };
 

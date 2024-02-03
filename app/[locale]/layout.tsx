@@ -1,9 +1,11 @@
+import React from 'react';
 import './globals.css';
 import Providers from '../../components/darkTheme/Provider';
 import { notFound } from 'next/navigation';
 // import { useTranslations } from 'next-intl';
 import GuestNavBar from '../../components/Navbar/GuestNavbar';
 import PrelineScript from './components/PrelineScript';
+import ReactQueryProvider from '@/utils/reactQueryProvider';
 
 export const metadata = {
   title: 'Create Next App',
@@ -24,7 +26,7 @@ export default function RootLayout({
   params: { locale },
 }: RootLayoutProps) {
   if (!locales.includes(locale as any)) notFound();
-  // console.log(locales)
+
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
   return (
@@ -32,7 +34,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <GuestNavBar />
-          {children}
+          <ReactQueryProvider>{children}</ReactQueryProvider>
         </Providers>
       </body>
       <PrelineScript />
