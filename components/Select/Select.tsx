@@ -8,7 +8,7 @@ export default function Select({ label, selectOptions }: SelectType) {
     <div className="flex justify-between mt-3">
       <label
         htmlFor="hs-select-label"
-        className="block text-sm font-medium mb-2 dark:text-white w-2/12"
+        className="cursor-pointer block text-sm font-medium mb-2 dark:text-white w-2/12"
       >
         {label}
       </label>

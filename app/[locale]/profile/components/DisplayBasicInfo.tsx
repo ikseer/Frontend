@@ -18,8 +18,10 @@ export default function DisplayBasicInfo({
   return (
     <div className="flex justify-between items-center">
       <div className="flex flex-col w-2/12 ">
-        <p>{mainText}</p>
-        <p className="text-sm">{secText}</p>
+        <label className="cursor-pointer" htmlFor={inputText[0]}>
+          {mainText}
+        </label>
+        <p className="text-xs text-gray-400">{secText}</p>
       </div>
       {/* <div> */}
       <div className="flex w-9/12 gap-x-2">
@@ -35,7 +37,6 @@ export default function DisplayBasicInfo({
                 message: 'This field is required',
               },
             }}
-            value={text}
           />
         ))}
       </div>

@@ -11,6 +11,7 @@ import { useGetProfile } from '@/customHooks/Profile/useProfile';
 export default function ProfileSetting() {
   const { data } = useGetProfile();
   console.log(data);
+  console.log(data);
   return (
     <div>
       <SettingContainer

@@ -18,7 +18,7 @@ authRequest.interceptors.request.use(
     config.headers['Content-Type'] = 'application/json';
 
     if (token) {
-      config.headers.Authorization = `JWT ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
