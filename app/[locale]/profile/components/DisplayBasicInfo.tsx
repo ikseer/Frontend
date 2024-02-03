@@ -1,6 +1,6 @@
 'use client';
 import { useForm } from 'react-hook-form';
-import AuthTextField from '@/components/InputField/AuthTextField';
+import AuthTextField from '@/components/InputField/InputField';
 
 interface DisplayBasicInfoType {
   mainText: string;

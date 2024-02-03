@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 // components
 import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
-import SaveAndContinue from '@/components/Buttons/AuthButton';
+import SaveAndContinue from '@/components/Buttons/Button';
 
 // custom hooks
 import { usePhoneNumber } from '@/customHooks/Auth/useRegister';

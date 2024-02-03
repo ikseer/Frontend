@@ -6,15 +6,15 @@ import { useForm } from 'react-hook-form';
 // import { DevTool } from '@hookform/devtools';
 
 // components
-import AuthButton from '@/components/Buttons/AuthButton';
+import AuthButton from '@/components/Buttons/Button';
 import DividerText from '@/components/Divider/Divider';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
-import AuthTextField from '@/components/InputField/AuthTextField';
+import AuthTextField from '@/components/InputField/InputField';
 import Radio from '@/components/Radio/Radio';
 
 // icons & images
-import Google from '@/public/images/auth/Google.svg';
-import Facebook from '@/public/images/auth/Facebook.svg';
+import Google from '@/images/auth/Google.svg';
+import Facebook from '@/images/auth/Facebook.svg';
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 // components
 import PinNumber from '@/components/PinNumber/PinNumber';
-import Button from '@/components/Buttons/AuthButton';
+import Button from '@/components/Buttons/Button';
 
 // custom hooks
 import { usePinCode } from '@/customHooks/Auth/useRegister';
