@@ -21,7 +21,7 @@ export default function ChangePassword() {
         <form>
             <InputField
                 id="old_password"
-                placeholder="Old Password"
+                placeholder="Old password"
                 flexType="flex-col"
                 width="75%"
                 register={register}
@@ -31,7 +31,7 @@ export default function ChangePassword() {
             />
             <InputField
                 id="new_password1"
-                placeholder="Old Password"
+                placeholder="New password"
                 flexType="flex-col"
                 width="75%"
                 register={register}
@@ -41,7 +41,7 @@ export default function ChangePassword() {
             />
             <InputField
                 id="new_password2"
-                placeholder="Old Password"
+                placeholder="Repeat password"
                 flexType="flex-col"
                 width="75%"
                 register={register}

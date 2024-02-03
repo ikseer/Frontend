@@ -28,7 +28,7 @@ export default function AuthTextField({
   register,
   errors,
   object,
-  value,
+
   labels,
   type,
   flexType,
@@ -77,7 +77,6 @@ export default function AuthTextField({
             }`}
             placeholder={placeholder}
             type="text"
-            value={value}
             // onChange={(e) => onChange(e.target.value)}
             {...register(id, object)}
           />
@@ -90,7 +89,10 @@ export default function AuthTextField({
            disabled:opacity-50 disabled:pointer-events-none
            dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
             " 
-          placeholder="Enter password" value="12345qwerty" />
+          placeholder={placeholder}
+          {...register(id, object)}
+
+           />
           <button type="button" data-hs-toggle-password={`{"target": "#${id}"}`}
           className="absolute top-0 end-0 p-3.5 rounded-e-md dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             <svg className="flex-shrink-0 w-3.5 h-3.5 text-gray-400 dark:text-neutral-600" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
