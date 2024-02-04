@@ -1,5 +1,5 @@
 interface User {
-  id: string;
+  pk: string;
   token: string;
   refresh: string;
   username: string;
@@ -18,7 +18,7 @@ class Auth {
     return this.user || {};
   }
   getUserId() {
-    return this.user?.id || null;
+    return this.user?.pk || null;
   }
   getToken() {
     return this.user.token || null;
@@ -46,7 +46,7 @@ class Auth {
   logout() {
     localStorage.removeItem('auth');
     this.user = {
-      id: '',
+      pk: '',
       token: '',
       refresh: '',
       username: '',
