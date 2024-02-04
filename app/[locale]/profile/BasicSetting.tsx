@@ -6,12 +6,12 @@ import DisplayBasicInfo from './components/DisplayBasicInfo';
 import Select from '@/components/Select/Select';
 import DisplayGender from '@/components/Gender/DisplayGender';
 import { timeZoneList } from './components/DifferentTimeZone';
-import { useGetProfile } from '@/customHooks/Profile/useProfile';
+// import { useGetProfile } from '@/customHooks/Profile/useProfile';
 
 export default function ProfileSetting() {
-  const { data } = useGetProfile();
-  console.log(data);
-  console.log(data);
+  // const { data } = useGetProfile();
+  // console.log(data);
+
   return (
     <div>
       <SettingContainer

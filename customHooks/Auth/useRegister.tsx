@@ -27,7 +27,7 @@ const register = async (data: RegisterType) => {
 };
 
 interface User {
-  id: string;
+  pk: string;
   token: string;
   refresh: string;
   username: string;
@@ -35,8 +35,8 @@ interface User {
   last_name: string;
   email: string;
 }
-let userObject:User  = {
-  id: '',
+let userObject: User = {
+  pk: '',
   token: '',
   refresh: '',
   username: '',
@@ -45,17 +45,16 @@ let userObject:User  = {
   email: '',
 };
 
-
 export const useRegister = () => {
   const { triggerFunction } = useRegisterContext();
 
   return useMutation({
     mutationFn: register,
-    onMutate: (data) => {
+    onMutate: () => {
       console.log('from mutate', 'data');
     },
-    onSuccess: () => {
-      
+    onSuccess: (data) => {
+      userObject = { ...userObject, ...data };
       triggerFunction.current?.click();
     },
     onError: (error) => {
@@ -76,16 +75,19 @@ const confirmEmail = async (data: PinNumberType) => {
   return response;
 };
 
-const auth = new Auth()
+const auth = new Auth();
 export const usePinCode = () => {
   const { triggerFunction } = useRegisterContext();
   return useMutation({
     mutationFn: confirmEmail,
-    onMutate: (data) => {
-    },
     onSuccess: (data) => {
       triggerFunction.current?.click();
-      
+      userObject = {
+        ...userObject,
+        token: data.data.access,
+        refresh: data.data.refresh,
+      };
+      auth.setUser(userObject);
     },
     onError: (error) => {
       console.log(error);
@@ -108,12 +110,7 @@ export const usePhoneNumber = () => {
   const route = useRouter();
   return useMutation({
     mutationFn: sendPhoneNumber,
-    onSuccess: (data) => {
-      userObject = {...userObject, 
-        token: data.data.access,
-        refresh: data.data.refresh
-      }
-      auth.setUser(userObject);
+    onSuccess: () => {
       route.push('/');
     },
     onError: (error) => {

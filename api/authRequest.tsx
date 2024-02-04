@@ -5,7 +5,7 @@ import Auth from '@/modules/Auth/Auth';
 
 // env didn't work properly with codespace, if run local uncoment next line and comment the next 2 line.
 // const baseUrl = process.env.BASEURL
-const baseUrl = 'https://mohamedham.pythonanywhere.com';
+const baseUrl = 'https://ikseer.onrender.com';
 
 const auth = new Auth();
 const authRequest = axios.create({

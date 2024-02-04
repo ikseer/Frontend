@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import nonAuthRequest from '@/api/nonAuthRequest';
 import Auth from '@/modules/Auth/Auth';
 import { useRouter } from 'next/navigation';
+import { useGetProfile } from '../Profile/useProfile';
 
 interface LoginType {
   username: string;
@@ -34,7 +35,7 @@ const login = async (data: LoginType) => {
   const response = await nonAuthRequest.post('/accounts/login/', newData);
   return response;
 };
-
+let isSuccess = { value: false };
 const auth = new Auth();
 export const useLogin = () => {
   const route = useRouter();
@@ -50,6 +51,7 @@ export const useLogin = () => {
         refresh: data.data.refresh,
       };
       auth.setUser(userObject);
+      isSuccess.value = true;
       route.push('/');
     },
     onError: (error) => {
@@ -60,3 +62,13 @@ export const useLogin = () => {
     },
   });
 };
+
+if (isSuccess.value) {
+  const auth = new Auth();
+  const SetUser = async () => {
+    const user = await useGetProfile();
+    console.log(user);
+    auth.setUser(user.data);
+  };
+  SetUser();
+}

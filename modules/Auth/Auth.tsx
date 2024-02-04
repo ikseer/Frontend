@@ -1,3 +1,6 @@
+// 'use client';
+// import { useGetProfile } from "@/customHooks/Profile/useProfile";
+
 interface User {
   pk: string;
   token: string;
@@ -42,6 +45,12 @@ class Auth {
   setUser(newUser: User) {
     this.user = newUser;
     localStorage.setItem('auth', JSON.stringify(newUser));
+  }
+  isRegister() {
+    if (this.user && this.user?.token && this.user?.pk && this.user?.email) {
+      return true;
+    }
+    return false;
   }
   logout() {
     localStorage.removeItem('auth');
