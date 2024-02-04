@@ -26,7 +26,22 @@ export default function Tabs({
         >
           <button
             type="button"
-            className=" hs-tab-active:font-semibold hs-tab-active:border-gray-200 hs-tab-active:text-gray-200 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-gray-200 focus:outline-none focus:text-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-gray-100 active"
+            className=" hs-tab-active:font-semibold 
+            py-2 px-4 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap 
+            disabled:opacity-50 disabled:pointer-events-none 
+            focus:outline-none 
+            hs-tab-active:border-slate-400 hs-tab-active:bg-slate-200 
+            hs-tab-active:text-gray-800 
+             hover:text-gray-800 focus:text-gray-800 
+             text-zinc-400
+
+             dark:hover:text-gray-100 hs-tab-active:dark:bg-zinc-950
+             hs-tab-active:dark:text-gray-100
+            hs-tab-active:rounded-xl hs-tab-active:dark:border-gray-800
+             dark:text-gray-400
+             active
+          
+            "
             id="tabs-with-icons-item-1"
             data-hs-tab="#tabs-with-icons-1"
             aria-controls="tabs-with-icons-1"
@@ -37,7 +52,22 @@ export default function Tabs({
           </button>
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-gray-200 hs-tab-active:text-gray-200 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-gray-200 focus:outline-none focus:text-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-gray-100"
+            className=" hs-tab-active:font-semibold 
+            py-2 px-4 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap 
+            disabled:opacity-50 disabled:pointer-events-none 
+            focus:outline-none 
+            hs-tab-active:border-slate-400 hs-tab-active:bg-slate-200 
+            hs-tab-active:text-gray-800 
+             hover:text-gray-800 focus:text-gray-800 
+             text-zinc-400
+
+             dark:hover:text-gray-100 hs-tab-active:dark:bg-zinc-950
+             hs-tab-active:dark:text-gray-100
+            hs-tab-active:rounded-xl hs-tab-active:dark:border-gray-800
+             dark:text-gray-400
+             
+          
+            "
             id="tabs-with-icons-item-2"
             data-hs-tab="#tabs-with-icons-2"
             aria-controls="tabs-with-icons-2"
@@ -48,7 +78,23 @@ export default function Tabs({
           </button>
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-gray-200 hs-tab-active:text-gray-200 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-gray-200 focus:outline-none focus:text-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-gray-100"
+
+            className=" hs-tab-active:font-semibold 
+            py-2 px-4 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap 
+            disabled:opacity-50 disabled:pointer-events-none 
+            focus:outline-none 
+            hs-tab-active:border-slate-400 hs-tab-active:bg-slate-200 
+            hs-tab-active:text-gray-800 
+             hover:text-gray-800 focus:text-gray-800 
+             text-zinc-400
+
+             dark:hover:text-gray-100 hs-tab-active:dark:bg-zinc-950
+             hs-tab-active:dark:text-gray-100
+            hs-tab-active:rounded-xl hs-tab-active:dark:border-gray-800
+             dark:text-gray-400
+             
+          
+            "  
             id="tabs-with-icons-item-3"
             data-hs-tab="#tabs-with-icons-3"
             aria-controls="tabs-with-icons-3"
