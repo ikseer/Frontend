@@ -1,4 +1,4 @@
-import Background from './Background.svg'
+import "./settingStyle.css"
 interface SettingContainerType {
   mainText: string;
   secondaryText: string;
@@ -9,11 +9,16 @@ export default function SettingContainer({
   secondaryText,
 }: SettingContainerType) {
   return (
-    <div className="mt-6  p-8 rounded-lg" 
-      style={{backgroundImage: `url(${Background})`, backgroundSize: 'cover'}}>
+    <div className="mt-6 p-6 rounded-lg setting-cover" >
       <div className="flex items-center">
         <h2 className="mr-2 mb-2 text-4xl dark:text-gray-200">Setting</h2>
-        <h3 className="dark:bg-slate-400 rounded-md dark:text-zinc-950 py-1 px-3 ">
+        <h3 
+        className=" py-2 px-4 border-b-2
+        border-slate-400 bg-slate-200 text-gray-800 
+        dark:border-gray-800 dark:bg-zinc-950 dark:text-gray-100 rounded-xl
+
+        "
+        >
           {mainText}
         </h3>
       </div>

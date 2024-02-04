@@ -26,7 +26,7 @@ export default function ChangePassword() {
                 width="75%"
                 register={register}
                 errors={errors}
-                labels={['Old password', <Link key="forgot-password" href="/forgot-password" className="text-teal-600">Forgot Password?</Link>]}
+                labels={[<span key="old_password" className="text-zinc-600 dark:text-slate-400">Old password</span>, <Link key="forgot-password" href="/forgot-password" className="text-teal-600">Forgot Password?</Link>]}
                 type="password"
             />
             <InputField
@@ -36,7 +36,7 @@ export default function ChangePassword() {
                 width="75%"
                 register={register}
                 errors={errors}
-                labels={['New password']}
+                labels={[<span key="new_password1" className="text-zinc-600 dark:text-slate-400">Old password</span>]}
                 type="password"
             />
             <InputField
@@ -46,13 +46,17 @@ export default function ChangePassword() {
                 width="75%"
                 register={register}
                 errors={errors}
-                labels={['Repeat password']}
+                labels={[<span key="new_password2" className="text-zinc-600 dark:text-slate-400">Old password</span>]}
                 type="password"
             />
             <Button type="submit" title="Save" width="150px" height="42px" 
-                ButtonClassName="bg-slate-100 text-teal-600 dark:bg-zinc-950 dark:text-slate-200 font-medium 
-                border-1 border-slate-200"
-                background="text-white"/>
+                ButtonClassName="bg-slate-100 border-2  border-gray-200 hover:bg-gray-200
+                 hover:text-zinc-500  text-teal-600 
+                dark:bg-zinc-950 dark:text-slate-400 font-medium border-1 border-slate-200
+                dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-slate-300
+                "
+                background="bg-white"
+                />
         </form>
 
     );

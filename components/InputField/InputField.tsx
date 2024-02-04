@@ -12,7 +12,7 @@ interface propsType {
   errors?: any;
   register: any;
   value?: string;
-  labels?: string[] | [string, React.ReactElement];
+  labels?: string[] | [string, React.ReactElement] | React.ReactElement[];
   type?: string,
   flexType?: string
 }
@@ -28,7 +28,6 @@ export default function AuthTextField({
   register,
   errors,
   object,
-
   labels,
   type,
   flexType,

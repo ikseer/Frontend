@@ -22,7 +22,7 @@ export default function SecuritySetting() {
                 <LinkAccounts />
             </SecurityContainer>
             
-    
+
             <SecurityContainer>
                 <DeleteYourAccount />
             </SecurityContainer>

@@ -12,8 +12,12 @@ export default function DeleteAccount() {
             
             <Button 
             type="submit" title="Delete my account" width="200px" height="42px" 
-            ButtonClassName='dark:bg-zinc-950 dark:text-red-700 font-medium border-1 border-slate-200'
-            background='text-white'
+            ButtonClassName="bg-slate-100 border-2  border-gray-200 hover:bg-gray-200
+                 hover:text-red-500  text-red-400 
+                dark:bg-zinc-950 dark:text-red-500 font-medium border-1 border-slate-200
+                dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-red-700
+                "
+                background="bg-white"
             />
 
         </div>
