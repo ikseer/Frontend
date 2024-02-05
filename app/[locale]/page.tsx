@@ -1,7 +1,7 @@
 'use client';
 import Auth from '@/modules/Auth/Auth';
 // import { Link } from '@/navigation';
-// import Footer from '@/components/Footer/Footer';
+import Footer from '@/components/Footer/Footer';
 const auth = new Auth();
 export default function Home() {
   const user = auth.getUserInfo();
@@ -11,7 +11,7 @@ export default function Home() {
       {/* <Link href="/profile">Profile</Link> */}
       <p>Home page here current user is:</p>
       {JSON.stringify(user)}
-      {/* <Footer />  */}
+      <Footer />
     </main>
   );
 }

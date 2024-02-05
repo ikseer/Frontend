@@ -17,6 +17,7 @@ export const pathnames = {
   '/forgot-password': '/forgot-password',
   '/reset-password': '/reset-password',
   '/profile': '/profile',
+  '/tmp': '/tmp',
 
   // If locales use different paths, you can
   // specify each external path per locale.
