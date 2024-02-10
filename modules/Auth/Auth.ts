@@ -5,10 +5,6 @@ interface User {
   pk: string;
   token: string;
   refresh: string;
-  username: string;
-  first_name: string;
-  last_name: string;
-  email: string;
 }
 
 class Auth {
@@ -17,7 +13,7 @@ class Auth {
     const authData = localStorage.getItem('auth');
     this.user = authData ? JSON.parse(authData) : {};
   }
-  getUserInfo() {
+  getUserAuth() {
     return this.user || {};
   }
   getUserId() {
@@ -29,25 +25,13 @@ class Auth {
   getRefresh() {
     return this.user.refresh || null;
   }
-  getUsername() {
-    return this.user?.username || null;
-  }
-  getFirstName() {
-    return this.user?.first_name || null;
-  }
-  getLastName() {
-    return this.user?.last_name || null;
-  }
-  getEmail() {
-    return this.user?.email || null;
-  }
 
-  setUser(newUser: User) {
+  setUserAuth(newUser: User) {
     this.user = newUser;
     localStorage.setItem('auth', JSON.stringify(newUser));
   }
   isRegister() {
-    if (this.user && this.user?.token && this.user?.pk && this.user?.email) {
+    if (this.user && this.user?.token && this.user?.pk) {
       return true;
     }
     return false;
@@ -58,10 +42,6 @@ class Auth {
       pk: '',
       token: '',
       refresh: '',
-      username: '',
-      first_name: '',
-      last_name: '',
-      email: '',
     };
   }
 }

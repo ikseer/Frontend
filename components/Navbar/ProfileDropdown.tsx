@@ -1,9 +1,7 @@
 import React from 'react';
 import { LuLogOut } from 'react-icons/lu';
-import Auth from '@/modules/Auth/Auth';
-const auth = new Auth();
-const firstName = auth.getFirstName();
-const lastName = auth.getLastName();
+// import Auth from '@/modules/Auth/Auth';
+// const auth = new Auth();
 
 export default function ProfileDropDown() {
   return (
@@ -30,7 +28,7 @@ export default function ProfileDropDown() {
             className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             href="#"
           >
-            {`${firstName} ${lastName}`}
+            Yousef change this
           </a>
           <a
             className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"

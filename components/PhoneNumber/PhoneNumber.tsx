@@ -19,9 +19,13 @@ const PhoneNumberValidation = ({
   const [valid, setValid] = useState<boolean>(true);
 
   const handleChange = (value: string) => {
-    setPhoneNumber(value);
-    passPhoneNumber(value);
     setValid(validatePhoneNumber(value));
+    setPhoneNumber(value);
+    if (valid) {
+      passPhoneNumber(value);
+    } else {
+      passPhoneNumber('');
+    }
   };
 
   const validatePhoneNumber = (phoneNumber: string) => {

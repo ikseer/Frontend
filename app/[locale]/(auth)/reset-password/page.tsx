@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 import AuthButton from '@/components/Buttons/Button';
 import AuthTextField from '@/components/InputField/InputField';
 
+import { useResetPassword } from '@/customHooks/Auth/useResetPassword';
+
 // css
 import '../register/register.css';
 
@@ -20,8 +22,9 @@ export default function ResetPassword() {
   const { register, formState, handleSubmit } =
     useForm<ResetPasswordDataType>();
   const { errors } = formState;
+  const { mutate } = useResetPassword();
   const handleResetPassword = (data: ResetPasswordDataType) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (

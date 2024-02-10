@@ -2,8 +2,8 @@
 import { useQuery } from '@tanstack/react-query';
 import authRequest from '@/api/authRequest';
 import Auth from '@/modules/Auth/Auth';
-// Get
 
+// Get
 const auth = new Auth();
 const id = auth.getUserId();
 

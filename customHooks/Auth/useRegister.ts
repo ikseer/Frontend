@@ -26,35 +26,13 @@ const register = async (data: RegisterType) => {
   return response;
 };
 
-interface User {
-  pk: string;
-  token: string;
-  refresh: string;
-  username: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-}
-let userObject: User = {
-  pk: '',
-  token: '',
-  refresh: '',
-  username: '',
-  first_name: '',
-  last_name: '',
-  email: '',
-};
-
 export const useRegister = () => {
   const { triggerFunction } = useRegisterContext();
 
   return useMutation({
     mutationFn: register,
-    onMutate: () => {
-      console.log('from mutate', 'data');
-    },
-    onSuccess: (data) => {
-      userObject = { ...userObject, ...data };
+
+    onSuccess: () => {
       triggerFunction.current?.click();
     },
     onError: (error) => {
@@ -64,6 +42,16 @@ export const useRegister = () => {
 };
 
 // Register second step
+interface User {
+  pk: string;
+  token: string;
+  refresh: string;
+}
+let userObject: User = {
+  pk: '',
+  token: '',
+  refresh: '',
+};
 interface PinNumberType {
   otp: string;
 }
@@ -83,11 +71,11 @@ export const usePinCode = () => {
     onSuccess: (data) => {
       triggerFunction.current?.click();
       userObject = {
-        ...userObject,
+        pk: data.data.pk,
         token: data.data.access,
         refresh: data.data.refresh,
       };
-      auth.setUser(userObject);
+      auth.setUserAuth(userObject);
     },
     onError: (error) => {
       console.log(error);
@@ -96,7 +84,6 @@ export const usePinCode = () => {
 };
 
 // Register third step
-
 interface PhoneNumberType {
   phone: string | undefined;
 }
