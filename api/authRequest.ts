@@ -1,12 +1,9 @@
-'use client';
 import axios from 'axios';
 import Auth from '@/modules/Auth/Auth';
-// import { redirect } from 'next/navigation'
 
-// env didn't work properly with codespace, if run local uncoment next line and comment the next 2 line.
-// const baseUrl = process.env.BASEURL
-const baseUrl = 'https://ikseer.azurewebsites.net';
+const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
+console.log(process.env, 'process env');
 const auth = new Auth();
 const authRequest = axios.create({
   baseURL: baseUrl,
