@@ -1,16 +1,11 @@
 'use client';
 import SettingContainer from '@/components/Settings/setting';
 import UserImage from '@/components/UserImage/UserImage';
-import DisplayBasicInfo from './components/DisplayBasicInfo';
-// import DatePicker from "@/components/DatePicker/DatePicker"
-import Select from '@/components/Select/Select';
-import DisplayGender from '@/components/Gender/DisplayGender';
-import { timeZoneList } from './components/DifferentTimeZone';
 // import { useGetProfile } from '@/customHooks/Profile/useProfile';
-
+import Button from "@/components/Buttons/Button"
+import BasicInfo from "./components/BasicInfo"
 export default function ProfileSetting() {
-  // const { data } = useGetProfile();
-  // console.log(data);
+
 
   return (
     <div>
@@ -19,24 +14,31 @@ export default function ProfileSetting() {
         secondaryText="Edit your basic details like full name."
       />
       <UserImage />
-      <div className="mt-6">
-        <DisplayBasicInfo
-          mainText="full Name"
-          secText="First and last name"
-          inputText={['Mohamed', 'Yousef']}
-        />
-        <DisplayBasicInfo
-          mainText="Email"
-          inputText={['modyyousef800@gmail.com']}
-        />
-        <DisplayBasicInfo mainText="username" inputText={['mohamedyousef']} />
-        {/* Date picker */}
-        <DisplayBasicInfo mainText="Date of Birth" inputText={['01/01/2000']} />
-        {/*  time zone picker */}
-        <Select label="Timezone" selectOptions={timeZoneList} />
-        {/* Gender */}
-        <DisplayGender />
-      </div>
+      <BasicInfo />
+        <div className="mt-10 flex gap-x-2 items-center">
+          
+          <Button 
+            title="Save"
+            width="150px"
+            height="42px"
+            type="button"
+            ButtonClassName='border-2 border-teal-600'
+          />
+         <Button
+          type="button"
+          title="Reset"
+          width="150px"
+          height="42px"
+          ButtonClassName="bg-slate-100 border-2  border-gray-200 hover:bg-gray-200
+                   hover:text-zinc-500  text-teal-600 
+                  dark:bg-zinc-950 dark:text-slate-400 font-medium border-1 border-slate-200
+                  dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-slate-300
+                  "
+          background="bg-white"
+         />
+
+
+        </div>
     </div>
   );
 }
