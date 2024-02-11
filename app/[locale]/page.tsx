@@ -4,6 +4,7 @@
 import Footer from '@/components/Footer/Footer';
 // const auth = new Auth();
 export default function Home() {
+  console.log(process, 'process');
   return (
     <main className="mt-4 text-3xl font-bold ml-5">
       {/* <Link href="/profile">Profile</Link> */}

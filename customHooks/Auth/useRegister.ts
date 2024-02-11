@@ -3,7 +3,7 @@ import nonAuthRequest from '@/api/nonAuthRequest';
 import Auth from '@/modules/Auth/Auth';
 import { useRouter } from 'next/navigation';
 import { useRegisterContext } from '@/contexts/Register/RegisterContext';
-
+import authRequest from '@/api/authRequest';
 // Register first step
 interface RegisterType {
   first_name: string;
@@ -89,7 +89,7 @@ interface PhoneNumberType {
 }
 
 const sendPhoneNumber = async (data: PhoneNumberType) => {
-  const response = await nonAuthRequest.post('/accounts/phone/', data);
+  const response = await authRequest.post('/accounts/phone-register/', data);
   return response;
 };
 
