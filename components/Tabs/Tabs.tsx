@@ -11,11 +11,13 @@ interface TabsType {
   paymentSetting: React.ReactNode;
   securitySetting: React.ReactNode;
 }
+
 export default function Tabs({
   profileSetting,
   paymentSetting,
   securitySetting,
 }: TabsType) {
+
   return (
     <>
       <div className="mt-10">
