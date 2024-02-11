@@ -6,12 +6,12 @@ import { useForm } from 'react-hook-form';
 // import { DevTool } from '@hookform/devtools';
 
 // conponents
-import AuthButton from '@/components/Buttons/AuthButton';
+import AuthButton from '@/components/Buttons/Button';
 import DividerText from '@/components/Divider/Divider';
-import Google from '@/public/images/auth/Google.svg';
-import Facebook from '@/public/images/auth/Facebook.svg';
+import Google from '@/images/auth/Google.svg';
+import Facebook from '@/images/auth/Facebook.svg';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
-import AuthTextField from '@/components/TextField/AuthTextField';
+import AuthTextField from '@/components/InputField/InputField';
 
 // hooks
 import { useLogin } from '@/customHooks/Auth/useLogin';

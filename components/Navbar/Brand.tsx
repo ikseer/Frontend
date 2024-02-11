@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@/navigation';
 interface BrandNameAndLogoType {
   name: string;
 }
@@ -6,13 +7,13 @@ interface BrandNameAndLogoType {
 export default function BrandNameAndLogo({ name }: BrandNameAndLogoType) {
   return (
     <div>
-      <a
+      <Link
         className="flex-none text-xl font-semibold dark:text-white"
-        href="#"
+        href="/"
         aria-label="Brand"
       >
         {name}
-      </a>
+      </Link>
     </div>
   );
 }

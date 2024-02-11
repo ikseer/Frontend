@@ -1,5 +1,8 @@
+// 'use client';
+// import { useGetProfile } from "@/customHooks/Profile/useProfile";
+
 interface User {
-  id: string;
+  pk: string;
   token: string;
   refresh: string;
   username: string;
@@ -18,7 +21,7 @@ class Auth {
     return this.user || {};
   }
   getUserId() {
-    return this.user?.id || null;
+    return this.user?.pk || null;
   }
   getToken() {
     return this.user.token || null;
@@ -43,10 +46,16 @@ class Auth {
     this.user = newUser;
     localStorage.setItem('auth', JSON.stringify(newUser));
   }
+  isRegister() {
+    if (this.user && this.user?.token && this.user?.pk && this.user?.email) {
+      return true;
+    }
+    return false;
+  }
   logout() {
     localStorage.removeItem('auth');
     this.user = {
-      id: '',
+      pk: '',
       token: '',
       refresh: '',
       username: '',
