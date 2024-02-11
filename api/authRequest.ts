@@ -2,8 +2,8 @@ import axios from 'axios';
 import Auth from '@/modules/Auth/Auth';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
+console.log(baseUrl);
 
-console.log(process.env, 'process env');
 const auth = new Auth();
 const authRequest = axios.create({
   baseURL: baseUrl,
