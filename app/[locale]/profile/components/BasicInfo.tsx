@@ -8,7 +8,7 @@ import { timeZoneList } from './DifferentTimeZone';
 import AuthTextField from '@/components/InputField/InputField';
 
 import { useForm } from 'react-hook-form';
-
+import BasicSettingButton from './BasicSettingButton';
 interface ProfileType {
   first_name: string;
   last_name: string;
@@ -20,15 +20,15 @@ interface ProfileType {
 }
 
 export default function BasicInfo() {
-  const { register, formState, handleSubmit } = useForm<ProfileType>({
+  const { register, formState, handleSubmit, reset } = useForm<ProfileType>({
     defaultValues: {
       first_name: 'mohamed',
       last_name: 'yousef',
       email: 'modyyousef800@gmail.com',
       username: 'mohamedyousef',
       date_of_birth: '01/01/2000',
-      timezone: 'UTC',
-      gender: 'male',
+      timezone: 'Pacific/Marquesas',
+      gender: 'Prefer not to say',
     },
   });
   const { errors } = formState;
@@ -111,9 +111,11 @@ export default function BasicInfo() {
       </div>
 
       {/*  time zone picker */}
-      <Select label="Timezone" selectOptions={timeZoneList} />
+      <Select label="Timezone" selectOptions={timeZoneList} register={register}/>
       {/* Gender */}
-      <DisplayGender />
+      <DisplayGender register={register}/>
+
+      <BasicSettingButton onClick={() => reset()}/>
     </form>
   );
 }
