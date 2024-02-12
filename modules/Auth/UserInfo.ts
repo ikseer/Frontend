@@ -1,4 +1,5 @@
 'use client';
+
 interface UserInfoType {
   first_name: string;
   last_name: string;
@@ -19,7 +20,7 @@ class UserInfo {
     return this.UserInfo || {};
   }
   logout() {
-    this.UserInfo = { first_name: '', last_name: '', username: '' };
+    this.UserInfo = {} as UserInfoType;
     localStorage.remove('UserInfo');
   }
 }

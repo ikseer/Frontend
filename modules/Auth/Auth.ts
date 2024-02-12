@@ -1,5 +1,4 @@
-// 'use client';
-// import { useGetProfile } from "@/customHooks/Profile/useProfile";
+'use client';
 
 interface User {
   pk: string;
@@ -38,11 +37,7 @@ class Auth {
   }
   logout() {
     localStorage.removeItem('auth');
-    this.user = {
-      pk: '',
-      token: '',
-      refresh: '',
-    };
+    this.user = {} as User;
   }
 }
 export default Auth;
