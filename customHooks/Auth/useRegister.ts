@@ -1,21 +1,22 @@
 // Main
 import { useRouter } from 'next/navigation';
 
-
 // API & React Query
 import authRequest from '@/api/authRequest';
 import { useMutation } from '@tanstack/react-query';
 import nonAuthRequest from '@/api/nonAuthRequest';
-
 
 // Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
 import { useRegisterContext } from '@/app/[locale]/(auth)/register/context/RegisterContext';
 
 // Interface
-import {RegisterType, User, PinNumberType, PhoneNumberType} from './useRegisterTypes'
-
-
+import {
+  RegisterType,
+  User,
+  PinNumberType,
+  PhoneNumberType,
+} from './useRegisterTypes';
 
 // Register first step
 const register = async (data: RegisterType) => {
@@ -29,7 +30,6 @@ const register = async (data: RegisterType) => {
   const response = await nonAuthRequest.post('/accounts/register/', newData);
   return response;
 };
-
 
 export const useRegister = () => {
   const { triggerFunction } = useRegisterContext();
@@ -46,7 +46,6 @@ export const useRegister = () => {
   });
 };
 
-
 // Register second step
 let userObject: User = {} as User;
 
@@ -58,7 +57,6 @@ const confirmEmail = async (data: PinNumberType) => {
   return response;
 };
 
-
 const auth = new Auth();
 export const usePinCode = () => {
   const { triggerFunction } = useRegisterContext();
@@ -67,7 +65,7 @@ export const usePinCode = () => {
     onSuccess: (data) => {
       triggerFunction.current?.click();
       userObject = {
-        pk: data.data.pk,
+        pk: data.data.user.pk,
         token: data.data.access,
         refresh: data.data.refresh,
       };
@@ -78,9 +76,6 @@ export const usePinCode = () => {
     },
   });
 };
-
-
-
 
 // Register third step
 const sendPhoneNumber = async (data: PhoneNumberType) => {

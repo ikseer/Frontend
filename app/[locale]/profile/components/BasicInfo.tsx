@@ -5,7 +5,6 @@ import React from 'react';
 import LabelInfo from './LabelInfo';
 import { useForm } from 'react-hook-form';
 
-
 // Components
 import Select from '@/components/Select/Select';
 import DisplayGender from '@/components/Gender/DisplayGender';
@@ -13,6 +12,8 @@ import { timeZoneList } from './DifferentTimeZone';
 import AuthTextField from '@/components/InputField/InputField';
 import BasicSettingButton from './BasicSettingButton';
 
+// Hooks
+import { useGetProfile } from '@/customHooks/Profile/useProfile';
 
 // Interface
 interface ProfileType {
@@ -26,17 +27,14 @@ interface ProfileType {
 }
 
 export default function BasicInfo() {
+  const { data } = useGetProfile();
+  console.log(data, 'data');
   const { register, formState, handleSubmit, reset } = useForm<ProfileType>({
     defaultValues: {
-      first_name: 'mohamed',
-      last_name: 'yousef',
-      email: 'modyyousef800@gmail.com',
-      username: 'mohamedyousef',
-      date_of_birth: '01/01/2000',
-      timezone: 'Pacific/Marquesas',
-      gender: 'Prefer not to say',
+      ...data,
     },
   });
+
   const { errors } = formState;
   const handleProfileSubmit = (data: ProfileType) => {
     console.log(data);
@@ -117,11 +115,15 @@ export default function BasicInfo() {
       </div>
 
       {/*  time zone picker */}
-      <Select label="Timezone" selectOptions={timeZoneList} register={register}/>
+      <Select
+        label="Timezone"
+        selectOptions={timeZoneList}
+        register={register}
+      />
       {/* Gender */}
-      <DisplayGender register={register}/>
+      <DisplayGender register={register} />
 
-      <BasicSettingButton onClick={() => reset()}/>
+      <BasicSettingButton onClick={() => reset()} />
     </form>
   );
 }

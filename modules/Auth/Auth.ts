@@ -12,6 +12,10 @@ class Auth {
     const authData = localStorage.getItem('auth');
     this.user = authData ? JSON.parse(authData) : {};
   }
+  prepareUserAuth() {
+    const authData = localStorage.getItem('auth');
+    this.user = authData ? JSON.parse(authData) : {};
+  }
   getUserAuth() {
     return this.user || {};
   }

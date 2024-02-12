@@ -3,18 +3,14 @@
 // Main
 import { useMutation } from '@tanstack/react-query';
 
-
 // API & React Query
 import nonAuthRequest from '@/api/nonAuthRequest';
 import { useRouter } from 'next/navigation';
 
-
 // Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
 
-
 const auth = new Auth();
-
 
 interface LoginType {
   username: string;
@@ -25,7 +21,6 @@ interface NewDataType {
   password: string;
 }
 let newData: NewDataType = {} as NewDataType;
-
 
 const handleSendData = (data: LoginType) => {
   for (const [key, value] of Object.entries(data)) {
@@ -38,14 +33,11 @@ const handleSendData = (data: LoginType) => {
   }
 };
 
-
 const login = async (data: LoginType) => {
   handleSendData(data);
   const response = await nonAuthRequest.post('/accounts/login/', newData);
   return response;
 };
-
-
 
 export const useLogin = () => {
   const route = useRouter();
@@ -53,8 +45,9 @@ export const useLogin = () => {
     mutationFn: login,
 
     onSuccess: (data) => {
+      console.log(data, 'login Data');
       const userObject = {
-        pk: data.data.pk,
+        pk: data.data.user.pk,
         token: data.data.access,
         refresh: data.data.refresh,
       };
@@ -63,7 +56,7 @@ export const useLogin = () => {
     },
 
     onError: (error) => {
-      console.log("Login Error",error);
+      console.log('Login Error', error);
     },
   });
 };
