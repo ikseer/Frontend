@@ -1,9 +1,20 @@
 'use client';
+
+// Main
 import { useMutation } from '@tanstack/react-query';
+
+
+// API & React Query
 import nonAuthRequest from '@/api/nonAuthRequest';
-import Auth from '@/modules/Auth/Auth';
 import { useRouter } from 'next/navigation';
-// import { useGetProfile } from '../Profile/useProfile';
+
+
+// Modules & Components & OthersHooks
+import Auth from '@/modules/Auth/Auth';
+
+
+const auth = new Auth();
+
 
 interface LoginType {
   username: string;
@@ -13,10 +24,8 @@ interface NewDataType {
   email: string;
   password: string;
 }
-let newData: NewDataType = {
-  email: '',
-  password: '',
-};
+let newData: NewDataType = {} as NewDataType;
+
 
 const handleSendData = (data: LoginType) => {
   for (const [key, value] of Object.entries(data)) {
@@ -29,13 +38,15 @@ const handleSendData = (data: LoginType) => {
   }
 };
 
+
 const login = async (data: LoginType) => {
   handleSendData(data);
   const response = await nonAuthRequest.post('/accounts/login/', newData);
   return response;
 };
 
-const auth = new Auth();
+
+
 export const useLogin = () => {
   const route = useRouter();
   return useMutation({
@@ -50,8 +61,9 @@ export const useLogin = () => {
       auth.setUserAuth(userObject);
       route.push('/');
     },
+
     onError: (error) => {
-      console.log(error);
+      console.log("Login Error",error);
     },
   });
 };

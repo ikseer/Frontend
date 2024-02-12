@@ -1,17 +1,28 @@
 'use client';
-import { useMutation } from '@tanstack/react-query';
-import nonAuthRequest from '@/api/nonAuthRequest';
+
+// Main
 import { useRouter } from 'next/navigation';
-import { useLogout } from './useLogout';
+
+
+// API & React Query
+import nonAuthRequest from '@/api/nonAuthRequest';
+import { useMutation } from '@tanstack/react-query';
+
+
+// Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
+import { useLogout } from './useLogout';
+
 
 const auth = new Auth();
 const id = auth.getUserId();
+
 
 const deleteAccount = async () => {
   const response = await nonAuthRequest.delete(`/accounts/profile/${id}`);
   return response.data;
 };
+
 
 export const useDeleteAccount = () => {
   const route = useRouter();
@@ -23,7 +34,7 @@ export const useDeleteAccount = () => {
       logout();
     },
     onError: (error) => {
-      console.log(error);
+      console.log("Delete Account Error", error);
     },
   });
 };

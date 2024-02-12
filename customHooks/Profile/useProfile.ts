@@ -1,16 +1,25 @@
 'use client';
+
+// API & React Query
 import { useQuery } from '@tanstack/react-query';
 import authRequest from '@/api/authRequest';
+
+
+
+// Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
 
-// Get
+
+// Get Method
 const auth = new Auth();
 const id = auth.getUserId();
+
 
 const profileGetFunction = async () => {
   const response = await authRequest.get(`/accounts/profile/${id}`);
   return response.data;
 };
+
 
 export const useGetProfile = () => {
   return useQuery({
@@ -19,6 +28,10 @@ export const useGetProfile = () => {
   });
 };
 
-// update
 
-// delete
+
+
+
+// Update method
+
+// Delete method
