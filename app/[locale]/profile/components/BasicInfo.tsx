@@ -1,7 +1,7 @@
 'use client';
 
 // Main
-import React from 'react';
+import React, { useEffect } from 'react';
 import LabelInfo from './LabelInfo';
 import { useForm } from 'react-hook-form';
 
@@ -13,41 +13,31 @@ import AuthTextField from '@/components/InputField/InputField';
 import BasicSettingButton from './BasicSettingButton';
 
 // Hooks
-import { useGetProfile } from '@/customHooks/Profile/useProfile';
+import {
+  useGetProfile,
+  useUpdateProfile,
+} from '@/customHooks/Profile/useProfile';
 
 // Interface
-interface ProfileType {
-  first_name: string;
-  last_name: string;
-  email: string;
-  username: string;
-  date_of_birth: string;
-  timezone: string;
-  gender: string;
-}
+import { updateUserProfileType } from '@/customHooks/Profile/useProfileTypesAndFunction';
 
 export default function BasicInfo() {
-  
-  // console.log(data, 'hiadfadf');
-
-  const {data}  = useGetProfile();
-  const { register, formState, handleSubmit, reset } = useForm<ProfileType>({
-    defaultValues: async () => {
-      return {
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        username: data.username,
-        date_of_birth: data.date_of_birth,
-        timezone: data.timezone,
-        gender: data.gender,
-      }
-    },
-  });
+  const { data } = useGetProfile();
+  const { register, formState, handleSubmit, reset } =
+    useForm<updateUserProfileType>({
+      defaultValues: { ...data } as updateUserProfileType,
+    });
+  useEffect(() => {
+    if (data) {
+      reset(data);
+    }
+  }, [data, reset]);
 
   const { errors } = formState;
-  const handleProfileSubmit = (data: ProfileType) => {
+  const { mutate } = useUpdateProfile();
+  const handleProfileSubmit = (data: updateUserProfileType) => {
     console.log(data);
+    mutate(data);
   };
 
   return (
@@ -82,12 +72,7 @@ export default function BasicInfo() {
             id="email"
             register={register}
             errors={errors}
-            object={{
-              required: {
-                value: true,
-                message: 'This field is required',
-              },
-            }}
+            disabled={true}
           />
         </div>
       </div>
@@ -96,14 +81,9 @@ export default function BasicInfo() {
         <div className="flex w-9/12 gap-x-2">
           <AuthTextField
             id="username"
+            disabled={true}
             register={register}
             errors={errors}
-            object={{
-              required: {
-                value: true,
-                message: 'This field is required',
-              },
-            }}
           />
         </div>
       </div>
@@ -114,6 +94,7 @@ export default function BasicInfo() {
             id="date_of_birth"
             register={register}
             errors={errors}
+            type="date"
             object={{
               required: {
                 value: true,

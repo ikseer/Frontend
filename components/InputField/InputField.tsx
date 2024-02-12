@@ -4,10 +4,8 @@
 import React, { useRef } from 'react';
 import '@/app/[locale]/globals.css';
 
-
 // Interface
-import {propsType, styleType} from './InputFieldTypes';
-
+import { propsType, styleType } from './InputFieldTypes';
 
 export default function AuthTextField({
   Icon,
@@ -20,6 +18,7 @@ export default function AuthTextField({
   labels,
   type,
   flexType,
+  disabled,
 }: propsType) {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleOnClick = () => {
@@ -31,7 +30,7 @@ export default function AuthTextField({
   const mainStyle: styleType = {
     width: width || '100%',
   };
-  console.log(Icon, 'Icon');
+  // console.log(Icon, 'Icon');
   return (
     <div className="auth-input mt-3" style={mainStyle}>
       <div className={`flex ${flexType} rounded-lg shadow-sm`} ref={inputRef}>
@@ -56,14 +55,16 @@ export default function AuthTextField({
             ))}
           </div>
         )}
-        {(!type || type == 'email' || type == 'text') && (
+        {(!type || type == 'text') && (
           <input
             id={id}
+            disabled={disabled}
             className={`py-2 px-3 pe-11 block w-full
              border-gray-200 shadow-sm text-sm focus:z-10 focus:border-gray-300 focus:ring-gray-300 
              disabled:opacity-50 disabled:pointer-events-none
               dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
                ${Icon ? 'rounded-e-lg ' : 'rounded-lg'}
+               
 
             `}
             placeholder={placeholder}
@@ -75,6 +76,7 @@ export default function AuthTextField({
           <div className="relative">
             <input
               id={id}
+              disabled={disabled}
               type="password"
               className={`py-3 px-4 block w-full
           border-gray-200 shadow-sm text-sm focus:z-10 focus:border-gray-300 focus:ring-gray-300 
@@ -133,6 +135,22 @@ export default function AuthTextField({
               </svg>
             </button>
           </div>
+        )}
+        {type == 'date' && (
+          <input
+            id={id}
+            disabled={disabled}
+            className={`py-2 px-3 pe-11 block w-full
+           border-gray-200 shadow-sm text-sm focus:z-10 focus:border-gray-300 focus:ring-gray-300 
+           disabled:opacity-50 disabled:pointer-events-none
+            dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
+             ${Icon ? 'rounded-e-lg ' : 'rounded-lg'}
+
+          `}
+            placeholder={placeholder}
+            type="text"
+            {...register(id, object, { valueAsDate: true })}
+          />
         )}
       </div>
       <p
