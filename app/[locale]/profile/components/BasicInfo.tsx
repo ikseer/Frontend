@@ -27,11 +27,21 @@ interface ProfileType {
 }
 
 export default function BasicInfo() {
-  const { data } = useGetProfile();
-  console.log(data, 'data');
+  
+  // console.log(data, 'hiadfadf');
+
+  const {data}  = useGetProfile();
   const { register, formState, handleSubmit, reset } = useForm<ProfileType>({
-    defaultValues: {
-      ...data,
+    defaultValues: async () => {
+      return {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        username: data.username,
+        date_of_birth: data.date_of_birth,
+        timezone: data.timezone,
+        gender: data.gender,
+      }
     },
   });
 

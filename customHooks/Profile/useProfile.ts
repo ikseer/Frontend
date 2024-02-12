@@ -12,10 +12,11 @@ import Auth from '@/modules/Auth/Auth';
 
 // Get Method
 const auth = new Auth();
-const id = auth.getUserId();
 
 
 const profileGetFunction = async () => {
+  auth.prepareUserAuth();
+  const id = auth.getUserId();
   const response = await authRequest.get(`/accounts/profile/${id}`);
   return response.data;
 };
