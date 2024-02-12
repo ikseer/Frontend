@@ -12,8 +12,8 @@ import { MdPayment } from 'react-icons/md';
 // Interface
 interface TabsType {
   profileSetting: React.ReactNode;
-  paymentSetting: React.ReactNode;
-  securitySetting: React.ReactNode;
+  paymentSetting?: React.ReactNode;
+  securitySetting?: React.ReactNode;
 }
 
 

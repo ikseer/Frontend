@@ -9,8 +9,6 @@ const auth = new Auth();
 // const userInfo = new UserInfo();
 
 
-export const useLogout = () => {
-    auth.logout();
-    // userInfo.logout();
-  
+export const useLogout = () => () => {
+    auth.logout()
 };

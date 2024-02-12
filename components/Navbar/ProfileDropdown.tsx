@@ -4,10 +4,9 @@ import { Link } from '@/navigation';
 import { useLogout } from '@/customHooks/Auth/useLogout';
 import Image from 'next/image';
 import Profile from '../UserImage/profile.jpeg'
+
 export default function ProfileDropDown() {
-  // const Trylogout = () => {
-  //   localStorage.removeItem('auth');
-  // }
+  const logout = useLogout()
   return (
     <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
       <button
@@ -41,7 +40,7 @@ export default function ProfileDropDown() {
             href="/login"
           >
             <LuLogOut />
-            <button onClick={useLogout}>Logout</button>
+            <button onClick={logout}>Logout</button>
           </Link>
         </div>
       </div>

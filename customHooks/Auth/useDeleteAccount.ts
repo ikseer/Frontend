@@ -26,12 +26,12 @@ const deleteAccount = async () => {
 
 export const useDeleteAccount = () => {
   const route = useRouter();
-  const logout = useLogout();
+  const logout = useLogout()
   return useMutation({
     mutationFn: deleteAccount,
     onSuccess: () => {
       route.push('/');
-      logout();
+      logout()
     },
     onError: (error) => {
       console.log("Delete Account Error", error);
