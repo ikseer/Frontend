@@ -6,7 +6,7 @@ import RegisterSecondStep from './RegisterThridStep';
 import RegisterThridStep from './RegisterSecondStep';
 import RegisterContainer from './AuthContainer';
 import StepperNavigationButtons from '@/components/Stepper/StepperNavigationButtons';
-import RegisterContextProvider from '../../../../contexts/Register/RegisterContext';
+import RegisterContextProvider from './context/RegisterContext';
 
 // interface
 interface RegisterAllThreeStepType {

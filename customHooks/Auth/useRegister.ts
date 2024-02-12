@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import nonAuthRequest from '@/api/nonAuthRequest';
 import Auth from '@/modules/Auth/Auth';
 import { useRouter } from 'next/navigation';
-import { useRegisterContext } from '@/contexts/Register/RegisterContext';
+import { useRegisterContext } from '@/app/[locale]/(auth)/register/context/RegisterContext';
 import authRequest from '@/api/authRequest';
 // Register first step
 interface RegisterType {

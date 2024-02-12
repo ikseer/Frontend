@@ -21,11 +21,8 @@ const PhoneNumberValidation = ({
   const handleChange = (value: string) => {
     setValid(validatePhoneNumber(value));
     setPhoneNumber(value);
-    if (valid) {
-      passPhoneNumber(value);
-    } else {
-      passPhoneNumber('');
-    }
+    passPhoneNumber(value);
+   
   };
 
   const validatePhoneNumber = (phoneNumber: string) => {
