@@ -1,16 +1,22 @@
 'use client';
+
+// Main
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-// css
+// CSS
 import '@/app/[locale]/globals.css';
 import './PhoneNumber.css';
 
+
+// Interface
 interface PhoneNumberValidationType {
   // eslint-disable-next-line no-unused-vars
   passPhoneNumber: (_value: string) => void;
 }
+
+
 
 const PhoneNumberValidation = ({
   passPhoneNumber,

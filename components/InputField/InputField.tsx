@@ -1,24 +1,13 @@
 'use client';
-// main
+
+// Main
 import React, { useRef } from 'react';
 import '@/app/[locale]/globals.css';
 
-interface propsType {
-  placeholder?: string;
-  Icon?: React.ReactElement | string;
-  width?: string | undefined;
-  id: string;
-  object?: object;
-  errors?: any;
-  register: any;
-  value?: string;
-  labels?: string[] | [string, React.ReactElement] | React.ReactElement[];
-  type?: string;
-  flexType?: string;
-}
-interface styleType {
-  width: string | undefined;
-}
+
+// Interface
+import {propsType, styleType} from './InputFieldTypes';
+
 
 export default function AuthTextField({
   Icon,
@@ -79,7 +68,6 @@ export default function AuthTextField({
             `}
             placeholder={placeholder}
             type="text"
-            // onChange={(e) => onChange(e.target.value)}
             {...register(id, object)}
           />
         )}

@@ -1,6 +1,10 @@
+
+// Interface
 interface DisplayGenderType {
   register: any
 }
+
+
 export default function DisplayGender({register}: DisplayGenderType) {
   const genders = ["Male", "Female", "Prefer not to say"];
   return (

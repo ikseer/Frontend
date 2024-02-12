@@ -1,7 +1,10 @@
 'use client';
 
+// Components
 import { ButtonHTMLAttributes } from 'react';
 
+
+// Interface
 interface buttonProps {
   title: string;
   width: string;
@@ -12,6 +15,7 @@ interface buttonProps {
   onClick?: () => void;
   disable?: boolean;
 }
+
 
 export default function AuthButton({
   title,
@@ -24,7 +28,6 @@ export default function AuthButton({
   onClick,
 }: buttonProps) {
   const buttonStyle = { width, height };
-  // console.log(disable, "disable")
   return (
     <button
       style={buttonStyle}

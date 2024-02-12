@@ -1,5 +1,7 @@
+// when use give me unexpected behaviour 
+// unused Component delete it when you want
+
 import React from 'react';
-// when use give me unexpected behaviour
 
 export default function StepperComponent({ stepperComponent }: any) {
   return (

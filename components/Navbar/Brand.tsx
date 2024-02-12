@@ -1,8 +1,13 @@
+// Main
 import React from 'react';
 import { Link } from '@/navigation';
+
+
+// Interface
 interface BrandNameAndLogoType {
   name: string;
 }
+
 
 export default function BrandNameAndLogo({ name }: BrandNameAndLogoType) {
   return (

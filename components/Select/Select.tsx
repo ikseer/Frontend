@@ -1,8 +1,11 @@
+
+// Interface
 interface SelectType {
   label: string;
   selectOptions: string[];
   register: any;
 }
+
 
 export default function Select({ label, selectOptions, register }: SelectType) {
   return (

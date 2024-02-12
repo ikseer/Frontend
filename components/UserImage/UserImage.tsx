@@ -1,8 +1,12 @@
+// Main
 import React, {useRef, useState} from 'react'
-
 import Image from 'next/image'
+
+// Images
 import profile from './profile.jpeg'
 
+
+// Interface
 type UserImageRefType  = React.RefObject<HTMLInputElement>
 
 
