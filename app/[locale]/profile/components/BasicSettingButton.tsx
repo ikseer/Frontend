@@ -1,7 +1,17 @@
+// Main
+import React from 'react'
+
+
+// Components
 import Button from '@/components/Buttons/Button'
+
+
+// Interface
 interface BasicSettingButtonType {
     onClick: () => void
 }
+
+
 export default function BasicSettingButton({onClick}: BasicSettingButtonType) {
     return (
         <div className="mt-10 flex gap-x-2 items-center">

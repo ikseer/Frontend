@@ -1,12 +1,17 @@
-// main
+// Main
 import React, { useEffect, useState } from 'react';
-// components
+
+
+// Components
 import PinNumber from '@/components/PinNumber/PinNumber';
 import Button from '@/components/Buttons/Button';
 
-// custom hooks
+
+// Hooks
 import { usePinCode } from '@/customHooks/Auth/useRegister';
 
+
+// Interface
 interface RegisterConfirmEmailType {
   secondStepKeys: string[];
 }
@@ -22,14 +27,7 @@ interface PinCodeDataType {
 export default function RegisterConfirmEmail({
   secondStepKeys,
 }: RegisterConfirmEmailType) {
-  const [pinCode, setPinCode] = useState<PinCodeDataType>({
-    pin1: '',
-    pin2: '',
-    pin3: '',
-    pin4: '',
-    pin5: '',
-    pin6: '',
-  });
+  const [pinCode, setPinCode] = useState<PinCodeDataType>({} as PinCodeDataType);
   const { mutate } = usePinCode();
   useEffect(() => {
     console.log(pinCode);

@@ -5,6 +5,8 @@ const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 console.log(baseUrl);
 
 const auth = new Auth();
+
+
 const authRequest = axios.create({
   baseURL: baseUrl,
 });
@@ -20,7 +22,6 @@ authRequest.interceptors.request.use(
     return config;
   },
   (error) => {
-    // redirect('/login')
     return Promise.reject(error);
   },
 );

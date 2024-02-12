@@ -1,10 +1,17 @@
 'use client';
 
-import InputField from '@/components/InputField/InputField';
+// Main
+import React from 'react';
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
+
+
+// Components
+import InputField from '@/components/InputField/InputField';
 import Button from '@/components/Buttons/Button';
 
+
+// Interface
 interface FormDataType {
   old_password: string;
   new_password1: string;
@@ -91,10 +98,3 @@ export default function ChangePassword() {
     </form>
   );
 }
-
-// title,
-//   width,
-//   height,
-//   background,
-//   ButtonClassName,
-//   type,

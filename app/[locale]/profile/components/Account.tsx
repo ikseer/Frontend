@@ -1,6 +1,10 @@
+// Main
 import React from 'react'
 import Image from 'next/image'
 import Button from '@/components/Buttons/Button'
+
+
+// Interface
 interface AccountType {
     image: string
     name: string

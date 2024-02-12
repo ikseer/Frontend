@@ -1,15 +1,13 @@
 'use client';
-// import Auth from '@/modules/Auth/Auth';
-// import { Link } from '@/navigation';
+
+// Components
 import Footer from '@/components/Footer/Footer';
-// const auth = new Auth();
+
 export default function Home() {
   console.log(process, 'process');
   return (
     <main className="mt-4 text-3xl font-bold ml-5">
-      {/* <Link href="/profile">Profile</Link> */}
       <p>Home page here current user is:</p>
-
       <Footer />
     </main>
   );

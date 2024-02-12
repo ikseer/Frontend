@@ -1,17 +1,24 @@
-// main
 'use client';
+
+// Main
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-// components
+
+// Components
 import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
 import SaveAndContinue from '@/components/Buttons/Button';
-// custom hooks
+
+
+// Hooks
 import { usePhoneNumber } from '@/customHooks/Auth/useRegister';
 
+
+// Interface
 interface RegisterSecondStepType {
   thirdStepKeys: string[];
 }
+
 
 export default function RegisterSecondStep({
   thirdStepKeys,

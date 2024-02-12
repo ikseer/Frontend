@@ -1,14 +1,20 @@
 'use client';
+
+// Main
 import React from 'react';
 import LabelInfo from './LabelInfo';
+import { useForm } from 'react-hook-form';
 
+
+// Components
 import Select from '@/components/Select/Select';
 import DisplayGender from '@/components/Gender/DisplayGender';
 import { timeZoneList } from './DifferentTimeZone';
 import AuthTextField from '@/components/InputField/InputField';
-
-import { useForm } from 'react-hook-form';
 import BasicSettingButton from './BasicSettingButton';
+
+
+// Interface
 interface ProfileType {
   first_name: string;
   last_name: string;

@@ -1,22 +1,30 @@
 'use client';
-// main
+
+// Main
 import React from 'react';
 import AuthContainer from '../register/AuthContainer';
 import { useForm } from 'react-hook-form';
-// import { DevTool } from '@hookform/devtools';
 
-// components
+
+
+// Components
 import AuthButton from '@/components/Buttons/Button';
 import AuthTextField from '@/components/InputField/InputField';
 
+
+// Hooks
 import { useResetPassword } from '@/customHooks/Auth/useResetPassword';
 
-// css
+
+// CSS
 import '../register/register.css';
 
+
+// Interface
 type ResetPasswordDataType = {
   email: string;
 };
+
 
 export default function ResetPassword() {
   const { register, formState, handleSubmit } =
@@ -62,7 +70,6 @@ export default function ResetPassword() {
               height="40px"
               ButtonClassName="mt-3 mb-5 text-white font-normal"
             />
-            {/* <DevTool control={control}/> */}
           </form>
         </AuthContainer>
       </div>

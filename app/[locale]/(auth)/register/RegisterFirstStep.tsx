@@ -1,31 +1,35 @@
 'use client';
 
-// main
+// Main
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
-// import { DevTool } from '@hookform/devtools';
 
-// components
+
+// Components
 import AuthButton from '@/components/Buttons/Button';
 import DividerText from '@/components/Divider/Divider';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/InputField/InputField';
 import Radio from '@/components/Radio/Radio';
 
-// icons & images
+
+// Hooks
+import { useRegister } from '@/customHooks/Auth/useRegister';
+
+
+// Icons & Images
 import Google from '@/images/auth/Google.svg';
 import Facebook from '@/images/auth/Facebook.svg';
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 
-//hooks
-import { useRegister } from '@/customHooks/Auth/useRegister';
 
-// css
+// CSS
 import './register.css';
 
-// interface
+
+// Interface
 interface RegisterMainDataType {
   firstStepKeys: string[];
 }
@@ -37,6 +41,7 @@ interface formDataType {
   password: string;
   gender: string;
 }
+
 
 export default function RegisterMainData({
   firstStepKeys,
@@ -205,7 +210,6 @@ export default function RegisterMainData({
           </div>
         </div>
 
-        {/* <StepperNavigationButtons /> */}
         <AuthButton
           title={txt0}
           width="75%"
@@ -226,7 +230,6 @@ export default function RegisterMainData({
           ))}
         </div>
       </form>
-      {/* <DevTool control={control} /> */}
     </>
   );
 }

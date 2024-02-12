@@ -1,8 +1,14 @@
 'use client';
 
+// Main
 import React from 'react';
+
+
+// Components
 import Button from '@/components/Buttons/Button';
 import { useDeleteAccount } from '@/customHooks/Auth/useDeleteAccount';
+
+
 export default function DeleteAccount() {
   const { mutate } = useDeleteAccount();
   const handleDeleteAccount = () => {
