@@ -7,7 +7,6 @@ import DeleteYourAccount from "./components/DeleteAccount"
 
 
 export default function SecuritySetting() {
-    
 
     return (
         <div>

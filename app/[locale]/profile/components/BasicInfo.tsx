@@ -23,6 +23,7 @@ import { updateUserProfileType } from '@/customHooks/Profile/useProfileTypesAndF
 
 export default function BasicInfo() {
   const { data } = useGetProfile();
+  console.log("Mohamed Yousef ")
   const { register, formState, handleSubmit, reset } =
     useForm<updateUserProfileType>({
       defaultValues: { ...data } as updateUserProfileType,

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 
 // API & React Query
-import nonAuthRequest from '@/api/nonAuthRequest';
+import authRequest from '@/api/authRequest';
 import { useMutation } from '@tanstack/react-query';
 
 
@@ -14,12 +14,10 @@ import Auth from '@/modules/Auth/Auth';
 import { useLogout } from './useLogout';
 
 
-const auth = new Auth();
-const id = auth.getUserId();
-
-
 const deleteAccount = async () => {
-  const response = await nonAuthRequest.delete(`/accounts/profile/${id}`);
+  const auth = new Auth();
+  const id = auth.getUserId();
+  const response = await authRequest.delete(`/accounts/profile/${id}`);
   return response.data;
 };
 

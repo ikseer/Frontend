@@ -21,6 +21,8 @@ const profileGetFunction = async () => {
   auth.prepareUserAuth();
   const id = auth.getUserId();
   const response = await authRequest.get(`/accounts/profile/${id}/`);
+  console.log(response.data);
+  console.log("enter profile get function");
   return response.data;
 };
 
