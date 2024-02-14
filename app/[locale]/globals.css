@@ -37,4 +37,7 @@ body {
   --phone-hover: #3f3f46;
 }
 
-/* --phone-placholder:#696d74; */
+
+.h-calc {
+  height: calc(100vh - 72px);
+}
