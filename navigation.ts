@@ -19,6 +19,7 @@ export const pathnames = {
   '/profile': '/profile',
   '/tmp': '/tmp',
   '/home': '/home',
+  '/card': '/card',
 
   // If locales use different paths, you can
   // specify each external path per locale.

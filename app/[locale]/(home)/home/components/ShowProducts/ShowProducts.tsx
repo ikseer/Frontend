@@ -1,8 +1,6 @@
 import SingleProductCard from "../ProductCards/SingleProductCard";
-// import {useCard} from '@/store/card'
 
 export default function ShowCards() {
-    // const {addItemToCard} = useCard()
     return (
         <div className="p-10">
             <h1 className="text-3xl font-bold text-zinc-950 dark:text-white text-center mb-10

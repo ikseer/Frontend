@@ -1,6 +1,5 @@
 import {create} from 'zustand'
 
-
 interface cardItems {
     id: number
     title: string
@@ -8,16 +7,19 @@ interface cardItems {
     description: string
     category: string
     image: string
-    quantity: number
+    quantity?: number
 }
 
 interface useCardType {
     cardItems: cardItems[]
+    // eslint-disable-next-line no-unused-vars
+    addItemToCard: (item: cardItems) => void
 }
 
 const useCard = create<useCardType>((set , get) => ({
     cardItems: [],
     addItemToCard: (item: cardItems) => {
+        console.log(get().cardItems)
         const isExist = get().cardItems.find(cardItem => cardItem.id === item.id)
         if(isExist) {
             if(typeof isExist.quantity === "number") {

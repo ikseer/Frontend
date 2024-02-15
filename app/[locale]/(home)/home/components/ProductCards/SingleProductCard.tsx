@@ -1,9 +1,24 @@
+'use client'
 import React from 'react'
 import card from './one.jpeg'
 import Image from 'next/image'
 import { LuShoppingCart } from "react-icons/lu";
+import useCard from '@/store/card'
 
 export default function SingleProductCard() {
+    const {addItemToCard} = useCard()
+    const handleAddToCard = () => {
+        const item = {
+            id: 1,
+            title: "Product Name",
+            price: 10,
+            description: "Product Description",
+            category: "Product Category",
+            image: card.src,
+        }
+        addItemToCard(item)
+    }
+
     return (
         <div className="flex flex-col bg-white border shadow-sm rounded-xl
          dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-slate-700/[.7]
@@ -15,10 +30,11 @@ export default function SingleProductCard() {
             />
             <div className="p-4 md:p-5  relative
 ">
-                <div className="bg-teal-600 p-2 absolute right-4 top-[-20px] rounded-full cursor-pointer ">
+                <button className="bg-teal-600 p-2 absolute right-4 top-[-20px] rounded-full cursor-pointer "
+                onClick={handleAddToCard}>
                     <LuShoppingCart className="text-white dark:text-zinc-950"/>
 
-                </div>
+                </button>
                 <div className="flex items-center justify-between">
                     <h3 className="text-lg font-bold text-zinc-800 dark:text-white">
                         Product Name
