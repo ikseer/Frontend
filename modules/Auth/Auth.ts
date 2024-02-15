@@ -41,7 +41,11 @@ class Auth {
   }
   logout() {
     localStorage.removeItem('auth');
-    this.user = {} as User;
+    this.user = {
+      pk: '',
+      token: '',
+      refresh: '',
+    };
   }
 }
 export default Auth;

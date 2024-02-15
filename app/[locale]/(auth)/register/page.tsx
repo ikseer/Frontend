@@ -2,11 +2,9 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 
-
 // Components
-import RegisterAllThreeStep from './RegisterALLThreeStep';
+import RegisterAllThreeStep from './RegisterAllThreeStep';
 import StepperNav from '@/components/Stepper/StepperNav';
-
 
 // CSS
 import './register.css';

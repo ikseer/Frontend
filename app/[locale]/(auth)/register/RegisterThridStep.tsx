@@ -15,19 +15,18 @@ import { usePinCode } from '@/customHooks/Auth/useRegister';
 interface RegisterConfirmEmailType {
   secondStepKeys: string[];
 }
-interface PinCodeDataType {
-  pin1: string;
-  pin2: string;
-  pin3: string;
-  pin4: string;
-  pin5: string;
-  pin6: string;
-}
 
 export default function RegisterConfirmEmail({
   secondStepKeys,
 }: RegisterConfirmEmailType) {
-  const [pinCode, setPinCode] = useState<PinCodeDataType>({} as PinCodeDataType);
+  const [pinCode, setPinCode] = useState({
+    pin1: '',
+    pin2: '',
+    pin3: '',
+    pin4: '',
+    pin5: '',
+    pin6: '',
+  });
   const { mutate } = usePinCode();
   useEffect(() => {
     console.log(pinCode);

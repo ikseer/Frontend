@@ -20,7 +20,11 @@ class UserInfo {
     return this.UserInfo || {};
   }
   logout() {
-    this.UserInfo = {} as UserInfoType;
+    this.UserInfo = {
+      first_name: '',
+      last_name: '',
+      username: '',
+    } ;
     localStorage.remove('UserInfo');
   }
 }

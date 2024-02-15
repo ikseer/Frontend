@@ -1,4 +1,3 @@
-'use client';
 
 // Components
 import SettingContainer from '@/components/Settings/setting';

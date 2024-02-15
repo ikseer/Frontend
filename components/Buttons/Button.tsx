@@ -13,7 +13,7 @@ interface buttonProps {
   ButtonClassName?: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: () => void;
-  disable?: boolean;
+  disabled?: boolean;
 }
 
 
@@ -24,7 +24,7 @@ export default function AuthButton({
   background,
   ButtonClassName,
   type,
-  disable,
+  disabled,
   onClick,
 }: buttonProps) {
   const buttonStyle = { width, height };
@@ -34,7 +34,7 @@ export default function AuthButton({
       type={type ? type : 'submit'}
       className={` rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
       onClick={onClick}
-      disabled={disable}
+      disabled={disabled}
     >
       {title}
     </button>

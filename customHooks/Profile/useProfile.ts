@@ -11,7 +11,7 @@ import Auth from '@/modules/Auth/Auth';
 // Interface
 import {
   updateUserProfileType,
-  handleUpdateDate,
+  
 } from './useProfileTypesAndFunction';
 
 // Get Method
@@ -37,7 +37,9 @@ export const useGetProfile = () => {
 // Update all User Profile info except password & Image
 
 const updateUserProfile = async (data: updateUserProfileType) => {
-  const newObject = handleUpdateDate(data);
+  const newObject = Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'image'));
+  console.log(newObject, "new Object");
+  // const newObject = handleUpdateDate(data);
   const id = auth.getUserId();
   const request = await authRequest.patch(
     `/accounts/profile/${id}/`,
