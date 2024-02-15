@@ -22,6 +22,7 @@ export default function Tabs({
   paymentSetting,
   securitySetting,
 }: TabsType) {
+
   return (
     <>
       <div className="mt-10">
