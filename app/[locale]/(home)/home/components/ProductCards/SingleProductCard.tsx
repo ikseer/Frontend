@@ -4,9 +4,11 @@ import card from './one.jpeg'
 import Image from 'next/image'
 import { LuShoppingCart } from "react-icons/lu";
 import useCard from '@/store/card'
+import {Link} from '@/navigation'
 
 export default function SingleProductCard() {
     const {addItemToCard} = useCard()
+
     const handleAddToCard = () => {
         const item = {
             id: 1,
@@ -23,13 +25,15 @@ export default function SingleProductCard() {
         <div className="flex flex-col bg-white border shadow-sm rounded-xl
          dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-slate-700/[.7]
          ">
-            <Image
-                className="w-full h-auto rounded-t-xl" src={card.src} alt="Image Description"
-                width={500}
-                height={500}
-            />
-            <div className="p-4 md:p-5  relative
-">
+            <Link className="w-full" href="/tmp">
+                <Image
+                    className="w-full h-auto rounded-t-xl" src={card.src} alt="Image Description"
+                    width={500}
+                    height={500}
+                />
+
+            </Link>
+            <div className="p-4 md:p-5  relative">
                 <button className="bg-teal-600 p-2 absolute right-4 top-[-20px] rounded-full cursor-pointer "
                 onClick={handleAddToCard}>
                     <LuShoppingCart className="text-white dark:text-zinc-950"/>

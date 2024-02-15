@@ -5,7 +5,7 @@ export default function showShoppingItems() {
     console.log(cardItems)
     return (
         <div>
-            Yousef here
+            {JSON.stringify(cardItems)}
         </div>
     )
 }

@@ -4,10 +4,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 // get Product
 const getProduct = async ({pageParam = 1}) => {
-    const response = await nonAuthRequest.get("/products/", {
+    const response = await nonAuthRequest.get("/products/product/", {
         params: {
-            limit: 10,
             page: pageParam,
+            limit: 10,
         },
     });
     return response.data;

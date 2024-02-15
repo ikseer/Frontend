@@ -8,8 +8,6 @@ const GoToProduct = () => (
     console.log("GoToProduct")
 )
 export default function Hero() {
-
-    // linear-gradient(90deg, #06534C 4.13%, #00776C 95.79%)
     return (
 
         <div className="bg-teal-500 flex justify-between items-center h-calc relative
