@@ -24,7 +24,7 @@ export default function Hero() {
                     width="200px"
                     height="40px"
                     onClick={GoToProduct}
-                    Icon={<LuArrowRight />}
+                    endIcon={<LuArrowRight />}
                     ButtonClassName="px-5 py-2 text-teal-600"
                     background="bg-white dark:bg-zinc-950"
                     />

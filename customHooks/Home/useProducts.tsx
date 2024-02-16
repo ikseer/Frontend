@@ -2,23 +2,24 @@ import nonAuthRequest from '@/api/nonAuthRequest';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 // get Product
-const getProduct = async ({ pageParam = 1 }) => {
+const getProducts = async ({ pageParam = 1 }) => {
   const response = await nonAuthRequest.get('/products/product/', {
     params: {
       page: pageParam,
-      limit: 4,
+      limit: 2,
     },
   });
   return response.data;
 };
 
-export const useGetProduct = () => {
+export const useGetProducts = () => {
   return useInfiniteQuery({
     queryKey: ['product-get'],
-    queryFn: getProduct,
+    queryFn: getProducts,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-        return lastPage.length > 0 ? allPages.length + 1 : undefined;
-      },
+      console.log(lastPage, allPages);
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
   });
 };

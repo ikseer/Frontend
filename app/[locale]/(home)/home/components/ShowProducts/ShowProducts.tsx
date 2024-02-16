@@ -1,21 +1,15 @@
 'use client';
 import SingleProductCard from '../ProductCards/SingleProductCard';
 
-import { useGetProduct } from '@/customHooks/Home/useProduct';
+import { useGetProducts } from '@/customHooks/Home/useProducts';
 import Button from '@/components/Buttons/Button';
 //interface
-import {SingleProductCardType} from "../home.types"
+import { SingleProductCardType } from '../home.types';
 
 export default function ShowCards() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useGetProduct();
+    useGetProducts();
   let pages = data?.pages;
-
-  const handleFetchNextData = () => {
-    fetchNextPage();
-    console.log(isFetchingNextPage, 'next page', hasNextPage);
-    // console.log(data)
-  };
 
   return (
     <div className="p-10">
@@ -30,21 +24,20 @@ export default function ShowCards() {
           pages.map(
             (currPage) =>
               Array.isArray(currPage.results) &&
-              currPage.results.map((item:SingleProductCardType) => (
-                <SingleProductCard key={`${item.id}`} 
-                 item={item}
-                 />
+              currPage.results.map((item: SingleProductCardType) => (
+                <SingleProductCard key={`${item.id}`} item={item} />
               )),
           )}
       </div>
       <Button
-        title="Show more"
-        onClick={handleFetchNextData}
+        title={isFetchingNextPage? 'Loading more...': hasNextPage ? 'Load More': 'Nothing more to load'}
+        onClick={() => fetchNextPage()}
+        disabled={!hasNextPage || isFetchingNextPage}
         width="200px"
         height="40px"
         background="bg-white-200 dark:bg-zinc-950 "
         type="button"
-        ButtonClassName={` text-semibold text-center my-5 mx-auto border-2 border-solid border-gray-200 dark:border-zinc-900`}
+        ButtonClassName={`text-semibold text-center my-5 mx-auto border-2 border-solid border-gray-200 dark:border-zinc-900`}
       />
     </div>
   );

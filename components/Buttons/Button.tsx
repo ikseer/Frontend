@@ -13,7 +13,8 @@ interface buttonProps {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: () => void;
   disabled?: boolean;
-  Icon?: React.ReactNode;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
 
@@ -26,7 +27,8 @@ export default function AuthButton({
   type,
   disabled,
   onClick,
-  Icon,
+  startIcon,
+  endIcon,
 }: buttonProps) {
   const buttonStyle = { width, height };
   return (
@@ -38,10 +40,17 @@ export default function AuthButton({
         onClick={onClick}
         disabled={disabled}
     >
-       {title} 
-        {Icon &&
+      {startIcon &&
+          <div className="mr-5">
+            {startIcon}
+          </div>
+        }
+
+      {title}
+
+        {endIcon &&
           <div className="ml-5">
-            {Icon}
+            {endIcon}
           </div>
         }
       </button>
