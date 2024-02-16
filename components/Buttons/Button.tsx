@@ -12,6 +12,8 @@ interface buttonProps {
   ButtonClassName?: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: () => void;
+  disabled?: boolean;
+  Icon?: React.ReactNode;
 }
 
 

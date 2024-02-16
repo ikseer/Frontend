@@ -1,24 +1,16 @@
 import {create} from 'zustand'
 
-interface cardItems {
-    id: number
-    title: string
-    price: number
-    description: string
-    category: string
-    image: string
-    quantity?: number
-}
+import {SingleProductCardType} from "@/app/[locale]/(home)/home/components/home.types";
 
 interface useCardType {
-    cardItems: cardItems[]
+    cardItems: SingleProductCardType[]
     // eslint-disable-next-line no-unused-vars
-    addItemToCard: (item: cardItems) => void
+    addItemToCard: (item: SingleProductCardType) => void
 }
 
 const useCard = create<useCardType>((set , get) => ({
     cardItems: [],
-    addItemToCard: (item: cardItems) => {
+    addItemToCard: (item: SingleProductCardType) => {
         console.log(get().cardItems)
         const isExist = get().cardItems.find(cardItem => cardItem.id === item.id)
         if(isExist) {
