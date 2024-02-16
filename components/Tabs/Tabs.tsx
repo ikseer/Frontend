@@ -1,16 +1,21 @@
+// Main
 import React from 'react';
-// icons
+
+
+// Icons
 import { LuUser } from 'react-icons/lu';
 import { LuSettings } from 'react-icons/lu';
-// payment icons didn't found in react icons,
-// icon found in lucide library but din't found in react-icons lib.
+// payment icons didn't found in react icons, icon found in lucide library but din't found in react-icons lib.
 import { MdPayment } from 'react-icons/md';
 
+
+// Interface
 interface TabsType {
   profileSetting: React.ReactNode;
-  paymentSetting: React.ReactNode;
-  securitySetting: React.ReactNode;
+  paymentSetting?: React.ReactNode;
+  securitySetting?: React.ReactNode;
 }
+
 
 export default function Tabs({
   profileSetting,

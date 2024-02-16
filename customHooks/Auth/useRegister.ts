@@ -1,19 +1,24 @@
+// Main
+import { useRouter } from 'next/navigation';
+
+// API & React Query
+import authRequest from '@/api/authRequest';
 import { useMutation } from '@tanstack/react-query';
 import nonAuthRequest from '@/api/nonAuthRequest';
+
+// Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
-import { useRouter } from 'next/navigation';
-import { useRegisterContext } from '@/contexts/Register/RegisterContext';
+import { useRegisterContext } from '@/app/[locale]/(auth)/register/context/RegisterContext';
+
+// Interface
+import {
+  RegisterType,
+  User,
+  PinNumberType,
+  PhoneNumberType,
+} from './useRegisterTypes';
 
 // Register first step
-interface RegisterType {
-  first_name: string;
-  last_name: string;
-  username: string;
-  user_email: string;
-  password: string;
-  gender: string;
-}
-
 const register = async (data: RegisterType) => {
   const newData = {
     ...data,
@@ -26,35 +31,13 @@ const register = async (data: RegisterType) => {
   return response;
 };
 
-interface User {
-  pk: string;
-  token: string;
-  refresh: string;
-  username: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-}
-let userObject: User = {
-  pk: '',
-  token: '',
-  refresh: '',
-  username: '',
-  first_name: '',
-  last_name: '',
-  email: '',
-};
-
 export const useRegister = () => {
   const { triggerFunction } = useRegisterContext();
 
   return useMutation({
     mutationFn: register,
-    onMutate: () => {
-      console.log('from mutate', 'data');
-    },
-    onSuccess: (data) => {
-      userObject = { ...userObject, ...data };
+
+    onSuccess: () => {
       triggerFunction.current?.click();
     },
     onError: (error) => {
@@ -64,9 +47,8 @@ export const useRegister = () => {
 };
 
 // Register second step
-interface PinNumberType {
-  otp: string;
-}
+let userObject: User = {} as User;
+
 const confirmEmail = async (data: PinNumberType) => {
   const response = await nonAuthRequest.post(
     '/accounts/verify-email-otp/',
@@ -83,11 +65,11 @@ export const usePinCode = () => {
     onSuccess: (data) => {
       triggerFunction.current?.click();
       userObject = {
-        ...userObject,
+        pk: data.data.user.pk,
         token: data.data.access,
         refresh: data.data.refresh,
       };
-      auth.setUser(userObject);
+      auth.setUserAuth(userObject);
     },
     onError: (error) => {
       console.log(error);
@@ -96,13 +78,8 @@ export const usePinCode = () => {
 };
 
 // Register third step
-
-interface PhoneNumberType {
-  phone: string | undefined;
-}
-
 const sendPhoneNumber = async (data: PhoneNumberType) => {
-  const response = await nonAuthRequest.post('/accounts/phone/', data);
+  const response = await authRequest.post('/accounts/phone-register/', data);
   return response;
 };
 

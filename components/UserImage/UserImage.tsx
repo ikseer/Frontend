@@ -1,16 +1,50 @@
+'use client'
+// Main
+import React, {useRef, useState} from 'react'
+import Image from 'next/image'
+
+// Images
+import profile from './profile.jpeg'
+
+
+// Interface
+type UserImageRefType  = React.RefObject<HTMLInputElement>
+
+
+const handleUpdateImage = (uploadImageRef: UserImageRefType) => {
+    if(uploadImageRef && uploadImageRef.current) 
+        uploadImageRef.current.click()
+}
+const handelUpdloadImage = (e: React.ChangeEvent<HTMLInputElement>, setProfileImage: React.Dispatch<React.SetStateAction<File | null>>) => {
+    if(e.target && e.target.files)
+        setProfileImage(e.target.files[0])
+
+}
+const handleRemoveImage = (setProfileImage: React.Dispatch<React.SetStateAction<File | null>>) => {
+    setProfileImage(null)
+}
+
 export default function UserImage() {
+    const [profileImage, setProfileImage] = useState<File | null>(null)
+
+    const uploadImageRef = useRef<HTMLInputElement>(null)
     return (
         <div className="flex flex-col justify-center items-center">
 
-            <img
+            <Image
                 className="w-20 h-20 rounded-full"
-                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                alt="user"
+                src={profileImage?URL.createObjectURL(profileImage): profile}
+                alt="user Profile photo"
+                width={500}
+                height={500}
             />
             <p>Change Photos</p>
             <div>
-                <button className="mr-5">update</button>
-                <button>Remove</button>
+                <input  type="file" className="hidden"
+                 ref={uploadImageRef} 
+                 onChange={(e) => handelUpdloadImage(e, setProfileImage)}/>
+                <button className="mr-5" onClick={ ()=> handleUpdateImage(uploadImageRef)} >Upload</button>
+                <button onClick={() => handleRemoveImage(setProfileImage)}>Remove</button>
             </div>
 
         </div>

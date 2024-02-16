@@ -1,8 +1,17 @@
+// Main
 import React from 'react';
+
+
+// Components
 import Account from './Account';
+
+
+// Images
 import Google from '@/images/auth/Google.svg';
 import Facebook from '@/images/auth/Facebook.svg';
 import Apple from '@/images/auth/apple.svg';
+
+
 
 export default function LinkAccounts() {
     return (

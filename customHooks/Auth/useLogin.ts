@@ -1,10 +1,16 @@
 'use client';
+
+// Main
 import { useMutation } from '@tanstack/react-query';
-// import axios from 'axios'
+
+// API & React Query
 import nonAuthRequest from '@/api/nonAuthRequest';
-import Auth from '@/modules/Auth/Auth';
 import { useRouter } from 'next/navigation';
-import { useGetProfile } from '../Profile/useProfile';
+
+// Modules & Components & OthersHooks
+import Auth from '@/modules/Auth/Auth';
+
+const auth = new Auth();
 
 interface LoginType {
   username: string;
@@ -14,10 +20,7 @@ interface NewDataType {
   email: string;
   password: string;
 }
-let newData: NewDataType = {
-  email: '',
-  password: '',
-};
+let newData: NewDataType = {} as NewDataType;
 
 const handleSendData = (data: LoginType) => {
   for (const [key, value] of Object.entries(data)) {
@@ -35,40 +38,25 @@ const login = async (data: LoginType) => {
   const response = await nonAuthRequest.post('/accounts/login/', newData);
   return response;
 };
-let isSuccess = { value: false };
-const auth = new Auth();
+
 export const useLogin = () => {
   const route = useRouter();
   return useMutation({
     mutationFn: login,
-    onMutate: (data) => {
-      console.log(data);
-    },
+
     onSuccess: (data) => {
+      console.log(data, 'login Data');
       const userObject = {
-        ...data.data.user,
+        pk: data.data.user.pk,
         token: data.data.access,
         refresh: data.data.refresh,
       };
-      auth.setUser(userObject);
-      isSuccess.value = true;
+      auth.setUserAuth(userObject);
       route.push('/');
     },
+
     onError: (error) => {
-      console.log(error);
-    },
-    onSettled: () => {
-      console.log('done');
+      console.log('Login Error', error);
     },
   });
 };
-
-if (isSuccess.value) {
-  const auth = new Auth();
-  const SetUser = async () => {
-    const user = await useGetProfile();
-    console.log(user);
-    auth.setUser(user.data);
-  };
-  SetUser();
-}

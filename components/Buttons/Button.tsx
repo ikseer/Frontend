@@ -2,6 +2,8 @@
 import React from 'react';
 import { ButtonHTMLAttributes } from 'react';
 
+
+// Interface
 interface buttonProps {
   title: string;
   width: string;
@@ -10,8 +12,8 @@ interface buttonProps {
   ButtonClassName?: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: () => void;
-  Icon?: React.ReactElement;
 }
+
 
 export default function AuthButton({
   title,
@@ -20,19 +22,20 @@ export default function AuthButton({
   background,
   ButtonClassName,
   type,
+  disabled,
   onClick,
   Icon,
 }: buttonProps) {
   const buttonStyle = { width, height };
-
   return (
     
       <button
         style={buttonStyle}
         type={type ? type : 'submit'}
-        className={`flex justify-a items-center rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
+        className={`flex justify-center items-center rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
         onClick={onClick}
-      >
+        disabled={disabled}
+    >
        {title} 
         {Icon &&
           <div className="ml-5">
