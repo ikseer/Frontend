@@ -16,7 +16,7 @@ export default function ProfileSetting() {
       />
       <UserImage />
       <BasicInfo />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {process.env.NODE_ENV === "development" && <ReactQueryDevtools initialIsOpen={false} />}
     </div>
   );
 }

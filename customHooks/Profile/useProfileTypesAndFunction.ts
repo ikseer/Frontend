@@ -1,6 +1,3 @@
-// Main
-
-// Interface
 export interface updateUserProfileType {
   first_name: string;
   last_name: string;
@@ -11,10 +8,3 @@ export interface updateUserProfileType {
   gender: string;
   [key: string]: string;
 }
-
-// Functions
-
-// Handle Update Profile data
-
-
-
