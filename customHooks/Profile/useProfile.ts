@@ -1,14 +1,28 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import authRequest from '@/api/authRequest';
-import Auth from '@/modules/Auth/Auth';
-// Get
 
+// API & React Query
+import { useQuery, useMutation } from '@tanstack/react-query';
+import authRequest from '@/api/authRequest';
+// import nonAuthRequest from '@/api/nonAuthRequest';
+
+// Modules & Components & OthersHooks
+import Auth from '@/modules/Auth/Auth';
+
+// Interface
+import {
+  updateUserProfileType,
+  
+} from './useProfileTypesAndFunction';
+
+// Get Method
 const auth = new Auth();
-const id = auth.getUserId();
 
 const profileGetFunction = async () => {
-  const response = await authRequest.get(`/accounts/profile/${id}`);
+  auth.prepareUserAuth();
+  const id = auth.getUserId();
+  const response = await authRequest.get(`/accounts/profile/${id}/`);
+  console.log(response.data);
+  console.log("enter profile get function");
   return response.data;
 };
 
@@ -19,6 +33,31 @@ export const useGetProfile = () => {
   });
 };
 
-// update
+// Update method
+// Update all User Profile info except password & Image
 
-// delete
+const updateUserProfile = async (data: updateUserProfileType) => {
+  const newObject = Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'image'));
+  console.log(newObject, "new Object");
+  // const newObject = handleUpdateDate(data);
+  const id = auth.getUserId();
+  const request = await authRequest.patch(
+    `/accounts/profile/${id}/`,
+    newObject,
+  );
+  return request;
+};
+
+export const useUpdateProfile = () => {
+  return useMutation({
+    mutationFn: updateUserProfile,
+    onSuccess: () => {
+      console.log('Profile Updated From useUpdateProfile');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+};
+
+// Delete method

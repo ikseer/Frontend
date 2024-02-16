@@ -1,11 +1,11 @@
 'use client';
-//
+// main
 import * as React from 'react';
 import { Link } from '../../../../navigation';
 import { useForm } from 'react-hook-form';
-// import { DevTool } from '@hookform/devtools';
 
-// conponents
+
+// Components
 import AuthButton from '@/components/Buttons/Button';
 import DividerText from '@/components/Divider/Divider';
 import Google from '@/images/auth/Google.svg';
@@ -13,16 +13,22 @@ import Facebook from '@/images/auth/Facebook.svg';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/InputField/InputField';
 
-// hooks
+
+// Hooks
 import { useLogin } from '@/customHooks/Auth/useLogin';
 
-// icons
+
+// Icons
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 
-// css
+
+// CSS
 import '../register/register.css';
 
+
+
+// Interface
 interface FormDataType {
   username: string;
   password: string;
@@ -30,6 +36,8 @@ interface FormDataType {
 interface LoginType {
   keys: string[];
 }
+
+
 
 export default function Login({ keys }: LoginType) {
   const { register, formState, handleSubmit } = useForm<FormDataType>();
@@ -102,7 +110,6 @@ export default function Login({ keys }: LoginType) {
           <AuthShape authImage={Facebook} text={keys[9]} width="76%" />
         </article>
       </form>
-      {/* <DevTool control={control} /> */}
     </div>
   );
 }

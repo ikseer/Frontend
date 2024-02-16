@@ -1,9 +1,13 @@
+
+// Interface
 interface SelectType {
   label: string;
   selectOptions: string[];
+  register: any;
 }
 
-export default function Select({ label, selectOptions }: SelectType) {
+
+export default function Select({ label, selectOptions, register }: SelectType) {
   return (
     <div className="flex justify-between mt-3">
       <label
@@ -18,10 +22,11 @@ export default function Select({ label, selectOptions }: SelectType) {
          border-gray-200 rounded-lg text-sm4 focus:border-gray-200 focus:ring-gray-200 
          disabled:opacity-50 disabled:pointer-events-none 
         dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+        {...register('timezone')}
       >
         <option selected>Open this select menu</option>
         {selectOptions.map((item, index) => (
-          <option key={`${index} - ${item}`}>{item}</option>
+          <option key={`${index} - ${item}`} value={item}>{item}</option>
         ))}
       </select>
     </div>

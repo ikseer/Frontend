@@ -1,12 +1,12 @@
-// main
+// Main
 import React from 'react';
 import { useTranslations } from 'next-intl';
 
-// components
-import RegisterAllThreeStep from './RegisterALLThreeStep';
+// Components
+import RegisterAllThreeStep from './RegisterAllThreeStep';
 import StepperNav from '@/components/Stepper/StepperNav';
 
-// css
+// CSS
 import './register.css';
 
 export default function Register() {

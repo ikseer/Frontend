@@ -1,12 +1,18 @@
-import * as React from 'react';
-import '../../app/[locale]/globals.css';
+// Main
+import React from 'react';
 
+
+// Interface
 interface DividerProps {
   text: string;
 }
+
+
+// Style
 const DividerStyle = {
   width: '60%',
 };
+
 
 export default function DividerText({ text }: DividerProps) {
   return (

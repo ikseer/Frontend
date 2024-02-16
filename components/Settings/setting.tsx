@@ -1,8 +1,14 @@
+
+// Images
 import Background from './Background.svg'
+
+
+// Interface
 interface SettingContainerType {
   mainText: string;
   secondaryText: string;
 }
+
 
 export default function SettingContainer({
   mainText,

@@ -1,7 +1,8 @@
 // main
 import { useTranslations } from 'next-intl';
 
-// compnenet
+
+// Components
 import LoginMain from './LoginMain';
 
 export default function Login() {

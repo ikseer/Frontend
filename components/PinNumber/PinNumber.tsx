@@ -1,9 +1,14 @@
+// Main
 import React from 'react';
+
+
+// Interface
 interface PinNumberType {
   id: string;
   //eslint-disable-next-line no-unused-vars
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 
 export default function PinNumber({ id, onChange }: PinNumberType) {
   return (

@@ -1,12 +1,16 @@
-// main
+// Main
 import Image from 'next/image';
 import { Link } from '../../navigation';
 
+
+// Interface
 interface AuthShapeDataType {
   authImage: string;
   text?: string;
   width?: string;
 }
+
+
 
 export default function AuthShape({
   authImage,

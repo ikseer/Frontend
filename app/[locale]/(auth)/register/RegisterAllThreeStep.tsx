@@ -1,19 +1,24 @@
 'use client';
-//components
+// Main
+import React from 'react'
 
+
+//Components
 import RegisterFirstStep from './RegisterFirstStep';
 import RegisterSecondStep from './RegisterThridStep';
 import RegisterThridStep from './RegisterSecondStep';
 import RegisterContainer from './AuthContainer';
 import StepperNavigationButtons from '@/components/Stepper/StepperNavigationButtons';
-import RegisterContextProvider from '../../../../contexts/Register/RegisterContext';
+import RegisterContextProvider from './context/RegisterContext';
 
-// interface
+
+// Interface
 interface RegisterAllThreeStepType {
   firstStepKeys: string[];
   secondStepKeys: string[];
   thirdStepKeys: string[];
 }
+
 
 export default function RegisterAllThreeStep({
   firstStepKeys,
@@ -22,7 +27,6 @@ export default function RegisterAllThreeStep({
 }: RegisterAllThreeStepType) {
   return (
     <RegisterContextProvider>
-      {/* <StepperComponent stepperComponent={stepperComponent} /> */}
       <div className="mt-5 sm:mt-8">
         <div data-hs-stepper-content-item='{"index": 1}'>
           <RegisterContainer>

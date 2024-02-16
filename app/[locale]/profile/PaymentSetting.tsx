@@ -1,4 +1,7 @@
+// Components
 import SettingContainer from "@/components/Settings/setting"
+
+
 export default function PaymentSetting() {
     return (
         <div>
