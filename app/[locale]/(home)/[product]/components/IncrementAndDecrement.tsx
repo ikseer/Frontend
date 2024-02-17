@@ -6,8 +6,9 @@ export default function IncrementAndDecrement() {
 
   return (
     <div
-      className="flex items-center gap-x-3 mr-2
-        bg-white border-2 border-solid border-gray-300 
+      className="flex items-center gap-x-3 
+        bg-white border-2 border-solid border-gray-300
+        dark:bg-zinc-700 dark:border-zinc-950 px-2 py-[10px] rounded-md
         "
     >
       <button disabled={value === 1} onClick={() => setValue(value - 1)}>

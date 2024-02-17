@@ -48,9 +48,15 @@ export default function Rating({ rating, reviewNumber }: RatingType) {
           </button>
         ))}
       </div>
-      <div className="flex gap-x-2">
-        <p className="p-2 bg-zinc-950 rounded-sm">{rating}</p>
-        <p className="p-2 bg-zinc-950 rounded-sm">{reviewNumber}</p>
+      <div className="flex gap-x-2 ml-2 items-center">
+        <p
+          className="py-.5 px-3  rounded-lg 
+            bg-white border-[1px] border-solid border-gray-500
+            dark:bg-zinc-700 dark:border-zinc-700"
+        >
+          {rating.toFixed(2)}
+        </p>
+        <p className="text-gray-500 dark:text-zinc-500">{reviewNumber}</p>
       </div>
     </div>
   );
