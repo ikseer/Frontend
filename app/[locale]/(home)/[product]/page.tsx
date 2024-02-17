@@ -5,10 +5,10 @@ import Rating from '@/components/Rating/Rating';
 import Share from '@/components/Share/Share';
 import Price from './components/Price';
 import SpecialOffer from './components/SpecialOffer';
-import IncrementAndDecrement from './components/IncrementAndDecrement';
+import IncrementAndDecrement from '../components/IncrementAndDecrement';
 import AddToCardButton from './components/AddToCard';
 import BuyNowButton from './components/BuyNow';
-import Tabs from './components/ProductSpecificTabs'
+import Tabs from './components/ProductSpecificTabs';
 
 interface paramsType {
   params: {
@@ -29,7 +29,10 @@ export default function CurrentProduct({ params }: paramsType) {
           <h1 className="text-2xl font-bold mb-3">Product Name - {product}</h1>
           <div className="flex items-center gap-x-2 mb-6 justify-between">
             <Rating rating={3} reviewNumber={5} />
-            <Share ShareLink={'Share Link here'} ShareText="Share this Product" />
+            <Share
+              ShareLink={'Share Link here'}
+              ShareText="Share this Product"
+            />
           </div>
           <p className="text-gray-500 dark:text-zinc-500 mb-6">
             Description for this product
@@ -43,7 +46,6 @@ export default function CurrentProduct({ params }: paramsType) {
             <BuyNowButton />
           </div>
         </div>
-        
       </div>
       <div className="p-10">
         <Tabs />
