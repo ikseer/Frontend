@@ -1,5 +1,5 @@
 'use client';
-import { useGetProducts } from '@/customHooks/Home/useSpecificProduct';
+import { useGetProducts } from '@/customHooks/Home/useOneProduct ';
 import ShowImage from './components/ShowImage';
 import Rating from '@/components/Rating/Rating';
 import Share from '@/components/Share/Share';

@@ -1,6 +1,6 @@
 import {create} from 'zustand'
 
-import {SingleProductCardType} from "@/types/home.types";
+import {SingleProductCardType} from "@/types/product.types";
 
 interface useCardType {
     cardItems: SingleProductCardType[]

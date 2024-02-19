@@ -5,7 +5,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import useCard from '@/store/card'
 import {Link} from '@/navigation'
 // interface
-import {SingleItemType, SingleProductCardType} from "../../../../../../types/home.types"
+import {SingleItemType, SingleProductCardType} from "../../../../../../types/product.types"
 
 
 export default function SingleProductCard({item}: SingleItemType) {
