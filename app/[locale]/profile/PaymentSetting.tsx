@@ -9,7 +9,7 @@ export default function PaymentSetting() {
                 mainText="Payment Setting"
                 secondaryText="Manage your payment methods"
             />
-
+            Mohamed YOusef
         </div>
     )
 }

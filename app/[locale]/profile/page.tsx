@@ -15,9 +15,8 @@ export default function Profile() {
     return (
         <ProfileContainer>
             <Tabs 
-            componentOne={<ProfileSetting />} 
-            componentTwo={<SecuritySetting />} 
-            componentThree={<PaymentSetting />}
+            componentsList={[<ProfileSetting key="component-1" />, <SecuritySetting key="component-2" />,
+                <PaymentSetting key="component-3" />]}
             componentNames = {["Basic Settings", "Security and Privacy", "Payments"]}
             containerClassName = "flex space-x-2 justify-center"
             componentsIcons = {[<LuUser key="user"/>, <LuSettings key="setting"/>, <MdPayment key="payment"/>]}

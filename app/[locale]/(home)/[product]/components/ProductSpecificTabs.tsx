@@ -5,12 +5,9 @@ import Review from "./Review"
 export default function SpecificProductTab() {
     return (
         <Tabs
-            componentOne={< Description />}
-            componentTwo={< Review />}
+            componentsList={[<Description key="component-1" />, <Review key="component-2" />]}
             componentNames={["Description", "Review"]}
             containerClassName = ""
         />  
-
     )
-
 }

@@ -4,7 +4,7 @@ import SingleProductCard from '../ProductCards/SingleProductCard';
 import { useGetProducts } from '@/customHooks/Home/useProducts';
 import Button from '@/components/Buttons/Button';
 //interface
-import { SingleProductCardType } from '../home.types';
+import { SingleProductCardType } from '../../../../../../types/home.types';
 
 export default function ShowCards() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =

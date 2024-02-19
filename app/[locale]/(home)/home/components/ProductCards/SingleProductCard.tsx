@@ -1,12 +1,11 @@
 'use client'
 import React from 'react'
-import card from './one.jpeg'
-import Image from 'next/image'
+// import Image from 'next/image' => use when connect with backend
 import { LuShoppingCart } from "react-icons/lu";
 import useCard from '@/store/card'
 import {Link} from '@/navigation'
 // interface
-import {SingleItemType, SingleProductCardType} from "../home.types"
+import {SingleItemType, SingleProductCardType} from "../../../../../../types/home.types"
 
 
 export default function SingleProductCard({item}: SingleItemType) {
@@ -21,8 +20,8 @@ export default function SingleProductCard({item}: SingleItemType) {
          dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-slate-700/[.7]
          ">
             <Link className="w-full" href={`${item.id}`}>
-                <Image
-                    className="w-full h-auto rounded-t-xl" src={card.src} alt="Image Description"
+                <img
+                    className="w-full h-auto rounded-t-xl" src="https://placehold.co/600x400" alt="Image Description"
                     width={500}
                     height={500}
                 />
