@@ -1,5 +1,5 @@
 'use client';
-import SingleProductCard from '../ProductCards/SingleProductCard';
+import SingleProductCard from '../ProductCarts/SingleProductCart';
 
 import { useGetProducts } from '@/customHooks/Home/useProducts';
 import Button from '@/components/Buttons/Button';
@@ -30,7 +30,13 @@ export default function ShowCards() {
           )}
       </div>
       <Button
-        title={isFetchingNextPage? 'Loading more...': hasNextPage ? 'Load More': 'Nothing more to load'}
+        title={
+          isFetchingNextPage
+            ? 'Loading more...'
+            : hasNextPage
+              ? 'Load More'
+              : 'Nothing more to load'
+        }
         onClick={() => fetchNextPage()}
         disabled={!hasNextPage || isFetchingNextPage}
         width="200px"

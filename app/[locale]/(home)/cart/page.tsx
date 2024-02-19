@@ -1,13 +1,10 @@
-'use client';
 import CartHeader from './components/CartHeader';
 import CartView from './components/CartView';
 import Coupon from './components/Coupon';
 import OrderSummary from './components/OrderSummary';
 import PaymentMethod from './components/Payment';
 import LeftSideContainer from './components/LeftSideContainer';
-// import useCard from "@/store/card"
-// // const {cardItems} = useCard()
-// // console.log(cardItems)
+
 export default function ShowShoppingItems() {
   return (
     <div className="p-5">

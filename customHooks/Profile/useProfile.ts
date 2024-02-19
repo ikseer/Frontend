@@ -9,10 +9,7 @@ import authRequest from '@/api/authRequest';
 import Auth from '@/modules/Auth/Auth';
 
 // Interface
-import {
-  updateUserProfileType,
-  
-} from './useProfileTypesAndFunction';
+import { updateUserProfileType } from './useProfileTypesAndFunction';
 
 // Get Method
 const auth = new Auth();
@@ -21,8 +18,8 @@ const profileGetFunction = async () => {
   auth.prepareUserAuth();
   const id = auth.getUserId();
   const response = await authRequest.get(`/accounts/profile/${id}/`);
-  console.log(response.data);
-  console.log("enter profile get function");
+  // console.log(response.data);
+  console.log('enter profile get function');
   return response.data;
 };
 
@@ -37,8 +34,10 @@ export const useGetProfile = () => {
 // Update all User Profile info except password & Image
 
 const updateUserProfile = async (data: updateUserProfileType) => {
-  const newObject = Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'image'));
-  console.log(newObject, "new Object");
+  const newObject = Object.fromEntries(
+    Object.entries(data).filter(([key]) => key !== 'image'),
+  );
+  console.log(newObject, 'new Object');
   // const newObject = handleUpdateDate(data);
   const id = auth.getUserId();
   const request = await authRequest.patch(

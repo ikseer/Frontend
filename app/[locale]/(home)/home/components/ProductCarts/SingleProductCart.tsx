@@ -11,10 +11,10 @@ import {
 } from '../../../../../../types/product.types';
 
 export default function SingleProductCard({ item }: SingleItemType) {
-  const { addItemToCard } = useCard();
+  const { addItemToCart } = useCard();
 
   const handleAddToCard = (item: SingleProductCardType) => {
-    addItemToCard(item);
+    addItemToCart(item);
   };
 
   return (
