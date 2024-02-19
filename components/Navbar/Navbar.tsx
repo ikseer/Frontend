@@ -9,7 +9,7 @@ import LanguageAndTheme from './LanguageAndTheme';
 import ResonsiveIcon from './ResponsiveIcon';
 import BrandNameAndLogo from './Brand';
 import HoverDropDown from './HoverDropDown';
-import Card from './Card';
+import Card from './Cart';
 
 export default function GuestNavBar() {
   // const pathname = usePathname();
@@ -18,7 +18,10 @@ export default function GuestNavBar() {
   const dropDownKeys = [t('resourse')];
 
   return (
-    <header className=" min-h-[70px] md:h-[70px] flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
+    <>
+      <div className="min-h-[70px] md:h-[70px] ">
+      </div>
+    <header className="fixed top-0 min-h-[70px] md:h-[70px] bg-white  flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
       <nav
         className="relative w-full  border border-gray-200  py-3 px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto  dark:border-gray-700 dark:bg-zinc-950"
         aria-label="Global"
@@ -43,5 +46,6 @@ export default function GuestNavBar() {
         </div>
       </nav>
     </header>
+    </>
   );
 }

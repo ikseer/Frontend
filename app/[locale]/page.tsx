@@ -1,13 +1,18 @@
 'use client';
 
-// Components
+
 import Footer from '@/components/Footer/Footer';
+import Hero from "./(home)/home/components/Hero/Hero"
+import ShowProducts from "./(home)/home/components/ShowProducts/ShowProducts"
+
+
 
 export default function Home() {
   console.log(process, 'process');
   return (
-    <main className="mt-4 text-3xl font-bold ml-5">
-      <p>Home page here current user is:</p>
+    <main >
+      <Hero />
+      <ShowProducts />
       <Footer />
     </main>
   );
