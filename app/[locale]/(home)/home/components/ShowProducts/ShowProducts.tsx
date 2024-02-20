@@ -4,7 +4,7 @@ import SingleProductCard from '../ProductCarts/SingleProductCart';
 import { useGetProducts } from '@/customHooks/Home/useProducts';
 import Button from '@/components/Buttons/Button';
 //interface
-import { SingleProductCardType } from '../../../../../../types/product.types';
+import { SingleProductCartType } from '@/types/product.types';
 
 export default function ShowCards() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
@@ -24,7 +24,7 @@ export default function ShowCards() {
           pages.map(
             (currPage) =>
               Array.isArray(currPage.results) &&
-              currPage.results.map((item: SingleProductCardType) => (
+              currPage.results.map((item: SingleProductCartType) => (
                 <SingleProductCard key={`${item.id}`} item={item} />
               )),
           )}

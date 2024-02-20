@@ -5,7 +5,7 @@ import Rating from '@/components/Rating/Rating';
 import Share from '@/components/Share/Share';
 import Price from './components/Price';
 import SpecialOffer from './components/SpecialOffer';
-import IncrementAndDecrement from '../components/IncrementAndDecrement';
+// import IncrementAndDecrement from '../../components/IncrementAndDecrement';
 import AddToCardButton from './components/AddToCard';
 import BuyNowButton from './components/BuyNow';
 import Tabs from './components/ProductSpecificTabs';
@@ -41,7 +41,7 @@ export default function CurrentProduct({ params }: paramsType) {
           <p className="mb-6"></p>
           <SpecialOffer />
           <div className="flex mt-10 items-center">
-            <IncrementAndDecrement />
+            {/* <IncrementAndDecrement /> */}
             <AddToCardButton />
             <BuyNowButton />
           </div>

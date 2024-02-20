@@ -8,7 +8,7 @@ import { Link } from '@/navigation';
 import {
   SingleItemType,
   SingleProductCartType,
-} from '../../../../../../types/product.types';
+} from '@/types/product.types';
 
 export default function SingleProductCard({ item }: SingleItemType) {
   const { addItemToCart } = useCard();
@@ -23,7 +23,7 @@ export default function SingleProductCard({ item }: SingleItemType) {
          dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-slate-700/[.7]
          "
     >
-      <Link className="w-full" href={`${item.id}`}>
+      <Link className="w-full" href={`/products/${item.id}`}>
         <img
           className="w-full h-auto rounded-t-xl"
           src="https://placehold.co/600x400"

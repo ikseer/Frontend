@@ -12,11 +12,10 @@ import Auth from '@/modules/Auth/Auth';
 import { updateUserProfileType } from './useProfileTypesAndFunction';
 
 // Get Method
-const auth = new Auth();
 
 const profileGetFunction = async () => {
-  auth.prepareUserAuth();
-  const id = auth.getUserId();
+  const auth = new Auth();
+  const {id} = auth.getUserAuth();
   const response = await authRequest.get(`/accounts/profile/${id}/`);
   // console.log(response.data);
   console.log('enter profile get function');
@@ -38,8 +37,8 @@ const updateUserProfile = async (data: updateUserProfileType) => {
     Object.entries(data).filter(([key]) => key !== 'image'),
   );
   console.log(newObject, 'new Object');
-  // const newObject = handleUpdateDate(data);
-  const id = auth.getUserId();
+  const auth = new Auth()
+  const {id} = auth.getUserAuth();
   const request = await authRequest.patch(
     `/accounts/profile/${id}/`,
     newObject,

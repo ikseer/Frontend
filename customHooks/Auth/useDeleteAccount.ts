@@ -16,7 +16,7 @@ import { useLogout } from './useLogout';
 
 const deleteAccount = async () => {
   const auth = new Auth();
-  const id = auth.getUserId();
+  const {id} = auth.getUserAuth();
   const response = await authRequest.delete(`/accounts/profile/${id}`);
   return response.data;
 };
