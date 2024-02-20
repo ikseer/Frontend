@@ -12,12 +12,13 @@ export default function ProfileDropDown() {
   const {logout, userInfo} = useAuthStore()
   const {id} = userInfo
   const route = useRouter()
-  const handleLogout = () => {
-    const isLogged = logout()
-    if(!isLogged) {
-      route.push('/login')
-    }
+  const handleLogout =  () => {
+    console.log("trigger logout button")
+    logout()
+    route.push('/login')
+    
   }
+
   return (
     <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
       <button
@@ -47,12 +48,13 @@ export default function ProfileDropDown() {
             Setting Page
           </Link>
   
-          <p
-            className="cursor-pointer flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+          <button
+            className="cursor-pointer w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+            onClick={() => handleLogout()}
           >
             <LuLogOut />
-            <button onClick={() => handleLogout()}>Logout</button>
-          </p>
+            Logout
+          </button>
         </div>
       </div>
     </div>
