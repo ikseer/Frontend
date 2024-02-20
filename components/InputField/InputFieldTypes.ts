@@ -3,13 +3,13 @@ import React from 'react';
 
 // Interface
 export interface propsType {
+  id: string;
+  register: any;
+  errors: any;
   placeholder?: string;
   Icon?: React.ReactElement | string;
   width?: string | undefined;
-  id: string;
   object?: object;
-  errors?: any;
-  register: any;
   value?: string;
   labels?: string[] | [string, React.ReactElement] | React.ReactElement[];
   type?: string;

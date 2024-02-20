@@ -1,6 +1,5 @@
 'use client';
-
-// Components
+import React from 'react';
 import { ButtonHTMLAttributes } from 'react';
 
 
@@ -14,6 +13,8 @@ interface buttonProps {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: () => void;
   disabled?: boolean;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
 
@@ -26,17 +27,32 @@ export default function AuthButton({
   type,
   disabled,
   onClick,
+  startIcon,
+  endIcon,
 }: buttonProps) {
   const buttonStyle = { width, height };
   return (
-    <button
-      style={buttonStyle}
-      type={type ? type : 'submit'}
-      className={` rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
-      onClick={onClick}
-      disabled={disabled}
+    
+      <button
+        style={buttonStyle}
+        type={type ? type : 'submit'}
+        className={`flex justify-center items-center rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
+        onClick={onClick}
+        disabled={disabled}
     >
+      {startIcon &&
+          <div className="mr-5">
+            {startIcon}
+          </div>
+        }
+
       {title}
-    </button>
+
+        {endIcon &&
+          <div className="ml-5">
+            {endIcon}
+          </div>
+        }
+      </button>
   );
 }
