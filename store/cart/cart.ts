@@ -1,20 +1,20 @@
 import { create } from 'zustand';
 
-import { SingleProductCartType } from '@/types/product.types';
+import { ProductType } from '@/types/product.types';
 
 interface useCardType {
-  cartItems: SingleProductCartType[];
+  cartItems: ProductType[];
   // eslint-disable-next-line no-unused-vars
-  addItemToCart: (item: SingleProductCartType) => void;
+  addItemToCart: (item: ProductType) => void;
   // eslint-disable-next-line no-unused-vars
-  minusItemFromCart: (item: SingleProductCartType) => void;
+  minusItemFromCart: (item: ProductType) => void;
   // eslint-disable-next-line no-unused-vars
   removeItemFromCart: (item: number) => void;
 }
 
 const useCart = create<useCardType>((set, get) => ({
   cartItems: [],
-  addItemToCart: (item: SingleProductCartType) => {
+  addItemToCart: (item: ProductType) => {
     console.log(get().cartItems);
     const isExist = get().cartItems.find((cartItem) => cartItem.id === item.id);
     if (isExist) {
@@ -25,7 +25,7 @@ const useCart = create<useCardType>((set, get) => ({
       set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
     }
   },
-  minusItemFromCart: (item: SingleProductCartType) => {
+  minusItemFromCart: (item: ProductType) => {
     console.log(get().cartItems);
     const isExist = get().cartItems.find((cartItem) => cartItem.id == item.id);
     if (isExist) {

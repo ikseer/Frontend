@@ -5,15 +5,12 @@ import { LuShoppingCart } from 'react-icons/lu';
 import useCard from '@/store/cart/cart';
 import { Link } from '@/navigation';
 // interface
-import {
-  SingleItemType,
-  SingleProductCartType,
-} from '@/types/product.types';
+import { SingleItemType, ProductType } from '@/types/product.types';
 
 export default function SingleProductCard({ item }: SingleItemType) {
   const { addItemToCart } = useCard();
 
-  const handleAddToCard = (item: SingleProductCartType) => {
+  const handleAddToCard = (item: ProductType) => {
     addItemToCart(item);
   };
 

@@ -1,4 +1,4 @@
-export interface SingleProductCartType {
+export interface ProductType {
   id: number;
   name: string;
   generic_name: string;
@@ -16,5 +16,5 @@ export interface SingleProductCartType {
 }
 
 export interface SingleItemType {
-  item: SingleProductCartType;
+  item: ProductType;
 }
