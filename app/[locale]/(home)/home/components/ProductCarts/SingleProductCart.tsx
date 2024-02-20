@@ -13,7 +13,7 @@ import {
 export default function SingleProductCard({ item }: SingleItemType) {
   const { addItemToCart } = useCard();
 
-  const handleAddToCard = (item: SingleProductCardType) => {
+  const handleAddToCard = (item: SingleProductCartType) => {
     addItemToCart(item);
   };
 
