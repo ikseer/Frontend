@@ -1,17 +1,19 @@
 'use client';
 import React, { useState } from 'react';
-// import useCard from '@/store/cart';
-// import SingleProductCardType from "@types/product.types";
+import useCart from '@/store/cart';
+import { SingleItemType } from '@/types/product.types';
 
-export default function IncrementAndDecrement() {
-  const [value, setValue] = useState(1);
+export default function IncrementAndDecrement({ item }: SingleItemType) {
+  const { addItemToCart, minusItemFromCart } = useCart();
+  const [value, setValue] = useState<number | null>(item.quantity);
   const handleIncrement = () => {
-    setValue(value + 1);
+    addItemToCart(item);
+    if (value) setValue(value + 1);
   };
   const handleDecrement = () => {
-    setValue(value - 1);
+    minusItemFromCart(item);
+    if (value) setValue(value - 1);
   };
-  // const { addToCart } = useCard()
 
   return (
     <div

@@ -1,6 +1,6 @@
 'use client';
 import IncrementAndDecrement from '../../components/IncrementAndDecrement';
-import { LuTrash2 } from 'react-icons/lu';
+import RemoveProduct from './RemoveProduct';
 import useCart from '@/store/cart';
 export default function CartView() {
   const { cartItems } = useCart();
@@ -16,7 +16,10 @@ export default function CartView() {
             {/* product */}
             <div className="col-span-5 flex items-center gap-x-2">
               <div className="w-[70px] ">
-                <img src={} alt="temp" />
+                <img
+                  src={`https://ikseer.azurewebsites.net${product.images[0].image}`}
+                  alt="temp"
+                />
               </div>
               <div>
                 <p>{product.name}</p>
@@ -26,13 +29,13 @@ export default function CartView() {
             {/* add & minus */}
             <div className="col-span-3 w-fit">
               {/* product={product} */}
-              <IncrementAndDecrement />
+              <IncrementAndDecrement item={product} />
             </div>
             {/* Price */}
             <div className="col-span-3">${product.price?.toFixed(3)}</div>
             {/* trash */}
             <div className="col-span-1">
-              <LuTrash2 />
+              <RemoveProduct productId={product.id} />
             </div>
           </div>
         ))
