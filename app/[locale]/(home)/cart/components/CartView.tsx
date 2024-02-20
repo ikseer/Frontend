@@ -1,7 +1,7 @@
 'use client';
 import IncrementAndDecrement from '../../components/IncrementAndDecrement';
 import RemoveProduct from './RemoveProduct';
-import useCart from '@/store/cart';
+import useCart from '@/store/cart/cart';
 export default function CartView() {
   const { cartItems } = useCart();
   console.log(cartItems, cartItems);

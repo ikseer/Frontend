@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Link } from '../../../../navigation';
 import { useForm } from 'react-hook-form';
 
-
 // Components
 import AuthButton from '@/components/Buttons/Button';
 import DividerText from '@/components/Divider/Divider';
@@ -13,20 +12,15 @@ import Facebook from '@/images/auth/Facebook.svg';
 import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/InputField/InputField';
 
-
 // Hooks
 import { useLogin } from '@/customHooks/Auth/useLogin';
-
 
 // Icons
 import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 
-
 // CSS
 import '../register/register.css';
-
-
 
 // Interface
 interface FormDataType {

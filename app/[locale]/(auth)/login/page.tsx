@@ -1,7 +1,6 @@
 // main
 import { useTranslations } from 'next-intl';
 
-
 // Components
 import LoginMain from './LoginMain';
 

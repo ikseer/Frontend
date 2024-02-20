@@ -2,12 +2,12 @@
 import React from 'react';
 // import Image from 'next/image' => use when connect with backend
 import { LuShoppingCart } from 'react-icons/lu';
-import useCard from '@/store/cart';
+import useCard from '@/store/cart/cart';
 import { Link } from '@/navigation';
 // interface
 import {
   SingleItemType,
-  SingleProductCardType,
+  SingleProductCartType,
 } from '../../../../../../types/product.types';
 
 export default function SingleProductCard({ item }: SingleItemType) {

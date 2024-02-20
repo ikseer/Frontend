@@ -1,51 +1,27 @@
-'use client';
-
 interface User {
-  pk: string;
-  token: string;
-  refresh: string;
+  id: string;
+  accessToken:string;
+  refreshToken:string
 }
 
 class Auth {
   user: User;
   constructor() {
-    const authData = localStorage.getItem('auth');
-    this.user = authData ? JSON.parse(authData) : {};
+    let authData = localStorage.getItem('auth-data');
+    const newAuthData = authData ? JSON.parse(authData) : {};
+    this.user = newAuthData?.state?.userInfo
   }
-  prepareUserAuth() {
-    const authData = localStorage.getItem('auth');
-    this.user = authData ? JSON.parse(authData) : {};
-  }
+
   getUserAuth() {
     return this.user || {};
   }
-  getUserId() {
-    return this.user?.pk || null;
-  }
-  getToken() {
-    return this.user.token || null;
-  }
-  getRefresh() {
-    return this.user.refresh || null;
-  }
 
-  setUserAuth(newUser: User) {
-    this.user = newUser;
-    localStorage.setItem('auth', JSON.stringify(newUser));
-  }
   isRegister() {
-    if (this.user && this.user?.token && this.user?.pk) {
+    console.log(this.user, this.user.id, "yosuef in auth", this.user.refreshToken)
+    if (this.user && this.user?.accessToken && this.user?.refreshToken) {
       return true;
     }
     return false;
-  }
-  logout() {
-    localStorage.removeItem('auth');
-    this.user = {
-      pk: '',
-      token: '',
-      refresh: '',
-    };
   }
 }
 export default Auth;

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import useCart from '@/store/cart';
+import useCart from '@/store/cart/cart';
 import { SingleItemType } from '@/types/product.types';
 
 export default function IncrementAndDecrement({ item }: SingleItemType) {
