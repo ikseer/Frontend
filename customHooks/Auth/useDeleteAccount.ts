@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 
 // Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
-import { useLogout } from './useLogout';
+
 
 
 const deleteAccount = async () => {
@@ -24,12 +24,11 @@ const deleteAccount = async () => {
 
 export const useDeleteAccount = () => {
   const route = useRouter();
-  const logout = useLogout()
+  console.log("kljadf")
   return useMutation({
     mutationFn: deleteAccount,
     onSuccess: () => {
       route.push('/');
-      logout()
     },
     onError: (error) => {
       console.log("Delete Account Error", error);

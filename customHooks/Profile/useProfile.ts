@@ -3,7 +3,6 @@
 // API & React Query
 import { useQuery, useMutation } from '@tanstack/react-query';
 import authRequest from '@/api/authRequest';
-// import nonAuthRequest from '@/api/nonAuthRequest';
 
 // Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
@@ -11,8 +10,8 @@ import Auth from '@/modules/Auth/Auth';
 // Interface
 import { updateUserProfileType } from './useProfileTypesAndFunction';
 
-// Get Method
 
+// Get Method
 const profileGetFunction = async () => {
   const auth = new Auth();
   const {id} = auth.getUserAuth();

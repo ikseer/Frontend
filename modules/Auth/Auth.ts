@@ -17,11 +17,19 @@ class Auth {
   }
 
   isRegister() {
-    console.log(this.user, this.user.id, "yosuef in auth", this.user.refreshToken)
+    // console.log(this.user, this.user.id, "yosuef in auth", this.user.refreshToken)
     if (this.user && this.user?.accessToken && this.user?.refreshToken) {
       return true;
     }
     return false;
+  }
+  logout() {
+    this.user = {
+      id: '',
+      accessToken: '',
+      refreshToken: ''
+    }
+    localStorage.removeItem('auth-data');
   }
 }
 export default Auth;

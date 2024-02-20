@@ -1,15 +1,23 @@
+'use client'
 import React from 'react';
 import { LuLogOut } from 'react-icons/lu';
-import { Link } from '@/navigation';
-import { useLogout } from '@/customHooks/Auth/useLogout';
+import { Link, useRouter } from '@/navigation';
+
 import Image from 'next/image';
 import Profile from '../UserImage/profile.jpeg'
-import Auth from '@/modules/Auth/Auth'
+import useAuthStore from '@/store/auth/useAuth';
 
 export default function ProfileDropDown() {
-  const logout = useLogout()
-  const auth = new Auth()
-  const {id} = auth.getUserAuth()
+  // global store not used to make the component "server component"
+  const {logout, userInfo} = useAuthStore()
+  const {id} = userInfo
+  const route = useRouter()
+  const handleLogout = () => {
+    const isLogged = logout()
+    if(!isLogged) {
+      route.push('/login')
+    }
+  }
   return (
     <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
       <button
@@ -38,13 +46,13 @@ export default function ProfileDropDown() {
           >
             Setting Page
           </Link>
-          <Link
-            className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-            href="/login"
+  
+          <p
+            className="cursor-pointer flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
           >
             <LuLogOut />
-            <button onClick={logout}>Logout</button>
-          </Link>
+            <button onClick={() => handleLogout()}>Logout</button>
+          </p>
         </div>
       </div>
     </div>
