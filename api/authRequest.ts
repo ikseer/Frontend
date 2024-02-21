@@ -3,7 +3,6 @@ import Auth from "@/modules/Auth/Auth";
 
 
 const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
-console.log(baseUrl);
 
 
 
@@ -29,5 +28,6 @@ authRequest.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
 
 export default authRequest;

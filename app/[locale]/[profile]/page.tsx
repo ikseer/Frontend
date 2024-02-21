@@ -1,10 +1,10 @@
 
 // Components
 import Tabs from "@/components/Tabs/Tabs"
-import ProfileSetting from "./BasicSetting"
-import PaymentSetting from "./PaymentSetting"
+import ProfileSetting from "./components/BasicSetting/BasicSetting"
+import PaymentSetting from "./components/PaymentSetting/PaymentSetting"
 import SecuritySetting from "./SecuritySetting"
-import ProfileContainer from "./components/ProfileContainer"
+import ProfileContainer from "./components/SecuriySetting/ProfileContainer"
 // Icons
 import { LuUser } from 'react-icons/lu';
 import { LuSettings } from 'react-icons/lu';

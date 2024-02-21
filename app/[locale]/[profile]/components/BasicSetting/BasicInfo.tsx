@@ -1,33 +1,29 @@
 'use client';
-
-// Main
 import React, { useEffect } from 'react';
 import LabelInfo from './LabelInfo';
 import { useForm } from 'react-hook-form';
-
-// Components
 import Select from '@/components/Select/Select';
 import DisplayGender from '@/components/Gender/DisplayGender';
 import { timeZoneList } from './DifferentTimeZone';
 import AuthTextField from '@/components/InputField/InputField';
-import BasicSettingButton from './BasicSettingButton';
-
-// Hooks
+import BasicSettingButton from '../SecuriySetting/BasicSettingButton';
+import UserImage from './UserImage';
+import { updateUserProfileType } from '@/customHooks/Profile/useProfileTypesAndFunction';
 import {
   useGetProfile,
   useUpdateProfile,
 } from '@/customHooks/Profile/useProfile';
 
-// Interface
-import { updateUserProfileType } from '@/customHooks/Profile/useProfileTypesAndFunction';
 
 export default function BasicInfo() {
-  const { data } = useGetProfile();
-  console.log("Mohamed Yousef ")
+  const { data } = useGetProfile(true);
+
   const { register, formState, handleSubmit, reset } =
     useForm<updateUserProfileType>({
-      defaultValues: { ...data } as updateUserProfileType,
+      defaultValues: { ...data },
     });
+
+
   useEffect(() => {
     if (data) {
       reset(data);
@@ -37,11 +33,13 @@ export default function BasicInfo() {
   const { errors } = formState;
   const { mutate } = useUpdateProfile();
   const handleProfileSubmit = (data: updateUserProfileType) => {
-    console.log(data);
     mutate(data);
   };
 
   return (
+    <>
+        <UserImage image={data?.image}/>
+
     <form className="mt-6" onSubmit={handleSubmit(handleProfileSubmit)}>
       <div className="flex justify-between items-center">
         <LabelInfo
@@ -117,5 +115,6 @@ export default function BasicInfo() {
 
       <BasicSettingButton onClick={() => reset()} />
     </form>
+    </>
   );
 }

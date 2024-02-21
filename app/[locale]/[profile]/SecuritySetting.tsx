@@ -1,9 +1,9 @@
 // Components
 import SettingContainer from "@/components/Settings/setting"
-import SecurityContainer from "./components/SecurityContainer"
-import ChangePassword from "./components/ChangePassword"
-import LinkAccounts from "./components/LinkAccounts"
-import DeleteYourAccount from "./components/DeleteAccount"
+import SecurityContainer from "./components/SecuriySetting/SecurityContainer"
+import ChangePassword from "./components/SecuriySetting/ChangePassword"
+import LinkAccounts from "./components/SecuriySetting/LinkAccounts"
+import DeleteYourAccount from "./components/SecuriySetting/DeleteAccount"
 
 
 export default function SecuritySetting() {

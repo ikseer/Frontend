@@ -6,10 +6,8 @@ import authRequest from '@/api/authRequest';
 
 // Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
-
 // Interface
 import { updateUserProfileType } from './useProfileTypesAndFunction';
-
 
 // Get Method
 const profileGetFunction = async () => {
@@ -21,10 +19,11 @@ const profileGetFunction = async () => {
   return response.data;
 };
 
-export const useGetProfile = () => {
+export const useGetProfile = (enabled:boolean) => {
   return useQuery({
     queryKey: ['profile-get'],
     queryFn: profileGetFunction,
+    enabled:enabled?enabled: true
   });
 };
 
@@ -46,6 +45,7 @@ const updateUserProfile = async (data: updateUserProfileType) => {
 };
 
 export const useUpdateProfile = () => {
+
   return useMutation({
     mutationFn: updateUserProfile,
     onSuccess: () => {

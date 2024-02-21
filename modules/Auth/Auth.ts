@@ -1,3 +1,5 @@
+'use client'
+
 interface User {
   id: string;
   accessToken:string;
