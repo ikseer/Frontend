@@ -1,17 +1,12 @@
 'use client';
 
-// Main
 import React from 'react';
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
-
-
-// Components
 import InputField from '@/components/InputField/InputField';
 import Button from '@/components/Buttons/Button';
+import { useUpdatePassword } from '@/customHooks/Profile/usePassword';
 
-
-// Interface
 interface FormDataType {
   old_password: string;
   new_password1: string;
@@ -21,8 +16,11 @@ interface FormDataType {
 export default function ChangePassword() {
   const { register, formState, handleSubmit, watch } = useForm<FormDataType>();
   const { errors } = formState;
+  const { mutate } = useUpdatePassword();
+
   const handleChangePasswordSumbit = (data: FormDataType) => {
-    console.log(data)
+    console.log(data);
+    mutate(data);
   };
 
   return (
@@ -101,20 +99,20 @@ export default function ChangePassword() {
         type="password"
         object={{
           required: 'Repeat password is required',
-          validate: (value:string) => {
+          validate: (value: string) => {
             if (value !== watch('new_password1')) {
               return 'Passwords do not match';
             }
-          }
+          },
         }}
-      />  
+      />
       <Button
         type="submit"
         title="Save"
         width="150px"
         height="42px"
         ButtonClassName="mt-5 bg-slate-100 border-2  border-gray-200 hover:bg-gray-200
-                 hover:text-zinc-500  text-teal-600 
+                hover:text-zinc-500  text-teal-600 
                 dark:bg-zinc-950 dark:text-slate-400 font-medium border-1 border-slate-200
                 dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-slate-300
                 "

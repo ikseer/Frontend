@@ -7,36 +7,33 @@ import authRequest from '@/api/authRequest';
 // Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
 // Interface
-import { updateUserProfileType } from './useProfileTypesAndFunction';
+import { updateUserProfileType } from './profileTypes';
 
 // Get Method
 const profileGetFunction = async () => {
   const auth = new Auth();
-  const {id} = auth.getUserAuth();
+  const { id } = auth.getUserAuth();
   const response = await authRequest.get(`/accounts/profile/${id}/`);
-  // console.log(response.data);
   console.log('enter profile get function');
   return response.data;
 };
 
-export const useGetProfile = (enabled:boolean) => {
+export const useGetProfile = (enabled: boolean) => {
   return useQuery({
     queryKey: ['profile-get'],
     queryFn: profileGetFunction,
-    enabled:enabled?enabled: true
+    enabled: enabled ? enabled : true,
   });
 };
 
 // Update method
-// Update all User Profile info except password & Image
-
 const updateUserProfile = async (data: updateUserProfileType) => {
   const newObject = Object.fromEntries(
     Object.entries(data).filter(([key]) => key !== 'image'),
   );
   console.log(newObject, 'new Object');
-  const auth = new Auth()
-  const {id} = auth.getUserAuth();
+  const auth = new Auth();
+  const { id } = auth.getUserAuth();
   const request = await authRequest.patch(
     `/accounts/profile/${id}/`,
     newObject,
@@ -45,7 +42,6 @@ const updateUserProfile = async (data: updateUserProfileType) => {
 };
 
 export const useUpdateProfile = () => {
-
   return useMutation({
     mutationFn: updateUserProfile,
     onSuccess: () => {
@@ -58,3 +54,21 @@ export const useUpdateProfile = () => {
 };
 
 // Delete method
+const delteProfile = () => {
+  const auth = new Auth();
+  const { id } = auth.getUserAuth();
+  const response = authRequest.delete(`accounts/profile/${id}/`);
+  return response;
+};
+
+export const useDeleteProfile = () => {
+  return useMutation({
+    mutationFn: delteProfile,
+    onSuccess: () => {
+      console.log('Profile Deleted');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+};
