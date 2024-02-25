@@ -1,15 +1,15 @@
 interface PriceType {
-  old_price: number;
-  new_price: number;
-  discount: number;
+  price: number;
+  old_price?: number;
+  discount?: number;
 }
-export default function Price({ old_price, new_price, discount }: PriceType) {
+export default function Price({ old_price, price, discount }: PriceType) {
   return (
     <div>
       {old_price ? (
         <div className="flex items-center">
           <p className="text-red-600 text-bold font-bold mr-[1px] text-3xl">
-            ${new_price}{' '}
+            ${price}{' '}
           </p>
           <sub className="mt-2">
             <del className="font-normal  text-base">${old_price}</del>
@@ -19,7 +19,7 @@ export default function Price({ old_price, new_price, discount }: PriceType) {
           </p>
         </div>
       ) : (
-        <p>${new_price}</p>
+        <p>${price}</p>
       )}
     </div>
   );
