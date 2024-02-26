@@ -10,6 +10,7 @@ interface useCardType {
   minusItemFromCart: (item: ProductType) => void;
   // eslint-disable-next-line no-unused-vars
   removeItemFromCart: (item: number) => void;
+  orderPrice: () => number;
 }
 
 const useCart = create<useCardType>((set, get) => ({
@@ -21,6 +22,7 @@ const useCart = create<useCardType>((set, get) => ({
       if (typeof isExist.quantity === 'number') {
         isExist.quantity++;
       }
+      set({ cartItems: get().cartItems });
     } else {
       set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
     }
@@ -31,6 +33,7 @@ const useCart = create<useCardType>((set, get) => ({
     if (isExist) {
       if (typeof isExist.quantity === 'number') isExist.quantity--;
     }
+    set({ cartItems: get().cartItems });
   },
   removeItemFromCart: (productId: number) => {
     const isExist = get().cartItems.find(
@@ -45,6 +48,13 @@ const useCart = create<useCardType>((set, get) => ({
         });
       }
     }
+  },
+  orderPrice: () => {
+    let total = 0;
+    get().cartItems.forEach((item) => {
+      total += item.price * item.quantity;
+    });
+    return total;
   },
 }));
 

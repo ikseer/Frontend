@@ -7,7 +7,7 @@ export interface ProductType {
   factory_company: string;
   description: string;
   price: number;
-  quantity: null | number;
+  quantity: number;
   images: { image: string }[];
   category: number;
   pharmacy: number;

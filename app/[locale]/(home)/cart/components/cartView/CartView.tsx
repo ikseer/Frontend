@@ -12,7 +12,7 @@ export default function CartView({ cartItems }: CartViewProps) {
 
   return (
     <>
-      {cartItems.length == 0 ? (
+      {cartItems.length > 0 ? (
         cartItems.map((product) => (
           <div
             className="grid grid-cols-12 bg-slate-100 dark:bg-zinc-950 items-center mb-3"
