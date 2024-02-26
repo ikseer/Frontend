@@ -57,7 +57,7 @@ export const useUpdateProfile = () => {
 const delteProfile = () => {
   const auth = new Auth();
   const { id } = auth.getUserAuth();
-  const response = authRequest.delete(`accounts/profile/${id}/`);
+  const response = authRequest.delete(`accounts/profile/?user_id=${id}`);
   return response;
 };
 
