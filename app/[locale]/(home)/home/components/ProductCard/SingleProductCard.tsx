@@ -21,9 +21,9 @@ export default function SingleProductCard({ item }: SingleItemType) {
          dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-slate-700/[.7]
          "
     >
-      <Link className="w-full" href={`/products/${item.id}`}>
+      <Link className=" aspect-[3/4]" href={`/products/${item.id}`}>
         <Image
-          className="w-full h-auto rounded-t-xl"
+          className="object-cover  w-full h-full rounded-t-xl"
           src={`${BASEURL}${item?.images[0]?.image}`}
           alt="Image Description"
           width={500}
