@@ -1,13 +1,18 @@
 'use client';
-import IncrementAndDecrement from '../../components/IncrementAndDecrement';
+import IncrementAndDecrement from '../../../components/IncrementAndDecrement';
 import RemoveProduct from './RemoveProduct';
-import useCart from '@/store/cart/cart';
-export default function CartView() {
-  const { cartItems } = useCart();
-  console.log(cartItems, cartItems);
+import { ProductType } from '@/types/product.types';
+import Image from 'next/image';
+
+interface CartViewProps {
+  cartItems: ProductType[];
+}
+export default function CartView({ cartItems }: CartViewProps) {
+  const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
+
   return (
     <>
-      {cartItems.length > 0 ? (
+      {cartItems.length == 0 ? (
         cartItems.map((product) => (
           <div
             className="grid grid-cols-12 bg-slate-100 dark:bg-zinc-950 items-center mb-3"
@@ -16,9 +21,11 @@ export default function CartView() {
             {/* product */}
             <div className="col-span-5 flex items-center gap-x-2">
               <div className="w-[70px] ">
-                <img
-                  src={`https://ikseer.azurewebsites.net${product.images[0].image}`}
-                  alt="temp"
+                <Image
+                  src={`${BASEURL}${product.images[0].image}`}
+                  alt="cart Image"
+                  width={300}
+                  height={300}
                 />
               </div>
               <div>
