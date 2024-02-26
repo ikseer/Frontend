@@ -8,7 +8,7 @@ module.exports = withNextIntl({
   images: {
     remotePatterns: [
       {
-        protocol: 'http', // Adjust if your images use HTTPS
+        protocol: 'https', // Adjust if your images use HTTPS
         hostname: 'ikseer.azurewebsites.net',
         port: '', // Specify port if required
         pathname: '/media/**', // Update if your image path differs

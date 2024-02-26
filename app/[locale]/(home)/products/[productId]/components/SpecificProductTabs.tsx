@@ -1,6 +1,6 @@
 import Tabs from '@/components/Tabs/Tabs';
 import Description from './Description';
-import Review from './Review';
+import Review from './Review/Review';
 interface ReviewProps {
   id: number;
   name: string;

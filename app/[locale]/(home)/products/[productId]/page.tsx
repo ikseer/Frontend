@@ -1,6 +1,6 @@
 'use client';
 import { useGetOneProduct } from '@/customHooks/Home/useOneProduct ';
-import ShowImage from './components/ShowImage';
+import ShowImage from './components/ProductImage/ShowImage';
 import Rating from '@/components/Rating/Rating';
 import Share from '@/components/Share/Share';
 import Price from './components/Price';
@@ -25,7 +25,7 @@ export default function CurrentProduct({ params }: paramsType) {
   return (
     <div>
       <div className="grid grid-cols-1 gap-y-3 md:grid-cols-2 lg:gap-x-[20px] ">
-        <ShowImage />
+        <ShowImage images={data?.images} />
         <div className="pt-10 px-5">
           <h1 className="text-2xl font-bold mb-3">
             Product Name - {data?.name}
