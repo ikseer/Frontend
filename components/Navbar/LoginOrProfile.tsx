@@ -19,6 +19,7 @@ export default function AuthOrProfile({
   pathname = pathname.slice(3);
   const auth = new Auth();
   const isRigster = auth.isRegister();
+
   return (
     <>
       {isRigster ? (

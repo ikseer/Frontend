@@ -1,10 +1,10 @@
 'use client';
-import SingleProductCard from '../ProductCards/SingleProductCard';
+import SingleProductCard from '../ProductCard/SingleProductCard';
 
 import { useGetProducts } from '@/customHooks/Home/useProducts';
 import Button from '@/components/Buttons/Button';
 //interface
-import { SingleProductCardType } from '../../../../../../types/product.types';
+import { ProductType } from '@/types/product.types';
 
 export default function ShowCards() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
@@ -24,13 +24,19 @@ export default function ShowCards() {
           pages.map(
             (currPage) =>
               Array.isArray(currPage.results) &&
-              currPage.results.map((item: SingleProductCardType) => (
+              currPage.results.map((item: ProductType) => (
                 <SingleProductCard key={`${item.id}`} item={item} />
               )),
           )}
       </div>
       <Button
-        title={isFetchingNextPage? 'Loading more...': hasNextPage ? 'Load More': 'Nothing more to load'}
+        title={
+          isFetchingNextPage
+            ? 'Loading more...'
+            : hasNextPage
+              ? 'Load More'
+              : 'Nothing more to load'
+        }
         onClick={() => fetchNextPage()}
         disabled={!hasNextPage || isFetchingNextPage}
         width="200px"

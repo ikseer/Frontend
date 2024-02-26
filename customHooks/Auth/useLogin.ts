@@ -8,9 +8,9 @@ import nonAuthRequest from '@/api/nonAuthRequest';
 import { useRouter } from 'next/navigation';
 
 // Modules & Components & OthersHooks
-import Auth from '@/modules/Auth/Auth';
+import useAuthStore from '@/store/auth/useAuth';
 
-const auth = new Auth();
+
 
 interface LoginType {
   username: string;
@@ -41,17 +41,17 @@ const login = async (data: LoginType) => {
 
 export const useLogin = () => {
   const route = useRouter();
+  const { setUserInfo } = useAuthStore();
   return useMutation({
     mutationFn: login,
-
     onSuccess: (data) => {
       console.log(data, 'login Data');
       const userObject = {
-        pk: data.data.user.pk,
-        token: data.data.access,
-        refresh: data.data.refresh,
+        id: data.data.user.pk,
+        accessToken: data.data.access,
+        refreshToken: data.data.refresh,
       };
-      auth.setUserAuth(userObject);
+      setUserInfo(userObject);
       route.push('/');
     },
 

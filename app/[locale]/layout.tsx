@@ -9,7 +9,7 @@ import Providers from '@/components/darkTheme/Provider';
 
 
 // Components
-import GuestNavBar from '@/components/Navbar/GuestNavbar';
+import GuestNavBar from '@/components/Navbar/Navbar';
 import PrelineScript from './components/PrelineScript';
 
 

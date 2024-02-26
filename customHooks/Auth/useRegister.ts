@@ -7,13 +7,13 @@ import { useMutation } from '@tanstack/react-query';
 import nonAuthRequest from '@/api/nonAuthRequest';
 
 // Modules & Components & OthersHooks
-import Auth from '@/modules/Auth/Auth';
+// import Auth from '@/modules/Auth/Auth';
+import useAuthStore from '@/store/auth/useAuth';
 import { useRegisterContext } from '@/app/[locale]/(auth)/register/context/RegisterContext';
 
 // Interface
 import {
   RegisterType,
-  User,
   PinNumberType,
   PhoneNumberType,
 } from './useRegisterTypes';
@@ -47,7 +47,11 @@ export const useRegister = () => {
 };
 
 // Register second step
-let userObject: User = {} as User;
+let userObject = {
+  id:'',
+  accessToken:'',
+  refreshToken:'',
+};
 
 const confirmEmail = async (data: PinNumberType) => {
   const response = await nonAuthRequest.post(
@@ -57,19 +61,20 @@ const confirmEmail = async (data: PinNumberType) => {
   return response;
 };
 
-const auth = new Auth();
+
 export const usePinCode = () => {
   const { triggerFunction } = useRegisterContext();
+  const {setUserInfo} = useAuthStore()
   return useMutation({
     mutationFn: confirmEmail,
     onSuccess: (data) => {
       triggerFunction.current?.click();
       userObject = {
-        pk: data.data.user.pk,
-        token: data.data.access,
-        refresh: data.data.refresh,
+        id: data.data.user.pk,
+        accessToken: data.data.access,
+        refreshToken: data.data.refresh,
       };
-      auth.setUserAuth(userObject);
+      setUserInfo(userObject);
     },
     onError: (error) => {
       console.log(error);
