@@ -13,7 +13,11 @@ import { updateUserProfileType } from './profileTypes';
 const profileGetFunction = async () => {
   const auth = new Auth();
   const { id } = auth.getUserAuth();
-  const response = await authRequest.get(`/accounts/profile/${id}/`);
+  const response = await authRequest.get(`/accounts/profile/`, {
+    params: {
+      id: id,
+    },
+  });
   console.log('enter profile get function');
   return response.data;
 };
