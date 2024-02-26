@@ -4,15 +4,16 @@ import React from 'react';
 import { LuShoppingCart } from 'react-icons/lu';
 import useCard from '@/store/cart/cart';
 import { Link } from '@/navigation';
-// interface
+import Image from 'next/image';
 import { SingleItemType, ProductType } from '@/types/product.types';
 
 export default function SingleProductCard({ item }: SingleItemType) {
   const { addItemToCart } = useCard();
-
+  const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
   const handleAddToCard = (item: ProductType) => {
     addItemToCart(item);
   };
+  console.log(item, 'item now');
 
   return (
     <div
@@ -21,9 +22,9 @@ export default function SingleProductCard({ item }: SingleItemType) {
          "
     >
       <Link className="w-full" href={`/products/${item.id}`}>
-        <img
+        <Image
           className="w-full h-auto rounded-t-xl"
-          src="https://placehold.co/600x400"
+          src={`${BASEURL}${item?.images[0]?.image}`}
           alt="Image Description"
           width={500}
           height={500}

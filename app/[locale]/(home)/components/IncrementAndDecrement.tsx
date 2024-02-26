@@ -5,7 +5,7 @@ import { SingleItemType } from '@/types/product.types';
 
 export default function IncrementAndDecrement({ item }: SingleItemType) {
   const { addItemToCart, minusItemFromCart } = useCart();
-  const [value, setValue] = useState<number | null>(item.quantity);
+  const [value, setValue] = useState<number | null>(item?.quantity);
   const handleIncrement = () => {
     addItemToCart(item);
     if (value) setValue(value + 1);

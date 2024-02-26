@@ -50,8 +50,8 @@ export default function CurrentProduct({ params }: paramsType) {
           <p className="mb-6"></p>
           {data?.discount?.length > 0 && <SpecialOffer />}
           <div className="flex mt-10 items-center">
-            {/* <IncrementAndDecrement /> */}
-            <AddToCardButton />
+            {/* <IncrementAndDecrement item={data}/> */}
+            <AddToCardButton product={data} />
             <BuyNowButton />
           </div>
         </div>

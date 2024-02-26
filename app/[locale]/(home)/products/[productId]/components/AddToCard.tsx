@@ -1,9 +1,14 @@
 import { LuShoppingCart } from 'react-icons/lu';
 import Button from '@/components/Buttons/Button';
-
-export default function AddToCardButton() {
+import useCart from '@/store/cart/cart';
+import { ProductType } from '@/types/product.types';
+interface AddToCardButtonProps {
+  product: ProductType;
+}
+export default function AddToCardButton({ product }: AddToCardButtonProps) {
+  const { addItemToCart } = useCart();
   const handleOnClick = () => {
-    console.log('AddToCardButton');
+    addItemToCart(product);
   };
   return (
     <Button
