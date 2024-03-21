@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from '@/navigation';
 
-
 // Interface
 interface StackContainerType {
   headers:
@@ -16,7 +15,6 @@ interface StackContainerType {
         },
       ];
 }
-
 
 export default function FooterContainer({ headers }: StackContainerType) {
   return (

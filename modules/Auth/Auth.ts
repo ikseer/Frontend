@@ -1,17 +1,18 @@
-'use client'
+'use client';
 
 interface User {
   id: string;
-  accessToken:string;
-  refreshToken:string
+  accessToken: string;
+  refreshToken: string;
 }
 
 class Auth {
   user: User;
+
   constructor() {
-    let authData = localStorage.getItem('auth-data');
+    const authData = localStorage.getItem('auth-data');
     const newAuthData = authData ? JSON.parse(authData) : {};
-    this.user = newAuthData?.state?.userInfo
+    this.user = newAuthData?.state?.userInfo;
   }
 
   getUserAuth() {
@@ -19,17 +20,15 @@ class Auth {
   }
 
   isRegister() {
-    if (this.user && this.user?.accessToken && this.user?.refreshToken) {
-      return true;
-    }
-    return false;
+    return Boolean(this.user?.accessToken && this.user?.refreshToken);
   }
+
   logout() {
     this.user = {
       id: '',
       accessToken: '',
-      refreshToken: ''
-    }
+      refreshToken: '',
+    };
     localStorage.removeItem('auth-data');
   }
 }

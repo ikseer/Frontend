@@ -9,14 +9,11 @@ import 'react-phone-input-2/lib/style.css';
 import '@/app/[locale]/globals.css';
 import './PhoneNumber.css';
 
-
 // Interface
 interface PhoneNumberValidationType {
   // eslint-disable-next-line no-unused-vars
   passPhoneNumber: (_value: string) => void;
 }
-
-
 
 const PhoneNumberValidation = ({
   passPhoneNumber,
@@ -28,7 +25,6 @@ const PhoneNumberValidation = ({
     setValid(validatePhoneNumber(value));
     setPhoneNumber(value);
     passPhoneNumber(value);
-   
   };
 
   const validatePhoneNumber = (phoneNumber: string) => {

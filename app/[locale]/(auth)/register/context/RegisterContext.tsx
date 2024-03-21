@@ -1,14 +1,11 @@
 // Main
-import React from 'react'
+import React from 'react';
 import { RefObject, createContext, useContext, useRef } from 'react';
-
 
 // Interface
 interface providerType {
   triggerFunction: RefObject<HTMLButtonElement>;
 }
-
-
 
 export const registerContext = createContext<providerType | null>(null);
 

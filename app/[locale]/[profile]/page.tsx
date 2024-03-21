@@ -1,10 +1,9 @@
-
 // Components
-import Tabs from "@/components/Tabs/Tabs"
-import ProfileSetting from "./components/BasicSetting/BasicSetting"
-import PaymentSetting from "./components/PaymentSetting/PaymentSetting"
-import SecuritySetting from "./SecuritySetting"
-import ProfileContainer from "./components/SecuriySetting/ProfileContainer"
+import Tabs from '@/components/Tabs/Tabs';
+import ProfileSetting from './components/BasicSetting/BasicSetting';
+import PaymentSetting from './components/PaymentSetting/PaymentSetting';
+import SecuritySetting from './SecuritySetting';
+import ProfileContainer from './components/SecuriySetting/ProfileContainer';
 // Icons
 import { LuUser } from 'react-icons/lu';
 import { LuSettings } from 'react-icons/lu';
@@ -12,15 +11,22 @@ import { LuSettings } from 'react-icons/lu';
 import { MdPayment } from 'react-icons/md';
 
 export default function Profile() {
-    return (
-        <ProfileContainer>
-            <Tabs 
-            componentsList={[<ProfileSetting key="component-1" />, <SecuritySetting key="component-2" />,
-                <PaymentSetting key="component-3" />]}
-            componentNames = {["Basic Settings", "Security and Privacy", "Payments"]}
-            containerClassName = "flex space-x-2 justify-center"
-            componentsIcons = {[<LuUser key="user"/>, <LuSettings key="setting"/>, <MdPayment key="payment"/>]}
-            />
-        </ProfileContainer>
-    )
+  return (
+    <ProfileContainer>
+      <Tabs
+        componentsList={[
+          <ProfileSetting key="component-1" />,
+          <SecuritySetting key="component-2" />,
+          <PaymentSetting key="component-3" />,
+        ]}
+        componentNames={['Basic Settings', 'Security and Privacy', 'Payments']}
+        containerClassName="flex space-x-2 justify-center"
+        componentsIcons={[
+          <LuUser key="user" />,
+          <LuSettings key="setting" />,
+          <MdPayment key="payment" />,
+        ]}
+      />
+    </ProfileContainer>
+  );
 }

@@ -15,18 +15,17 @@ const profileGetFunction = async () => {
   const { id } = auth.getUserAuth();
   const response = await authRequest.get(`/accounts/profile/`, {
     params: {
-      id: id,
+      user__id: id,
     },
   });
-  console.log('enter profile get function');
-  return response.data;
+  return response.data[0];
 };
 
 export const useGetProfile = (enabled: boolean) => {
   return useQuery({
     queryKey: ['profile-get'],
     queryFn: profileGetFunction,
-    enabled: enabled ? enabled : true,
+    enabled,
   });
 };
 

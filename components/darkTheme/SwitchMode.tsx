@@ -8,7 +8,6 @@ import { useTheme } from 'next-themes';
 import { LuMoon } from 'react-icons/lu';
 import { LuSunMoon } from 'react-icons/lu';
 
-
 const SwitchMode = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   theme === 'system' ? systemTheme : theme;

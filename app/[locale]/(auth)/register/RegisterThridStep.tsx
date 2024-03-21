@@ -1,15 +1,12 @@
 // Main
 import React, { useEffect, useState } from 'react';
 
-
 // Components
 import PinNumber from '@/components/PinNumber/PinNumber';
 import Button from '@/components/Buttons/Button';
 
-
 // Hooks
 import { usePinCode } from '@/customHooks/Auth/useRegister';
-
 
 // Interface
 interface RegisterConfirmEmailType {

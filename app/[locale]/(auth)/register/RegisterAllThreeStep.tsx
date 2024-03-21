@@ -1,7 +1,6 @@
 'use client';
 // Main
-import React from 'react'
-
+import React from 'react';
 
 //Components
 import RegisterFirstStep from './RegisterFirstStep';
@@ -11,14 +10,12 @@ import RegisterContainer from './AuthContainer';
 import StepperNavigationButtons from '@/components/Stepper/StepperNavigationButtons';
 import RegisterContextProvider from './context/RegisterContext';
 
-
 // Interface
 interface RegisterAllThreeStepType {
   firstStepKeys: string[];
   secondStepKeys: string[];
   thirdStepKeys: string[];
 }
-
 
 export default function RegisterAllThreeStep({
   firstStepKeys,

@@ -8,7 +8,6 @@ type propsType = {
   children: React.ReactNode;
 };
 
-
 export default function Providers({ children }: propsType) {
   const [mounted, setMounted] = useState(false);
 

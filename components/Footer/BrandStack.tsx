@@ -1,7 +1,6 @@
 // Main
 import React from 'react';
 
-
 export default function Stack() {
   return (
     <div className="col-span-full hidden lg:col-span-1 lg:block">

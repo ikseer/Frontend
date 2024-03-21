@@ -1,11 +1,9 @@
-
 // Interface
 interface SelectType {
   label: string;
   selectOptions: string[];
   register: any;
 }
-
 
 export default function Select({ label, selectOptions, register }: SelectType) {
   return (
@@ -26,7 +24,9 @@ export default function Select({ label, selectOptions, register }: SelectType) {
       >
         <option selected>Open this select menu</option>
         {selectOptions.map((item, index) => (
-          <option key={`${index} - ${item}`} value={item}>{item}</option>
+          <option key={`${index} - ${item}`} value={item}>
+            {item}
+          </option>
         ))}
       </select>
     </div>

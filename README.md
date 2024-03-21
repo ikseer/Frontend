@@ -5,19 +5,23 @@
 - [swagger](https://ikseer.azurewebsites.net/swagger/)
 
 ## Localization
+
 - [next-intl-docs](https://next-intl-docs.vercel.app/docs/getting-started)
 
 ## utility-first CSS framework
+
 - [tailwind](https://tailwindcss.com/)
 
-
 ## design system library(UI component library)
+
 - [preline](https://preline.co/)
 
 ## form management library
+
 - [React hook form](https://react-hook-form.com/)
 
-## data fetching and state management library 
+## data fetching and state management library
+
 - [tanStack react query](https://tanstack.com/query/latest)
 
-## 
+##

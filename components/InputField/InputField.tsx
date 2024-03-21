@@ -64,8 +64,6 @@ export default function AuthTextField({
              disabled:opacity-50 disabled:pointer-events-none
               dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
                ${Icon ? 'rounded-e-lg ' : 'rounded-lg'}
-               
-
             `}
             placeholder={placeholder}
             type="text"
@@ -73,7 +71,7 @@ export default function AuthTextField({
           />
         )}
         {type == 'password' && (
-          <div className="relative">
+          <div className="relative w-full">
             <input
               id={id}
               disabled={disabled}
@@ -145,7 +143,6 @@ export default function AuthTextField({
            disabled:opacity-50 disabled:pointer-events-none
             dark:bg-zinc-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
              ${Icon ? 'rounded-e-lg ' : 'rounded-lg'}
-
           `}
             placeholder={placeholder}
             type="text"

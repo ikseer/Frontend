@@ -48,9 +48,9 @@ export const useRegister = () => {
 
 // Register second step
 let userObject = {
-  id:'',
-  accessToken:'',
-  refreshToken:'',
+  id: '',
+  accessToken: '',
+  refreshToken: '',
 };
 
 const confirmEmail = async (data: PinNumberType) => {
@@ -61,10 +61,9 @@ const confirmEmail = async (data: PinNumberType) => {
   return response;
 };
 
-
 export const usePinCode = () => {
   const { triggerFunction } = useRegisterContext();
-  const {setUserInfo} = useAuthStore()
+  const { setUserInfo } = useAuthStore();
   return useMutation({
     mutationFn: confirmEmail,
     onSuccess: (data) => {
