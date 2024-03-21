@@ -8,7 +8,7 @@ interface CartViewProps {
   cartItems: ProductType[];
 }
 export default function CartView({ cartItems }: CartViewProps) {
-  const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
+  const BASEURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   return (
     <>

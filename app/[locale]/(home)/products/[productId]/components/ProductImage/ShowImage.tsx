@@ -14,7 +14,7 @@ interface ShowImageProps {
 export default function ShowImage({ images }: ShowImageProps) {
   const sortedImages = images?.sort((a, b) => b.priority - a.priority);
   const [currPriority, setCurrPriority] = useState(1);
-  const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
+  const BASEURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   console.log(currPriority, BASEURL, 'from show iamge', sortedImages);
   return (
     <div>
