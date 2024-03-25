@@ -1,15 +1,10 @@
 'use client';
-
-// API & React Query
 import { useQuery, useMutation } from '@tanstack/react-query';
 import authRequest from '@/api/authRequest';
-
-// Modules & Components & OthersHooks
 import Auth from '@/modules/Auth/Auth';
-// Interface
 import { updateUserProfileType } from './profileTypes';
 
-// Get Method
+// Get Profile
 const profileGetFunction = async () => {
   const auth = new Auth();
   const { id } = auth.getUserAuth();
@@ -30,7 +25,7 @@ export const useGetProfile = (enabled: boolean) => {
   });
 };
 
-// Update method
+// Update Profile
 const updateUserProfile = async (data: updateUserProfileType) => {
   const newObject = Object.fromEntries(
     Object.entries(data).filter(([key]) => key !== 'image'),
@@ -57,7 +52,7 @@ export const useUpdateProfile = () => {
   });
 };
 
-// Delete method
+// Delete Profile
 const delteProfile = () => {
   const auth = new Auth();
   const { id } = auth.getUserAuth();

@@ -1,16 +1,10 @@
 import React from 'react';
 
-// interfaces
-// interface HoverDropDownDataType {
-//   children: string[][]
-// }
-// {children}:HoverDropDownDataType
 interface HoverDropDownType {
   dropDownWords: string[];
 }
 
 // Data will passed as map of list of list.
-
 export default function HoverDropDown({ dropDownWords }: HoverDropDownType) {
   return (
     <div className="hs-dropdown [--strategy:static] md:[--strategy:absolute] [--adaptive:none] md:[--trigger:hover] py-3 md:py-4">
