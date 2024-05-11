@@ -1,4 +1,4 @@
-import React from 'react';
+;
 import RegisterContainer from '../register/AuthContainer';
 import ForgetPasswordComponent from './ForgetPasswordComponent';
 import '../register/register.css';

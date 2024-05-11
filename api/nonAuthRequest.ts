@@ -1,11 +1,12 @@
 import axios from 'axios';
-const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+import { BACKEND_URL } from '@/lib/constants';
 
 const nonAuthRequest = axios.create({
-  baseURL: baseUrl,
+  baseURL: BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
 
 export default nonAuthRequest;

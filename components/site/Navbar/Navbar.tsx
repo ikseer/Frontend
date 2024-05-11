@@ -27,7 +27,7 @@ export default function GuestNavBar() {
         >
           {/* left side */}
           <div className="flex items-center justify-between">
-            <BrandNameAndLogo name={t('IKSIR')} />
+            <BrandNameAndLogo name={t('ikseer')} />
             <ResonsiveIcon />
           </div>
 

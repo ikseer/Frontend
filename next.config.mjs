@@ -7,7 +7,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: new URL(process.env.NEXT_PUBLIC_BASEURL).hostname,
+        hostname: new URL(process.env.NEXT_PUBLIC_BACKEND_URL).hostname,
       },
     ],
   },

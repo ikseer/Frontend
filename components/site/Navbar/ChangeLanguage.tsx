@@ -1,6 +1,6 @@
 'use client';
 // main
-import React from 'react';
+;
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 

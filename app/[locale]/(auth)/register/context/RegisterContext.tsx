@@ -1,5 +1,5 @@
 // Main
-import React from 'react';
+;
 import { RefObject, createContext, useContext, useRef } from 'react';
 
 // Interface

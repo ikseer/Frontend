@@ -1,6 +1,6 @@
 // main
 'use client';
-import React from 'react';
+;
 import { Link } from '@/navigation';
 import { usePathname } from 'next/navigation';
 import Auth from '@/modules/Auth/Auth';

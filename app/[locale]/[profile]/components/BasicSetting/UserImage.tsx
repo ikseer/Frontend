@@ -1,7 +1,9 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import  { useRef, useState } from 'react';
+
 import Image from 'next/image';
 import { useUpdateProfileImage } from '@/customHooks/Profile/useProfileImage';
+import { BACKEND_URL } from '@/lib/constants';
 type UserImageRefType = React.RefObject<HTMLInputElement>;
 
 export default function UserImage({ image }: { image: string }) {
@@ -36,7 +38,7 @@ export default function UserImage({ image }: { image: string }) {
         src={
           profileImage
             ? URL.createObjectURL(profileImage)
-            : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + image
+            : BACKEND_URL + '/' + image
         }
         alt="user Profile photo"
         width={500}

@@ -1,22 +1,10 @@
-// main
-import { useTranslations } from 'next-intl';
-
-// Components
+import type { Metadata } from 'next'
 import LoginMain from './LoginMain';
+export const metadata: Metadata = {
+  title: 'Login',
+  description: 'Login in to Ikseer',
+}
 
 export default function Login() {
-  const t = useTranslations('');
-  const keys = [
-    t('Welcome to IKSIR'),
-    t('Email or username'),
-    t('Password'),
-    t('Log in'),
-    t('Forgot your password?'),
-    t('Don’t have an account,'),
-    t('Register Now?'),
-    t('or'),
-    t('continue with google'),
-    t('continue with facebook'),
-  ];
-  return <LoginMain keys={keys} />;
+  return <LoginMain />;
 }

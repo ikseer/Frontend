@@ -8,7 +8,7 @@ import { timeZoneList } from './DifferentTimeZone';
 import AuthTextField from '@/components/site/InputField/InputField';
 import BasicSettingButton from '../SecuriySetting/BasicSettingButton';
 import UserImage from './UserImage';
-import { updateUserProfileType } from '@/customHooks/Profile/profileTypes';
+import  type { updateUserProfileType } from '@/customHooks/Profile/profileTypes';
 import {
   useGetProfile,
   useUpdateProfile,

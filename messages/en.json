@@ -1,1 +1,12 @@
-{}
+{
+  "Login": {
+    "welcome-to-ikseer": "Welcome to Ikseer",
+    "email-or-username": "Email or username",
+    "password": "Password",
+    "forgot-your-password": "Forgot your password?",
+    "dont-have-an-account": "Don’t have an account,",
+    "register-now": "Register Now?",
+    "continue-with-google": "continue with google",
+    "continue-with-facebook": "continue with facebook"
+  }
+}

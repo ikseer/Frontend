@@ -1,19 +1,18 @@
 'use client';
-import React from 'react';
+;
 // import Image from 'next/image' => use when connect with backend
 import { LuShoppingCart } from 'react-icons/lu';
 import useCard from '@/store/cart/cart';
 import { Link } from '@/navigation';
 import Image from 'next/image';
-import { SingleItemType, ProductType } from '@/types/product.types';
+import type { SingleItemType, ProductType } from '@/types/product.types';
+import { BACKEND_URL } from '@/lib/constants';
 
 export default function SingleProductCard({ item }: SingleItemType) {
   const { addItemToCart } = useCard();
-  const BASEURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   const handleAddToCard = (item: ProductType) => {
     addItemToCart(item);
   };
-  console.log(item, 'item now');
 
   return (
     <div
@@ -24,7 +23,7 @@ export default function SingleProductCard({ item }: SingleItemType) {
       <Link className=" aspect-[3/4]" href={`/products/${item.id}`}>
         <Image
           className="object-cover  w-full h-full rounded-t-xl"
-          src={`${BASEURL}${item?.images[0]?.image}`}
+          src={`${BACKEND_URL}${item?.images[0]?.image}`}
           alt="Image Description"
           width={500}
           height={500}
@@ -32,6 +31,7 @@ export default function SingleProductCard({ item }: SingleItemType) {
       </Link>
       <div className="p-4 md:p-5  relative">
         <button
+        type ="button"
           className="bg-teal-600 p-2 absolute right-4 top-[-20px] rounded-full cursor-pointer "
           onClick={() => handleAddToCard(item)}
         >

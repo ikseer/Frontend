@@ -1,7 +1,7 @@
 'use client';
 
 // Main
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Components
@@ -29,7 +29,6 @@ export default function RegisterSecondStep({
   const { mutate } = usePhoneNumber();
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(phoneNumber);
     if (phoneNumber.length < 5)
       return alert('Please enter a valid phone number');
     mutate({ phone: phoneNumber });

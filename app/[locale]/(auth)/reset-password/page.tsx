@@ -1,7 +1,7 @@
 'use client';
 
 // Main
-import React from 'react';
+;
 import AuthContainer from '../register/AuthContainer';
 import { useForm } from 'react-hook-form';
 

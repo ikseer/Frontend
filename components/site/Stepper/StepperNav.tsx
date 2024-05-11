@@ -1,4 +1,4 @@
-import React from 'react';
+;
 
 interface stepperNavDataType {
   stepperNavLists: string[][];
@@ -47,7 +47,7 @@ export default function StepperNav({ stepperNavLists }: stepperNavDataType) {
               {/* {list[1] + "" + list[2]} */}
             </div>
           </span>
-          <div className="w-full h-0.5 flex-1 bg-gray-200 group-last:hidden hs-stepper-success:bg-green-500 hs-stepper-completed:bg-teal-600"></div>
+          <div className="w-full h-0.5 flex-1 bg-gray-200 group-last:hidden hs-stepper-success:bg-green-500 hs-stepper-completed:bg-teal-600"/>
         </li>
       ))}
     </ul>

@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import { ButtonHTMLAttributes } from 'react';
 
 // Interface
@@ -44,4 +43,4 @@ export default function AuthButton({
       {endIcon && <div className="ml-5">{endIcon}</div>}
     </button>
   );
-}
+} 

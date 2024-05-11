@@ -1,7 +1,7 @@
 'use client';
 
 // Main
-import React from 'react';
+;
 import { useRef } from 'react';
 
 // Interface

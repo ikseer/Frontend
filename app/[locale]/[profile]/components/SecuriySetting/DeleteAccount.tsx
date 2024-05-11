@@ -1,7 +1,7 @@
 'use client';
 
 // Main
-import React from 'react';
+;
 
 // Components
 import Button from '@/components/site/Buttons/Button';

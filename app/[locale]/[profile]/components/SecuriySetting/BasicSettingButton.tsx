@@ -1,4 +1,4 @@
-import React from 'react';
+;
 import Button from '@/components/site/Buttons/Button';
 interface BasicSettingButtonType {
   onClick: () => void;

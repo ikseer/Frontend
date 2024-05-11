@@ -1,14 +1,14 @@
 'use client';
 import IncrementAndDecrement from '../../../components/IncrementAndDecrement';
 import RemoveProduct from './RemoveProduct';
-import { ProductType } from '@/types/product.types';
+import type { ProductType } from '@/types/product.types';
 import Image from 'next/image';
+import { BACKEND_URL } from '@/lib/constants';
 
 interface CartViewProps {
   cartItems: ProductType[];
 }
 export default function CartView({ cartItems }: CartViewProps) {
-  const BASEURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function CartView({ cartItems }: CartViewProps) {
             <div className="col-span-5 flex items-center gap-x-2">
               <div className="w-[70px] ">
                 <Image
-                  src={`${BASEURL}${product.images[0].image}`}
+                  src={`${BACKEND_URL}${product.images[0].image}`}
                   alt="cart Image"
                   width={300}
                   height={300}

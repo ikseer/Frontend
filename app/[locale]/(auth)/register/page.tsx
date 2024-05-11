@@ -1,5 +1,5 @@
 // Main
-import React from 'react';
+;
 import { useTranslations } from 'next-intl';
 
 // Components
@@ -12,7 +12,7 @@ import './register.css';
 export default function Register() {
   const t = useTranslations('');
   const firstStepKeys = [
-    t('Welcome to IKSIR'),
+    t('Welcome to ikseer'),
     t('First name'),
     t('Last name'),
     t('Email'),

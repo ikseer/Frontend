@@ -1,7 +1,7 @@
 import { LuShoppingCart } from 'react-icons/lu';
 import Button from '@/components/site/Buttons/Button';
 import useCart from '@/store/cart/cart';
-import { ProductType } from '@/types/product.types';
+import type { ProductType } from '@/types/product.types';
 interface AddToCardButtonProps {
   product: ProductType;
 }

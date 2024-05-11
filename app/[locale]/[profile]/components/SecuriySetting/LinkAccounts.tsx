@@ -1,5 +1,5 @@
 // Main
-import React from 'react';
+;
 
 // Components
 import Account from './Account';

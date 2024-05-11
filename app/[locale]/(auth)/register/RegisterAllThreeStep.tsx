@@ -1,6 +1,6 @@
 'use client';
 // Main
-import React from 'react';
+;
 
 //Components
 import RegisterFirstStep from './RegisterFirstStep';

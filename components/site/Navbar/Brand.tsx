@@ -1,5 +1,5 @@
 // Main
-import React from 'react';
+;
 import { Link } from '@/navigation';
 
 // Interface

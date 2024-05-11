@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactQueryProvider from '@/providers/reactQueryProvider';
 import Providers from '@/components/site/darkTheme/Provider';
 import GuestNavBar from '@/components/site/Navbar/Navbar';
@@ -26,6 +25,7 @@ export default function RootLayout({
   children,
   params: { locale },
 }: RootLayoutProps) {
+  // biome-ignore lint/suspicious/noExplicitAny: I didn't find a way to fix it
   if (!locales.includes(locale as any)) notFound();
 
   const { langDir, hrefLang } = availableLocalesMap[locale] || defaultLocale;

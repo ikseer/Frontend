@@ -1,12 +1,12 @@
 'use client';
-import React from 'react';
+;
 import { LuLogOut } from 'react-icons/lu';
 import { Link, useRouter } from '@/navigation';
 import storeProfile from '@/store/profile/profile';
 
 import Image from 'next/image';
 import useAuthStore from '@/store/auth/useAuth';
-
+import { BACKEND_URL } from '@/lib/constants';
 export default function ProfileDropDown() {
   // global store not used to make the component "server component"
   const { logout, userInfo } = useAuthStore();
@@ -34,7 +34,7 @@ export default function ProfileDropDown() {
           width={500}
           height={500}
           src={
-            process.env.NEXT_PUBLIC_BACKEND_URL + '/' + profileStoreData.image
+            BACKEND_URL + '/' + profileStoreData.image
           }
         />
       </button>
