@@ -15,7 +15,7 @@ export default function Radio({ text, register, object }: radioDataType) {
   const radioRef = useRef<HTMLInputElement>(null);
 
   const handleOnClick = () => {
-    let inputRadio = radioRef.current;
+    const inputRadio = radioRef.current;
     if (inputRadio) inputRadio.focus();
   };
   return (

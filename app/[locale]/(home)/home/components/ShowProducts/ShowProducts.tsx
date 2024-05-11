@@ -4,12 +4,12 @@ import SingleProductCard from '../ProductCard/SingleProductCard';
 import { useGetProducts } from '@/customHooks/Home/useProducts';
 import Button from '@/components/site/Buttons/Button';
 //interface
-import { ProductType } from '@/types/product.types';
+import type { ProductType } from '@/types/product.types';
 
 export default function ShowCards() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useGetProducts();
-  let pages = data?.pages;
+  const pages = data?.pages;
 
   return (
     <div className="p-10">

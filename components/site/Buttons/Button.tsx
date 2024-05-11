@@ -1,5 +1,5 @@
 'use client';
-import { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 // Interface
 interface buttonProps {

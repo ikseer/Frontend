@@ -1,5 +1,4 @@
-// main
-import * as React from 'react';
+
 import { useTranslations } from 'next-intl';
 // import { usePathname } from 'next/navigation';
 

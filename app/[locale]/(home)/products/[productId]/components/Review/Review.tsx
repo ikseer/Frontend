@@ -1,4 +1,4 @@
-import { ReviewProps } from '../../types/review.types';
+import type { ReviewProps } from '../../types/review.types';
 
 interface ReviewCurrentProps {
   review: ReviewProps[];

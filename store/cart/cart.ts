@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { ProductType } from '@/types/product.types';
+import type { ProductType } from '@/types/product.types';
 
 interface useCardType {
   cartItems: ProductType[];

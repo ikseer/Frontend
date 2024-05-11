@@ -1,6 +1,6 @@
 // Main
 ;
-import { RefObject, createContext, useContext, useRef } from 'react';
+import { type RefObject, createContext, useContext, useRef } from 'react';
 
 // Interface
 interface providerType {

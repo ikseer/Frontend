@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import LabelInfo from './LabelInfo';
 import { useForm } from 'react-hook-form';
 import Select from '@/components/site/Select/Select';

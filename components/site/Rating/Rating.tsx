@@ -4,7 +4,7 @@ interface RatingType {
 }
 
 export default function Rating({ rating, reviewNumber }: RatingType) {
-  let newRating = Math.floor(rating);
+  const newRating = Math.floor(rating);
   const ratingArrayOne = Array.from({ length: newRating }, (_, i) => i);
   const ratingArrayTwo = Array.from({ length: 5 - newRating }, (_, i) => i);
 

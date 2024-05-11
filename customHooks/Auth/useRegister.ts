@@ -12,7 +12,7 @@ import useAuthStore from '@/store/auth/useAuth';
 import { useRegisterContext } from '@/app/[locale]/(auth)/register/context/RegisterContext';
 
 // Interface
-import {
+import type {
   RegisterType,
   PinNumberType,
   PhoneNumberType,

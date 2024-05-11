@@ -1,11 +1,11 @@
 'use client';
 
 // Main
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import '@/app/[locale]/globals.css';
 
 // Interface
-import { propsType, styleType } from './InputFieldTypes';
+import type { propsType, styleType } from './InputFieldTypes';
 
 export default function AuthTextField({
   Icon,

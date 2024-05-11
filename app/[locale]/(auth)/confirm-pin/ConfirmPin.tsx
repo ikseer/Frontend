@@ -1,7 +1,7 @@
 'use client';
 
 // Main
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Components
 import PinNumber from '@/components/site/PinNumber/PinNumber';

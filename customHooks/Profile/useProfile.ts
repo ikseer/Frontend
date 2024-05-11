@@ -2,7 +2,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import authRequest from '@/api/authRequest';
 import Auth from '@/modules/Auth/Auth';
-import { updateUserProfileType } from './profileTypes';
+import type { updateUserProfileType } from './profileTypes';
 
 // Get Profile
 const profileGetFunction = async () => {

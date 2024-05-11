@@ -1,5 +1,5 @@
 // Main
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 // Interface
 interface SecurityContainerType {
