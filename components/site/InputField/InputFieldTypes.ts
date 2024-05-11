@@ -1,7 +1,3 @@
-// Main
-import React from 'react';
-
-// Interface
 export interface propsType {
   id: string;
   register: any;
