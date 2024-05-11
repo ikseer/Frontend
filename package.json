@@ -7,10 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"lint:fix": "next lint --fix",
-		"style": "prettier -w .",
-		"checkts": "tsc --noEmit",
-		"prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'"
+		"checkts": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
