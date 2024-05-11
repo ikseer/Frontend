@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactQueryProvider from '@/utils/reactQueryProvider';
-import Providers from '@/components/darkTheme/Provider';
-import GuestNavBar from '@/components/Navbar/Navbar';
+import ReactQueryProvider from '@/providers/reactQueryProvider';
+import Providers from '@/components/site/darkTheme/Provider';
+import GuestNavBar from '@/components/site/Navbar/Navbar';
 import { notFound } from 'next/navigation';
 import './globals.css';
-import ProfileUpdater from '@/components/Preline/ProfileUpdater';
-import PrelineScript from '@/components/Preline/PrelineScript';
-
+import ProfileUpdater from '@/components/site/Preline/ProfileUpdater';
+import PrelineScript from '@/components/site/Preline/PrelineScript';
+import { LocaleProvider } from '@/providers/localeProvider';
+import { availableLocalesMap, defaultLocale } from '@/next.locales.mjs';
 interface RootLayoutProps {
   children: React.ReactNode;
   params: {
@@ -27,18 +28,22 @@ export default function RootLayout({
 }: RootLayoutProps) {
   if (!locales.includes(locale as any)) notFound();
 
-  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+  const { langDir, hrefLang } = availableLocalesMap[locale] || defaultLocale;
+
 
   return (
-    <html lang={locale} dir={dir}>
+    <html lang={hrefLang} dir={langDir}>
       <body>
+        <LocaleProvider>
         <Providers>
           <GuestNavBar />
           <ReactQueryProvider>
+
             {children}
             <ProfileUpdater />
           </ReactQueryProvider>
         </Providers>
+        </LocaleProvider>
       </body>
       <PrelineScript />
     </html>

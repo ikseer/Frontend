@@ -6,8 +6,8 @@ import AuthContainer from '../register/AuthContainer';
 import { useForm } from 'react-hook-form';
 
 // Components
-import AuthButton from '@/components/Buttons/Button';
-import AuthTextField from '@/components/InputField/InputField';
+import AuthButton from '@/components/site/Buttons/Button';
+import AuthTextField from '@/components/site/InputField/InputField';
 
 // Hooks
 import { useResetPassword } from '@/customHooks/Auth/useResetPassword';

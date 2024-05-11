@@ -1,8 +1,8 @@
 'use client';
 import { useGetOneProduct } from '@/customHooks/Home/useOneProduct ';
 import ShowImage from './components/ProductImage/ShowImage';
-import Rating from '@/components/Rating/Rating';
-import Share from '@/components/Share/Share';
+import Rating from '@/components/site/Rating/Rating';
+import Share from '@/components/site/Share/Share';
 import Price from './components/Price';
 import SpecialOffer from './components/SpecialOffer';
 // import IncrementAndDecrement from '../../components/IncrementAndDecrement';

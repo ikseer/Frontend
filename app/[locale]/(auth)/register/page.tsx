@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 // Components
 import RegisterAllThreeStep from './RegisterAllThreeStep';
-import StepperNav from '@/components/Stepper/StepperNav';
+import StepperNav from '@/components/site/Stepper/StepperNav';
 
 // CSS
 import './register.css';

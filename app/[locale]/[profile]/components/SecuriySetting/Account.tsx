@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Button from '@/components/Buttons/Button';
+import Button from '@/components/site/Buttons/Button';
 interface AccountType {
   image: string;
   name: string;

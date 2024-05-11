@@ -1,4 +1,4 @@
-import SettingContainer from '@/components/Settings/setting';
+import SettingContainer from '@/components/site/Settings/setting';
 
 import BasicInfo from './BasicInfo';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';

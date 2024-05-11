@@ -3,8 +3,8 @@
 import React from 'react';
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
-import InputField from '@/components/InputField/InputField';
-import Button from '@/components/Buttons/Button';
+import InputField from '@/components/site/InputField/InputField';
+import Button from '@/components/site/Buttons/Button';
 import { useUpdatePassword } from '@/customHooks/Profile/usePassword';
 
 interface FormDataType {

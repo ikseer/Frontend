@@ -2,7 +2,7 @@
 import SingleProductCard from '../ProductCard/SingleProductCard';
 
 import { useGetProducts } from '@/customHooks/Home/useProducts';
-import Button from '@/components/Buttons/Button';
+import Button from '@/components/site/Buttons/Button';
 //interface
 import { ProductType } from '@/types/product.types';
 

@@ -5,12 +5,12 @@ import { Link } from '../../../../navigation';
 import { useForm } from 'react-hook-form';
 
 // Components
-import AuthButton from '@/components/Buttons/Button';
-import DividerText from '@/components/Divider/Divider';
+import AuthButton from '@/components/site/Buttons/Button';
+import DividerText from '@/components/site/Divider/Divider';
 import Google from '@/images/auth/Google.svg';
 import Facebook from '@/images/auth/Facebook.svg';
-import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
-import AuthTextField from '@/components/InputField/InputField';
+import AuthShape from '@/components/site/ThridParthAuth/ThridPartyAuth';
+import AuthTextField from '@/components/site/InputField/InputField';
 
 // Hooks
 import { useLogin } from '@/customHooks/Auth/useLogin';

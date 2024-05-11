@@ -1,4 +1,4 @@
-import Button from '@/components/Buttons/Button';
+import Button from '@/components/site/Buttons/Button';
 import { TbShoppingBag } from 'react-icons/tb';
 export default function BuyNowButton() {
   return (

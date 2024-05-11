@@ -1,5 +1,5 @@
 // Components
-import Tabs from '@/components/Tabs/Tabs';
+import Tabs from '@/components/site/Tabs/Tabs';
 import ProfileSetting from './components/BasicSetting/BasicSetting';
 import PaymentSetting from './components/PaymentSetting/PaymentSetting';
 import SecuritySetting from './SecuritySetting';

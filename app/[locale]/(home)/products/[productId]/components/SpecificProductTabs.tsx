@@ -1,4 +1,4 @@
-import Tabs from '@/components/Tabs/Tabs';
+import Tabs from '@/components/site/Tabs/Tabs';
 import Description from './Description';
 import Review from './Review/Review';
 interface ReviewProps {

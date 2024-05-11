@@ -1,5 +1,5 @@
 // Components
-import SettingContainer from '@/components/Settings/setting';
+import SettingContainer from '@/components/site/Settings/setting';
 import SecurityContainer from './components/SecuriySetting/SecurityContainer';
 import ChangePassword from './components/SecuriySetting/ChangePassword';
 import LinkAccounts from './components/SecuriySetting/LinkAccounts';

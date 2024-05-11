@@ -1,7 +1,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
-import InputField from '@/components/InputField/InputField';
-import Button from '@/components/Buttons/Button';
+import InputField from '@/components/site/InputField/InputField';
+import Button from '@/components/site/Buttons/Button';
 interface CouponType {
   coupon: string;
 }

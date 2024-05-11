@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react';
 import LabelInfo from './LabelInfo';
 import { useForm } from 'react-hook-form';
-import Select from '@/components/Select/Select';
-import DisplayGender from '@/components/Gender/DisplayGender';
+import Select from '@/components/site/Select/Select';
+import DisplayGender from '@/components/site/Gender/DisplayGender';
 import { timeZoneList } from './DifferentTimeZone';
-import AuthTextField from '@/components/InputField/InputField';
+import AuthTextField from '@/components/site/InputField/InputField';
 import BasicSettingButton from '../SecuriySetting/BasicSettingButton';
 import UserImage from './UserImage';
 import { updateUserProfileType } from '@/customHooks/Profile/profileTypes';

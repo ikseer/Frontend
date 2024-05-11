@@ -1,5 +1,5 @@
 // Components
-import SettingContainer from '@/components/Settings/setting';
+import SettingContainer from '@/components/site/Settings/setting';
 
 export default function PaymentSetting() {
   return (

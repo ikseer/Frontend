@@ -4,7 +4,7 @@
 import React from 'react';
 
 // Components
-import Button from '@/components/Buttons/Button';
+import Button from '@/components/site/Buttons/Button';
 import { useDeleteAccount } from '@/customHooks/Auth/useDeleteAccount';
 
 export default function DeleteAccount() {

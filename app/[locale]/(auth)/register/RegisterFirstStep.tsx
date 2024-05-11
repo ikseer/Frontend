@@ -5,11 +5,11 @@ import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
 
 // Components
-import AuthButton from '@/components/Buttons/Button';
-import DividerText from '@/components/Divider/Divider';
-import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
-import AuthTextField from '@/components/InputField/InputField';
-import Radio from '@/components/Radio/Radio';
+import AuthButton from '@/components/site/Buttons/Button';
+import DividerText from '@/components/site/Divider/Divider';
+import AuthShape from '@/components/site/ThridParthAuth/ThridPartyAuth';
+import AuthTextField from '@/components/site/InputField/InputField';
+import Radio from '@/components/site/Radio/Radio';
 
 // Hooks
 import { useRegister } from '@/customHooks/Auth/useRegister';

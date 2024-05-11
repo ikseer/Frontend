@@ -1,6 +1,6 @@
 'use client';
 import hero from './hero.svg';
-import Button from '@/components/Buttons/Button';
+import Button from '@/components/site/Buttons/Button';
 import { LuMapPin } from 'react-icons/lu';
 import { LuArrowRight } from 'react-icons/lu';
 

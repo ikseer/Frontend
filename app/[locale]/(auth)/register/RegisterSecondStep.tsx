@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Components
-import PhoneNumberValidation from '@/components/PhoneNumber/PhoneNumber';
-import SaveAndContinue from '@/components/Buttons/Button';
+import PhoneNumberValidation from '@/components/site/PhoneNumber/PhoneNumber';
+import SaveAndContinue from '@/components/site/Buttons/Button';
 
 // Hooks
 import { usePhoneNumber } from '@/customHooks/Auth/useRegister';
