@@ -1,12 +1,10 @@
 // Main
 import React from 'react';
 
-
 // Components
 import BrandStack from './BrandStack';
 import FooterContainer from './FooterContainer';
 import FooterEnd from './FooterEnd';
-
 
 export default function Footer() {
   return (

@@ -9,7 +9,7 @@ import { SingleItemType, ProductType } from '@/types/product.types';
 
 export default function SingleProductCard({ item }: SingleItemType) {
   const { addItemToCart } = useCard();
-  const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
+  const BASEURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   const handleAddToCard = (item: ProductType) => {
     addItemToCart(item);
   };

@@ -4,14 +4,12 @@
 import React from 'react';
 import { useRef } from 'react';
 
-
 // Interface
 interface radioDataType {
   text: string;
   register: any;
   object: any;
 }
-
 
 export default function Radio({ text, register, object }: radioDataType) {
   const radioRef = useRef<HTMLInputElement>(null);

@@ -2,7 +2,6 @@
 import React from 'react';
 import { ButtonHTMLAttributes } from 'react';
 
-
 // Interface
 interface buttonProps {
   title: string;
@@ -16,7 +15,6 @@ interface buttonProps {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
 }
-
 
 export default function AuthButton({
   title,
@@ -32,27 +30,18 @@ export default function AuthButton({
 }: buttonProps) {
   const buttonStyle = { width, height };
   return (
-    
-      <button
-        style={buttonStyle}
-        type={type ? type : 'submit'}
-        className={`flex justify-center items-center rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
-        onClick={onClick}
-        disabled={disabled}
+    <button
+      style={buttonStyle}
+      type={type ? type : 'submit'}
+      className={`flex justify-center items-center rounded  ${background ? background : 'bg-teal-600'} ${ButtonClassName ? ButtonClassName : 'mt-5 mb-3.5'}`}
+      onClick={onClick}
+      disabled={disabled}
     >
-      {startIcon &&
-          <div className="mr-5">
-            {startIcon}
-          </div>
-        }
+      {startIcon && <div className="mr-5">{startIcon}</div>}
 
       {title}
 
-        {endIcon &&
-          <div className="ml-5">
-            {endIcon}
-          </div>
-        }
-      </button>
+      {endIcon && <div className="ml-5">{endIcon}</div>}
+    </button>
   );
 }

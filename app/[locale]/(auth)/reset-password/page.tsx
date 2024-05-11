@@ -5,26 +5,20 @@ import React from 'react';
 import AuthContainer from '../register/AuthContainer';
 import { useForm } from 'react-hook-form';
 
-
-
 // Components
 import AuthButton from '@/components/Buttons/Button';
 import AuthTextField from '@/components/InputField/InputField';
 
-
 // Hooks
 import { useResetPassword } from '@/customHooks/Auth/useResetPassword';
 
-
 // CSS
 import '../register/register.css';
-
 
 // Interface
 type ResetPasswordDataType = {
   email: string;
 };
-
 
 export default function ResetPassword() {
   const { register, formState, handleSubmit } =

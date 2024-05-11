@@ -2,7 +2,6 @@
 // Main
 import React, { ReactNode } from 'react';
 
-
 interface childrenDataType {
   children: ReactNode;
 }

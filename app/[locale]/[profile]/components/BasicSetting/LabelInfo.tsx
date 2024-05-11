@@ -1,6 +1,5 @@
-// Main 
-import React from 'react'
-
+// Main
+import React from 'react';
 
 // Interface
 interface LabelInfoType {
@@ -8,7 +7,6 @@ interface LabelInfoType {
   secText?: string;
   inputText: string;
 }
-
 
 export default function LabelInfo({
   mainText,

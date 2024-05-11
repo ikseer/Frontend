@@ -1,13 +1,11 @@
 // Main
 import { Link } from '@/navigation';
 
-
 // Icons
 import { LuTwitter } from 'react-icons/lu';
 import { LuFacebook } from 'react-icons/lu';
 import { LuLinkedin } from 'react-icons/lu';
 import { LuInstagram } from 'react-icons/lu';
-
 
 export default function FooterEnd() {
   const footerHeaderValues = ['Terms', 'Privacy', 'Status', 'Contact Us'];

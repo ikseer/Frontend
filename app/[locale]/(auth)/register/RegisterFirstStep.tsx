@@ -4,7 +4,6 @@
 import { Link } from '@/navigation';
 import { useForm } from 'react-hook-form';
 
-
 // Components
 import AuthButton from '@/components/Buttons/Button';
 import DividerText from '@/components/Divider/Divider';
@@ -12,10 +11,8 @@ import AuthShape from '@/components/ThridParthAuth/ThridPartyAuth';
 import AuthTextField from '@/components/InputField/InputField';
 import Radio from '@/components/Radio/Radio';
 
-
 // Hooks
 import { useRegister } from '@/customHooks/Auth/useRegister';
-
 
 // Icons & Images
 import Google from '@/images/auth/Google.svg';
@@ -24,10 +21,8 @@ import { LuMail } from 'react-icons/lu';
 import { LuKeyRound } from 'react-icons/lu';
 import { LuUser } from 'react-icons/lu';
 
-
 // CSS
 import './register.css';
-
 
 // Interface
 interface RegisterMainDataType {
@@ -41,7 +36,6 @@ interface formDataType {
   password: string;
   gender: string;
 }
-
 
 export default function RegisterMainData({
   firstStepKeys,
@@ -200,8 +194,9 @@ export default function RegisterMainData({
               ))}
             </div>
             <p
-              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${errors.gender && errors.gender.message ? '' : 'invisible'
-                }`}
+              className={`ml-2 text-xs font-normal text-red-500 dark:text-red-600 ${
+                errors.gender && errors.gender.message ? '' : 'invisible'
+              }`}
             >
               {errors.gender && errors.gender.message
                 ? errors.gender.message

@@ -21,7 +21,7 @@ export const useGetProfile = (enabled: boolean) => {
   return useQuery({
     queryKey: ['profile-get'],
     queryFn: profileGetFunction,
-    enabled: enabled ? enabled : true,
+    enabled,
   });
 };
 

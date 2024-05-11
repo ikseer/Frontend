@@ -1,28 +1,23 @@
 import React from 'react';
 interface TabsType {
-  componentsList:  React.ReactElement[]
+  componentsList: React.ReactElement[];
   componentNames: string[];
-  containerClassName: string
-  componentsIcons?: React.ReactElement[] | string[]
+  containerClassName: string;
+  componentsIcons?: React.ReactElement[] | string[];
 }
 
 export default function Tabs({
   componentsList,
   componentNames,
   containerClassName,
-  componentsIcons
+  componentsIcons,
 }: TabsType) {
-  console.log(componentsList, "listYousef", componentsList.length);
+  console.log(componentsList, 'listYousef', componentsList.length);
   return (
     <>
       <div className="mt-10">
-        <nav
-          className={containerClassName}
-          aria-label="Tabs"
-          role="tablist"
-        >
+        <nav className={containerClassName} aria-label="Tabs" role="tablist">
           {componentNames.map((component, indx) => (
-
             <button
               type="button"
               className={`hs-tab-active:font-semibold 
@@ -38,7 +33,7 @@ export default function Tabs({
              hs-tab-active:dark:text-gray-100
             hs-tab-active:rounded-xl hs-tab-active:dark:border-gray-800
              dark:text-gray-400
-             ${indx === 0&&'active'}
+             ${indx === 0 && 'active'}
 
             `}
               id={`tabs-with-icons-item-${indx + 1}`}
@@ -55,15 +50,15 @@ export default function Tabs({
       </div>
       <div className="mt-3">
         {componentsList.map((component, indx) => (
-           <div
-              id={`tabs-with-icons-${indx + 1}`}
-              role="tabpanel"
-              className={indx === 0 ? '' : "hidden"}
-              aria-labelledby={`tabs-with-icons-item-${indx + 1}`}
-              key={component.key}
-            >
-              { component}
-      </div>
+          <div
+            id={`tabs-with-icons-${indx + 1}`}
+            role="tabpanel"
+            className={indx === 0 ? '' : 'hidden'}
+            aria-labelledby={`tabs-with-icons-item-${indx + 1}`}
+            key={component.key}
+          >
+            {component}
+          </div>
         ))}
       </div>
     </>

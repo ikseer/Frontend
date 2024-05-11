@@ -31,8 +31,6 @@ interface LoginType {
   keys: string[];
 }
 
-
-
 export default function Login({ keys }: LoginType) {
   const { register, formState, handleSubmit } = useForm<FormDataType>();
   const { errors } = formState;
@@ -72,6 +70,7 @@ export default function Login({ keys }: LoginType) {
 
             <AuthTextField
               id="password"
+              type="password"
               Icon={<LuKeyRound />}
               placeholder={keys[2]}
               register={register}

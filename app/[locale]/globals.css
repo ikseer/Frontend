@@ -9,7 +9,6 @@ body {
   padding: 0px;
   box-sizing: border-box;
 
-
   /*Phone Input filed */
   --phone-text: #696d74;
   --phone-bg: #fff;
@@ -18,13 +17,12 @@ body {
 }
 
 [class='dark'] body {
-   /*Phone Input filed */
+  /*Phone Input filed */
   --phone-text: rgb(245 245 244);
   --phone-bg: #18181b;
   --phone-border: #71717a;
   --phone-hover: #3f3f46;
 }
-
 
 .h-calc {
   height: calc(100vh - 72px);

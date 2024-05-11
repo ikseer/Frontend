@@ -1,19 +1,12 @@
-// Main
 import React from 'react';
 import ReactQueryProvider from '@/utils/reactQueryProvider';
-import { notFound } from 'next/navigation';
-
-// Dark Theme
 import Providers from '@/components/darkTheme/Provider';
-
-// Components
 import GuestNavBar from '@/components/Navbar/Navbar';
-import PrelineScript from '../../components/Preline/PrelineScript';
-
-// CSS
+import { notFound } from 'next/navigation';
 import './globals.css';
+import ProfileUpdater from '@/components/Preline/ProfileUpdater';
+import PrelineScript from '@/components/Preline/PrelineScript';
 
-// Interface
 interface RootLayoutProps {
   children: React.ReactNode;
   params: {
@@ -41,7 +34,10 @@ export default function RootLayout({
       <body>
         <Providers>
           <GuestNavBar />
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <ReactQueryProvider>
+            {children}
+            <ProfileUpdater />
+          </ReactQueryProvider>
         </Providers>
       </body>
       <PrelineScript />
