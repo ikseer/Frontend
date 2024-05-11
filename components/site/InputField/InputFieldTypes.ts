@@ -14,8 +14,6 @@ export interface propsType {
   disabled?: boolean;
 }
 
-
-
 export interface styleType {
   width: string | undefined;
 }
