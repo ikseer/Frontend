@@ -5,6 +5,12 @@
     "forgot-your-password": "نسيت كلمة السر؟",
     "password": "كلمة المرور",
     "register-now": "سجل الان؟",
-    "welcome-to-ikseer": "مرحبا بكم في اكسير"
+    "welcome-to-ikseer": "مرحبا بكم في اكسير",
+    "continue-with-facebook": "تواصل مع الفيسبوك",
+    "continue-with-google": "الاستمرار مع جوجل"
+  },
+  "form": {
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور"
   }
 }

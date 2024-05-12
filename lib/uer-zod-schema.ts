@@ -3,12 +3,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { UseFormProps } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import type { ZodType } from "zod";
+import { useI18nZodErrors } from '@/lib/use-I18n-zod-errors';
 
 export function useZodForm<TSchema extends ZodType>(
 	props: Omit<UseFormProps<TSchema["_output"]>, "resolver"> & {
 		schema: TSchema;
 	},
 ) {
+	useI18nZodErrors();
 	const form = useForm<TSchema["_output"]>({
 		...props,
 		resolver: zodResolver(props.schema, undefined),

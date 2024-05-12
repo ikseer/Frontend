@@ -8,5 +8,9 @@
     "register-now": "Register Now?",
     "continue-with-google": "continue with google",
     "continue-with-facebook": "continue with facebook"
+  },
+  "form": {
+    "password": "Password",
+    "username": "Username"
   }
 }

@@ -1,5 +1,5 @@
 'use client';
-import { Link } from '../../../../navigation';
+import { Link } from '@/navigation';
 import { FormProvider } from 'react-hook-form';
 import DividerText from '@/components/site/Divider/Divider';
 import Google from '@/images/auth/Google.svg';
@@ -16,33 +16,25 @@ import { useZodForm } from '@/lib/uer-zod-schema';
 import { Button } from '@/components/ui/button';
 import Spinner from '@/components/site/spinner';
 
-interface FormDataType {
-  username: string;
-  password: string;
-}
-
 const schema = z.object({
-  username: z.string().min(1, 'Required'),
-  password: z.string().min(8, 'Required'),
+  username: z.string().min(1),
+  password: z.string().min(8),
 })
 
 export default function Login() {
   const form = useZodForm({
-    schema: schema
+    schema: schema,
   });
   const { mutate, isPending } = useLogin();
   const t = useTranslations('Login');
-
-  const handleLoginSubmit = (loginData: FormDataType) => {
-    mutate(loginData);
-  };
 
   return (
     <FormProvider {...form}>
       <form
         className="pt-2 auth-parent flex items-center justify-center"
         autoComplete="off"
-        onSubmit={form.handleSubmit(handleLoginSubmit)}
+        onSubmit={form.handleSubmit((LoginData) => mutate(LoginData)
+        )}
         noValidate
       >
         <section
@@ -52,25 +44,25 @@ export default function Login() {
           <h1 className="mt-4 text-2xl font-bold ">{t('welcome-to-ikseer')}</h1>
           <div className="w-3/4 mt-5 space-y-4">
             <section className="flex w-full">
-              <label htmlFor="username" className="cursor-pointer px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400" >
+              <label htmlFor="username" className="h-10 cursor-pointer px-4   flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400" >
                 <LuMail />
               </label>
               <FormInput
                 name="username"
                 placeholder={t('email-or-username')}
                 type="text"
-                className="rounded-e-md"
+                className="rounded-e-md h-10"
               />
             </section>
             <section className="flex w-full">
-              <label htmlFor="password" className="cursor-pointer px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400" >
+              <label htmlFor="password" className="h-10 cursor-pointer px-4 flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400" >
                 <LuKeyRound />
               </label>
               <FormInput
                 name="password"
                 placeholder={t('password')}
                 type="password"
-                className="rounded-e-md"
+                className="rounded-e-md h-10"
               />
             </section>
           </div>
