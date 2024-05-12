@@ -47,6 +47,7 @@ export default function Login() {
               <label htmlFor="username" className="h-10 cursor-pointer px-4   flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400" >
                 <LuMail />
               </label>
+              
               <FormInput
                 name="username"
                 placeholder={t('email-or-username')}
