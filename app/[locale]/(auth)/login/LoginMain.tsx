@@ -41,7 +41,6 @@ export default function Login() {
           style={{ width: '550px' }}
           className="flex items-center justify-center flex-col rounded-lg bg-gray-100 dark:bg-zinc-950"
         >
-    
           <h1 className="mt-4 text-2xl font-bold ">{t('welcome-to-ikseer')}</h1>
           <div className="w-3/4 mt-5 space-y-4">
             <section className="flex w-full">
