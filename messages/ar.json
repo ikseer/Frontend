@@ -6,11 +6,28 @@
     "password": "كلمة المرور",
     "register-now": "سجل الان؟",
     "welcome-to-ikseer": "مرحبا بكم في اكسير",
-    "continue-with-facebook": "تواصل مع الفيسبوك",
-    "continue-with-google": "الاستمرار مع جوجل"
+    "continue-with-facebook": "سجل دخول بواسطة فيس بوك",
+    "continue-with-google": "سجل دخول بواسطة جوجل"
   },
   "form": {
     "username": "اسم المستخدم",
     "password": "كلمة المرور"
+  },
+  "Register": {
+    "already-have-an-account": "هل لديك حساب،",
+    "continue-with-facebook": "سجل دخول بواسطة فيس بوك",
+    "continue-with-google": "سجل دخول بواسطة جوجل",
+    "female": "أنثى",
+    "first-name": "الاسم الأول",
+    "last-name": "اسم العائلة",
+    "login": "تسجيل الدخول",
+    "male": "ذكر",
+    "or": "أو",
+    "prefer-not-to-say": "افضل عدم القول",
+    "sign-up": "اشتراك",
+    "welcome-to-ikseer": "مرحبا بكم في اكسير",
+    "email": "بريد إلكتروني",
+    "password": "كلمة المرور",
+    "username": "اسم المستخدم"
   }
 }

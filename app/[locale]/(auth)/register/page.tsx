@@ -1,12 +1,7 @@
-// Main
-;
+
 import { useTranslations } from 'next-intl';
-
-// Components
-import RegisterAllThreeStep from './RegisterAllThreeStep';
+import RegisterAllThreeStep from './_components/RegisterAllThreeStep';
 import StepperNav from '@/components/site/Stepper/StepperNav';
-
-// CSS
 import './register.css';
 
 export default function Register() {

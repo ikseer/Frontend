@@ -1,16 +1,12 @@
 'use client';
-// Main
-;
 
-//Components
 import RegisterFirstStep from './RegisterFirstStep';
 import RegisterSecondStep from './RegisterThridStep';
 import RegisterThridStep from './RegisterSecondStep';
-import RegisterContainer from './AuthContainer';
+import RegisterContainer from '../AuthContainer';
 import StepperNavigationButtons from '@/components/site/Stepper/StepperNavigationButtons';
-import RegisterContextProvider from './context/RegisterContext';
+import RegisterContextProvider from '../context/RegisterContext';
 
-// Interface
 interface RegisterAllThreeStepType {
   firstStepKeys: string[];
   secondStepKeys: string[];

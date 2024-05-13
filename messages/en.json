@@ -12,5 +12,22 @@
   "form": {
     "password": "Password",
     "username": "Username"
+  },
+  "Register": {
+    "welcome-to-ikseer": "Welcome to ikseer",
+    "first-name": "First name",
+    "last-name": "Last name",
+    "male": "Male",
+    "female": "Female",
+    "prefer-not-to-say": "Prefer not to say",
+    "sign-up": "Sign up",
+    "already-have-an-account": "Already have an account,",
+    "login": "Login",
+    "or": "OR",
+    "continue-with-google": "Continue with google",
+    "continue-with-facebook": "Continue with facebook",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password"
   }
 }

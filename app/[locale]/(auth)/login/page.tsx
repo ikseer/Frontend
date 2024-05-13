@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import LoginMain from './LoginMain';
+import LoginMain from './login';
 export const metadata: Metadata = {
   title: 'Login',
   description: 'Login in to Ikseer',
