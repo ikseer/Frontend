@@ -1,13 +1,13 @@
 "use client";
-import { useResetPassword } from "@/customHooks/Auth/useResetPassword";
+import { useResetPassword } from "@/api/auth/useResetPassword";
+import { Button } from "@/components/ui/button";
 import { useZodForm } from "@/lib/uer-zod-schema";
-import { Button } from "@ikseer/ui/src/ui/button";
 import { useTranslations } from "next-intl";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
-import { FormInput } from "@ikseer/ui/src/ui/input";
+import { FormInput } from "@/components/ui/input";
 
 export default function ResetPassword() {
 	const form = useZodForm({
@@ -21,7 +21,7 @@ export default function ResetPassword() {
 	const t = useTranslations("ResetPassword");
 
 	return (
-		<main className="auth-parent hero flex items-center justify-center flex-col">
+		<main className="auth-parent hero flex flex-col items-center justify-center">
 			<FormProvider {...form}>
 				<AuthContainer>
 					<form
@@ -37,7 +37,7 @@ export default function ResetPassword() {
 							)}
 						</p>
 						<FormInput name="email" placeholder="example@email.com" />
-						<Button className="bg-teal-600 hover:bg-teal-700">
+						<Button className="hover:bg-teal-700 bg-teal-600">
 							{t("reset-password")}
 						</Button>
 					</form>

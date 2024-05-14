@@ -9,7 +9,7 @@ export default function AuthContainer({
 	return (
 		<main
 			className={cn(
-				"rounded-lg bg-white dark:bg-zinc-950 max-w-[7000px] p-6 m-auto py-10",
+				"rounded-lg bg-zinc-100 dark:bg-zinc-950 max-w-[7000px] p-6 m-auto py-10",
 				className,
 			)}
 			data-hs-stepper

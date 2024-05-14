@@ -1,28 +1,24 @@
-// Main
 import { type RefObject, createContext, useContext, useRef } from "react";
 
-// Interface
-interface providerType {
+export const registerContext = createContext<{
 	triggerFunction: RefObject<HTMLButtonElement>;
-}
-
-export const registerContext = createContext<providerType | null>(null);
-
-export const useRegisterContext = () => {
-	const context = useContext(registerContext);
-	if (!context) throw new Error("Context is null");
-	return context;
-};
+} | null>(null);
 
 export default function RegisterContextProvider({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const triggerFunction = useRef<HTMLButtonElement>(null); // button ref
+	const triggerFunction = useRef<HTMLButtonElement>(null);
 	return (
 		<registerContext.Provider value={{ triggerFunction }}>
 			{children}
 		</registerContext.Provider>
 	);
 }
+
+export const useRegisterContext = () => {
+	const context = useContext(registerContext);
+	if (!context) throw new Error("Context is null");
+	return context;
+};

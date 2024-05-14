@@ -1,18 +1,18 @@
 "use client";
-import DividerText from "@/components/divider";
+import DividerText from "@/components/site/divider";
+import AuthShape from "@/components/site/thrid-party-shape";
 import Facebook from "@/images/auth/Facebook.svg";
 import Google from "@/images/auth/Google.svg";
 import { Link } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
-// import AuthShape from '@/components/site/ThridParthAuth/ThridPartyAuth';
-import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../../../../api/auth/useLogin";
 import "../register/register.css";
-import Spinner from "@/components/spinner";
+import Spinner from "@/components/site/spinner";
+import { Button } from "@/components/ui/button";
+import { FormInput } from "@/components/ui/input";
 import { useZodForm } from "@/lib/uer-zod-schema";
-import { Button } from "@ikseer/ui/src/ui/button";
-import { FormInput } from "@ikseer/ui/src/ui/input";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
@@ -92,9 +92,17 @@ export default function Login() {
 							</Link>
 						</section>
 					</div>
-					<DividerText text="or" />
-					{/* <AuthShape authImage={Google} text={t('continue-with-google')} width="76%" />
-          <AuthShape authImage={Facebook} text={t('continue-with-facebook')} width="76%" /> */}
+					<DividerText text={t("or")} />
+					<AuthShape
+						authImage={Google}
+						text={t("continue-with-google")}
+						className="w-3/4"
+					/>
+					<AuthShape
+						authImage={Facebook}
+						text={t("continue-with-facebook")}
+						className="w-3/4"
+					/>
 				</section>
 			</form>
 		</FormProvider>

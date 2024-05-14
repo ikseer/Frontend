@@ -1,8 +1,7 @@
 "use client";
-import DividerText from "@/components/site/Divider/Divider";
-import Radio from "@/components/site/Radio/Radio";
-import AuthShape from "@/components/site/ThridParthAuth/ThridPartyAuth";
-import { useRegister } from "@/customHooks/Auth/useRegister";
+import { useRegister } from "@/api/auth/useRegister";
+import DividerText from "@/components/site/divider";
+import AuthShape from "@/components/site/thrid-party-shape";
 import Facebook from "@/images/auth/Facebook.svg";
 import Google from "@/images/auth/Google.svg";
 import { Link } from "@/navigation";
@@ -10,9 +9,10 @@ import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 
 import "../register.css";
+import Radio from "@/components/site/radio";
+import { Button } from "@/components/ui/button";
+import { FormInput } from "@/components/ui/input";
 import { useZodForm } from "@/lib/uer-zod-schema";
-import { Button } from "@ikseer/ui/src/ui/button";
-import { FormInput } from "@ikseer/ui/src/ui/input";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
@@ -36,10 +36,9 @@ export function RegisterFirstStep() {
 	return (
 		<FormProvider {...form}>
 			<form
-				className="flex items-center justify-center flex-col rounded-lg space-y-6 py-10"
+				className="flex flex-col items-center justify-center py-10 space-y-6 rounded-lg"
 				autoComplete="off"
 				onSubmit={form.handleSubmit((data) => {
-					console.log(data);
 					mutate(data);
 				})}
 				data-hs-stepper
@@ -53,7 +52,7 @@ export function RegisterFirstStep() {
 							<FormInput
 								placeholder={t("first-name")}
 								name="firstName"
-								className="rounded-md h-10"
+								className="h-10 rounded-md"
 							/>
 						</div>
 						<div>
@@ -61,14 +60,14 @@ export function RegisterFirstStep() {
 							<FormInput
 								placeholder={t("last-name")}
 								name="lastName"
-								className="rounded-md h-10"
+								className="h-10 rounded-md"
 							/>
 						</div>
 					</section>
 					<section className="flex w-full">
 						<label
 							htmlFor="email"
-							className="h-10 cursor-pointer px-4 flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
+							className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
 						>
 							<LuMail />
 						</label>
@@ -81,7 +80,7 @@ export function RegisterFirstStep() {
 					<section className="flex w-full">
 						<label
 							htmlFor="username"
-							className="h-10 cursor-pointer px-4 flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
+							className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
 						>
 							<LuUser />
 						</label>
@@ -90,22 +89,22 @@ export function RegisterFirstStep() {
 					<section className="flex w-full">
 						<label
 							htmlFor="password"
-							className="h-10 cursor-pointer px-4 flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
+							className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
 						>
 							<LuKeyRound />
 						</label>
 						<FormInput name="password" placeholder={t("password")} />
 					</section>
-					<section className="flex gap-x-6 ">
-						<div className="flex items-center gap-x-2">
+					<section className="gap-x-6 flex">
+						<div className="gap-x-2 flex items-center">
 							<Radio name="gender" value="male" />
 							<label htmlFor="male">{t("male")}</label>
 						</div>
-						<div className="flex items-center gap-x-2">
+						<div className="gap-x-2 flex items-center">
 							<Radio name="gender" value="female" />
 							<label htmlFor="female">{t("female")}</label>
 						</div>
-						<div className="flex items-center gap-x-2">
+						<div className="gap-x-2 flex items-center">
 							<Radio name="gender" value="prefernottosay" />
 							<label htmlFor="prefernottosay">{t("prefer-not-to-say")}</label>
 						</div>
@@ -113,20 +112,28 @@ export function RegisterFirstStep() {
 
 					<Button
 						type="submit"
-						className="bg-teal-600 w-full hover:bg-teal-700 rounded-md"
+						className="hover:bg-teal-700 w-full bg-teal-600 rounded-md"
 					>
 						{t("sign-up")}
 					</Button>
 
 					<section className="w-3/4">
 						<span>{t("already-have-an-account")} </span>
-						<Link href="/login" className="text-teal-500 font-semibold">
+						<Link href="/login" className="font-semibold text-teal-500">
 							{t("login")}
 						</Link>
 					</section>
 					<DividerText text={t("or")} />
-					<AuthShape authImage={Google} text={t("continue-with-google")} />
-					<AuthShape authImage={Facebook} text={t("continue-with-facebook")} />
+					<AuthShape
+						authImage={Google}
+						text={t("continue-with-google")}
+						className="w-3/4"
+					/>
+					<AuthShape
+						authImage={Facebook}
+						text={t("continue-with-facebook")}
+						className="w-3/4"
+					/>
 				</section>
 			</form>
 		</FormProvider>

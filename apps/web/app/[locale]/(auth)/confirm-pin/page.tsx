@@ -1,22 +1,21 @@
 "use client";
 
-import { z } from "zod";
-
-import { useZodForm } from "@/lib/uer-zod-schema";
-import { Button } from "@ikseer/ui/src/ui/button";
+import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@ikseer/ui/src/ui/form";
+} from "@/components/ui/form";
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSlot,
-} from "@ikseer/ui/src/ui/input-otp";
+} from "@/components/ui/input-otp";
+import { useZodForm } from "@/lib/uer-zod-schema";
 import { useTranslations } from "next-intl";
+import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
 const schema = z.object({
@@ -31,7 +30,7 @@ export default function ConfirmPinCode() {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => console.log(data))}
-				className="auth-parent flex items-center justify-center hero text-center"
+				className="auth-parent hero flex items-center justify-center text-center"
 			>
 				<AuthContainer className="space-y-6">
 					<section className="space-y-2">

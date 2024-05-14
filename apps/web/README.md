@@ -1,28 +1,27 @@
-## Getting Started
+## General Links
 
-First, run the development server:
+- [Figma Design](https://www.figma.com/file/d1be54h5fLgBFgdgsrZ4qt/IKSIRS?type=design&node-id=1-8248&mode=design&t=0Z0G00Sy4HChrepQ-0)
+- [Linear Link](https://linear.app/iksirs/team/SOFT/all)
+- [swagger](https://ikseer.azurewebsites.net/swagger/)
 
-```bash
-yarn dev
-```
+## Localization
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [next-intl-docs](https://next-intl-docs.vercel.app/docs/getting-started)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## utility-first CSS framework
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+- [tailwind](https://tailwindcss.com/)
 
-## Learn More
+## design system library(UI component library)
 
-To learn more about Next.js, take a look at the following resources:
+- [preline](https://preline.co/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+## form management library
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [React hook form](https://react-hook-form.com/)
 
-## Deploy on Vercel
+## data fetching and state management library
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
+- [tanStack react query](https://tanstack.com/query/latest)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##

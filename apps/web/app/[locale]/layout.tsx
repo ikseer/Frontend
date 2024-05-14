@@ -1,9 +1,12 @@
-import PrelineScript from "@/components/PrelineScript";
+import PrelineScript from "@/components/site/PrelineScript";
 import { availableLocalesMap, defaultLocale } from "@/next.locales.mjs";
-import { LocaleProvider } from "@/providers/localeProvider";
-import ReactQueryProvider from "@/providers/reactQueryProvider";
+import { LocaleProvider } from "@/providers/locale-provider";
+import ReactQueryProvider from "@/providers/react-query-provider";
 import { notFound } from "next/navigation";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
+import GuestNavBar from "./_components/nav-bar";
+
 interface RootLayoutProps {
 	children: React.ReactNode;
 	params: {
@@ -30,9 +33,19 @@ export default function RootLayout({
 	return (
 		<html lang={hrefLang} dir={langDir}>
 			<body>
-				<LocaleProvider>
-					<ReactQueryProvider>{children}</ReactQueryProvider>
-				</LocaleProvider>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<LocaleProvider>
+						<ReactQueryProvider>
+							<GuestNavBar />
+							{children}
+						</ReactQueryProvider>
+					</LocaleProvider>
+				</ThemeProvider>
 			</body>
 			<PrelineScript />
 		</html>

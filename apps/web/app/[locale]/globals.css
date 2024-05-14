@@ -82,6 +82,6 @@
   }
 
   .hero {
-    @apply min-h-[calc(100vh)];
+    @apply min-h-[calc(100vh-60px)];
   }
 }

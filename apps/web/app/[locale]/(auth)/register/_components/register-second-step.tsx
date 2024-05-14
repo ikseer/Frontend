@@ -2,20 +2,20 @@
 
 import { z } from "zod";
 
-import { useZodForm } from "@/lib/uer-zod-schema";
-import { Button } from "@ikseer/ui/src/ui/button";
+import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@ikseer/ui/src/ui/form";
+} from "@/components/ui/form";
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSlot,
-} from "@ikseer/ui/src/ui/input-otp";
+} from "@/components/ui/input-otp";
+import { useZodForm } from "@/lib/uer-zod-schema";
 import { useTranslations } from "next-intl";
 const schema = z.object({
 	pin: z.string().min(6).max(6),
