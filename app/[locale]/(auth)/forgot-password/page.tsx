@@ -1,5 +1,5 @@
 ;
-import RegisterContainer from '../register/AuthContainer';
+import RegisterContainer from '../register/auth-container';
 import ForgetPasswordComponent from './ForgetPasswordComponent';
 import '../register/register.css';
 

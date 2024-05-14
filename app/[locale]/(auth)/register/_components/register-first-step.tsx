@@ -25,7 +25,7 @@ const schema = z.object({
   gender: z.string(),
 })
 
-export default function RegisterFirstStep() {
+export  function RegisterFirstStep() {
   const form = useZodForm({
     schema: schema
   });

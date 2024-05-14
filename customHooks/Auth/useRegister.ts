@@ -1,33 +1,29 @@
 // Main
 import { useRouter } from 'next/navigation';
-
-// API & React Query
-import authRequest from '@/api/authRequest';
+import {http} from '@/lib/axios';
 import { useMutation } from '@tanstack/react-query';
-import nonAuthRequest from '@/api/nonAuthRequest';
-
-// Modules & Components & OthersHooks
-// import Auth from '@/modules/Auth/Auth';
 import useAuthStore from '@/store/auth/useAuth';
 import { useRegisterContext } from '@/app/[locale]/(auth)/register/context/RegisterContext';
 
-// Interface
-import type {
-  RegisterType,
-  PinNumberType,
-  PhoneNumberType,
-} from './useRegisterTypes';
-
-// Register first step
-const register = async (data: RegisterType) => {
-  const newData = {
-    ...data,
-    password1: data.password,
-    password2: data.password,
-    email: data.user_email,
-  };
-  console.log(newData);
-  const response = await nonAuthRequest.post('/accounts/register/', newData);
+const register = async (data: 
+  {
+  username: string,
+  email:string,
+  firstName: string,
+  lastName: string,
+  password: string,
+  gender: string
+}) => {
+  const sendData = {
+      username: data.username,
+      email: data.email,
+      password1: data.password,
+      password2: data.password,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      gender: data.gender
+  }
+  const response = await http.post('/accounts/register/', sendData);
   return response;
 };
 
@@ -46,15 +42,15 @@ export const useRegister = () => {
   });
 };
 
-// Register second step
+
 let userObject = {
   id: '',
   accessToken: '',
   refreshToken: '',
 };
 
-const confirmEmail = async (data: PinNumberType) => {
-  const response = await nonAuthRequest.post(
+const confirmEmail = async (data) => {
+  const response = await http.post(
     '/accounts/verify-email-otp/',
     data,
   );
@@ -81,9 +77,9 @@ export const usePinCode = () => {
   });
 };
 
-// Register third step
-const sendPhoneNumber = async (data: PhoneNumberType) => {
-  const response = await authRequest.post('/accounts/phone-register/', data);
+
+const sendPhoneNumber = async (data) => {
+  const response = await http.post('/accounts/phone-register/', data);
   return response;
 };
 

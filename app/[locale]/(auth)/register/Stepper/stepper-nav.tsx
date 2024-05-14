@@ -1,23 +1,24 @@
-;
+import { useTranslations } from "next-intl";
 
-interface stepperNavDataType {
-  stepperNavLists: string[][];
-}
-
-export default function StepperNav({ stepperNavLists }: stepperNavDataType) {
+export default function StepperNav() {
+  const t = useTranslations()
   const mainStyle = {
     width: '550px',
     margin: 'auto',
   };
-
+  const stepperNavLists = [
+    ['1', t('First'), t('Basic details')],
+    ['2', t('Second'), t('Confirm Email')],
+    ['3', t('Third'), t('Phone number')],
+  ];
   return (
     <ul
       className="relative flex flex-row gap-x-2 pt-5 content-center"
       style={mainStyle}
     >
-      {stepperNavLists.map((list, indx) => (
+      {stepperNavLists.map((list) => (
         <li
-          key={indx}
+          key={list[0]}
           className="flex items-center gap-x-2 shrink basis-0 flex-1 group"
           data-hs-stepper-nav-item={`{"index": ${list[0]}}`}
         >
@@ -38,13 +39,14 @@ export default function StepperNav({ stepperNavLists }: stepperNavDataType) {
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
+                <title>Stepper Completed</title>
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </span>
             <div className="ms-2 text-sm  ">
               <p className="text-gray-800 font-semibold">{list[1]}</p>
               <p className="text-gray-50">{list[2]}</p>
-              {/* {list[1] + "" + list[2]} */}
+    
             </div>
           </span>
           <div className="w-full h-0.5 flex-1 bg-gray-200 group-last:hidden hs-stepper-success:bg-green-500 hs-stepper-completed:bg-teal-600"/>

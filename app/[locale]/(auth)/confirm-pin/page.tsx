@@ -1,4 +1,4 @@
-import RegisterContainer from '../register/AuthContainer';
+import RegisterContainer from '../register/auth-container';
 import ConfirmPin from './ConfirmPin';
 import '../register/register.css';
 

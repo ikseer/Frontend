@@ -11,7 +11,8 @@
   },
   "form": {
     "password": "Password",
-    "username": "Username"
+    "username": "Username",
+    "pin": "OTP"
   },
   "Register": {
     "welcome-to-ikseer": "Welcome to ikseer",

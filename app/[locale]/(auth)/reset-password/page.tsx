@@ -2,7 +2,7 @@
 
 // Main
 ;
-import AuthContainer from '../register/AuthContainer';
+import AuthContainer from '../register/auth-container';
 import { useForm } from 'react-hook-form';
 
 // Components

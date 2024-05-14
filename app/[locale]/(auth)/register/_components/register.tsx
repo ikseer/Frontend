@@ -1,29 +1,18 @@
 'use client';
-
-import RegisterFirstStep from './RegisterFirstStep';
-import RegisterSecondStep from './RegisterThridStep';
-import RegisterThridStep from './RegisterSecondStep';
-import RegisterContainer from '../AuthContainer';
-import StepperNavigationButtons from '@/components/site/Stepper/StepperNavigationButtons';
+import {RegisterFirstStep} from './register-first-step';
+import {RegisterSecondStep} from './register-second-step';
+import {RegisterThridStep} from './register-thrid-step';
+import RegisterContainer from '../auth-container';
+import StepperNavigationButtons from '../Stepper/stepper-navigation-buttons';
 import RegisterContextProvider from '../context/RegisterContext';
 
-interface RegisterAllThreeStepType {
-  firstStepKeys: string[];
-  secondStepKeys: string[];
-  thirdStepKeys: string[];
-}
-
-export default function RegisterAllThreeStep({
-  firstStepKeys,
-  secondStepKeys,
-  thirdStepKeys,
-}: RegisterAllThreeStepType) {
+export function RegisterSteps() {
   return (
     <RegisterContextProvider>
       <div className="mt-5 sm:mt-8">
         <div data-hs-stepper-content-item='{"index": 1}'>
           <RegisterContainer>
-            <RegisterFirstStep firstStepKeys={firstStepKeys} />
+            <RegisterFirstStep />
           </RegisterContainer>
         </div>
         <div
@@ -31,7 +20,7 @@ export default function RegisterAllThreeStep({
           style={{ display: 'none;' }}
         >
           <RegisterContainer>
-            <RegisterSecondStep secondStepKeys={secondStepKeys} />
+            <RegisterSecondStep  />
           </RegisterContainer>
         </div>
         <div
@@ -39,7 +28,7 @@ export default function RegisterAllThreeStep({
           style={{ display: 'none' }}
         >
           <RegisterContainer>
-            <RegisterThridStep thirdStepKeys={thirdStepKeys} />
+            <RegisterThridStep  />
           </RegisterContainer>
         </div>
       </div>
