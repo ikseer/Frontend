@@ -1,19 +1,16 @@
 "use client";
 
-// Main
+import { http } from "@/lib/axios";
 import { useRouter } from "@/navigation";
 
-import nonAuthRequest from "@/api/nonAuthRequest";
-// API & React Query
 import { useMutation } from "@tanstack/react-query";
 
-// Interface
 interface ResetPasswordType {
 	email: string;
 }
 
 const resetPassword = async (data: ResetPasswordType) => {
-	const response = await nonAuthRequest.post("/accounts/password/reset/", data);
+	const response = await http.post("/accounts/password/reset/", data);
 	return response;
 };
 

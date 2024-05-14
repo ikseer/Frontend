@@ -1,4 +1,4 @@
-import nonAuthRequest from "@/api/nonAuthRequest";
+import { http } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 
 interface PinNumberType {
@@ -6,7 +6,7 @@ interface PinNumberType {
 }
 
 const confirmPinCode = async (data: PinNumberType) => {
-	const response = await nonAuthRequest.post("/accounts/verify-otp/", data);
+	const response = await http.post("/accounts/verify-otp/", data);
 	return response;
 };
 

@@ -1,8 +1,3 @@
-// Main
-
-// Interface
-
-// First step
 export interface RegisterType {
 	first_name: string;
 	last_name: string;
@@ -12,7 +7,6 @@ export interface RegisterType {
 	gender: string;
 }
 
-// Second step
 export interface User {
 	pk: string;
 	token: string;
@@ -22,7 +16,6 @@ export interface PinNumberType {
 	otp: string;
 }
 
-// Third step
 export interface PhoneNumberType {
 	phone: string | undefined;
 }

@@ -3,11 +3,7 @@ import { http } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-import type {
-	PhoneNumberType,
-	PinNumberType,
-	RegisterType,
-} from "./useRegisterTypes";
+import type { PhoneNumberType, PinNumberType, RegisterType } from "./types";
 
 const register = async (data: RegisterType) => {
 	const newData = {

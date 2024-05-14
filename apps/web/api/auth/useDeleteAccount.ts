@@ -1,14 +1,12 @@
 "use client";
 
-import authRequest from "@/api/authRequest";
-import Auth from "@/modules/Auth/Auth";
+import { http } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 const deleteAccount = async () => {
-	const auth = new Auth();
-	const { id } = auth.getUserAuth();
-	const response = await authRequest.delete(`/accounts/profile/${id}`);
+	const { id } = { id: 1 };
+	const response = await http.delete(`/accounts/profile/${id}`);
 	return response.data;
 };
 
