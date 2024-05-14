@@ -1,0 +1,24 @@
+{
+	"name": "ui",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"tailwindcss": "^3.4.3"
+	},
+	"dependencies": {
+		"autoprefixer": "^10.4.19",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.378.0",
+		"postcss": "^8.4.38",
+		"tailwind-merge": "^2.3.0",
+		"tailwindcss-animate": "^1.0.7"
+	}
+}
