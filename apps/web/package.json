@@ -5,17 +5,33 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "next start"
+		"start": "next start",
+		"checkts": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^3.3.4",
+		"@ikseer/ui": "workspace:*",
+		"@tailwindcss/forms": "^0.5.7",
+		"@tanstack/react-query": "^5.36.0",
+		"@tanstack/react-query-devtools": "^5.36.0",
+		"@tanstack/react-query-next-experimental": "^5.36.0",
+		"axios": "^1.6.8",
 		"next": "^14.2.3",
+		"next-intl": "^3.13.0",
+		"preline": "^2.1.0",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"react-hook-form": "^7.51.4",
+		"react-icons": "^5.2.1",
+		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.24",
 		"@types/react": "^18.2.61",
 		"@types/react-dom": "^18.2.19",
+		"autoprefixer": "^10.4.19",
+		"postcss": "^8.4.38",
+		"tailwindcss": "^3.4.3",
 		"typescript": "^5.3.3"
 	}
 }
