@@ -1,5 +1,5 @@
 "use client";
-import { useRegister } from "@/api/auth/useRegister";
+import { useRegister } from "@/api/auth/use-register";
 import DividerText from "@/components/site/divider";
 import AuthShape from "@/components/site/thrid-party-shape";
 import Facebook from "@/images/auth/Facebook.svg";

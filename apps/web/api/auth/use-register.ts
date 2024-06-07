@@ -2,10 +2,9 @@ import { useRegisterContext } from "@/app/[locale]/(auth)/register/context/Regis
 import { http } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import type { PhoneNumberProps, PinNumberProps, RegisterProps } from "./types";
 
-import type { PhoneNumberType, PinNumberType, RegisterType } from "./types";
-
-const register = async (data: RegisterType) => {
+const register = async (data: RegisterProps) => {
 	const newData = {
 		...data,
 		password1: data.password,
@@ -37,7 +36,7 @@ const userObject = {
 	refreshToken: "",
 };
 
-const confirmEmail = async (data: PinNumberType) => {
+const confirmEmail = async (data: PinNumberProps) => {
 	const response = await http.post("/accounts/verify-email-otp/", data);
 	return response;
 };
@@ -63,7 +62,7 @@ const confirmEmail = async (data: PinNumberType) => {
 // };
 
 // Register third step
-const sendPhoneNumber = async (data: PhoneNumberType) => {
+const sendPhoneNumber = async (data: PhoneNumberProps) => {
 	const response = await http.post("/accounts/phone-register/", data);
 	return response;
 };

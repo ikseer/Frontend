@@ -1,5 +1,5 @@
 "use client";
-import { useResetPassword } from "@/api/auth/useResetPassword";
+import { useResetPassword } from "@/api/auth/use-reset-password";
 import { Button } from "@/components/ui/button";
 import { useZodForm } from "@/lib/uer-zod-schema";
 import { useTranslations } from "next-intl";

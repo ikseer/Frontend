@@ -1,5 +1,3 @@
-"use client";
-
 import { http } from "@/lib/axios";
 import { useRouter } from "@/navigation";
 

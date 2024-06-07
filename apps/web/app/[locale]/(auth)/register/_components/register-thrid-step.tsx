@@ -1,5 +1,5 @@
 "use client";
-import { usePhoneNumber } from "@/api/auth/useRegister";
+import { usePhoneNumber } from "@/api/auth/use-register";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { PhoneInput } from "react-international-phone";

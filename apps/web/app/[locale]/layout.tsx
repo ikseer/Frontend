@@ -1,4 +1,4 @@
-import PrelineScript from "@/components/site/PrelineScript";
+import PrelineScript from "@/components/site/preline-script";
 import { availableLocalesMap, defaultLocale } from "@/next.locales.mjs";
 import { LocaleProvider } from "@/providers/locale-provider";
 import ReactQueryProvider from "@/providers/react-query-provider";

@@ -2,10 +2,15 @@
 	"name": "frontend-enhancement",
 	"private": true,
 	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo dev",
-		"lint": "turbo lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\""
+		"web": "pnpm --filter @scicave/tekview-web",
+		"turbo:web": "turbo --filter @scicave/tekview-web",
+		"build": "pnpm turbo:web build",
+		"dev": "pnpm turbo:web dev",
+		"lint": "biome lint --diagnostic-level=error --apply .",
+		"fix": "biome check --diagnostic-level=error --apply-unsafe .",
+		"format": "prettier -w . && biome format --write .",
+		"checkall": "turbo checkts && prettier -w . && pnpm fix",
+		"checkts": "turbo checkts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
@@ -13,7 +18,6 @@
 		"prettier": "^3.2.5",
 		"turbo": "latest"
 	},
-	"packageManager": "pnpm@9.1.1",
 	"engines": {
 		"node": ">=18"
 	}

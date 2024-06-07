@@ -1,4 +1,4 @@
-export interface RegisterType {
+export interface RegisterProps {
 	first_name: string;
 	last_name: string;
 	username: string;
@@ -7,15 +7,15 @@ export interface RegisterType {
 	gender: string;
 }
 
-export interface User {
+export interface UserSavedProps {
 	pk: string;
 	token: string;
 	refresh: string;
 }
-export interface PinNumberType {
+export interface PinNumberProps {
 	otp: string;
 }
 
-export interface PhoneNumberType {
+export interface PhoneNumberProps {
 	phone: string | undefined;
 }

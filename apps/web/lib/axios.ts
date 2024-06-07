@@ -27,6 +27,5 @@ function handleOtherFailures(error: AxiosError) {
 			"Can't connect to the backend server, contact the maintainers of the website!";
 		throw { ...error, message };
 	}
-
 	throw error;
 }

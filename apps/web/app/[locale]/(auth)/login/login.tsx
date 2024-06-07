@@ -7,7 +7,7 @@ import { Link } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
-import { useLogin } from "../../../../api/auth/useLogin";
+import { useLogin } from "../../../../api/auth/use-login";
 import "../register/register.css";
 import Spinner from "@/components/site/spinner";
 import { Button } from "@/components/ui/button";

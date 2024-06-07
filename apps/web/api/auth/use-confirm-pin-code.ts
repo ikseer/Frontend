@@ -1,11 +1,8 @@
 import { http } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
+import type { PinNumberProps } from "./types";
 
-interface PinNumberType {
-	otp: string;
-}
-
-const confirmPinCode = async (data: PinNumberType) => {
+const confirmPinCode = async (data: PinNumberProps) => {
 	const response = await http.post("/accounts/verify-otp/", data);
 	return response;
 };
