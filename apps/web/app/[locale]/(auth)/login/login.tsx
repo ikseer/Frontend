@@ -3,12 +3,12 @@ import DividerText from "@/components/site/divider";
 import AuthShape from "@/components/site/thrid-party-shape";
 import Facebook from "@/images/auth/Facebook.svg";
 import Google from "@/images/auth/Google.svg";
-import { Link } from "@/navigation";
+import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
-import { useLogin } from "../../../../api/auth/use-login";
 import "../register/register.css";
+import { useLogin } from "@/api/custom-hook/auth";
 import Spinner from "@/components/site/spinner";
 import { useZodForm } from "@/lib/uer-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
@@ -17,15 +17,20 @@ import { useTranslations } from "next-intl";
 import { z } from "zod";
 
 const schema = z.object({
-	username: z.string().min(1),
-	password: z.string().min(8),
+	username: z.string(),
+	password: z.string(),
 });
 
 export default function Login() {
+	const router = useRouter();
 	const form = useZodForm({
 		schema: schema,
 	});
-	const { mutate, isPending } = useLogin();
+
+	const onSuccess = () => {
+		router.push("/");
+	};
+	const { mutate, isPending } = useLogin({ onSuccess });
 	const t = useTranslations("Login");
 
 	return (

@@ -1,17 +1,23 @@
 "use client";
-import { usePhoneNumber } from "@/api/auth/use-register";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useRouter } from "next/navigation";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import { usePhone } from "@/api/custom-hook/auth";
 //@ts-ignore
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
+import { useRegisterContext } from "../context/RegisterContext";
 
 export function RegisterThridStep() {
+	const { triggerFunction } = useRegisterContext();
 	const router = useRouter();
-	const { mutate } = usePhoneNumber();
+
+	const onSuccess = () => {
+		triggerFunction?.current?.click();
+	};
+	const { mutate } = usePhone({ onSuccess });
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -31,12 +37,8 @@ export function RegisterThridStep() {
 		<form
 			className="flex flex-col items-center justify-center py-10"
 			onSubmit={handleSubmit((data) => {
-				// biome-ignore lint/complexity/noUselessLoneBlockStatements: <explanation>
-				{
-					/*@ts-ignore */
-					/*@ts-ignore */
-				}
-				mutate(data);
+				console.log(data);
+				mutate(data.phone);
 			})}
 		>
 			<section className="w-2/3 space-y-5">

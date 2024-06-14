@@ -18,14 +18,17 @@ import { useTranslations } from "next-intl";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
+
 const schema = z.object({
 	pin: z.string().min(6).max(6),
 });
+
 export default function ConfirmPinCode() {
 	const form = useZodForm({
 		schema: schema,
 	});
 	const t = useTranslations("ConfirmPin");
+
 	return (
 		<Form {...form}>
 			<form

@@ -1,5 +1,4 @@
 "use client";
-import { useResetPassword } from "@/api/auth/use-reset-password";
 import { useZodForm } from "@/lib/uer-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useTranslations } from "next-intl";
@@ -7,6 +6,7 @@ import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
+import { useResetPassword } from "@/api/custom-hook/auth";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 
 export default function ResetPassword() {
@@ -15,8 +15,11 @@ export default function ResetPassword() {
 			email: z.string().email(),
 		}),
 	});
+	const onSuccess = () => {
+		console.log("success");
+	};
 
-	const { mutate } = useResetPassword();
+	const { mutate } = useResetPassword({ onSuccess });
 
 	const t = useTranslations("ResetPassword");
 

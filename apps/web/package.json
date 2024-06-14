@@ -27,6 +27,8 @@
 		"clsx": "^2.1.1",
 		"google-libphonenumber": "^3.2.34",
 		"input-otp": "^1.2.4",
+		"js-cookie": "^3.0.5",
+		"jwt-decode": "^4.0.0",
 		"lucide-react": "^0.378.0",
 		"next": "^14.2.3",
 		"next-intl": "^3.13.0",
@@ -39,9 +41,11 @@
 		"react-international-phone": "^4.2.9",
 		"tailwind-merge": "^2.3.0",
 		"tailwindcss-animate": "^1.0.7",
-		"zod": "^3.23.8"
+		"zod": "^3.23.8",
+		"zustand": "^4.5.2"
 	},
 	"devDependencies": {
+		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20.11.24",
 		"@types/react": "^18.2.61",
 		"@types/react-dom": "^18.2.19",

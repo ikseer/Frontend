@@ -1,5 +1,4 @@
 "use client";
-import { useRegister } from "@/api/auth/use-register";
 import DividerText from "@/components/site/divider";
 import AuthShape from "@/components/site/thrid-party-shape";
 import Facebook from "@/images/auth/Facebook.svg";
@@ -9,12 +8,14 @@ import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 
 import "../register.css";
+import { useRegister } from "@/api/custom-hook/auth";
 import Radio from "@/components/site/radio";
 import { useZodForm } from "@/lib/uer-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
+import { useRegisterContext } from "../context/RegisterContext";
 
 const schema = z.object({
 	username: z.string().min(1),
@@ -26,11 +27,15 @@ const schema = z.object({
 });
 
 export function RegisterFirstStep() {
+	const { triggerFunction } = useRegisterContext();
 	const form = useZodForm({
 		schema: schema,
 	});
 
-	const { mutate } = useRegister();
+	const onSuccess = () => {
+		triggerFunction?.current?.click();
+	};
+	const { mutate, isPending } = useRegister({ onSuccess });
 	const t = useTranslations("Register");
 
 	return (
@@ -113,6 +118,7 @@ export function RegisterFirstStep() {
 					<Button
 						type="submit"
 						className="hover:bg-teal-700 w-full bg-teal-600 rounded-md"
+						disabled={isPending}
 					>
 						{t("sign-up")}
 					</Button>

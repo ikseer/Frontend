@@ -1,8 +1,11 @@
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import Hero from "./(home)/home/_components/hero";
+import ShowProducts from "./(home)/home/_components/show-products";
+
 export default function Home() {
 	return (
-		<div className="text-xl text-red-500">
-			<Button>How are</Button>
-		</div>
+		<main>
+			<Hero />
+			<ShowProducts />
+		</main>
 	);
 }

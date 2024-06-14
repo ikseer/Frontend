@@ -1,7 +1,5 @@
 "use client";
 
-import { z } from "zod";
-
 import { useZodForm } from "@/lib/uer-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
@@ -17,6 +15,8 @@ import {
 	InputOTPSlot,
 } from "@ikseer/ui/src/components/ui/input-otp";
 import { useTranslations } from "next-intl";
+import { z } from "zod";
+
 const schema = z.object({
 	pin: z.string().min(6).max(6),
 });
@@ -29,7 +29,7 @@ export function RegisterSecondStep() {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => console.log(data))}
-				className=" space-y-6 py-10 flex items-center justify-center flex-col"
+				className=" flex flex-col items-center justify-center py-10 space-y-6"
 			>
 				<section className="space-y-2">
 					<h1 className="text-2xl font-semibold text-center">
