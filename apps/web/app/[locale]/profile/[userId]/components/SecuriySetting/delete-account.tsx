@@ -1,6 +1,6 @@
 "use client";
 import { useDeleteAccount } from "@/api/auth/use-delete-account";
-import { Button } from "@/components/ui/button";
+import { Button } from "@ikseer/ui/src/components/ui/button";
 
 export default function DeleteAccount() {
 	const { mutate } = useDeleteAccount();

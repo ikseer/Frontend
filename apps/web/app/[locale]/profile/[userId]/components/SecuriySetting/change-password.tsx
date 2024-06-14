@@ -1,9 +1,9 @@
 "use client";
 
 import { useUpdatePassword } from "@/api/profile/use-password";
-import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/ui/input";
 import { Link } from "@/navigation";
+import { Button } from "@ikseer/ui/src/components/ui/button";
+import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider, useForm } from "react-hook-form";
 
 interface FormDataType {

@@ -1,7 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/ui/input";
 import { useZodForm } from "@/lib/uer-zod-schema";
+import { Button } from "@ikseer/ui/src/components/ui/button";
+import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 export default function ForgetPasswordComponent() {

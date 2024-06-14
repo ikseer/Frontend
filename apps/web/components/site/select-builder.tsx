@@ -6,7 +6,7 @@ import {
 	SelectLabel,
 	SelectTrigger,
 	SelectValue,
-} from "@/components/ui/select";
+} from "@ikseer/ui/src/components/ui/select";
 
 export function SelectBuilder(
 	data: { value: string; label: string }[],

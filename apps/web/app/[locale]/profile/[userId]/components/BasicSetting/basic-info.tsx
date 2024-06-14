@@ -1,7 +1,7 @@
 "use client";
 import { useGetProfile, useUpdateProfile } from "@/api/profile/use-profile";
-import { FormInput } from "@/components/ui/input";
 import type { Profile } from "@/types";
+import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import BasicSettingButton from "../SecuriySetting/basic-setting-button";

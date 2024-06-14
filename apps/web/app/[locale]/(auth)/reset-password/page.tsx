@@ -1,13 +1,13 @@
 "use client";
 import { useResetPassword } from "@/api/auth/use-reset-password";
-import { Button } from "@/components/ui/button";
 import { useZodForm } from "@/lib/uer-zod-schema";
+import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useTranslations } from "next-intl";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
-import { FormInput } from "@/components/ui/input";
+import { FormInput } from "@ikseer/ui/src/components/ui/input";
 
 export default function ResetPassword() {
 	const form = useZodForm({

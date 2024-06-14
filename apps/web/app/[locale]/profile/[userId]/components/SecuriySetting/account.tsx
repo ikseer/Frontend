@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@ikseer/ui/src/components/ui/button";
 import Image from "next/image";
 interface AccountType {
 	image: string;

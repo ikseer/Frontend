@@ -1,4 +1,9 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@ikseer/ui/src/components/ui/tabs";
 import { LuUser } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { MdPayment } from "react-icons/md"; /*didn't exist in lu*/

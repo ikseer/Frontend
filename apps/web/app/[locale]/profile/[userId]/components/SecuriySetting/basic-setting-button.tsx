@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@ikseer/ui/src/components/ui/button";
 
 export default function BasicSettingButton({
 	onClick,

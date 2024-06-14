@@ -1,12 +1,12 @@
 "use client";
+import { type Locale, usePathname, useRouter } from "@/navigation";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/components/ui/select";
-import { type Locale, usePathname, useRouter } from "@/navigation";
+} from "@ikseer/ui/src/components/ui/select";
 import { useLocale } from "next-intl";
 
 export function SwitchLang() {

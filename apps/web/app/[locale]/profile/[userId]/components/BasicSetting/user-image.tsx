@@ -1,7 +1,7 @@
 "use client";
 import { useUpdateProfileImage } from "@/api/profile/use-profile-image";
-import { Button } from "@/components/ui/button";
 import { BACKEND_URL } from "@/lib/constants";
+import { Button } from "@ikseer/ui/src/components/ui/button";
 import Image from "next/image";
 import { useRef, useState } from "react";
 

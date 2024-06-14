@@ -10,9 +10,9 @@ import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 
 import "../register.css";
 import Radio from "@/components/site/radio";
-import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/ui/input";
 import { useZodForm } from "@/lib/uer-zod-schema";
+import { Button } from "@ikseer/ui/src/components/ui/button";
+import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
