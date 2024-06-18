@@ -1,7 +1,7 @@
+// Components
 import ChangePassword from "./components/SecuriySetting/change-password";
 import DeleteYourAccount from "./components/SecuriySetting/delete-account";
 import LinkAccounts from "./components/SecuriySetting/link-accounts";
-// Components
 import SecurityContainer from "./components/SecuriySetting/security-container";
 import SettingContainer from "./components/setting";
 

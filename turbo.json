@@ -1,17 +1,29 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    }
-  }
+	"$schema": "https://turborepo.org/schema.json",
+	"globalDependencies": ["**/.env"],
+	"globalEnv": ["NEXT_PUBLIC_BACKEND_URL"],
+	"pipeline": {
+		"topo": {
+			"dependsOn": ["^topo"]
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [".next/**", "!.next/cache/**", "next-env.d.ts"]
+		},
+		"dev": {
+			"persistent": true,
+			"cache": false
+		},
+		"format": {},
+		"lint": {
+			"dependsOn": ["^topo"]
+		},
+		"checkts": {
+			"dependsOn": ["^topo"],
+			"outputs": ["tsconfig.tsbuildinfo"]
+		},
+		"checkall": {
+			"dependsOn": ["checkts", "lint", "format"]
+		}
+	}
 }

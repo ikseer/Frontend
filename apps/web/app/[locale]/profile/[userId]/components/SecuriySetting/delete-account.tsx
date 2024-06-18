@@ -20,8 +20,7 @@ export default function DeleteAccount() {
                  hover:text-red-500  text-red-400 
                 dark:bg-zinc-950 dark:text-red-500 font-medium border-1 border-zinc-200
                 dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-red-700
-                w-[200px] h-[42px]
-                "
+                w-[200px] h-[42px]"
 				onClick={handleDeleteAccount}
 			>
 				Delete my account

@@ -10,7 +10,7 @@ import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
 import { useLogin } from "@/api/custom-hook/auth";
 import Spinner from "@/components/site/spinner";
-import { useZodForm } from "@/lib/uer-zod-schema";
+import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";

@@ -1,5 +1,5 @@
 "use client";
-import { useZodForm } from "@/lib/uer-zod-schema";
+import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider } from "react-hook-form";

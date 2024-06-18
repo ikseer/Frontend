@@ -15,8 +15,7 @@ export default function SingleProductCard({ item }: { item: Product }) {
 	return (
 		<div
 			className="flex flex-col bg-white border shadow-sm rounded-xl
-         dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-zinc-700/[.7]
-         "
+         dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-zinc-700/[.7]"
 		>
 			<Link className=" aspect-[3/4]" href={`/products/${item.id}`}>
 				<Image
