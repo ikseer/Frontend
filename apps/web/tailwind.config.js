@@ -2,10 +2,9 @@
 module.exports = {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./{pages,app,components,src}/**/*.{js,jsx,ts,tsx}",
+		"../../packages/*/{src,components}/**/*.{js,jsx,ts,tsx}",
+		"./node_modules/preline/preline.js",
 	],
 	prefix: "",
 	theme: {
