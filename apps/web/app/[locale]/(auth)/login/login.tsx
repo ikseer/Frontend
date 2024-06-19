@@ -8,7 +8,7 @@ import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
-import { useLogin } from "@/api/custom-hook/auth";
+import { useLogin } from "@/api/hooks/auth";
 import Spinner from "@/components/site/spinner";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";

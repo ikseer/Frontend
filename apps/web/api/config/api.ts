@@ -1,8 +1,10 @@
 import type { AxiosInstance } from "axios";
-import { Auth } from "../api-classes/auth";
+import { AuthAPI } from "../services/auth";
+import { ProductsAPI } from "../services/product";
 
 export function getAPI(http: AxiosInstance) {
 	return {
-		auth: new Auth(http),
+		auth: new AuthAPI(http),
+		products: new ProductsAPI(http),
 	};
 }

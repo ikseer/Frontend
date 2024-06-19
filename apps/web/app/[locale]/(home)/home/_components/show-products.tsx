@@ -1,12 +1,12 @@
 "use client";
 import type { Product } from "@/types";
 import { Button } from "@ikseer/ui/src/components/ui/button";
-import { useGetProducts } from "../../custom-hooks/use-products";
 import SingleProductCard from "./single-product-card";
+import { useProducts } from "@/api/hooks/products";
 
 export default function ShowCards() {
 	const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
-		useGetProducts();
+		useProducts();
 	const pages = data?.pages;
 
 	return (

@@ -2,8 +2,8 @@
 	"name": "frontend-enhancement",
 	"private": true,
 	"scripts": {
-		"web": "pnpm --filter @scicave/tekview-web",
-		"turbo:web": "turbo --filter @scicave/tekview-web",
+		"web": "pnpm --filter @ikseer/web",
+		"turbo:web": "turbo --filter @ikseer/web",
 		"build": "pnpm turbo:web build",
 		"dev": "pnpm turbo:web dev",
 		"lint": "biome lint --diagnostic-level=error --apply .",
@@ -20,5 +20,8 @@
 	},
 	"engines": {
 		"node": ">=18"
+	},
+	"prettier": {
+		"useTabs": true
 	}
 }

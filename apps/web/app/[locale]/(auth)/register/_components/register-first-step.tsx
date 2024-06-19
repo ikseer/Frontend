@@ -8,7 +8,7 @@ import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 
 import "../register.css";
-import { useRegister } from "@/api/custom-hook/auth";
+import { useRegister } from "@/api/hooks/auth";
 import Radio from "@/components/site/radio";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";

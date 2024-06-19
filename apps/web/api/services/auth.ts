@@ -4,7 +4,7 @@ import {
 	RefreshTokenCookie,
 } from "../config/cookies.client";
 
-export class Auth {
+export class AuthAPI {
 	constructor(private http: AxiosInstance) {}
 
 	register = async (data: {
