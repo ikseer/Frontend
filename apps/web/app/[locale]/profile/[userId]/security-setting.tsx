@@ -1,8 +1,8 @@
 // Components
-import ChangePassword from "./components/SecuriySetting/change-password";
-import DeleteYourAccount from "./components/SecuriySetting/delete-account";
-import LinkAccounts from "./components/SecuriySetting/link-accounts";
-import SecurityContainer from "./components/SecuriySetting/security-container";
+import ChangePassword from "@app/profile/[userId]/components/securiy-setting/change-password";
+import DeleteYourAccount from "@app/profile/[userId]/components/securiy-setting/delete-account";
+import LinkAccounts from "@app/profile/[userId]/components/securiy-setting/link-accounts";
+import SecurityContainer from "@app/profile/[userId]/components/securiy-setting/security-container";
 import SettingContainer from "./components/setting";
 
 export default function SecuritySetting() {

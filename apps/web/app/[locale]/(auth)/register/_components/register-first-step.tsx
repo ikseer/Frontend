@@ -6,16 +6,18 @@ import Google from "@/images/auth/Google.svg";
 import { Link } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
-
 import "../register.css";
-import { useRegister } from "@/api/hooks/auth";
+import { useCheckEmail, useCheckUserName, useRegister } from "@/api/hooks/auth";
 import Radio from "@/components/site/radio";
+import Spinner from "@/components/site/spinner";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
+import { useDebounce } from "./use-debounce";
 
 const schema = z.object({
 	username: z.string().min(1),
@@ -37,6 +39,17 @@ export function RegisterFirstStep() {
 	};
 	const { mutate, isPending } = useRegister({ onSuccess });
 	const t = useTranslations("Register");
+	const checkUserName = useCheckUserName();
+	const checkEmail = useCheckEmail();
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		checkUserName.mutate(form.getValues().username);
+	}, [useDebounce(form.getValues().username, 300)]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		checkEmail.mutate(form.getValues().email);
+	}, [useDebounce(form.getValues().email, 300)]);
 
 	return (
 		<FormProvider {...form}>
@@ -50,7 +63,7 @@ export function RegisterFirstStep() {
 				noValidate
 			>
 				<h1 className="pt-5 text-2xl font-bold">{t("welcome-to-ikseer")}</h1>
-				<section className="w-3/4 space-y-4">
+				<section className="space-y-4">
 					<section className="grid grid-cols-2 gap-5">
 						<div>
 							<label htmlFor="firstName">{t("first-name")}</label>
@@ -100,19 +113,26 @@ export function RegisterFirstStep() {
 						</label>
 						<FormInput name="password" placeholder={t("password")} />
 					</section>
-					<section className="gap-x-6 flex">
-						<div className="gap-x-2 flex items-center">
-							<Radio name="gender" value="male" />
-							<label htmlFor="male">{t("male")}</label>
-						</div>
-						<div className="gap-x-2 flex items-center">
-							<Radio name="gender" value="female" />
-							<label htmlFor="female">{t("female")}</label>
-						</div>
-						<div className="gap-x-2 flex items-center">
-							<Radio name="gender" value="prefernottosay" />
-							<label htmlFor="prefernottosay">{t("prefer-not-to-say")}</label>
-						</div>
+					<section>
+						<section className="gap-x-6 flex">
+							<div className="gap-x-2 flex items-center">
+								<Radio name="gender" value="male" />
+								<label htmlFor="male">{t("male")}</label>
+							</div>
+							<div className="gap-x-2 flex items-center">
+								<Radio name="gender" value="female" />
+								<label htmlFor="female">{t("female")}</label>
+							</div>
+							<div className="gap-x-2 flex items-center">
+								<Radio name="gender" value="prefernottosay" />
+								<label htmlFor="prefernottosay">{t("prefer-not-to-say")}</label>
+							</div>
+						</section>
+						{form.formState.errors.gender && (
+							<p className="text-sm text-red-500">
+								{form.formState.errors.gender.message}
+							</p>
+						)}
 					</section>
 
 					<Button
@@ -120,7 +140,7 @@ export function RegisterFirstStep() {
 						className="hover:bg-teal-700 w-full bg-teal-600 rounded-md"
 						disabled={isPending}
 					>
-						{t("sign-up")}
+						{isPending ? <Spinner /> : t("sign-up")}
 					</Button>
 
 					<section className="w-3/4">
@@ -133,12 +153,12 @@ export function RegisterFirstStep() {
 					<AuthShape
 						authImage={Google}
 						text={t("continue-with-google")}
-						className="w-3/4"
+						className="w-3/4 m-auto"
 					/>
 					<AuthShape
 						authImage={Facebook}
 						text={t("continue-with-facebook")}
-						className="w-3/4"
+						className="w-3/4 m-auto"
 					/>
 				</section>
 			</form>

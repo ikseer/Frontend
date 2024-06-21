@@ -9,7 +9,9 @@ import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
 import { useLogin } from "@/api/hooks/auth";
+import { ErrorMsg } from "@/components/site/error-msg";
 import Spinner from "@/components/site/spinner";
+import { getErrorMsg } from "@/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
@@ -22,15 +24,13 @@ const schema = z.object({
 });
 
 export default function Login() {
-	const router = useRouter();
 	const form = useZodForm({
 		schema: schema,
 	});
 
-	const onSuccess = () => {
-		router.push("/");
-	};
-	const { mutate, isPending } = useLogin({ onSuccess });
+	const { mutate, isPending, data, error } = useLogin({});
+	const errorMsg = getErrorMsg(error);
+	console.info(errorMsg.non_field_errors?.[0]);
 	const t = useTranslations("Login");
 
 	return (
@@ -46,6 +46,7 @@ export default function Login() {
 					className="bg-zinc-100 dark:bg-zinc-950 flex flex-col items-center justify-center h-full rounded-lg"
 				>
 					<h1 className=" mt-4 text-2xl font-bold">{t("welcome-to-ikseer")}</h1>
+					<ErrorMsg>{errorMsg.non_field_errors?.[0]} </ErrorMsg>
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label
@@ -87,7 +88,7 @@ export default function Login() {
 
 					<div className="w-3/4">
 						<Link href="/reset-password">{t("forgot-your-password")}</Link>
-						<section>
+						<section className="gap-x-1 flex">
 							<span>{t("dont-have-an-account")}</span>
 							<Link
 								href="/register"

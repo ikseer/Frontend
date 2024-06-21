@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { AccessTokenCookie, RefreshTokenCookie } from "./cookies.client";
 import { setSession } from "./session.client";
 
+console.info("====", BACKEND_URL);
 export const httpNoAuth = axios.create({
 	baseURL: BACKEND_URL,
 });
@@ -80,8 +81,11 @@ const refreshAccessToken = async () => {
 
 async function getRefreshedToken(data: { refreshToken: string }) {
 	const {
-		data: { access_token: accessToken },
-	} = await httpNoAuth.post<{ access_token: string }>("/tokens/refresh", data);
+		data: { access: accessToken },
+	} = await httpNoAuth.post<{ access: string }>(
+		"/accounts/token/refresh/",
+		data,
+	);
 	return accessToken as string;
 }
 

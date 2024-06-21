@@ -1,10 +1,10 @@
 "use client";
 import { useGetProfile, useUpdateProfile } from "@/api/profile/use-profile";
 import type { Profile } from "@/types";
+import BasicSettingButton from "@app/profile/[userId]/components/securiy-setting/basic-setting-button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import BasicSettingButton from "../SecuriySetting/basic-setting-button";
 import LabelInfo from "./babel-info";
 import UserImage from "./user-image";
 

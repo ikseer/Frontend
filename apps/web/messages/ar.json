@@ -21,7 +21,7 @@
 		"female": "أنثى",
 		"first-name": "الاسم الأول",
 		"last-name": "اسم العائلة",
-		"login": "تسجيل الدخول",
+		"login": "تسجيل الدخول؟",
 		"male": "ذكر",
 		"or": "أو",
 		"prefer-not-to-say": "افضل عدم القول",
@@ -47,6 +47,5 @@
 	},
 	"ConfirmPin": {
 		"verification-required": ""
-	},
-	"welcome-to-ikseer": "dfsdf"
+	}
 }

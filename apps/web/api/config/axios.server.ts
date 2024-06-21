@@ -87,8 +87,11 @@ const refreshAccessToken = async () => {
 
 async function getRefreshedToken(data: { refreshToken: string }) {
 	const {
-		data: { access_token: accessToken },
-	} = await httpNoAuth.post<{ access_token: string }>("/tokens/refresh", data);
+		data: { access: accessToken },
+	} = await httpNoAuth.post<{ access: string }>(
+		"/accounts/token/refresh/",
+		data,
+	);
 	return accessToken as string;
 }
 

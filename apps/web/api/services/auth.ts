@@ -1,4 +1,5 @@
 import type { AxiosInstance } from "axios";
+import { httpNoAuth } from "../config/axios.client";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
@@ -6,6 +7,22 @@ import {
 
 export class AuthAPI {
 	constructor(private http: AxiosInstance) {}
+
+	checkUserName = async (username: string) => {
+		return await httpNoAuth
+			.post<{ username_exists: boolean }>("/accounts/check-username/", {
+				username: username,
+			})
+			.then((res) => res.data);
+	};
+
+	checkEmail = async (email: string) => {
+		return await httpNoAuth
+			.post<{ email_exists: boolean }>("/accounts/check-email/", {
+				email: email,
+			})
+			.then((res) => res.data);
+	};
 
 	register = async (data: {
 		username: string;
@@ -15,8 +32,16 @@ export class AuthAPI {
 		password: string;
 		gender: string;
 	}) => {
-		return await this.http
-			.post("/accounts/register/", data)
+		const newData = {
+			...data,
+			first_name: data.firstName,
+			last_name: data.lastName,
+			password1: data.password,
+			password2: data.password,
+		};
+		console.info(newData);
+		return await httpNoAuth
+			.post("/accounts/register/", newData)
 			.then((res) => res.data);
 	};
 
@@ -33,9 +58,10 @@ export class AuthAPI {
 	};
 
 	login = async (data: { username: string; password: string }) => {
-		return await this.http
-			.post("/accounts/login/", data)
-			.then((res) => res.data);
+		return await httpNoAuth.post("/accounts/login/", data).then((res) => {
+			console.log(res, "Mohamed yousef");
+			return res.data;
+		});
 	};
 
 	logout = async () => {
@@ -51,5 +77,28 @@ export class AuthAPI {
 		return await this.http
 			.delete(`/accounts/profile/${id}`)
 			.then((res) => res.data);
+	};
+
+	updatePassword = async (data: {
+		old_password: string;
+		new_password1: string;
+		new_password2: string;
+		id: string;
+	}) => {
+		return await this.http
+			.post(`/accounts/password/change/${data.id}/`, data)
+			.then((res) => res.data);
+	};
+
+	getProfile = async (id: string) => {
+		return await this.http.get("/accounts/profile/", {
+			params: {
+				id: id,
+			},
+		});
+	};
+
+	updateprofile = async (data: { id: string }) => {
+		return await this.http.patch(`/accounts/profile/${data.id}/`, data);
 	};
 }

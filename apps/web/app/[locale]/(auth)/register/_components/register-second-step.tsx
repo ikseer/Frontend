@@ -64,7 +64,7 @@ export function RegisterSecondStep() {
 				/>
 				<section className="space-y-4">
 					<p className="text-center">{t("dont-get-the-code")}</p>
-					<div className="space-x-4">
+					<div className="gap-x-2 flex">
 						<Button type="submit">{t("submit")}</Button>
 						<Button type="button">{t("resend")}</Button>
 					</div>

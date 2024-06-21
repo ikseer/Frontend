@@ -2,12 +2,7 @@ import "client-only";
 import { jwtDecode } from "jwt-decode";
 import { useMemo } from "react";
 import { z } from "zod";
-import {
-	AccessTokenCookie,
-	ImpersonateAccessTokenCookie,
-	ImpersonateRefreshTokenCookie,
-	RefreshTokenCookie,
-} from "./cookies.client";
+import { AccessTokenCookie, RefreshTokenCookie } from "./cookies.client";
 
 export interface SessionInfo {
 	accessToken: string;
@@ -27,33 +22,6 @@ export function setSession(
 	const { accessToken, refreshToken } = session;
 	AccessTokenCookie.set(accessToken, "/");
 	RefreshTokenCookie.set(refreshToken, "/");
-}
-
-export function setImpersonateSession(
-	session: { accessToken: string; refreshToken: string } | null,
-) {
-	if (!session) {
-		ImpersonateAccessTokenCookie.delete();
-		ImpersonateRefreshTokenCookie.delete();
-		return;
-	}
-	const { accessToken, refreshToken } = session;
-	ImpersonateAccessTokenCookie.set(accessToken, "/");
-	ImpersonateRefreshTokenCookie.set(refreshToken, "/");
-}
-
-export function unimpersonate() {
-	const accessToken = ImpersonateAccessTokenCookie.get() as string;
-	const refreshToken = ImpersonateRefreshTokenCookie.get() as string;
-	setImpersonateSession(null);
-	setSession({ accessToken, refreshToken });
-}
-
-export function isImpersonated() {
-	return (
-		!!ImpersonateAccessTokenCookie.get() &&
-		!!ImpersonateRefreshTokenCookie.get()
-	);
 }
 
 export function useCurrentUser() {

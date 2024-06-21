@@ -5,6 +5,8 @@ import ReactQueryProvider from "@/providers/react-query-provider";
 import { notFound } from "next/navigation";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Toaster } from "@ikseer/ui/src/components/ui/toaster";
+import type React from "react";
 import GuestNavBar from "./_components/nav-bar";
 
 interface RootLayoutProps {
@@ -42,8 +44,10 @@ export default function RootLayout({
 					<LocaleProvider>
 						<ReactQueryProvider>
 							<GuestNavBar />
+
 							{children}
 						</ReactQueryProvider>
+						<Toaster />
 					</LocaleProvider>
 				</ThemeProvider>
 			</body>
