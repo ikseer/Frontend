@@ -8,6 +8,7 @@ import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 import "../register.css";
 import { useCheckEmail, useCheckUserName, useRegister } from "@/api/hooks/auth";
+import { ErrorMsg } from "@/components/site/error-msg";
 import Radio from "@/components/site/radio";
 import Spinner from "@/components/site/spinner";
 import { useZodForm } from "@/lib/use-zod-schema";
@@ -45,14 +46,16 @@ export function RegisterFirstStep() {
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		checkUserName.mutate(form.getValues().username);
-	}, [useDebounce(form.getValues().username, 400)]);
+	}, [useDebounce(form.getValues().username, 700)]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		checkEmail.mutate(form.getValues().email);
-	}, [useDebounce(form.getValues().email, 400)]);
+	}, [useDebounce(form.getValues().email, 700)]);
 
-	console.info(checkUserName);
+	const usernameisExist = checkUserName.data?.username_exists;
+	const emailisExist = checkEmail.data?.email_exists;
+
 	return (
 		<FormProvider {...form}>
 			<form
@@ -97,6 +100,9 @@ export function RegisterFirstStep() {
 							className="rounded-e-md h-10"
 						/>
 					</section>
+					{emailisExist && (
+						<ErrorMsg className="ms-12">Email already exists</ErrorMsg>
+					)}
 					<section className="flex w-full">
 						<label
 							htmlFor="username"
@@ -106,6 +112,9 @@ export function RegisterFirstStep() {
 						</label>
 						<FormInput name="username" placeholder={t("username")} />
 					</section>
+					{usernameisExist && (
+						<ErrorMsg className="ms-12">Username already exists</ErrorMsg>
+					)}
 					<section className="flex w-full">
 						<label
 							htmlFor="password"

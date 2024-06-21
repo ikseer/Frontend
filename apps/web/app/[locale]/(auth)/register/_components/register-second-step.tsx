@@ -1,5 +1,8 @@
 "use client";
 
+import { useOtp } from "@/api/hooks/auth";
+import { ErrorMsg } from "@/components/site/error-msg";
+import { getErrorMsg } from "@/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
@@ -16,36 +19,48 @@ import {
 } from "@ikseer/ui/src/components/ui/input-otp";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
+import { useRegisterContext } from "../context/RegisterContext";
 
 const schema = z.object({
-	pin: z.string().min(6).max(6),
+	otp: z.string().min(6).max(6),
 });
 export function RegisterSecondStep() {
+	const { triggerFunction } = useRegisterContext();
 	const form = useZodForm({
 		schema: schema,
 	});
 	const t = useTranslations("Register");
+
+	const onSuccess = () => {
+		triggerFunction?.current?.click();
+	};
+
+	const confirmEmail = useOtp({ onSuccess });
+	const errorMsg = getErrorMsg(confirmEmail.error)?.detail;
+
 	return (
 		<Form {...form}>
 			<form
-				onSubmit={form.handleSubmit((data) => console.log(data))}
-				className=" flex flex-col items-center justify-center py-10 space-y-6"
+				onSubmit={form.handleSubmit((data) => {
+					console.log(data);
+					confirmEmail.mutate(data);
+				})}
+				className=" flex flex-col items-center justify-center py-10 space-y-6 text-center"
 			>
 				<section className="space-y-2">
-					<h1 className="text-2xl font-semibold text-center">
-						{t("confirm-your-email")}
-					</h1>
-					<p className="text-zinc-700 dark:text-zinc-100 text-center">
+					<h1 className="text-2xl font-semibold">{t("confirm-your-email")}</h1>
+					<p className="text-zinc-700 dark:text-zinc-100 ">
 						{t(
 							"please-enter-the-code-sent-to-your-email-it-expires-after-10-minutes",
 						)}
 					</p>
+					{errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
 				</section>
 				<FormField
 					control={form.control}
-					name="pin"
+					name="otp"
 					render={({ field }) => (
-						<FormItem className="text-center">
+						<FormItem>
 							<FormControl>
 								<InputOTP maxLength={6} {...field}>
 									<InputOTPGroup className="min-w-fit m-auto text-center">

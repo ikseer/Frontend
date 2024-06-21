@@ -39,18 +39,19 @@ export function useRegister({ onSuccess }: { onSuccess: () => void }) {
 	});
 }
 
-export function useOtp() {
+export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.otp,
 		onSuccess: () => {
+			onSuccess?.();
 			toast({
 				title: "OTP Verified",
 				description: "We've created your OTP for you.",
 				variant: "success",
 			});
 		},
-		onError: (error) => {
+		onError: () => {
 			toast({
 				title: "Can't Verify OTP",
 				description: "Please try again later.",

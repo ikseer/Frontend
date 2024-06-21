@@ -46,14 +46,14 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	otp = async () => {
-		return await this.http
-			.post("/accounts/verify-email-otp/")
+	otp = async (data: { otp: string }) => {
+		return await httpNoAuth
+			.post("/accounts/verify-email-otp/", data)
 			.then((res) => res.data);
 	};
 
 	phone = async (data: { phone: string }) => {
-		return await this.http
+		return await httpNoAuth
 			.post("/accounts/phone-register/")
 			.then((res) => res.data);
 	};
