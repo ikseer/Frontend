@@ -1,17 +1,8 @@
-// Main
-
-// Interface
-interface LabelInfoType {
-	mainText: string;
-	secText?: string;
-	inputText: string;
-}
-
 export default function LabelInfo({
 	mainText,
 	secText,
 	inputText,
-}: LabelInfoType) {
+}: { mainText: string; secText?: string; inputText: string }) {
 	return (
 		<div className=" flex flex-col w-2/12">
 			<label className="cursor-pointer" htmlFor={inputText}>

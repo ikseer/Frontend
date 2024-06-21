@@ -10,9 +10,6 @@ export default function ProfileSetting() {
 				secondaryText="Edit your basic details like full name."
 			/>
 			<BasicInfo />
-			{process.env.NODE_ENV === "development" && (
-				<ReactQueryDevtools initialIsOpen={false} />
-			)}
 		</div>
 	);
 }

@@ -1,7 +1,8 @@
-import { useToast } from "@ikseer/ui/src/components/ui/use-toast";
-import { useMutation } from "@tanstack/react-query";
+import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
+import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { clientAPI } from "../config/api.client";
+import { UserIdCookie } from "../config/cookies.client";
 import { setSession } from "../config/session.client";
 
 export function useCheckUserName() {
@@ -91,8 +92,9 @@ export function useLogin({ onSuccess }: { onSuccess?: () => void }) {
 				variant: "success",
 			});
 			const { access, token } = data;
-			console.info(access, token);
+			console.info(access, token, data.user.pk, data, "login returnded data");
 			setSession({ accessToken: access, refreshToken: token });
+			UserIdCookie.set(data.user.pk, "/");
 			router.push("/");
 		},
 
@@ -108,12 +110,20 @@ export function useLogin({ onSuccess }: { onSuccess?: () => void }) {
 
 export function useLogout() {
 	const { toast } = useToast();
+	const router = useRouter();
 	return useMutation({
 		mutationFn: clientAPI.auth.logout,
 		onSuccess: () => {
 			toast({
 				title: "Logout Success",
 				variant: "success",
+			});
+			router.push("/login");
+		},
+		onError: () => {
+			toast({
+				title: "Can't logout",
+				variant: "error",
 			});
 		},
 	});
@@ -139,12 +149,49 @@ export function useResetPassword({ onSuccess }: { onSuccess: () => void }) {
 	});
 }
 
-export function useDeleteMe({ onSuccess }: { onSuccess: () => void }) {
+export const useUpdatePassword = () => {
+	return useMutation({
+		mutationFn: clientAPI.auth.updatePassword,
+		onSuccess(data) {
+			console.log(data, "success");
+		},
+		onError(data) {
+			console.log(data, "error");
+		},
+	});
+};
+
+export function useGetMe() {
+	return useQuery({
+		queryKey: ["me"],
+		queryFn: clientAPI.auth.getMe,
+	});
+}
+export function useUpdateMe() {
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.auth.updateMe,
+		onSuccess() {
+			toast({
+				title: "Profile updated",
+				variant: "success",
+			});
+		},
+		onError() {
+			toast({
+				title: "Can't update profile",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useDeleteMe({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.deleteMe,
 		onSuccess: () => {
-			onSuccess();
+			onSuccess?.();
 			toast({
 				title: "Account deleted",
 				variant: "success",
@@ -159,14 +206,28 @@ export function useDeleteMe({ onSuccess }: { onSuccess: () => void }) {
 	});
 }
 
-export const useUpdatePassword = () => {
+export const useGetMyImage = () => {
+	return useQuery({
+		queryKey: ["my-image"],
+		queryFn: clientAPI.auth.getMyImage,
+	});
+};
+
+export const useUpdateMyImage = () => {
+	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.updatePassword,
-		onSuccess(data) {
-			console.log(data, "success");
+		mutationFn: clientAPI.auth.updateMyImage,
+		onSuccess() {
+			toast({
+				title: "Profile image updated",
+				variant: "success",
+			});
 		},
-		onError(data) {
-			console.log(data, "error");
+		onError() {
+			toast({
+				title: "Can't update profile image",
+				variant: "error",
+			});
 		},
 	});
 };

@@ -1,7 +1,3 @@
-// Components
-import ProfileSetting from "@app/profile/[userId]/components/basic-setting/basic-setting";
-import PaymentSetting from "@app/profile/[userId]/components/payment-setting/PaymentSetting";
-import ProfileContainer from "@app/profile/[userId]/components/securiy-setting/profile-container";
 import {
 	Tabs,
 	TabsContent,
@@ -11,6 +7,9 @@ import {
 import { LuUser } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { MdPayment } from "react-icons/md"; /*didn't exist in lu*/
+import ProfileSetting from "./_components/basic-setting/basic-setting";
+import PaymentSetting from "./_components/payment-setting/payment-setting";
+import ProfileContainer from "./_components/securiy-setting/profile-container";
 import SecuritySetting from "./security-setting";
 
 export default function Profile() {

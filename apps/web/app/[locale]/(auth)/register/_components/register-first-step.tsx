@@ -37,20 +37,22 @@ export function RegisterFirstStep() {
 	const onSuccess = () => {
 		triggerFunction?.current?.click();
 	};
-	const { mutate, isPending } = useRegister({ onSuccess });
+	const { mutate, isPending, error } = useRegister({ onSuccess });
+
 	const t = useTranslations("Register");
 	const checkUserName = useCheckUserName();
 	const checkEmail = useCheckEmail();
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		checkUserName.mutate(form.getValues().username);
-	}, [useDebounce(form.getValues().username, 300)]);
+	}, [useDebounce(form.getValues().username, 400)]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		checkEmail.mutate(form.getValues().email);
-	}, [useDebounce(form.getValues().email, 300)]);
+	}, [useDebounce(form.getValues().email, 400)]);
 
+	console.info(checkUserName);
 	return (
 		<FormProvider {...form}>
 			<form

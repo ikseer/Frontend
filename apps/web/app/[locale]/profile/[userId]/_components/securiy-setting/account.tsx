@@ -1,12 +1,11 @@
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import Image from "next/image";
-interface AccountType {
-	image: string;
-	name: string;
-	buttonText: string;
-}
 
-export default function Account({ image, name, buttonText }: AccountType) {
+export default function Account({
+	image,
+	name,
+	buttonText,
+}: { image: string; name: string; buttonText: string }) {
 	return (
 		<div className="flex justify-between my-3">
 			<div className="flex">

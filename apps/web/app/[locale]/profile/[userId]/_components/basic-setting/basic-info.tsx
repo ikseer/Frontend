@@ -1,34 +1,22 @@
 "use client";
-import { useGetProfile, useUpdateProfile } from "@/api/profile/use-profile";
 import type { Profile } from "@/types";
-import BasicSettingButton from "@app/profile/[userId]/components/securiy-setting/basic-setting-button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
-import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import BasicSettingButton from "../securiy-setting/basic-setting-button";
 import LabelInfo from "./babel-info";
-import UserImage from "./user-image";
 
 export default function BasicInfo() {
-	const { data } = useGetProfile(true);
-
 	const form = useForm<Profile>({
-		defaultValues: { ...data },
+		// defaultValues: { ...data },
 	});
 
-	useEffect(() => {
-		if (data) {
-			form.reset(data);
-		}
-	}, [data, form.reset]);
-
-	const { mutate } = useUpdateProfile();
 	const handleProfileSubmit = (data: Profile) => {
-		mutate(data);
+		console.log(data);
 	};
 
 	return (
 		<FormProvider {...form}>
-			<UserImage image={data?.image} />
+			{/* <UserImage image={data?.image} /> */}
 			<form className="mt-6" onSubmit={form.handleSubmit(handleProfileSubmit)}>
 				<section className="flex items-center justify-between">
 					<label id="first_name">Full Name</label>

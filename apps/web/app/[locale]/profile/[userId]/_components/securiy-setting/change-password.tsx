@@ -1,24 +1,24 @@
 "use client";
 
-import { useUpdatePassword } from "@/api/profile/use-password";
+// import { useUpdatePassword } from "@/api/hooks/auth";
 import { Link } from "@/navigation";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider, useForm } from "react-hook-form";
 
-interface FormDataType {
+interface changePasswordProps {
 	old_password: string;
 	new_password1: string;
 	new_password2: string;
 }
 
 export default function ChangePassword() {
-	const form = useForm<FormDataType>();
-	const { mutate } = useUpdatePassword();
+	const form = useForm<changePasswordProps>();
+	// const { mutate } = useUpdatePassword();
 
-	const handleChangePasswordSumbit = (data: FormDataType) => {
+	const handleChangePasswordSumbit = (data: changePasswordProps) => {
 		console.log(data);
-		mutate(data);
+		// mutate(data);
 	};
 
 	return (

@@ -17,10 +17,10 @@ export default function BasicSettingButton({
 				type="button"
 				onClick={onClick}
 				className=" border-2hover:bg-gray-200
-            hover:text-zinc-500  text-teal-600 
-            dark:bg-zinc-950 dark:text-zinc-400 font-medium border-1 border-zinc-200
-            dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-zinc-300
-            w-[150px] h-[42px] bg-white"
+				hover:text-zinc-500  text-teal-600 
+				dark:bg-zinc-950 dark:text-zinc-400 font-medium border-1 border-zinc-200
+				dark:border-gray-800 dark:hover:bg-gray-800 dark:hover:text-zinc-300
+				w-[150px] h-[42px] bg-white"
 			>
 				Reset
 			</Button>

@@ -2,18 +2,11 @@ import "server-only";
 import { cookies } from "next/headers";
 import {
 	ACCESS_TOKEN_KEY,
-	DOMAIN_COOKIE_KEY,
 	REFRESH_TOKEN_KEY,
-	WEBSITE_ID_COOKIE_KEY,
-	WEBSITE_LOCALE_KEY,
+	USER_ID_KEY,
 } from "./cookies.client";
 
-export const DomainServerCookie = createCookieStorage(DOMAIN_COOKIE_KEY);
-export const TempWebsiteIdServerCookie = createCookieStorage(
-	WEBSITE_ID_COOKIE_KEY,
-);
-export const WebsiteLocaleServerCookie =
-	createCookieStorage(WEBSITE_LOCALE_KEY);
+export const UserIdCookie = createCookieStorage(USER_ID_KEY);
 export const RefreshTokenServerCookie = createCookieStorage(REFRESH_TOKEN_KEY);
 export const AccessTokenServerCookie = createCookieStorage(ACCESS_TOKEN_KEY);
 

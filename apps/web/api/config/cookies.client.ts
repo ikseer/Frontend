@@ -6,9 +6,11 @@ export const WEBSITE_ID_COOKIE_KEY = "temp-website-id";
 
 export const ACCESS_TOKEN_KEY = "the-access-token";
 export const REFRESH_TOKEN_KEY = "the-refresh-token";
+export const USER_ID_KEY = "the-user-id";
 
 export const AccessTokenCookie = createCookieStorage(ACCESS_TOKEN_KEY);
 export const RefreshTokenCookie = createCookieStorage(REFRESH_TOKEN_KEY);
+export const UserIdCookie = createCookieStorage(USER_ID_KEY);
 
 const THREE_DAYS_ms = 1000 * 60 * 60 * 24 * 3;
 

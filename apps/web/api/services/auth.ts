@@ -3,6 +3,7 @@ import { httpNoAuth } from "../config/axios.client";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
+	UserIdCookie,
 } from "../config/cookies.client";
 
 export class AuthAPI {
@@ -73,12 +74,6 @@ export class AuthAPI {
 		return this.http.post("/accounts/password/reset/", data);
 	};
 
-	deleteMe = async ({ id }: { id: string }) => {
-		return await this.http
-			.delete(`/accounts/profile/${id}`)
-			.then((res) => res.data);
-	};
-
 	updatePassword = async (data: {
 		old_password: string;
 		new_password1: string;
@@ -90,15 +85,30 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	getProfile = async (id: string) => {
-		return await this.http.get("/accounts/profile/", {
-			params: {
-				id: id,
-			},
-		});
+	getMe = async () => {
+		const id = UserIdCookie.get();
+		return await this.http.get(`/accounts/profile/${id}`);
 	};
 
-	updateprofile = async (data: { id: string }) => {
-		return await this.http.patch(`/accounts/profile/${data.id}/`, data);
+	updateMe = async () => {
+		const id = UserIdCookie.get();
+		return await this.http.patch(`/accounts/profile/${id}/`);
+	};
+
+	deleteMe = async () => {
+		const id = UserIdCookie.get();
+		return await this.http
+			.delete(`/accounts/profile/${id}`)
+			.then((res) => res.data);
+	};
+
+	getMyImage = async () => {
+		const id = UserIdCookie.get();
+		return await this.http.get(`/accounts/profile/${id}/image/`);
+	};
+
+	updateMyImage = async (data: Blob) => {
+		const id = UserIdCookie.get();
+		return await this.http.patchForm(`/accounts/profile/${id}/image/`, data);
 	};
 }
