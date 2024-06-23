@@ -1,6 +1,6 @@
 "use client";
 
-import { useOtp } from "@/api/hooks/auth";
+import { useOtp, useResendOtp } from "@/api/hooks/auth";
 import { ErrorMsg } from "@/components/site/error-msg";
 import { getErrorMsg } from "@/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-schema";
@@ -18,6 +18,7 @@ import {
 	InputOTPSlot,
 } from "@ikseer/ui/src/components/ui/input-otp";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
 
@@ -36,13 +37,15 @@ export function RegisterSecondStep() {
 	};
 
 	const confirmEmail = useOtp({ onSuccess });
+	const resendOtp = useResendOtp();
+	const searchParams = useSearchParams();
+	console.log(searchParams.get("email"));
 	const errorMsg = getErrorMsg(confirmEmail.error)?.detail;
 
 	return (
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => {
-					console.log(data);
 					confirmEmail.mutate(data);
 				})}
 				className=" flex flex-col items-center justify-center py-10 space-y-6 text-center"
@@ -81,7 +84,12 @@ export function RegisterSecondStep() {
 					<p className="text-center">{t("dont-get-the-code")}</p>
 					<div className="gap-x-2 flex">
 						<Button type="submit">{t("submit")}</Button>
-						<Button type="button">{t("resend")}</Button>
+						<Button
+							type="button"
+							onClick={() => resendOtp.mutate("modyyousef800@gmail.com")}
+						>
+							{t("resend")}
+						</Button>
 					</div>
 				</section>
 			</form>

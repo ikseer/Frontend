@@ -8,15 +8,20 @@ import {
 	SelectValue,
 } from "@ikseer/ui/src/components/ui/select";
 
-export function SelectBuilder(
-	data: { value: string; label: string }[],
-	title: string,
-	placeholder?: string,
-) {
+export function SelectBuilder({
+	data,
+	title,
+	placeholder,
+}: {
+	data: { value: string; label: string }[];
+	title: string;
+	placeholder?: string;
+}) {
+	console.log(data, title);
 	return (
 		<Select>
-			<SelectTrigger className="w-[180px]">
-				<SelectValue placeholder={`${placeholder} ?? choose from dropdown`} />
+			<SelectTrigger>
+				<SelectValue placeholder={`${placeholder ?? "choose from dropdown"}`} />
 			</SelectTrigger>
 			<SelectContent>
 				<SelectGroup>

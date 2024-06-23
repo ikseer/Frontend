@@ -3,7 +3,7 @@ import DividerText from "@/components/site/divider";
 import AuthShape from "@/components/site/thrid-party-shape";
 import Facebook from "@/images/auth/Facebook.svg";
 import Google from "@/images/auth/Google.svg";
-import { Link } from "@/navigation";
+import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 import "../register.css";
@@ -31,14 +31,16 @@ const schema = z.object({
 
 export function RegisterFirstStep() {
 	const { triggerFunction } = useRegisterContext();
+	const router = useRouter();
 	const form = useZodForm({
 		schema: schema,
 	});
 
 	const onSuccess = () => {
+		router.push(`/register?email=${form.getValues().email}`);
 		triggerFunction?.current?.click();
 	};
-	const { mutate, isPending, error } = useRegister({ onSuccess });
+	const { mutate, isPending } = useRegister({ onSuccess });
 
 	const t = useTranslations("Register");
 	const checkUserName = useCheckUserName();

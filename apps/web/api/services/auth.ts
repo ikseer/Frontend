@@ -52,9 +52,16 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	phone = async (data: { phone: string }) => {
+	resendOtp = async (email: string) => {
 		return await httpNoAuth
-			.post("/accounts/phone-register/")
+			.post("/accounts/otp-by-email/", { email: email })
+			.then((res) => res.data);
+	};
+
+	phone = async (phone: string) => {
+		console.info(phone, "phone");
+		return await this.http
+			.post("/accounts/phone-register/", { phone: phone })
 			.then((res) => res.data);
 	};
 

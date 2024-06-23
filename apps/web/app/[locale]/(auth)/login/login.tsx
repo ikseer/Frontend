@@ -87,7 +87,15 @@ export default function Login() {
 					</Button>
 
 					<div className="w-3/4">
-						<Link href="/reset-password">{t("forgot-your-password")}</Link>
+						<section className="gap-x-1 flex">
+							<span>{t("forgot-your-password")}</span>
+							<Link
+								href="/reset-password"
+								style={{ color: "#0B9992", fontWeight: "600" }}
+							>
+								Change password!
+							</Link>
+						</section>
 						<section className="gap-x-1 flex">
 							<span>{t("dont-have-an-account")}</span>
 							<Link

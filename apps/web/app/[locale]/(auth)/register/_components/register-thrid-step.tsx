@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { usePhone } from "@/api/hooks/auth";
+import Spinner from "@/components/site/spinner";
 //@ts-ignore
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useTranslations } from "next-intl";
@@ -11,13 +12,12 @@ import { Controller, useForm } from "react-hook-form";
 import { useRegisterContext } from "../context/RegisterContext";
 
 export function RegisterThridStep() {
-	const { triggerFunction } = useRegisterContext();
 	const router = useRouter();
 
 	const onSuccess = () => {
-		triggerFunction?.current?.click();
+		router.push("/");
 	};
-	const { mutate } = usePhone({ onSuccess });
+	const { mutate, isPending } = usePhone({ onSuccess });
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -37,7 +37,7 @@ export function RegisterThridStep() {
 		<form
 			className="flex flex-col items-center justify-center py-10"
 			onSubmit={handleSubmit((data) => {
-				console.log(data);
+				console.log(data, data.phone, "sended data");
 				mutate(data.phone);
 			})}
 		>
@@ -74,9 +74,9 @@ export function RegisterThridStep() {
 					<Button
 						className="hover:bg-teal-700 w-full bg-teal-600"
 						type="submit"
-						disabled={!!errors?.phone}
+						disabled={!!errors?.phone || isPending}
 					>
-						{t("save-and-continue")}
+						{!isPending ? t("save-and-continue") : <Spinner />}
 					</Button>
 					<Button
 						type="button"

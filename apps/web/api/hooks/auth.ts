@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { clientAPI } from "../config/api.client";
 import { UserIdCookie } from "../config/cookies.client";
 import { setSession } from "../config/session.client";
+import { setServerSession } from "../config/session.server";
 
 export function useCheckUserName() {
 	return useMutation({
@@ -21,7 +22,7 @@ export function useRegister({ onSuccess }: { onSuccess: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.register,
-		onSuccess: () => {
+		onSuccess: (data) => {
 			toast({
 				title: "Account created",
 				description: "We've created your account for you.",
@@ -43,7 +44,10 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.otp,
-		onSuccess: () => {
+		onSuccess: (data) => {
+			const { refresh: refreshToken, access: accessToken } = data;
+			console.info(refreshToken, accessToken, data, "login returnded data");
+			setSession({ accessToken, refreshToken });
 			onSuccess?.();
 			toast({
 				title: "OTP Verified",
@@ -75,6 +79,25 @@ export function usePhone({ onSuccess }: { onSuccess: () => void }) {
 		onError: () => {
 			toast({
 				title: "Can't verify phone number",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useResendOtp() {
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.auth.resendOtp,
+		onSuccess: () => {
+			toast({
+				title: "OTP Resent",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't resend OTP",
 				variant: "error",
 			});
 		},
