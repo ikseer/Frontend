@@ -41,7 +41,7 @@ export function TimerCircularProgressBar({
 	const percentage = (timeLeft / totalDuration) * 100;
 
 	return (
-		<section className="gap-x-4 flex items-center justify-center">
+		<section className="flex items-center justify-center gap-x-4">
 			<div className="w-[80px] h-[80px]">
 				<CircularProgressbar
 					value={percentage}
@@ -49,7 +49,7 @@ export function TimerCircularProgressBar({
 					text={`${Math.round(percentage)}%`}
 				/>
 			</div>
-			<div className="dark:text-zinc-300 text-zinc-900 text-bold text-xl">
+			<div className="text-xl dark:text-zinc-300 text-zinc-900 text-bold">
 				<span className="text-2xl">{timeLeft}</span>
 				&nbsp;seconds remaining
 			</div>

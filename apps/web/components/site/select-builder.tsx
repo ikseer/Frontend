@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
 	Select,
 	SelectContent,
@@ -12,10 +13,12 @@ export function SelectBuilder({
 	data,
 	title,
 	placeholder,
+	contentClassName,
 }: {
 	data: { value: string; label: string }[];
 	title: string;
 	placeholder?: string;
+	contentClassName?: string;
 }) {
 	console.log(data, title);
 	return (
@@ -23,7 +26,7 @@ export function SelectBuilder({
 			<SelectTrigger>
 				<SelectValue placeholder={`${placeholder ?? "choose from dropdown"}`} />
 			</SelectTrigger>
-			<SelectContent>
+			<SelectContent className={cn("h-64", contentClassName)}>
 				<SelectGroup>
 					<SelectLabel>{title}</SelectLabel>
 					{data.map((item) => {

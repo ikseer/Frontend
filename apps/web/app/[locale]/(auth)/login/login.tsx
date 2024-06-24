@@ -1,9 +1,7 @@
 "use client";
 import DividerText from "@/components/site/divider";
 import AuthShape from "@/components/site/thrid-party-shape";
-import Facebook from "@/images/auth/Facebook.svg";
-import Google from "@/images/auth/Google.svg";
-import { Link, useRouter } from "@/navigation";
+import { Link } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
@@ -36,22 +34,22 @@ export default function Login() {
 	return (
 		<FormProvider {...form}>
 			<form
-				className="auth-parent hero flex items-center justify-center"
+				className="flex items-center justify-center auth-parent hero"
 				autoComplete="off"
 				onSubmit={form.handleSubmit((LoginData) => mutate(LoginData))}
 				noValidate
 			>
 				<section
 					style={{ width: "550px" }}
-					className="bg-zinc-100 dark:bg-zinc-950 flex flex-col items-center justify-center h-full rounded-lg"
+					className="flex flex-col items-center justify-center h-full rounded-lg bg-zinc-100 dark:bg-zinc-950"
 				>
-					<h1 className=" mt-4 text-2xl font-bold">{t("welcome-to-ikseer")}</h1>
+					<h1 className="mt-4 text-2xl font-bold ">{t("welcome-to-ikseer")}</h1>
 					<ErrorMsg>{errorMsg.non_field_errors?.[0]} </ErrorMsg>
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label
 								htmlFor="username"
-								className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
+								className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
 							>
 								<LuMail />
 							</label>
@@ -60,13 +58,13 @@ export default function Login() {
 								name="username"
 								placeholder={t("email-or-username")}
 								type="text"
-								className="rounded-e-md h-10"
+								className="h-10 rounded-e-md"
 							/>
 						</section>
 						<section className="flex w-full">
 							<label
 								htmlFor="password"
-								className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
+								className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
 							>
 								<LuKeyRound />
 							</label>
@@ -74,7 +72,7 @@ export default function Login() {
 								name="password"
 								placeholder={t("password")}
 								type="password"
-								className="rounded-e-md h-10"
+								className="h-10 rounded-e-md"
 							/>
 						</section>
 					</div>
@@ -88,7 +86,7 @@ export default function Login() {
 					</Button>
 
 					<div className="w-3/4">
-						<section className="gap-x-1 flex">
+						<section className="flex gap-x-1">
 							<span>{t("forgot-your-password")}</span>
 							<Link
 								href="/otp-by-email"
@@ -97,7 +95,7 @@ export default function Login() {
 								Change password!
 							</Link>
 						</section>
-						<section className="gap-x-1 flex">
+						<section className="flex gap-x-1">
 							<span>{t("dont-have-an-account")}</span>
 							<Link
 								href="/register"
@@ -109,12 +107,12 @@ export default function Login() {
 					</div>
 					<DividerText text={t("or")} />
 					<AuthShape
-						authImage={Google}
+						authImage="/auth/google.svg"
 						text={t("continue-with-google")}
 						className="w-3/4"
 					/>
 					<AuthShape
-						authImage={Facebook}
+						authImage="/auth/facebook.svg"
 						text={t("continue-with-facebook")}
 						className="w-3/4"
 					/>

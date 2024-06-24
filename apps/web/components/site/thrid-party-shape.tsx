@@ -15,7 +15,9 @@ export default function AuthShape({
 				<Image
 					src={authImage}
 					alt="auth image"
-					className="ltr:mr-6 rtl:ml-6 w-6 h-6 inline-block"
+					className="inline-block w-6 h-6 ltr:mr-6 rtl:ml-6"
+					width={400}
+					height={400}
 				/>
 				<span>{text}</span>
 			</Link>

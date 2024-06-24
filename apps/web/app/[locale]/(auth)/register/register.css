@@ -1,5 +1,5 @@
 .auth-parent {
-	background-image: url("../../../../images/auth/main.svg");
+	background-image: url("/auth/auth-bg.svg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding-left: 2rem;

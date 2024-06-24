@@ -1,8 +1,6 @@
 "use client";
 import DividerText from "@/components/site/divider";
 import AuthShape from "@/components/site/thrid-party-shape";
-import Facebook from "@/images/auth/Facebook.svg";
-import Google from "@/images/auth/Google.svg";
 import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
@@ -94,14 +92,14 @@ export function RegisterFirstStep() {
 					<section className="flex w-full">
 						<label
 							htmlFor="email"
-							className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
+							className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
 						>
 							<LuMail />
 						</label>
 						<FormInput
 							name="email"
 							placeholder={t("email")}
-							className="rounded-e-md h-10"
+							className="h-10 rounded-e-md"
 						/>
 					</section>
 					{emailisExist && (
@@ -110,7 +108,7 @@ export function RegisterFirstStep() {
 					<section className="flex w-full">
 						<label
 							htmlFor="username"
-							className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
+							className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
 						>
 							<LuUser />
 						</label>
@@ -122,23 +120,23 @@ export function RegisterFirstStep() {
 					<section className="flex w-full">
 						<label
 							htmlFor="password"
-							className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
+							className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
 						>
 							<LuKeyRound />
 						</label>
 						<FormInput name="password" placeholder={t("password")} />
 					</section>
 					<section>
-						<section className="gap-x-6 flex">
-							<div className="gap-x-2 flex items-center">
+						<section className="flex gap-x-6">
+							<div className="flex items-center gap-x-2">
 								<Radio name="gender" value="male" />
 								<label htmlFor="male">{t("male")}</label>
 							</div>
-							<div className="gap-x-2 flex items-center">
+							<div className="flex items-center gap-x-2">
 								<Radio name="gender" value="female" />
 								<label htmlFor="female">{t("female")}</label>
 							</div>
-							<div className="gap-x-2 flex items-center">
+							<div className="flex items-center gap-x-2">
 								<Radio name="gender" value="prefernottosay" />
 								<label htmlFor="prefernottosay">{t("prefer-not-to-say")}</label>
 							</div>
@@ -152,7 +150,7 @@ export function RegisterFirstStep() {
 
 					<Button
 						type="submit"
-						className="hover:bg-teal-700 w-full bg-teal-600 rounded-md"
+						className="w-full bg-teal-600 rounded-md hover:bg-teal-700"
 						disabled={isPending}
 					>
 						{isPending ? <Spinner /> : t("sign-up")}
@@ -166,12 +164,12 @@ export function RegisterFirstStep() {
 					</section>
 					<DividerText text={t("or")} />
 					<AuthShape
-						authImage={Google}
+						authImage="/auth/google.svg"
 						text={t("continue-with-google")}
 						className="w-3/4 m-auto"
 					/>
 					<AuthShape
-						authImage={Facebook}
+						authImage="/auth/facebook.svg"
 						text={t("continue-with-facebook")}
 						className="w-3/4 m-auto"
 					/>

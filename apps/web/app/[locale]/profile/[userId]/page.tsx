@@ -7,7 +7,7 @@ import {
 import { LuUser } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { MdPayment } from "react-icons/md"; /*didn't exist in lu*/
-import ProfileSetting from "./_components/basic-setting/basic-setting";
+import BasicSettings from "./_components/basic-setting/basic-settings";
 import PaymentSetting from "./_components/payment-setting/payment-setting";
 import ProfileContainer from "./_components/securiy-setting/profile-container";
 import SecuritySetting from "./security-setting";
@@ -15,8 +15,8 @@ import SecuritySetting from "./security-setting";
 export default function Profile() {
 	return (
 		<ProfileContainer>
-			<Tabs defaultValue="profile">
-				<TabsList>
+			<Tabs defaultValue="profile" className="py-4 my-10">
+				<TabsList className="py-4 ">
 					<TabsTrigger value="profile">
 						<LuUser /> Basic Settings
 					</TabsTrigger>
@@ -32,7 +32,7 @@ export default function Profile() {
 					<SecuritySetting key="component-2" />
 				</TabsContent>
 				<TabsContent value="profile">
-					<ProfileSetting key="component-3" />
+					<BasicSettings key="component-3" />
 				</TabsContent>
 				<TabsContent value="payment">
 					<PaymentSetting key="component-3" />
