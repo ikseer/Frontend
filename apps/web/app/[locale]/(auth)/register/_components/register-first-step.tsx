@@ -11,6 +11,7 @@ import { useCheckEmail, useCheckUserName, useRegister } from "@/api/hooks/auth";
 import { ErrorMsg } from "@/components/site/error-msg";
 import Radio from "@/components/site/radio";
 import Spinner from "@/components/site/spinner";
+import { otpTimer } from "@/lib/otp-time";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
@@ -39,6 +40,7 @@ export function RegisterFirstStep() {
 	const onSuccess = () => {
 		router.push(`/register?email=${form.getValues().email}`);
 		triggerFunction?.current?.click();
+		otpTimer.set("120", "/");
 	};
 	const { mutate, isPending } = useRegister({ onSuccess });
 

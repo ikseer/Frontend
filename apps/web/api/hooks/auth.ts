@@ -47,6 +47,7 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 		onSuccess: (data) => {
 			const { refresh: refreshToken, access: accessToken } = data;
 			console.info(refreshToken, accessToken, data, "login returnded data");
+			// TODO: set user id here
 			setSession({ accessToken, refreshToken });
 			onSuccess?.();
 			toast({
@@ -85,11 +86,12 @@ export function usePhone({ onSuccess }: { onSuccess: () => void }) {
 	});
 }
 
-export function useResendOtp() {
+export function useResendOtp({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.resendOtp,
 		onSuccess: () => {
+			onSuccess?.();
 			toast({
 				title: "OTP Resent",
 				variant: "success",
@@ -153,12 +155,12 @@ export function useLogout() {
 	});
 }
 
-export function useResetPassword({ onSuccess }: { onSuccess: () => void }) {
+export function useChangePassword({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.resetPassword,
+		mutationFn: clientAPI.auth.changePassword,
 		onSuccess: () => {
-			onSuccess();
+			onSuccess?.();
 			toast({
 				title: "Password reset success",
 				variant: "success",

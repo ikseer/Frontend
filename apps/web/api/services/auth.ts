@@ -77,8 +77,11 @@ export class AuthAPI {
 		AccessTokenCookie.delete();
 	};
 
-	resetPassword = async (data: { email: string }) => {
-		return this.http.post("/accounts/password/reset/", data);
+	changePassword = async (data: {
+		new_password1: string;
+		new_password2: string;
+	}) => {
+		return this.http.post("/accounts/password/change/", data);
 	};
 
 	updatePassword = async (data: {

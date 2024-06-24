@@ -1,8 +1,10 @@
 "use client";
 
 import { useOtp, useResendOtp } from "@/api/hooks/auth";
+import { TimerCircularProgressBar } from "@/components/site/circular-progressbar";
 import { ErrorMsg } from "@/components/site/error-msg";
 import { getErrorMsg } from "@/lib/get-error-msg";
+import { otpTimer } from "@/lib/otp-time";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
@@ -19,6 +21,7 @@ import {
 } from "@ikseer/ui/src/components/ui/input-otp";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
 
@@ -27,6 +30,8 @@ const schema = z.object({
 });
 export function RegisterSecondStep() {
 	const { triggerFunction } = useRegisterContext();
+	const [isResetTimer, setIsResetTimer] = useState(false);
+
 	const form = useZodForm({
 		schema: schema,
 	});
@@ -35,18 +40,21 @@ export function RegisterSecondStep() {
 	const onSuccess = () => {
 		triggerFunction?.current?.click();
 	};
+	const OtpOnSuccess = () => {
+		setIsResetTimer(true);
+	};
 
-	const confirmEmail = useOtp({ onSuccess });
-	const resendOtp = useResendOtp();
+	const confirmOtp = useOtp({ onSuccess });
+	const resendOtp = useResendOtp({ onSuccess: OtpOnSuccess });
 	const searchParams = useSearchParams();
-	console.log(searchParams.get("email"));
-	const errorMsg = getErrorMsg(confirmEmail.error)?.detail;
+	const userEmail = searchParams.get("email");
+	const errorMsg = getErrorMsg(confirmOtp.error)?.detail;
 
 	return (
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => {
-					confirmEmail.mutate(data);
+					confirmOtp.mutate(data);
 				})}
 				className=" flex flex-col items-center justify-center py-10 space-y-6 text-center"
 			>
@@ -82,15 +90,23 @@ export function RegisterSecondStep() {
 				/>
 				<section className="space-y-4">
 					<p className="text-center">{t("dont-get-the-code")}</p>
-					<div className="gap-x-2 flex">
-						<Button type="submit">{t("submit")}</Button>
-						<Button
-							type="button"
-							onClick={() => resendOtp.mutate("modyyousef800@gmail.com")}
-						>
-							{t("resend")}
-						</Button>
-					</div>
+					<section className="gap-y-5 flex flex-col items-center">
+						<div className="gap-x-2 w-[400px] grid grid-cols-2">
+							<Button type="submit">{t("submit")}</Button>
+							<Button
+								type="button"
+								onClick={() => {
+									resendOtp.mutate(userEmail as string);
+								}}
+							>
+								{t("resend")}
+							</Button>
+						</div>
+						<TimerCircularProgressBar
+							isResetTimer={isResetTimer}
+							setIsResetTimer={setIsResetTimer}
+						/>
+					</section>
 				</section>
 			</form>
 		</Form>

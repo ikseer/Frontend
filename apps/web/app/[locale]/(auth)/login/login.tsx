@@ -80,7 +80,8 @@ export default function Login() {
 					</div>
 
 					<Button
-						className="bg-teal-600 hover:bg-teal-700 w-3/4 h-[42px] my-5"
+						variant="submit"
+						className="w-3/4 h-[42px] my-5"
 						disabled={isPending}
 					>
 						{isPending ? <Spinner /> : "Login"}
@@ -90,7 +91,7 @@ export default function Login() {
 						<section className="gap-x-1 flex">
 							<span>{t("forgot-your-password")}</span>
 							<Link
-								href="/reset-password"
+								href="/otp-by-email"
 								style={{ color: "#0B9992", fontWeight: "600" }}
 							>
 								Change password!

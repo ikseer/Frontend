@@ -1,7 +1,5 @@
 import Cookies from "js-cookie";
 
-export const DOMAIN_COOKIE_KEY = "temp-domain";
-export const WEBSITE_ID_COOKIE_KEY = "temp-website-id";
 // TODO: separate the locale detection for each website
 
 export const ACCESS_TOKEN_KEY = "the-access-token";
