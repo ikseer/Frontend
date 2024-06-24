@@ -1,0 +1,59 @@
+{
+	"Login": {
+		"welcome-to-ikseer": "Welcome to ikseer",
+		"email-or-username": "Email or username",
+		"password": "Password",
+		"forgot-your-password": "Forgot your password?",
+		"dont-have-an-account": "Don’t have an account?",
+		"register-now": "Register Now!",
+		"continue-with-google": "continue with google",
+		"continue-with-facebook": "continue with facebook",
+		"or": "OR"
+	},
+	"form": {
+		"password": "Password",
+		"username": "Username",
+		"pin": "OTP",
+		"confirmPassword": "Confirm password",
+		"newPassword": "New pssword"
+	},
+	"Register": {
+		"welcome-to-ikseer": "Welcome to ikseer",
+		"first-name": "First name",
+		"last-name": "Last name",
+		"male": "Male",
+		"female": "Female",
+		"prefer-not-to-say": "Prefer not to say",
+		"sign-up": "Sign up",
+		"already-have-an-account": "Already have an account,",
+		"login": "Login?",
+		"or": "OR",
+		"continue-with-google": "Continue with google",
+		"continue-with-facebook": "Continue with facebook",
+		"email": "Email",
+		"username": "Username",
+		"password": "Password",
+		"confirm-your-email": "Confirm your email",
+		"please-enter-the-code-sent-to-your-email-it-expires-after-10-minutes": "Please enter the code sent to your email. It expires after 10 minutes.",
+		"dont-get-the-code": "Don't get the code",
+		"submit": "Submit",
+		"resend": "Resend",
+		"phone-number": "Phone number",
+		"phone-number-is-required-for-main-features-in-the-app": "Phone number is required for main features in the app",
+		"invalid-phone": "Invalid Phone",
+		"save-and-continue": "Save and Continue",
+		"skip-for-now": "Skip for now"
+	},
+	"ResetPassword": {
+		"reset-password": "Reset password",
+		"if-you-forgot-your-password-please-enter-your-email-below-to-rest-it": "If you forgot your password, please enter your email below to rest it."
+	},
+	"ConfirmPin": {
+		"verification-required": "Verification required",
+		"to-continue-complete-this-verification-step-weve-sent-a-code-to-your-email-please-enter-it-below": "To continue, complete this verification step. we’ve sent a code to your email. Please enter it below.",
+		"didnt-get-the-code": "Didn’t get the code?",
+		"back": "Back",
+		"submit": "Submit",
+		"resent": "Resent"
+	}
+}

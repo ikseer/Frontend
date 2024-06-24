@@ -1,0 +1,51 @@
+{
+	"Login": {
+		"dont-have-an-account": "ليس لديك حساب،",
+		"email-or-username": "البريد الإلكتروني أو اسم المستخدم",
+		"forgot-your-password": "نسيت كلمة السر؟",
+		"password": "كلمة المرور",
+		"register-now": "سجل الان!",
+		"welcome-to-ikseer": "مرحبا بكم في اكسير",
+		"continue-with-facebook": "سجل دخول بواسطة فيس بوك",
+		"continue-with-google": "سجل دخول بواسطة جوجل"
+	},
+	"form": {
+		"username": "اسم المستخدم",
+		"password": "كلمة المرور",
+		"pin": "مكتب المدعي العام"
+	},
+	"Register": {
+		"already-have-an-account": "هل لديك حساب،",
+		"continue-with-facebook": "سجل دخول بواسطة فيس بوك",
+		"continue-with-google": "سجل دخول بواسطة جوجل",
+		"female": "أنثى",
+		"first-name": "الاسم الأول",
+		"last-name": "اسم العائلة",
+		"login": "تسجيل الدخول؟",
+		"male": "ذكر",
+		"or": "أو",
+		"prefer-not-to-say": "افضل عدم القول",
+		"sign-up": "اشتراك",
+		"welcome-to-ikseer": "مرحبا بكم في اكسير",
+		"email": "بريد إلكتروني",
+		"password": "كلمة المرور",
+		"username": "اسم المستخدم",
+		"confirm-your-email": "قم بتأكيد بريدك الإلكتروني",
+		"dont-get-the-code": "لا تحصل على الرمز",
+		"invalid-phone": "هاتف غير صالح",
+		"phone-number": "رقم التليفون",
+		"phone-number-is-required-for-main-features-in-the-app": "رقم الهاتف مطلوب للميزات الرئيسية في التطبيق",
+		"please-enter-the-code-sent-to-your-email-it-expires-after-10-minutes": "الرجاء إدخال الرمز المرسل إلى بريدك الإلكتروني. \nتنتهي صلاحيته بعد 10 دقائق.",
+		"resend": "إعادة إرسال",
+		"save-and-continue": "حفظ ومتابعة",
+		"skip-for-now": "تخطي في الوقت الراهن",
+		"submit": "يُقدِّم"
+	},
+	"ResetPassword": {
+		"if-you-forgot-your-password-please-enter-your-email-below-to-rest-it": "إذا نسيت كلمة المرور الخاصة بك، يرجى إدخال بريدك الإلكتروني أدناه لإراحتها.",
+		"reset-password": "إعادة تعيين كلمة المرور"
+	},
+	"ConfirmPin": {
+		"verification-required": ""
+	}
+}
