@@ -1,8 +1,8 @@
 "use client";
 
 import { useOtp, useResendOtp } from "@/api/hooks/accounts";
-import { TimerCircularProgressBar } from "@/components/site/circular-progressbar";
-import { ErrorMsg } from "@/components/site/error-msg";
+import { TimerCircularProgressBar } from "@/components/circular-progressbar";
+import { ErrorMsg } from "@/components/error-msg";
 import { getErrorMsg } from "@/lib/get-error-msg";
 import { otpTimer } from "@/lib/otp-time";
 import { useZodForm } from "@/lib/use-zod-schema";

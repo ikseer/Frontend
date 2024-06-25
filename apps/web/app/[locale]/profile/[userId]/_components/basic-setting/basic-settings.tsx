@@ -1,7 +1,7 @@
 "use client";
 import { useGetMe } from "@/api/hooks/accounts";
 import NotFound from "@/app/[locale]/not-found";
-import NA from "@/components/site/NA";
+import NA from "@/components/NA";
 import { cn } from "@/lib/utils";
 import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/src/components/ui/loading-spinner";
 import SettingContainer from "../setting";

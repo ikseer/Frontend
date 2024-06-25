@@ -1,6 +1,6 @@
 "use client";
-import DividerText from "@/components/site/divider";
-import AuthShape from "@/components/site/thrid-party-shape";
+import DividerText from "@/components/divider";
+import AuthShape from "@/components/thrid-party-shape";
 import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
@@ -10,10 +10,10 @@ import {
 	useCheckUserName,
 	useRegister,
 } from "@/api/hooks/accounts";
-import { TimerCircularProgressBar } from "@/components/site/circular-progressbar";
-import { ErrorMsg } from "@/components/site/error-msg";
-import Radio from "@/components/site/radio";
-import Spinner from "@/components/site/spinner";
+import { TimerCircularProgressBar } from "@/components/circular-progressbar";
+import { ErrorMsg } from "@/components/error-msg";
+import Radio from "@/components/radio";
+import Spinner from "@/components/spinner";
 import { otpTimer } from "@/lib/otp-time";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";

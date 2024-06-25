@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { usePhone } from "@/api/hooks/accounts";
-import Spinner from "@/components/site/spinner";
+import Spinner from "@/components/spinner";
 //@ts-ignore
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useTranslations } from "next-intl";

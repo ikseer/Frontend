@@ -1,4 +1,4 @@
-import PrelineScript from "@/components/site/preline-script";
+import PrelineScript from "@/components/preline-script";
 import { availableLocalesMap, defaultLocale } from "@/next.locales.mjs";
 import { LocaleProvider } from "@/providers/locale-provider";
 import { notFound } from "next/navigation";
