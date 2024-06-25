@@ -1,11 +1,22 @@
 "use client";
+import { useGetMe } from "@/api/hooks/accounts";
+import NotFound from "@/app/[locale]/not-found";
+import NA from "@/components/site/NA";
 import { cn } from "@/lib/utils";
+import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/src/components/ui/loading-spinner";
 import SettingContainer from "../setting";
 import { BasicSettingsDialog } from "./basic-settings-diaglog";
 
 export default function BasicSettings() {
+	const { data, isPending } = useGetMe();
+	if (isPending || typeof window === "undefined")
+		return <FullScreenSpinnerWithNavBar />;
+	if (!data || data.length <= 0) return <NotFound />;
+	const userInfo = data[0];
+
 	return (
 		<main>
+			<UserImage />
 			<SettingContainer
 				mainText="Basic Setting"
 				secondaryText="Edit your basic details like full name."
@@ -19,29 +30,45 @@ export default function BasicSettings() {
 						First and last name
 					</p> */}
 					</section>
-					<ViewInfo className="col-span-1">Mohamed</ViewInfo>
-					<ViewInfo className="col-span-1">Yousef</ViewInfo>
+					<ViewInfo className="col-span-1">
+						<NA>{userInfo.username}</NA>
+					</ViewInfo>
+					<ViewInfo className="col-span-1">
+						<NA>{userInfo.email}</NA>
+					</ViewInfo>
 				</DisplaySection>
 				<DisplaySection>
 					<Label htmlFor="email">Email</Label>
-					<ViewInfo>mohamedyousef@gmail.com</ViewInfo>
+					<ViewInfo>
+						<NA>{userInfo.email}</NA>
+					</ViewInfo>
 				</DisplaySection>
 				<DisplaySection>
 					<Label htmlFor="username">Username</Label>
-					<ViewInfo>mohamedyousef</ViewInfo>
+					<ViewInfo>
+						<NA>{userInfo.username}</NA>
+					</ViewInfo>
 				</DisplaySection>
 				<DisplaySection>
 					<Label htmlFor="date_of_birth">Date of Birth</Label>
-					<ViewInfo>Date here</ViewInfo>
+					<ViewInfo>
+						<NA>{userInfo.date_of_birth}</NA>
+					</ViewInfo>
 				</DisplaySection>
 				<DisplaySection>
 					<Label>Timezone</Label>
-					<ViewInfo>Time Zone here</ViewInfo>
+					<ViewInfo>
+						<NA>{userInfo.timeZone}</NA>
+					</ViewInfo>
 				</DisplaySection>
 				<BasicSettingsDialog />
 			</section>
 		</main>
 	);
+}
+
+function UserImage() {
+	return <h1>user image here</h1>;
 }
 
 function DisplaySection({ children }: { children: React.ReactNode }) {

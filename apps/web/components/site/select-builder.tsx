@@ -20,7 +20,6 @@ export function SelectBuilder({
 	placeholder?: string;
 	contentClassName?: string;
 }) {
-	console.log(data, title);
 	return (
 		<Select>
 			<SelectTrigger>

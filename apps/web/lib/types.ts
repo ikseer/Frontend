@@ -1,4 +1,5 @@
-export interface Profile {
+export interface Patient {
+	image: string;
 	first_name: string;
 	last_name: string;
 	email: string;
@@ -7,6 +8,8 @@ export interface Profile {
 	timezone: string;
 	gender: string;
 	[key: string]: string;
+	created_at: string;
+	updated_at: string;
 }
 
 export interface Product {

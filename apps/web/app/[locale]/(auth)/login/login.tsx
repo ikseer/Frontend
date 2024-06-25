@@ -6,7 +6,7 @@ import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
-import { useLogin } from "@/api/hooks/auth";
+import { useLogin } from "@/api/hooks/accounts";
 import { ErrorMsg } from "@/components/site/error-msg";
 import Spinner from "@/components/site/spinner";
 import { getErrorMsg } from "@/lib/get-error-msg";

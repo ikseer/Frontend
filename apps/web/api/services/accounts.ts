@@ -1,5 +1,7 @@
+import type { Patient } from "@/lib/types";
 import type { AxiosInstance } from "axios";
-import { httpNoAuth } from "../config/axios.client";
+import { httpNoAuth } from "../config/axios-non-auth";
+import { http } from "../config/axios.client";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
@@ -59,7 +61,6 @@ export class AuthAPI {
 	};
 
 	phone = async (phone: string) => {
-		console.info(phone, "phone");
 		return await this.http
 			.post("/accounts/phone-register/", { phone: phone })
 			.then((res) => res.data);
@@ -67,7 +68,6 @@ export class AuthAPI {
 
 	login = async (data: { username: string; password: string }) => {
 		return await httpNoAuth.post("/accounts/login/", data).then((res) => {
-			console.log(res, "Mohamed yousef");
 			return res.data;
 		});
 	};
@@ -95,30 +95,37 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	getMe = async () => {
+	getPatient = async () => {
 		const id = UserIdCookie.get();
-		return await this.http.get(`/accounts/profile/${id}`);
+		console.log("user id", id);
+		return await this.http
+			.get<Patient[]>("/accounts/patient/", {
+				params: { user__id: id },
+			})
+			.then((res) => res.data);
 	};
 
-	updateMe = async () => {
+	updatePatient = async () => {
 		const id = UserIdCookie.get();
-		return await this.http.patch(`/accounts/profile/${id}/`);
+		return await this.http.patch("/accounts/patient/", {
+			params: { user__id: id },
+		});
 	};
 
-	deleteMe = async () => {
+	deletePatient = async () => {
 		const id = UserIdCookie.get();
 		return await this.http
-			.delete(`/accounts/profile/${id}`)
+			.delete("/accounts/patient/", { params: { user__id: id } })
 			.then((res) => res.data);
 	};
 
 	getMyImage = async () => {
 		const id = UserIdCookie.get();
-		return await this.http.get(`/accounts/profile/${id}/image/`);
+		return await this.http.get(`/accounts/patient/${id}/image/`);
 	};
 
 	updateMyImage = async (data: Blob) => {
 		const id = UserIdCookie.get();
-		return await this.http.patchForm(`/accounts/profile/${id}/image/`, data);
+		return await this.http.patchForm(`/accounts/patient/${id}/image/`, data);
 	};
 }

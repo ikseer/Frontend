@@ -45,10 +45,13 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 	return useMutation({
 		mutationFn: clientAPI.auth.otp,
 		onSuccess: (data) => {
-			const { refresh: refreshToken, access: accessToken } = data;
+			const {
+				refresh: refreshToken,
+				access: accessToken,
+				user: { pk },
+			} = data;
 			console.info(refreshToken, accessToken, data, "login returnded data");
-			// TODO: set user id here
-			setSession({ accessToken, refreshToken });
+			setSession({ accessToken, refreshToken, userId: pk });
 			onSuccess?.();
 			toast({
 				title: "OTP Verified",
@@ -117,10 +120,14 @@ export function useLogin({ onSuccess }: { onSuccess?: () => void }) {
 				title: "Login Success",
 				variant: "success",
 			});
-			const { access, token } = data;
-			console.info(access, token, data.user.pk, data, "login returnded data");
-			setSession({ accessToken: access, refreshToken: token });
-			UserIdCookie.set(data.user.pk, "/");
+			const {
+				access,
+				token,
+				user: { pk },
+			} = data;
+			console.log(access, token, data.user.pk, data, "login returnded data");
+			setSession({ accessToken: access, refreshToken: token, userId: pk });
+
 			router.push("/");
 		},
 
@@ -190,13 +197,13 @@ export const useUpdatePassword = () => {
 export function useGetMe() {
 	return useQuery({
 		queryKey: ["me"],
-		queryFn: clientAPI.auth.getMe,
+		queryFn: clientAPI.auth.getPatient,
 	});
 }
 export function useUpdateMe() {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.updateMe,
+		mutationFn: clientAPI.auth.updatePatient,
 		onSuccess() {
 			toast({
 				title: "Profile updated",
@@ -215,7 +222,7 @@ export function useUpdateMe() {
 export function useDeleteMe({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.deleteMe,
+		mutationFn: clientAPI.auth.deletePatient,
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
