@@ -95,12 +95,10 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	getPatient = async () => {
-		const id = UserIdCookie.get();
-		console.log("user id", id);
+	getPatient = async (userId: string) => {
 		return await this.http
 			.get<Patient[]>("/accounts/patient/", {
-				params: { user__id: id },
+				params: { user__id: userId },
 			})
 			.then((res) => res.data);
 	};

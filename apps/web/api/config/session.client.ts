@@ -16,7 +16,11 @@ export interface SessionInfo {
 }
 
 export function setSession(
-	session: { accessToken: string; refreshToken: string; userId: string } | null,
+	session: {
+		accessToken: string;
+		refreshToken: string;
+		userId: string | null;
+	} | null,
 ) {
 	if (!session) {
 		AccessTokenCookie.delete();
@@ -26,7 +30,7 @@ export function setSession(
 	const { accessToken, refreshToken, userId } = session;
 	AccessTokenCookie.set(accessToken, "/");
 	RefreshTokenCookie.set(refreshToken, "/");
-	UserIdCookie.set(userId, "/");
+	if (userId) UserIdCookie.set(userId, "/");
 }
 
 export function useCurrentUser() {

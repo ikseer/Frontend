@@ -73,6 +73,7 @@ const refreshAccessToken = async () => {
 		setSession({
 			accessToken,
 			refreshToken,
+			userId: null,
 		});
 		return accessToken;
 	} catch {}

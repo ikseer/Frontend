@@ -195,11 +195,13 @@ export const useUpdatePassword = () => {
 };
 
 export function useGetMe() {
+	const userId = UserIdCookie.get();
 	return useQuery({
 		queryKey: ["me"],
-		queryFn: clientAPI.auth.getPatient,
+		queryFn: () => clientAPI.auth.getPatient(userId as string),
 	});
 }
+
 export function useUpdateMe() {
 	const { toast } = useToast();
 	return useMutation({
