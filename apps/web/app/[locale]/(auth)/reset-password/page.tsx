@@ -6,7 +6,7 @@
 // import { z } from "zod";
 // import AuthContainer from "../register/auth-container";
 // import "../register/register.css";
-// import { useResetPassword } from "@/api/hooks/auth";
+// import { useResetPassword } from "@ikseer/api/hooks/auth";
 // import { FormInput } from "@ikseer/ui/src/components/ui/input";
 
 // export default function ResetPassword() {

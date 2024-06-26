@@ -1,6 +1,6 @@
 "use client";
 
-import type { patientSchema } from "@/api/patients";
+import type { patientSchema } from "@ikseer/api/patients";
 import { TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import { useTranslations } from "next-intl";

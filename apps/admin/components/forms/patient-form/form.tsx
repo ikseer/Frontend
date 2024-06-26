@@ -1,6 +1,6 @@
 "use client";
 
-import { patientSchema } from "@/api/patients";
+import { patientSchema } from "@ikseer/api/patients";
 import { Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconMessageCircleUser, IconShieldPlus } from "@tabler/icons-react";

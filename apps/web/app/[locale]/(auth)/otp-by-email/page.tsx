@@ -6,7 +6,7 @@ import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
-import { useResendOtp } from "@/api/hooks/accounts";
+import { useResendOtp } from "@ikseer/api/hooks/accounts";
 import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
 import { getErrorMsg } from "@/lib/get-error-msg";

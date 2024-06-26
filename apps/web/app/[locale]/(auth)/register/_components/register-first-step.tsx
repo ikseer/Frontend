@@ -9,7 +9,7 @@ import {
 	useCheckEmail,
 	useCheckUserName,
 	useRegister,
-} from "@/api/hooks/accounts";
+} from "@ikseer/api/hooks/accounts";
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
 import Radio from "@/components/radio";

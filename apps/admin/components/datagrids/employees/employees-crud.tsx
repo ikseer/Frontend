@@ -6,7 +6,7 @@ import {
 	useDeleteEmployee,
 	useRestoreEmployee,
 	useUpdateEmployee,
-} from "@/api/employees";
+} from "@ikseer/api/employees";
 import EmployeeForm from "@/components/forms/employee";
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";

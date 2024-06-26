@@ -18,7 +18,7 @@ import { useTranslations } from "next-intl";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
-import { useOtp, useResendOtp } from "@/api/hooks/accounts";
+import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";

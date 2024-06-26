@@ -1,4 +1,4 @@
-import { type createDoctor, doctorSchema } from "@/api/doctors";
+import { type createDoctor, doctorSchema } from "@ikseer/api/doctors";
 import {
 	Button,
 	Group,

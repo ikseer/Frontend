@@ -1,5 +1,5 @@
 "use client";
-import type { Product } from "@/types";
+import type { Product } from "@ikseer/lib/types";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useState } from "react";
 import useCart from "../store/cart/cart";

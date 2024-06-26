@@ -1,6 +1,6 @@
 "use client";
 import { BACKEND_URL } from "@/lib/constants";
-import type { Product } from "@/types";
+import type { Product } from "@ikseer/lib/types";
 import Image from "next/image";
 import IncrementAndDecrement from "../../../components/IncrementAndDecrement";
 import RemoveProduct from "./RemoveProduct";

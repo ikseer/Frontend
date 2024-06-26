@@ -1,5 +1,5 @@
 "use client";
-import { useGetMe } from "@/api/hooks/accounts";
+import { useGetMe } from "@ikseer/api/hooks/accounts";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { Button } from "@ikseer/ui/src/components/ui/button";

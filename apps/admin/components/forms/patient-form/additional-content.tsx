@@ -1,6 +1,6 @@
 "use client";
 
-import type { patientSchema } from "@/api/patients";
+import type { patientSchema } from "@ikseer/api/patients";
 import AddressField from "@/components/address-field/address-field";
 import { Group, Radio, Select, TextInput, Textarea } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";

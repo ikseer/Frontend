@@ -1,5 +1,5 @@
 "use client";
-import { useGetMe } from "@/api/hooks/accounts";
+import { useGetMe } from "@ikseer/api/hooks/accounts";
 import NotFound from "@/app/[locale]/not-found";
 import NA from "@/components/NA";
 import { cn } from "@/lib/utils";

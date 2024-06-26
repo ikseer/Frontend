@@ -1,4 +1,4 @@
-import { type createEmployee, employeeSchema } from "@/api/employees";
+import { type createEmployee, employeeSchema } from "@ikseer/api/employees";
 import {
 	Button,
 	Group,

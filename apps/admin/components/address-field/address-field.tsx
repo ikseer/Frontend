@@ -1,4 +1,4 @@
-import type { patientSchema } from "@/api/patients";
+import type { patientSchema } from "@ikseer/api/patients";
 import { type ComboboxItem, Select, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import { useLocale, useTranslations } from "next-intl";

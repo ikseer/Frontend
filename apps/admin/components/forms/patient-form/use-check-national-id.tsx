@@ -2,7 +2,7 @@ import {
 	getDeletedPatients,
 	getPatients,
 	type patientSchema,
-} from "@/api/patients";
+} from "@ikseer/api/patients";
 import { Link } from "@/navigation";
 import { Button, Group, Text } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";

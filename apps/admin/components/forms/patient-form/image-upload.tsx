@@ -1,4 +1,4 @@
-import type { patientSchema } from "@/api/patients";
+import type { patientSchema } from "@ikseer/api/patients";
 import { Image, Stack } from "@mantine/core";
 import {
 	Dropzone,

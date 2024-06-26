@@ -2,7 +2,7 @@
 import { usePermissions } from "@/hooks/use-permissions";
 import { Card, Skeleton, Text } from "@mantine/core";
 import { useTranslations } from "next-intl";
-import { useGetStatistics } from "../../../../api/statistics";
+import { useGetStatistics } from "@ikseer/api/statistics";
 
 export default function DashboardHeader() {
 	const { data } = useGetStatistics();

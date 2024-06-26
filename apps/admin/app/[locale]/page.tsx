@@ -1,6 +1,6 @@
 "use client";
 
-import { usePatientSignIn } from "@/api/login";
+import { usePatientSignIn } from "@ikseer/api/login";
 import ErrorMessage from "@/components/error-msg";
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";

@@ -6,7 +6,7 @@ import {
 	useDeleteDoctor,
 	useRestoreDoctor,
 	useUpdateDoctor,
-} from "@/api/doctors";
+} from "@ikseer/api/doctors";
 import DoctorForm from "@/components/forms/doctor";
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";

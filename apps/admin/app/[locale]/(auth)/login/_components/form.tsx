@@ -1,6 +1,6 @@
 "use client";
 
-import { useSignIn } from "@/api/login";
+import { useSignIn } from "@ikseer/api/login";
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";

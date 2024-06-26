@@ -1,4 +1,4 @@
-import { type doctorSchema, getDoctors } from "@/api/doctors";
+import { type doctorSchema, getDoctors } from "@ikseer/api/doctors";
 import type { UseFormReturnType } from "@mantine/form";
 import { debounce } from "lodash";
 import { useTranslations } from "next-intl";

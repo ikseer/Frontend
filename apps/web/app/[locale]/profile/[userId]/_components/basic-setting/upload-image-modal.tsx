@@ -1,7 +1,7 @@
 "use client";
 
-import { clientAPI } from "@/api/config/api.client";
-import { useGetMe } from "@/api/hooks/accounts";
+import { clientAPI } from "@ikseer/api/config/api.client";
+import { useGetMe } from "@ikseer/api/hooks/accounts";
 import { UploadFile } from "@/components/upload-file";
 import { getErrorMsg } from "@/lib/get-error-msg";
 import { Dialog, DialogContent } from "@ikseer/ui/src/components/ui/dialog";

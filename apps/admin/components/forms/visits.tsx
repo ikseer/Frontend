@@ -1,5 +1,5 @@
-import { useDoctors } from "@/api/doctors";
-import { visitSchema } from "@/api/visits";
+import { useDoctors } from "@ikseer/api/doctors";
+import { visitSchema } from "@ikseer/api/visits";
 import type { Visit } from "@/lib/types";
 import {
 	Button,
