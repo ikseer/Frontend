@@ -8,6 +8,8 @@
 	},
 	"dependencies": {
 		"@ikseer/lib": "workspace:*",
+		"@ikseer/ui": "workspace:*",
+		"@tanstack/react-query": "^5.48.0",
 		"axios": "^1.6.8"
 	},
 	"devDependencies": {

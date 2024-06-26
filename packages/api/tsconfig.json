@@ -7,6 +7,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src"],
+	"include": ["hooks", "services", "config"],
 	"exclude": ["node_modules"]
 }

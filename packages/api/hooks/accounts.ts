@@ -1,5 +1,5 @@
 import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
-import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { clientAPI } from "../config/api.client";
 import { UserIdCookie, UserTypeCookie } from "../config/cookies.client";
