@@ -1,6 +1,7 @@
 {
 	"name": "frontend-enhancement",
 	"private": true,
+	"packageManager": "pnpm@9.2.0",
 	"scripts": {
 		"web": "pnpm --filter @ikseer/web",
 		"web:turbo": "turbo --filter @ikseer/web",

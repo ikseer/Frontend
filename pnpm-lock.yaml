@@ -352,9 +352,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      typescript:
-        specifier: ^5.5.2
-        version: 5.5.2
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -365,12 +362,12 @@ importers:
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
+      typescript:
+        specifier: ^5.5.2
+        version: 5.5.2
 
   packages/lib:
     dependencies:
-      '@hookform/resolvers':
-        specifier: ^3.6.0
-        version: 3.6.0(react-hook-form@7.52.0(react@18.3.1))
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -408,6 +405,9 @@ importers:
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
+      typescript:
+        specifier: ^5.5.2
+        version: 5.5.2
 
   packages/ui:
     dependencies:
