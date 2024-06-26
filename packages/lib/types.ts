@@ -1,4 +1,4 @@
-export interface Patient {
+export interface User {
 	image: string;
 	first_name: string;
 	last_name: string;
@@ -7,9 +7,13 @@ export interface Patient {
 	date_of_birth: string;
 	timezone: string;
 	gender: string;
-	[key: string]: string;
 	created_at: string;
 	updated_at: string;
+	id: string;
+}
+
+export interface Patient extends User {
+	age: number;
 }
 
 export interface Product {

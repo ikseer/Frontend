@@ -1,4 +1,4 @@
-import type { Patient } from "@/lib/types";
+import type { Patient } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { httpNoAuth } from "../config/axios-non-auth";
 import { http } from "../config/axios.client";

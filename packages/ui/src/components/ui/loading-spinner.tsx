@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@ikseer/lib/utils";
 import { Loader2 } from "lucide-react";
 
 export interface ISVGProps extends React.SVGProps<SVGSVGElement> {

@@ -3,7 +3,6 @@
 import { useZodForm } from "@ikseer/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
-	Form,
 	FormControl,
 	FormField,
 	FormItem,
@@ -59,14 +58,14 @@ export default function ConfirmPinCode() {
 					console.log(data);
 					confirmOtp.mutate(data);
 				})}
-				className="auth-parent hero flex items-center justify-center text-center"
+				className="flex items-center justify-center text-center auth-parent hero"
 			>
 				<AuthContainer className="space-y-6">
 					<section className="space-y-2">
 						<h1 className="text-2xl font-semibold">
 							{t("verification-required")}
 						</h1>
-						<p className="text-zinc-700 dark:text-zinc-100 w-5/6 m-auto">
+						<p className="w-5/6 m-auto text-zinc-700 dark:text-zinc-100">
 							{t(
 								"to-continue-complete-this-verification-step-weve-sent-a-code-to-your-email-please-enter-it-below",
 							)}
@@ -84,7 +83,7 @@ export default function ConfirmPinCode() {
 							<FormItem className="text-center">
 								<FormControl>
 									<InputOTP maxLength={6} {...field}>
-										<InputOTPGroup className="min-w-fit m-auto">
+										<InputOTPGroup className="m-auto min-w-fit">
 											<InputOTPSlot index={0} />
 											<InputOTPSlot index={1} />
 											<InputOTPSlot index={2} />
@@ -109,7 +108,7 @@ export default function ConfirmPinCode() {
 							>
 								{confirmOtp.isPending ? <Spinner /> : t("submit")}
 							</Button>
-							<div className=" grid w-full grid-cols-2 space-x-8">
+							<div className="grid w-full grid-cols-2 space-x-8 ">
 								<Button type="button">
 									<Link href="/otp-by-email">{t("back")}</Link>
 								</Button>

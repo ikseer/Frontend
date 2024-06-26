@@ -22,6 +22,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
 
@@ -56,7 +57,7 @@ export function RegisterSecondStep() {
 	});
 
 	return (
-		<Form {...form}>
+		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => {
 					confirmOtp.mutate(data);
@@ -114,6 +115,6 @@ export function RegisterSecondStep() {
 					</section>
 				</section>
 			</form>
-		</Form>
+		</FormProvider>
 	);
 }

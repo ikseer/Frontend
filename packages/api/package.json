@@ -3,20 +3,20 @@
 	"version": "1.0.0",
 	"private": true,
 	"peerDependencies": {
-		"next": "~14.0.0",
-		"react": "~18.0.0"
+		"react": "^18.2.0"
 	},
 	"dependencies": {
 		"@ikseer/lib": "workspace:*",
 		"@ikseer/ui": "workspace:*",
 		"@tanstack/react-query": "^5.48.0",
-		"axios": "^1.6.8",
+		"axios": "^1.7.2",
 		"js-cookie": "^3.0.5",
 		"jwt-decode": "^4.0.0",
 		"typescript": "^5.5.2",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
+		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20.14.9"
 	}
 }

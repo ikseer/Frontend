@@ -1,7 +1,3 @@
-import { serverAPI } from "@/api/config/api.server";
-import { useGetMe } from "@/api/hooks/accounts";
-import NotFound from "@/app/[locale]/not-found";
-import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/src/components/ui/loading-spinner";
 import {
 	Tabs,
 	TabsContent,

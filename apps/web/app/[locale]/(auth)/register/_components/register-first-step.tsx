@@ -13,13 +13,13 @@ import {
 	useCheckUserName,
 	useRegister,
 } from "@ikseer/api/hooks/accounts";
-import { useZodForm } from "@ikseer/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
+import { useZodForm } from "./test";
 import { useDebounce } from "./use-debounce";
 
 const schema = z.object({

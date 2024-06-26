@@ -17,10 +17,10 @@
 		"checkts": "turbo checkts"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.7.3",
-		"lefthook": "^1.6.11",
-		"prettier": "^3.2.5",
-		"turbo": "latest"
+		"@biomejs/biome": "1.8.2",
+		"lefthook": "^1.6.18",
+		"prettier": "^3.3.2",
+		"turbo": "^2.0.5"
 	},
 	"engines": {
 		"node": ">=18"
