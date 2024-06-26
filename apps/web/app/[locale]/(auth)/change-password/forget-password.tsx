@@ -1,9 +1,9 @@
 "use client";
 import Spinner from "@/components/spinner";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { useZodForm } from "@/lib/use-zod-schema";
 import { useRouter } from "@/navigation";
-import { useChangePassword } from "@ikseer/api/hooks/accounts";
+import { useResetPassword } from "@ikseer/api/hooks/accounts";
+import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { useZodForm } from "@ikseer/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider } from "react-hook-form";
@@ -26,8 +26,8 @@ export default function ForgetPasswordComponent() {
 		router.push("/login");
 	};
 
-	const changePassword = useResetPassword({ onSuccess });
-	const errorMsg = getErrorMsg(changePassword.error);
+	const resetPassword = useResetPassword({ onSuccess });
+	const errorMsg = getErrorMsg(resetPassword.error);
 	console.log(errorMsg);
 
 	return (
@@ -35,7 +35,7 @@ export default function ForgetPasswordComponent() {
 			<form
 				className="p-5 w-[550px] flex flex-col items-center justify-center space-y-5"
 				onSubmit={form.handleSubmit((data) => {
-					changePassword.mutate(data);
+					resetPassword.mutate(data);
 				})}
 			>
 				<h1 className="text-2xl font-semibold text-center">Reset Password</h1>
@@ -59,9 +59,9 @@ export default function ForgetPasswordComponent() {
 					type="submit"
 					className="w-full text-lg"
 					variant="submit"
-					disabled={changePassword.isPending}
+					disabled={resetPassword.isPending}
 				>
-					{changePassword.isPending ? <Spinner /> : "Confirm new password"}
+					{resetPassword.isPending ? <Spinner /> : "Confirm new password"}
 				</Button>
 			</form>
 		</FormProvider>

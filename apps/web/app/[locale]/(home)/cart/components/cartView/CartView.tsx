@@ -1,5 +1,5 @@
 "use client";
-import { BACKEND_URL } from "@/lib/constants";
+import { BACKEND_URL } from "@ikseer/lib/constants";
 import type { Product } from "@ikseer/lib/types";
 import Image from "next/image";
 import IncrementAndDecrement from "../../../components/IncrementAndDecrement";

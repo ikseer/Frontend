@@ -1,5 +1,5 @@
 "use client";
-import { useZodForm } from "@/lib/use-zod-schema";
+import { useZodForm } from "@ikseer/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useTranslations } from "next-intl";
 import { FormProvider } from "react-hook-form";
@@ -8,10 +8,10 @@ import AuthContainer from "../register/auth-container";
 import "../register/register.css";
 import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { otpTimer } from "@/lib/otp-time";
 import { useRouter } from "@/navigation";
 import { useResendOtp } from "@ikseer/api/hooks/accounts";
+import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { otpTimer } from "@ikseer/lib/otp-time";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 
 export default function ResetPassword() {

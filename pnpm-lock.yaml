@@ -330,9 +330,33 @@ importers:
       "@ikseer/lib":
         specifier: workspace:*
         version: link:../lib
+      "@ikseer/ui":
+        specifier: workspace:*
+        version: link:../ui
+      "@tanstack/react-query":
+        specifier: ^5.48.0
+        version: 5.48.0(react@18.0.0)
       axios:
         specifier: ^1.6.8
         version: 1.6.8
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
+      jwt-decode:
+        specifier: ^4.0.0
+        version: 4.0.0
+      next:
+        specifier: ~14.0.0
+        version: 14.0.4(react-dom@18.3.1(react@18.0.0))(react@18.0.0)
+      react:
+        specifier: ~18.0.0
+        version: 18.0.0
+      typescript:
+        specifier: ^5.5.2
+        version: 5.5.2
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       "@types/node":
         specifier: ^20.14.9
@@ -340,12 +364,27 @@ importers:
 
   packages/lib:
     dependencies:
+      "@hookform/resolvers":
+        specifier: ^3.3.4
+        version: 3.3.4(react-hook-form@7.51.4(react@18.0.0))
+      clsx:
+        specifier: ~1.2.1
+        version: 1.2.1
       next:
         specifier: ~14.0.0
-        version: 14.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.0.4(react-dom@18.3.1(react@18.0.0))(react@18.0.0)
       path-to-regexp:
         specifier: ^6.2.2
         version: 6.2.2
+      react:
+        specifier: ~18.0.0
+        version: 18.0.0
+      react-hook-form:
+        specifier: ^7.51.4
+        version: 7.51.4(react@18.0.0)
+      tailwind-merge:
+        specifier: ~2.0.0
+        version: 2.0.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -2633,6 +2672,12 @@ packages:
         integrity: sha512-RVfIZQmFUTdjhSAAblvueimfngYyfN6HlwaJUPK71PKd7yi43Vs1S/rdimmZedPWX/WGppcq/U1HOj7O7FwYxw==,
       }
 
+  "@tanstack/query-core@5.48.0":
+    resolution:
+      {
+        integrity: sha512-lZAfPPeVIqXCswE9SSbG33B6/91XOWt/Iq41bFeWb/mnHwQSIfFRbkS4bfs+WhIk9abRArF9Id2fp0Mgo+hq6Q==,
+      }
+
   "@tanstack/query-devtools@5.32.1":
     resolution:
       {
@@ -2685,6 +2730,14 @@ packages:
     resolution:
       {
         integrity: sha512-mYYfJujKg2kxmkRRjA6nn4YKG3ITsKuH22f1kteJ5IuVQqgKUgbaSQfYwVP0gBS05mhwxO03HVpD0t7BMN7WOA==,
+      }
+    peerDependencies:
+      react: ^18.0.0
+
+  "@tanstack/react-query@5.48.0":
+    resolution:
+      {
+        integrity: sha512-GDExbjYWzvDokyRqMSWXdrPiYpp95Aig0oeMIrxTaruOJJgWiWfUP//OAaowm2RrRkGVsavSZdko/XmIrrV2Nw==,
       }
     peerDependencies:
       react: ^18.0.0
@@ -3257,6 +3310,13 @@ packages:
       {
         integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==,
       }
+
+  clsx@1.2.1:
+    resolution:
+      {
+        integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==,
+      }
+    engines: { node: ">=6" }
 
   clsx@2.0.0:
     resolution:
@@ -4798,6 +4858,13 @@ packages:
       react: ">=16.6.0"
       react-dom: ">=16.6.0"
 
+  react@18.0.0:
+    resolution:
+      {
+        integrity: sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==,
+      }
+    engines: { node: ">=0.10.0" }
+
   react@18.2.0:
     resolution:
       {
@@ -5057,6 +5124,12 @@ packages:
     resolution:
       {
         integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==,
+      }
+
+  tailwind-merge@2.0.0:
+    resolution:
+      {
+        integrity: sha512-WO8qghn9yhsldLSg80au+3/gY9E4hFxIvQ3qOmlpXnqpDKoMruKfi/56BbbMg6fHTQJ9QD3cc79PoWqlaQE4rw==,
       }
 
   tailwind-merge@2.3.0:
@@ -5885,6 +5958,10 @@ snapshots:
   "@formatjs/intl-localematcher@0.5.4":
     dependencies:
       tslib: 2.6.2
+
+  "@hookform/resolvers@3.3.4(react-hook-form@7.51.4(react@18.0.0))":
+    dependencies:
+      react-hook-form: 7.51.4(react@18.0.0)
 
   "@hookform/resolvers@3.3.4(react-hook-form@7.51.4(react@18.2.0))":
     dependencies:
@@ -6885,6 +6962,8 @@ snapshots:
 
   "@tanstack/query-core@5.45.0": {}
 
+  "@tanstack/query-core@5.48.0": {}
+
   "@tanstack/query-devtools@5.32.1": {}
 
   "@tanstack/query-devtools@5.37.1": {}
@@ -6916,6 +6995,11 @@ snapshots:
     dependencies:
       "@tanstack/query-core": 5.45.0
       react: 18.3.1
+
+  "@tanstack/react-query@5.48.0(react@18.0.0)":
+    dependencies:
+      "@tanstack/query-core": 5.48.0
+      react: 18.0.0
 
   "@tanstack/react-table@8.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
     dependencies:
@@ -7272,6 +7356,8 @@ snapshots:
       clsx: 2.0.0
 
   client-only@0.0.1: {}
+
+  clsx@1.2.1: {}
 
   clsx@2.0.0: {}
 
@@ -7731,7 +7817,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  next@14.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@14.0.4(react-dom@18.3.1(react@18.0.0))(react@18.0.0):
     dependencies:
       "@next/env": 14.0.4
       "@swc/helpers": 0.5.2
@@ -7739,9 +7825,9 @@ snapshots:
       caniuse-lite: 1.0.30001618
       graceful-fs: 4.2.11
       postcss: 8.4.31
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(react@18.3.1)
+      react: 18.0.0
+      react-dom: 18.3.1(react@18.0.0)
+      styled-jsx: 5.1.1(react@18.0.0)
       watchpack: 2.4.0
     optionalDependencies:
       "@next/swc-darwin-arm64": 14.0.4
@@ -8035,6 +8121,12 @@ snapshots:
       react: 18.2.0
       scheduler: 0.23.0
 
+  react-dom@18.3.1(react@18.0.0):
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.0.0
+      scheduler: 0.23.2
+
   react-dom@18.3.1(react@18.2.0):
     dependencies:
       loose-envify: 1.4.0
@@ -8061,6 +8153,10 @@ snapshots:
     dependencies:
       prop-types: 15.8.1
       react: 18.3.1
+
+  react-hook-form@7.51.4(react@18.0.0):
+    dependencies:
+      react: 18.0.0
 
   react-hook-form@7.51.4(react@18.2.0):
     dependencies:
@@ -8174,6 +8270,10 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  react@18.0.0:
+    dependencies:
+      loose-envify: 1.4.0
 
   react@18.2.0:
     dependencies:
@@ -8333,6 +8433,11 @@ snapshots:
     optionalDependencies:
       "@babel/core": 7.24.7
 
+  styled-jsx@5.1.1(react@18.0.0):
+    dependencies:
+      client-only: 0.0.1
+      react: 18.0.0
+
   styled-jsx@5.1.1(react@18.3.1):
     dependencies:
       client-only: 0.0.1
@@ -8359,6 +8464,10 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   tabbable@6.2.0: {}
+
+  tailwind-merge@2.0.0:
+    dependencies:
+      "@babel/runtime": 7.24.5
 
   tailwind-merge@2.3.0:
     dependencies:

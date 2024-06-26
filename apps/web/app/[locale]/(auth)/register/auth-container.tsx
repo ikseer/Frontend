@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn } from "@ikseer/lib/utils";
 import type { ReactNode } from "react";
 
 export default function AuthContainer({

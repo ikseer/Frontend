@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
+import { cn } from "@ikseer/lib/utils";
 import Image from "next/image";
 
 export default function AuthShape({

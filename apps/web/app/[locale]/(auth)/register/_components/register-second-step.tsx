@@ -2,10 +2,10 @@
 
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { otpTimer } from "@/lib/otp-time";
-import { useZodForm } from "@/lib/use-zod-schema";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
+import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { otpTimer } from "@ikseer/lib/otp-time";
+import { useZodForm } from "@ikseer/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
 	Form,

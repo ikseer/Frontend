@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
+import { cn } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
 	DropdownMenu,

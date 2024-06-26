@@ -1,4 +1,4 @@
-import { otpTimer } from "@/lib/otp-time";
+import { otpTimer } from "@ikseer/lib/otp-time";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";

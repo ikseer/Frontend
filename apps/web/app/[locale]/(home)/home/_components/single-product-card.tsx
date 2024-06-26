@@ -1,6 +1,6 @@
 "use client";
-import { BACKEND_URL } from "@/lib/constants";
 import { Link } from "@/navigation";
+import { BACKEND_URL } from "@ikseer/lib/constants";
 import type { Product } from "@ikseer/lib/types";
 import Image from "next/image";
 import { LuShoppingCart } from "react-icons/lu";

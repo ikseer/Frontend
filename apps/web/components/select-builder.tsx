@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@ikseer/lib/utils";
 import {
 	Select,
 	SelectContent,

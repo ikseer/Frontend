@@ -1,6 +1,6 @@
 "use client";
 
-import { useZodForm } from "@/lib/use-zod-schema";
+import { useZodForm } from "@ikseer/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
 	Form,
@@ -21,12 +21,13 @@ import "../register/register.css";
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { otpTimer } from "@/lib/otp-time";
 import { Link, useRouter } from "@/navigation";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
+import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { otpTimer } from "@ikseer/lib/otp-time";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { FormProvider } from "react-hook-form";
 
 const schema = z.object({
 	otp: z.string().min(6).max(6),
@@ -52,7 +53,7 @@ export default function ConfirmPinCode() {
 	const errorMsg = getErrorMsg(confirmOtp.error);
 	console.log(errorMsg);
 	return (
-		<Form {...form}>
+		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => {
 					console.log(data);
@@ -131,6 +132,6 @@ export default function ConfirmPinCode() {
 					</section>
 				</AuthContainer>
 			</form>
-		</Form>
+		</FormProvider>
 	);
 }

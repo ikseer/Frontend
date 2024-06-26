@@ -1,5 +1,5 @@
 "use client";
-import { BACKEND_URL } from "@/lib/constants";
+import { BACKEND_URL } from "@ikseer/lib/constants";
 import Image from "next/image";
 import { useState } from "react";
 
