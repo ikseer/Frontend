@@ -1,6 +1,6 @@
 import { availableLocaleCodes } from "@/next.locales";
 import { z } from "zod";
-import { type RouteType, makeRoutes } from "@ikseer/lib/routes";
+import { type RouteType, makeRoutes } from "@ikseer/lib/src/routes";
 
 export const LOGIN_REDIRECT = "/login";
 export const AFTER_LOGIN_REDIRECT = "/";

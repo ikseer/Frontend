@@ -10,7 +10,9 @@ import {
 
 export const accessTokenCookie = createCookieStorage(ACCESS_TOKEN_KEY);
 export const refreshTokenCookie = createCookieStorage(REFRESH_TOKEN_KEY);
-export const userTypeTokenCookie = createCookieStorage(USER_TYPE_TOKEN_KEY);
+export const userTypeTokenCookie = createCookieStorage<"admin" | "user">(
+	USER_TYPE_TOKEN_KEY,
+);
 
 function createCookieStorage<T extends string>(COOKIE_KEY: string) {
 	return {

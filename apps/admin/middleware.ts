@@ -15,20 +15,15 @@ export default function middleware(req: NextRequest) {
 	const accessToken = accessTokenCookie.get();
 	const pathname = req.nextUrl.pathname;
 
-	if (
-		!accessToken &&
-		!checkRouteType(pathname, "auth") &&
-		!Routes.home.doesMatch(pathname)
-	) {
-		if (Routes.home.doesMatch(pathname)) {
-			return NextResponse.redirect(new URL(Routes.login(), req.url));
-		}
+	if (!accessToken && !checkRouteType(pathname, "auth")) {
+		return NextResponse.redirect(new URL(Routes.login(), req.url));
 	}
 
-	if (accessToken && Routes.home.doesMatch(pathname)) {
-		if (userType !== "patient")
-			return NextResponse.redirect(new URL(Routes.dashboard(), req.url));
-	}
+	if (userType !== "admin")
+		return NextResponse.rewrite(new URL(`/random-${Math.random()}`, req.url)); // 404
+
+	if (Routes.home.doesMatch(pathname))
+		return NextResponse.redirect(new URL(Routes.dashboard(), req.url));
 
 	return intlMiddleware(req);
 }
