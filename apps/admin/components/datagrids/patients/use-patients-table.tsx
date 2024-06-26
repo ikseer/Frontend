@@ -1,5 +1,5 @@
-import { Routes } from "@/lib/routes";
-import type { Patient } from "@/lib/types";
+import { Routes } from "@ikseer/lib/routes";
+import type { Patient } from "@ikseer/lib/types";
 import { getDeletedPatients, getPatients } from "@ikseer/api/patients";
 import { Anchor } from "@mantine/core";
 import "@mantine/core/styles.css";

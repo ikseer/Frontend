@@ -1,5 +1,5 @@
 import type { UseTableOptions } from "@/hooks/use-our-table";
-import type { Doctor } from "@/lib/types";
+import type { Doctor } from "@ikseer/lib/types";
 import { MantineReactTable } from "mantine-react-table";
 import useDoctorsTable from "./use-employees-table";
 

@@ -1,4 +1,4 @@
-import { userTypeTokenCookie } from "@/lib/cookies.client";
+import { userTypeTokenCookie } from "@ikseer/lib/cookies.client";
 import { useMemo } from "react";
 
 export type UserType = "patient" | "doctor" | "admin" | "employee";

@@ -2,7 +2,7 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "./globals.css";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@ikseer/lib/utils";
 import { availableLocalesMap, defaultLocale } from "@/next.locales";
 import { ColorSchemeScript } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";

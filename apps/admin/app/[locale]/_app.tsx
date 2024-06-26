@@ -1,6 +1,6 @@
 "use client";
 
-import { useI18nZodErrors } from "@/lib/use-I18n-zod-errors";
+import { useI18nZodErrors } from "@ikseer/lib/use-I18n-zod-errors";
 import { MantineProvider, createTheme } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";

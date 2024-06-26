@@ -1,4 +1,4 @@
-import type { Doctor } from "@/lib/types";
+import type { Doctor } from "@ikseer/lib/types";
 import { getDeletedDoctors, getDoctors } from "@ikseer/api/doctors";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features
