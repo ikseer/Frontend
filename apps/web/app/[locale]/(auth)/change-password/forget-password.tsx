@@ -1,6 +1,6 @@
 "use client";
-import { useChangePassword } from "@/api/hooks/auth";
-import Spinner from "@/components/site/spinner";
+import { useChangePassword } from "@/api/hooks/accounts";
+import Spinner from "@/components/spinner";
 import { getErrorMsg } from "@/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { useRouter } from "@/navigation";

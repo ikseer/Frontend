@@ -1,4 +1,4 @@
-import { SelectBuilder } from "@/components/site/select-builder";
+import { SelectBuilder } from "@/components/select-builder";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {

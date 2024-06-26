@@ -3,8 +3,8 @@ import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useRouter } from "next/navigation";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
-import { usePhone } from "@/api/hooks/auth";
-import Spinner from "@/components/site/spinner";
+import { usePhone } from "@/api/hooks/accounts";
+import Spinner from "@/components/spinner";
 //@ts-ignore
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useTranslations } from "next-intl";

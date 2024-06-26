@@ -2,7 +2,11 @@ import "client-only";
 import { jwtDecode } from "jwt-decode";
 import { useMemo } from "react";
 import { z } from "zod";
-import { AccessTokenCookie, RefreshTokenCookie } from "./cookies.client";
+import {
+	AccessTokenCookie,
+	RefreshTokenCookie,
+	UserIdCookie,
+} from "./cookies.client";
 
 export interface SessionInfo {
 	accessToken: string;
@@ -12,16 +16,21 @@ export interface SessionInfo {
 }
 
 export function setSession(
-	session: { accessToken: string; refreshToken: string } | null,
+	session: {
+		accessToken: string;
+		refreshToken: string;
+		userId: string | null;
+	} | null,
 ) {
 	if (!session) {
 		AccessTokenCookie.delete();
 		RefreshTokenCookie.delete();
 		return;
 	}
-	const { accessToken, refreshToken } = session;
+	const { accessToken, refreshToken, userId } = session;
 	AccessTokenCookie.set(accessToken, "/");
 	RefreshTokenCookie.set(refreshToken, "/");
+	if (userId) UserIdCookie.set(userId, "/");
 }
 
 export function useCurrentUser() {

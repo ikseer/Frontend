@@ -1,4 +1,5 @@
-import Account from "./account";
+import { Button } from "@ikseer/ui/src/components/ui/button";
+import Image from "next/image";
 
 export default function LinkAccounts() {
 	return (
@@ -9,15 +10,28 @@ export default function LinkAccounts() {
 					Linked accounts will help in fast log in and better personalization.
 				</p>
 			</div>
-			<div>
-				<Account image="" name="Google" buttonText="Link Google" />
+			<section className="space-y-3">
+				<Account href="/auth/google.svg" alt="Google" button="Link Google" />
 				<Account
-					image="/auth/facebook.png"
-					name="Facebook"
-					buttonText="Link Facebook"
+					href="/auth/facebook.svg"
+					alt="Facebook"
+					button="Link Facebook"
 				/>
-				<Account image="/auth/apple.png" name="Apple" buttonText="Link Apple" />
-			</div>
+				<Account href="/auth/apple.svg" alt="Apple" button="Link Apple" />
+			</section>
 		</div>
+	);
+}
+
+function Account({
+	href,
+	alt,
+	button,
+}: { href: string; alt: string; button: string }) {
+	return (
+		<section className="flex items-center justify-between p-4 border-2 rounded-md border-zinc-100 dark:border-zinc-400 bg-zinc-200 dark:bg-zinc-800">
+			<Image src={href} alt={alt} width={30} height={30} />
+			<Button>{button}</Button>
+		</section>
 	);
 }
