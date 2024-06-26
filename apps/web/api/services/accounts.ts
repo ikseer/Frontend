@@ -77,14 +77,14 @@ export class AuthAPI {
 		AccessTokenCookie.delete();
 	};
 
-	changePassword = async (data: {
+	resetPassword = async (data: {
 		new_password1: string;
 		new_password2: string;
 	}) => {
 		return this.http.post("/accounts/password/change/", data);
 	};
 
-	updatePassword = async (data: {
+	changePassword = async (data: {
 		old_password: string;
 		new_password1: string;
 		new_password2: string;
@@ -95,35 +95,63 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	getPatient = async (userId: string) => {
+	// Patient
+	getPatient = async (patientId: string) => {
 		return await this.http
 			.get<Patient[]>("/accounts/patient/", {
-				params: { user__id: userId },
+				params: { user__id: patientId },
 			})
 			.then((res) => res.data);
 	};
 
-	updatePatient = async () => {
+	updatePatient = async (patientId: string) => {
 		const id = UserIdCookie.get();
 		return await this.http.patch("/accounts/patient/", {
-			params: { user__id: id },
+			params: { user__id: patientId },
 		});
 	};
 
-	deletePatient = async () => {
-		const id = UserIdCookie.get();
+	deletePatient = async (patientId: string) => {
 		return await this.http
-			.delete("/accounts/patient/", { params: { user__id: id } })
+			.delete("/accounts/patient/", { params: { user__id: patientId } })
 			.then((res) => res.data);
 	};
 
-	getMyImage = async () => {
+	getPatientImage = async (patientId: string) => {
 		const id = UserIdCookie.get();
-		return await this.http.get(`/accounts/patient/${id}/image/`);
+		return await this.http.get(`/accounts/patient/${patientId}/image/`);
 	};
 
-	updateMyImage = async (data: Blob) => {
+	updatePatientImage = async (data: Blob) => {
 		const id = UserIdCookie.get();
 		return await this.http.patchForm(`/accounts/patient/${id}/image/`, data);
+	};
+
+	// Doctor
+	getDoctor = async (doctorId: string) => {
+		return await this.http
+			.get("/accounts/doctor/", { params: { user__id: doctorId } })
+			.then((res) => res.data);
+	};
+
+	updateDoctor = async (doctorId: string) => {
+		return await this.http
+			.post("/accounts/doctor/", { params: { user__id: doctorId } })
+			.then((res) => res.data);
+	};
+
+	deleteDoctor = async (doctorId: string) => {
+		return await this.http
+			.delete("/accounts/doctor/", { params: { user__id: doctorId } })
+			.then((res) => res.data);
+	};
+
+	getDoctorImage = async (doctorId: string) => {
+		return await this.http.get(`/accounts/doctor/${doctorId}/image/`);
+	};
+
+	updateDoctorImage = async (data: Blob) => {
+		const id = UserIdCookie.get();
+		return await this.http.patchForm(`/accounts/doctor/${id}/image/`, data);
 	};
 }

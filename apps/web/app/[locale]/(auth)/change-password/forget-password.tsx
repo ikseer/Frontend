@@ -1,5 +1,5 @@
 "use client";
-import { useChangePassword } from "@/api/hooks/accounts";
+import { useResetPassword } from "@/api/hooks/accounts";
 import Spinner from "@/components/spinner";
 import { getErrorMsg } from "@/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-schema";
@@ -26,7 +26,7 @@ export default function ForgetPasswordComponent() {
 		router.push("/login");
 	};
 
-	const changePassword = useChangePassword({ onSuccess });
+	const changePassword = useResetPassword({ onSuccess });
 	const errorMsg = getErrorMsg(changePassword.error);
 	console.log(errorMsg);
 

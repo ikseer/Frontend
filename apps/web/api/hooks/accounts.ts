@@ -2,10 +2,11 @@ import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
 import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { clientAPI } from "../config/api.client";
-import { UserIdCookie } from "../config/cookies.client";
+import { UserIdCookie, UserTypeCookie } from "../config/cookies.client";
 import { setSession } from "../config/session.client";
 import { setServerSession } from "../config/session.server";
 
+// Register
 export function useCheckUserName() {
 	return useMutation({
 		mutationFn: clientAPI.auth.checkUserName,
@@ -89,26 +90,7 @@ export function usePhone({ onSuccess }: { onSuccess: () => void }) {
 	});
 }
 
-export function useResendOtp({ onSuccess }: { onSuccess?: () => void }) {
-	const { toast } = useToast();
-	return useMutation({
-		mutationFn: clientAPI.auth.resendOtp,
-		onSuccess: () => {
-			onSuccess?.();
-			toast({
-				title: "OTP Resent",
-				variant: "success",
-			});
-		},
-		onError: () => {
-			toast({
-				title: "Can't resend OTP",
-				variant: "error",
-			});
-		},
-	});
-}
-
+// Login
 export function useLogin({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	const router = useRouter();
@@ -141,6 +123,48 @@ export function useLogin({ onSuccess }: { onSuccess?: () => void }) {
 	});
 }
 
+// Reset password
+export function useResendOtp({ onSuccess }: { onSuccess?: () => void }) {
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.auth.resendOtp,
+		onSuccess: () => {
+			onSuccess?.();
+			toast({
+				title: "OTP Resent",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't resend OTP",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.auth.resetPassword,
+		onSuccess: () => {
+			onSuccess?.();
+			toast({
+				title: "Password reset success",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't reset password",
+				variant: "error",
+			});
+		},
+	});
+}
+
+// Logout
 export function useLogout() {
 	const { toast } = useToast();
 	const router = useRouter();
@@ -162,29 +186,10 @@ export function useLogout() {
 	});
 }
 
-export function useChangePassword({ onSuccess }: { onSuccess?: () => void }) {
-	const { toast } = useToast();
+// Change password
+export const useChangePassword = () => {
 	return useMutation({
 		mutationFn: clientAPI.auth.changePassword,
-		onSuccess: () => {
-			onSuccess?.();
-			toast({
-				title: "Password reset success",
-				variant: "success",
-			});
-		},
-		onError: () => {
-			toast({
-				title: "Can't reset password",
-				variant: "error",
-			});
-		},
-	});
-}
-
-export const useUpdatePassword = () => {
-	return useMutation({
-		mutationFn: clientAPI.auth.updatePassword,
 		onSuccess(data) {
 			console.log(data, "success");
 		},
@@ -194,37 +199,72 @@ export const useUpdatePassword = () => {
 	});
 };
 
+// Read Me
 export function useGetMe() {
 	const userId = UserIdCookie.get();
-	return useQuery({
-		queryKey: ["me"],
-		queryFn: () => clientAPI.auth.getPatient(userId as string),
-	});
+	const userType = UserTypeCookie.get();
+	if (userType === "PATIENT") {
+		return useQuery({
+			queryKey: ["me"],
+			queryFn: () => clientAPI.auth.getPatient(userId as string),
+		});
+	}
+	if (userType === "DOCTOR") {
+		return useQuery({
+			queryKey: ["me"],
+			queryFn: () => clientAPI.auth.getDoctor(userId as string),
+		});
+	}
 }
 
+// Update Me
 export function useUpdateMe() {
+	const userId = UserIdCookie.get();
+	const userType = UserTypeCookie.get();
 	const { toast } = useToast();
-	return useMutation({
-		mutationFn: clientAPI.auth.updatePatient,
-		onSuccess() {
-			toast({
-				title: "Profile updated",
-				variant: "success",
-			});
-		},
-		onError() {
-			toast({
-				title: "Can't update profile",
-				variant: "error",
-			});
-		},
-	});
+	if (userType === "PATIENT") {
+		return useMutation({
+			mutationFn: () => clientAPI.auth.updatePatient(userId as string),
+			onSuccess() {
+				toast({
+					title: "Profile updated",
+					variant: "success",
+				});
+			},
+			onError() {
+				toast({
+					title: "Can't update profile",
+					variant: "error",
+				});
+			},
+		});
+	}
+
+	if (userType === "DOCTOR") {
+		return useMutation({
+			mutationFn: () => clientAPI.auth.updateDoctor(userId as string),
+			onSuccess() {
+				toast({
+					title: "Profile updated",
+					variant: "success",
+				});
+			},
+			onError() {
+				toast({
+					title: "Can't update profile",
+					variant: "error",
+				});
+			},
+		});
+	}
 }
 
-export function useDeleteMe({ onSuccess }: { onSuccess?: () => void }) {
+export function useDeletePatient({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
+	const userId = UserIdCookie.get();
+
 	return useMutation({
-		mutationFn: clientAPI.auth.deletePatient,
+		mutationFn: () => clientAPI.auth.deletePatient(userId as string),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
@@ -241,17 +281,69 @@ export function useDeleteMe({ onSuccess }: { onSuccess?: () => void }) {
 	});
 }
 
-export const useGetMyImage = () => {
+export function useDeleteDoctor({ onSuccess }: { onSuccess?: () => void }) {
+	const userId = UserIdCookie.get();
+
+	return useMutation({
+		mutationFn: () => clientAPI.auth.deleteDoctor(userId as string),
+		onSuccess: () => {
+			onSuccess?.();
+			toast({
+				title: "Account deleted",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't delete account",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useGetPatientImage() {
+	const userId = UserIdCookie.get();
+
 	return useQuery({
 		queryKey: ["my-image"],
-		queryFn: clientAPI.auth.getMyImage,
+		queryFn: () => clientAPI.auth.getPatientImage(userId as string),
 	});
-};
+}
 
-export const useUpdateMyImage = () => {
+export function useGetDoctorImage() {
+	const userId = UserIdCookie.get();
+	return useQuery({
+		queryKey: ["my-image"],
+		queryFn: () => clientAPI.auth.getPatientImage(userId as string),
+	});
+}
+
+// Update image
+export function useUpdatePatientImage() {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.updateMyImage,
+		mutationFn: clientAPI.auth.updatePatientImage,
+		onSuccess() {
+			toast({
+				title: "Profile image updated",
+				variant: "success",
+			});
+		},
+		onError() {
+			toast({
+				title: "Can't update profile image",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export const useUpdateDoctorImage = () => {
+	const { toast } = useToast();
+	const userId = UserIdCookie.get();
+	return useMutation({
+		mutationFn: clientAPI.auth.updateDoctorImage,
 		onSuccess() {
 			toast({
 				title: "Profile image updated",
