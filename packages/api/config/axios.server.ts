@@ -1,10 +1,10 @@
 import "server-only";
 
-import { BACKEND_URL } from "@/lib/constants";
+import { BACKEND_URL } from "@ikseer/lib/constants";
 
-import { redirect } from "@/navigation";
 import axios, { isAxiosError, type AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
+import { redirect } from "../../../apps/web/navigation";
 import {
 	AccessTokenServerCookie,
 	RefreshTokenServerCookie,

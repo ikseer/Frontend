@@ -1,6 +1,6 @@
 import "client-only";
 
-import { BACKEND_URL } from "@/lib/constants";
+import { BACKEND_URL } from "@ikseer/lib/constants";
 import axios, { isAxiosError, type AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { AccessTokenCookie, RefreshTokenCookie } from "./cookies.client";

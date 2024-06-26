@@ -13,6 +13,10 @@
 	"devDependencies": {
 		"tailwindcss": "^3.4.3"
 	},
+	"peerDependencies": {
+		"next": "~14.0.0",
+		"react": "~18.0.0"
+	},
 	"dependencies": {
 		"@radix-ui/react-alert-dialog": "^1.1.1",
 		"@radix-ui/react-dialog": "^1.1.1",
