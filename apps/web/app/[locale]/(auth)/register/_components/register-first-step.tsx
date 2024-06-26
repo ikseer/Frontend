@@ -5,17 +5,17 @@ import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 import "../register.css";
-import {
-	useCheckEmail,
-	useCheckUserName,
-	useRegister,
-} from "@/api/hooks/accounts";
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
 import Radio from "@/components/radio";
 import Spinner from "@/components/spinner";
 import { otpTimer } from "@/lib/otp-time";
 import { useZodForm } from "@/lib/use-zod-schema";
+import {
+	useCheckEmail,
+	useCheckUserName,
+	useRegister,
+} from "@ikseer/api/hooks/accounts";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";

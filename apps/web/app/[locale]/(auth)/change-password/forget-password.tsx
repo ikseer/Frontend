@@ -1,9 +1,9 @@
 "use client";
-import { useResetPassword } from "@/api/hooks/accounts";
 import Spinner from "@/components/spinner";
 import { getErrorMsg } from "@/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { useRouter } from "@/navigation";
+import { useChangePassword } from "@ikseer/api/hooks/accounts";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider } from "react-hook-form";

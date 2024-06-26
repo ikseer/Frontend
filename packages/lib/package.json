@@ -1,0 +1,15 @@
+{
+	"name": "@ikseer/lib",
+	"version": "1.0.0",
+	"private": true,
+	"dependencies": {
+		"path-to-regexp": "^6.2.2",
+		"zod": "^3.23.8"
+	},
+	"peerDependencies": {
+		"next": "~14.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.9"
+	}
+}

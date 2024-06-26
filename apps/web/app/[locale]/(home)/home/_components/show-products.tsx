@@ -1,8 +1,8 @@
 "use client";
-import type { Product } from "@/types";
+import { useProducts } from "@ikseer/api/hooks/products";
+import type { Product } from "@ikseer/lib/types";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import SingleProductCard from "./single-product-card";
-import { useProducts } from "@/api/hooks/products";
 
 export default function ShowCards() {
 	const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
