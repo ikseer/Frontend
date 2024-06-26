@@ -3,7 +3,7 @@ import Spinner from "@/components/spinner";
 import { useRouter } from "@/navigation";
 import { useResetPassword } from "@ikseer/api/hooks/accounts";
 import { getErrorMsg } from "@ikseer/lib/get-error-msg";
-import { useZodForm } from "@ikseer/lib/use-zod-schema";
+import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { FormProvider } from "react-hook-form";

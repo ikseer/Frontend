@@ -9,7 +9,6 @@ import { usePhone } from "@ikseer/api/hooks/accounts";
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
-import { useRegisterContext } from "../context/RegisterContext";
 
 export function RegisterThridStep() {
 	const router = useRouter();

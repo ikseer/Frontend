@@ -8,7 +8,7 @@ import { redirect } from "../../../apps/web/navigation";
 import {
 	AccessTokenServerCookie,
 	RefreshTokenServerCookie,
-} from "./cookies.server";
+} from "@ikseer/lib/cookies.server";
 import { getCurrentServerUser, setServerSession } from "./session.server";
 
 export const httpNoAuth = axios.create({

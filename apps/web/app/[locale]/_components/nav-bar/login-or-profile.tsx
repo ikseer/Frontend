@@ -11,7 +11,6 @@ import {
 	DropdownMenuTrigger,
 } from "@ikseer/ui/src/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 export function LoginOrProfile() {
 	const { data } = useGetMe();

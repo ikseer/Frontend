@@ -3,7 +3,10 @@ import "client-only";
 import { BACKEND_URL } from "@ikseer/lib/constants";
 import axios, { isAxiosError, type AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
-import { AccessTokenCookie, RefreshTokenCookie } from "./cookies.client";
+import {
+	AccessTokenCookie,
+	RefreshTokenCookie,
+} from "@ikseer/lib/cookies.client";
 import { setSession } from "./session.client";
 
 console.info("====", BACKEND_URL);

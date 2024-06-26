@@ -3,7 +3,7 @@ import { z } from "zod";
 import {
 	AccessTokenServerCookie,
 	RefreshTokenServerCookie,
-} from "./cookies.server";
+} from "@ikseer/lib/cookies.server";
 
 export function setServerSession(
 	session: { accessToken: string; refreshToken: string } | null,

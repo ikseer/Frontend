@@ -4,11 +4,9 @@ import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
 import { getErrorMsg } from "@ikseer/lib/get-error-msg";
-import { otpTimer } from "@ikseer/lib/otp-time";
-import { useZodForm } from "@ikseer/lib/use-zod-schema";
+import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
-	Form,
 	FormControl,
 	FormField,
 	FormItem,
@@ -29,6 +27,7 @@ import { useRegisterContext } from "../context/RegisterContext";
 const schema = z.object({
 	otp: z.string().min(6).max(6),
 });
+
 export function RegisterSecondStep() {
 	const { triggerFunction } = useRegisterContext();
 	const [isResetTimer, setIsResetTimer] = useState(false);
@@ -36,6 +35,7 @@ export function RegisterSecondStep() {
 	const form = useZodForm({
 		schema: schema,
 	});
+
 	const t = useTranslations("Register");
 
 	const onSuccess = () => {

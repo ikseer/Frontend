@@ -2,9 +2,8 @@ import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "../../../apps/web/navigation";
 import { clientAPI } from "../config/api.client";
-import { UserIdCookie, UserTypeCookie } from "../config/cookies.client";
+import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { setSession } from "../config/session.client";
-import { setServerSession } from "../config/session.server";
 
 // Register
 export function useCheckUserName() {
@@ -23,7 +22,7 @@ export function useRegister({ onSuccess }: { onSuccess: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.register,
-		onSuccess: (data) => {
+		onSuccess: () => {
 			toast({
 				title: "Account created",
 				description: "We've created your account for you.",
@@ -341,7 +340,6 @@ export function useUpdatePatientImage() {
 
 export const useUpdateDoctorImage = () => {
 	const { toast } = useToast();
-	const userId = UserIdCookie.get();
 	return useMutation({
 		mutationFn: clientAPI.auth.updateDoctorImage,
 		onSuccess() {
