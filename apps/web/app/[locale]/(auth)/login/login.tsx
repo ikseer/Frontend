@@ -12,7 +12,7 @@ import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
 import { useZodForm } from "@/lib/use-zod-form";
 import { setSession } from "@ikseer/api/config/session.client";
 import { useLogin } from "@ikseer/api/hooks/accounts";
-import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
@@ -25,6 +25,8 @@ const schema = z.object({
 });
 
 export default function Login() {
+	const $t = useTranslations();
+	const t = useTranslations("Login");
 	const form = useZodForm({
 		schema: schema,
 	});
@@ -52,9 +54,7 @@ export default function Login() {
 	};
 
 	const { mutate, isPending, error } = useLogin({ onSuccess });
-	const errorMsg = getErrorMsg(error);
-	console.info(errorMsg.non_field_errors?.[0]);
-	const t = useTranslations("Login");
+	const errorMsg = getErrorMessageSync(error, $t);
 
 	return (
 		<FormProvider {...form}>
@@ -69,7 +69,7 @@ export default function Login() {
 					className="flex flex-col items-center justify-center h-full rounded-lg bg-zinc-100 dark:bg-zinc-950"
 				>
 					<h1 className="mt-4 text-2xl font-bold ">{t("welcome-to-ikseer")}</h1>
-					<ErrorMsg>{errorMsg.non_field_errors?.[0]} </ErrorMsg>
+					<ErrorMsg>{errorMsg}</ErrorMsg>
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label

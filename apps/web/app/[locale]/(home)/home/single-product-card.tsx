@@ -1,7 +1,7 @@
 "use client";
 import { Link } from "@/navigation";
-import { BACKEND_URL } from "@ikseer/lib/constants";
 import type { Product } from "@ikseer/lib/types";
+import { getLink } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import Image from "next/image";
 import { LuShoppingCart } from "react-icons/lu";
@@ -12,7 +12,7 @@ export default function SingleProductCard({ item }: { item: Product }) {
 			<Link className=" aspect-[3/4]" href={`/products/${item.id}`}>
 				<Image
 					className="object-cover w-full h-full rounded-t-xl"
-					src={`${BACKEND_URL}${item?.images[0]?.image}`}
+					src={getLink(item?.images[0]?.image)}
 					alt="Image Description"
 					width={500}
 					height={500}

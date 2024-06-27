@@ -22,7 +22,7 @@ import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
 import { Link, useRouter } from "@/navigation";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
-import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { otpTimer } from "@ikseer/lib/otp-time";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -44,12 +44,13 @@ export default function ConfirmPinCode() {
 	const OtpOnSuccess = () => {
 		setIsResetTimer(true);
 	};
+	const $t = useTranslations();
 	const t = useTranslations("ConfirmPin");
 	const confirmOtp = useOtp({ onSuccess });
 	const resentOtp = useResendOtp({ onSuccess: OtpOnSuccess });
 	const searchParams = useSearchParams();
 	const userEmail = searchParams.get("email");
-	const errorMsg = getErrorMsg(confirmOtp.error);
+	const errorMsg = getErrorMessageSync(confirmOtp.error, $t);
 	console.log(errorMsg);
 	return (
 		<FormProvider {...form}>
@@ -70,11 +71,7 @@ export default function ConfirmPinCode() {
 								"to-continue-complete-this-verification-step-weve-sent-a-code-to-your-email-please-enter-it-below",
 							)}
 						</p>
-						{errorMsg && (
-							<ErrorMsg>
-								{typeof errorMsg.detail === "string" ? errorMsg.detail : ""}
-							</ErrorMsg>
-						)}
+						<ErrorMsg>{errorMsg}</ErrorMsg>
 					</section>
 					<FormField
 						control={form.control}

@@ -382,6 +382,9 @@ importers:
       '@ikseer/config':
         specifier: workspace:*
         version: link:../config
+      '@types/react':
+        specifier: ^18.3.1
+        version: 18.3.3
       axios:
         specifier: ^1.7.2
         version: 1.7.2

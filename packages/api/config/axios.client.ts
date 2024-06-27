@@ -77,6 +77,7 @@ const refreshAccessToken = async () => {
 			accessToken,
 			refreshToken,
 			userId: null,
+			userType: null,
 		});
 		return accessToken;
 	} catch {}

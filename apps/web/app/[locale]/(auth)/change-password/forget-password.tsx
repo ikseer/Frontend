@@ -2,7 +2,6 @@
 import Spinner from "@/components/spinner";
 import { useRouter } from "@/navigation";
 import { useResetPassword } from "@ikseer/api/hooks/accounts";
-import { getErrorMsg } from "@ikseer/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
@@ -27,8 +26,6 @@ export default function ForgetPasswordComponent() {
 	};
 
 	const resetPassword = useResetPassword({ onSuccess });
-	const errorMsg = getErrorMsg(resetPassword.error);
-	console.log(errorMsg);
 
 	return (
 		<FormProvider {...form}>

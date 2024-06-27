@@ -3,7 +3,7 @@
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
-import { getErrorMsg } from "@ikseer/lib/get-error-msg";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
@@ -29,6 +29,8 @@ const schema = z.object({
 });
 
 export function RegisterSecondStep() {
+	const $t = useTranslations();
+	const t = useTranslations("Register");
 	const { triggerFunction } = useRegisterContext();
 	const [isResetTimer, setIsResetTimer] = useState(false);
 
@@ -36,20 +38,21 @@ export function RegisterSecondStep() {
 		schema: schema,
 	});
 
-	const t = useTranslations("Register");
+	const confirmOtp = useOtp({
+		onSuccess() {
+			triggerFunction?.current?.click();
+		},
+	});
 
-	const onSuccess = () => {
-		triggerFunction?.current?.click();
-	};
-	const OtpOnSuccess = () => {
-		setIsResetTimer(true);
-	};
-
-	const confirmOtp = useOtp({ onSuccess });
-	const resendOtp = useResendOtp({ onSuccess: OtpOnSuccess });
+	const resendOtp = useResendOtp({
+		onSuccess() {
+			setIsResetTimer(true);
+		},
+	});
 	const searchParams = useSearchParams();
 	const userEmail = searchParams.get("email");
-	const errorMsg = getErrorMsg(confirmOtp.error)?.detail;
+	const errorMsg = getErrorMessageSync(confirmOtp.error, $t);
+
 	useEffect(() => {
 		if (userEmail) {
 			setIsResetTimer(true);

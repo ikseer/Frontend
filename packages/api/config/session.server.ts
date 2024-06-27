@@ -26,7 +26,7 @@ export function getCurrentServerUser() {
 		const data = z
 			.object({
 				id: z.string().uuid(),
-				user_type: z.enum(["ADMIN", "EMPLOYEE"]),
+				user_type: z.enum(["admin", "EMPLOYEE"]),
 			})
 			.parse(decoded);
 		return {

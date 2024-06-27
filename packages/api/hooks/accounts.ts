@@ -1,4 +1,4 @@
-import { UserIdCookie } from "@ikseer/lib/cookies.client";
+import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { clientAPI } from "../config/api.client";
@@ -180,21 +180,26 @@ export const useChangePassword = () => {
 	});
 };
 
-export function useGetPatient() {
-	const userId = UserIdCookie.get();
-	console.log(userId, "user id from api cakll");
+export function useGetPatient(id: string) {
 	return useQuery({
-		queryKey: ["patient"],
-		queryFn: () => clientAPI.auth.getPatient(userId),
+		queryKey: ["patient", id],
+		queryFn: () => clientAPI.auth.getPatient(id),
 	});
 }
 
-export function useGetDoctor() {
-	const userId = UserIdCookie.get();
+export function useGetDoctor(id: string) {
 	return useQuery({
-		queryKey: ["doctor"],
-		queryFn: () => clientAPI.auth.getDoctor(userId),
+		queryKey: ["doctor", id],
+		queryFn: () => clientAPI.auth.getDoctor(id),
 	});
+}
+
+export function useGetMe() {
+	const userId = UserIdCookie.get();
+	const userType = UserTypeCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useGetDoctor(userId);
+	if (userType === "patient") return useGetPatient(userId);
 }
 
 export function useUpdatePatient() {
@@ -278,20 +283,17 @@ export function useDeleteDoctor({ onSuccess }: { onSuccess?: () => void }) {
 	});
 }
 
-export function useGetPatientImage() {
-	const userId = UserIdCookie.get();
-
+export function useGetPatientImage(userId: string) {
 	return useQuery({
-		queryKey: ["my-image"],
-		queryFn: () => clientAPI.auth.getPatientImage(userId as string),
+		queryKey: ["patient-image", userId],
+		queryFn: () => clientAPI.auth.getPatientImage(userId),
 	});
 }
 
-export function useGetDoctorImage() {
-	const userId = UserIdCookie.get();
+export function useGetDoctorImage(userId: string) {
 	return useQuery({
-		queryKey: ["my-image"],
-		queryFn: () => clientAPI.auth.getPatientImage(userId as string),
+		queryKey: ["doctor-image", userId],
+		queryFn: () => clientAPI.auth.getPatientImage(userId),
 	});
 }
 

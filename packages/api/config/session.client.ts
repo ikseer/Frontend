@@ -5,15 +5,14 @@ import {
 	UserIdCookie,
 	UserTypeCookie,
 } from "@ikseer/lib/cookies.client";
-import { jwtDecode } from "jwt-decode";
 import { useMemo } from "react";
-import { z } from "zod";
+import type { UserType } from "@ikseer/lib/types";
 
 export interface SessionInfo {
 	accessToken: string;
 	refreshToken: string;
 	userId: string;
-	userType: "ADMIN" | "EMPLOYEE";
+	userType: UserType;
 }
 
 export function setSession(
@@ -21,7 +20,7 @@ export function setSession(
 		accessToken: string;
 		refreshToken: string;
 		userId: string | null;
-		userType: "patient" | "doctor" | null;
+		userType: UserType | null;
 	} | null,
 ) {
 	if (!session) {
@@ -39,22 +38,17 @@ export function setSession(
 export function useCurrentUser() {
 	const accessToken = AccessTokenCookie.get();
 	const refreshToken = RefreshTokenCookie.get();
+	const userId = UserIdCookie.get();
+	const userType = UserTypeCookie.get();
 
 	const session = useMemo<SessionInfo | null>(() => {
-		if (!accessToken || !refreshToken) return null;
+		if (!accessToken || !refreshToken || !userId || !userType) return null;
 		try {
-			const decoded = jwtDecode(accessToken);
-			const data = z
-				.object({
-					id: z.string().uuid(),
-					user_type: z.enum(["ADMIN", "EMPLOYEE"]),
-				})
-				.parse(decoded);
 			return {
 				accessToken,
 				refreshToken,
-				userId: data.id,
-				userType: data.user_type,
+				userId,
+				userType,
 			};
 		} catch (e) {
 			AccessTokenCookie.delete();
@@ -63,7 +57,7 @@ export function useCurrentUser() {
 			console.error("invalid access token", accessToken);
 		}
 		return null;
-	}, [accessToken, refreshToken]);
+	}, [accessToken, refreshToken, userType, userId]);
 
 	return session;
 }

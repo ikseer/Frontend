@@ -22,7 +22,7 @@ export default function middleware(req: NextRequest) {
 		return NextResponse.redirect(new URL(Routes.login(), req.url));
 	}
 
-	if (userType !== "ADMIN" && !checkRouteType(pathname, "auth"))
+	if (userType !== "admin" && !checkRouteType(pathname, "auth"))
 		return NextResponse.redirect(new URL(Routes.notAuthorized(), req.url));
 
 	if (Routes.home.doesMatch(pathname))

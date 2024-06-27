@@ -33,4 +33,4 @@ export interface Product {
 	key?: string;
 }
 
-export type UserType = "PATIENT" | "DOCTOR" | "ADMIN";
+export type UserType = "patient" | "doctor" | "admin";

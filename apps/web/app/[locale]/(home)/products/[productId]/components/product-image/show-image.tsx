@@ -1,5 +1,5 @@
 "use client";
-import { BACKEND_URL } from "@ikseer/lib/constants";
+import { getLink } from "@ikseer/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -16,7 +16,6 @@ interface ShowImageProps {
 export default function ShowImage({ images }: ShowImageProps) {
 	const sortedImages = images?.sort((a, b) => b.priority - a.priority);
 	const [currPriority, setCurrPriority] = useState(1);
-	console.log(currPriority, BACKEND_URL, "from show iamge", sortedImages);
 	return (
 		<div>
 			{Array.isArray(sortedImages) &&
@@ -24,7 +23,7 @@ export default function ShowImage({ images }: ShowImageProps) {
 					currPriority === item.priority ? (
 						<Image
 							key={item.priority}
-							src={`${BACKEND_URL}${item?.image}`}
+							src={getLink(item.image)}
 							alt="new Image"
 							className="w-full"
 							width={500}
@@ -37,7 +36,7 @@ export default function ShowImage({ images }: ShowImageProps) {
 					sortedImages.map((item) => (
 						<Image
 							key={item.priority}
-							src={`${BACKEND_URL}${item?.image}`}
+							src={getLink(item.image)}
 							alt="new Image"
 							className="w-2/12 rounded-sm cursor-pointer"
 							width={200}

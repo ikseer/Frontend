@@ -10,7 +10,14 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{
+				protocol: "https",
+				hostname: "placehold.co",
+			},
+			{
 				hostname: new URL(process.env.NEXT_PUBLIC_BACKEND_URL).hostname,
+			},
+			{
+				hostname: "**.dropboxusercontent.com",
 			},
 		],
 	},
