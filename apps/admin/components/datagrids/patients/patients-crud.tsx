@@ -1,6 +1,6 @@
 "use client";
 import type { UseTableOptions } from "@/hooks/use-our-table";
-import type { Patient } from "@/lib/types";
+import type { Patient } from "@ikseer/lib/types";
 import { SegmentedControl } from "@mantine/core";
 import { MantineReactTable } from "mantine-react-table";
 import { useTranslations } from "next-intl";

@@ -1,28 +1,30 @@
 import "server-only";
-
 import { cookies } from "next/headers";
 import {
 	ACCESS_TOKEN_KEY,
 	REFRESH_TOKEN_KEY,
-	TEN_DAYS_ms,
-	USER_TYPE_TOKEN_KEY,
+	USER_ID_KEY,
+	USER_TYPE_KEY,
 } from "./cookies.client";
 
-export const accessTokenCookie = createCookieStorage(ACCESS_TOKEN_KEY);
-export const refreshTokenCookie = createCookieStorage(REFRESH_TOKEN_KEY);
-export const userTypeTokenCookie = createCookieStorage<"admin" | "user">(
-	USER_TYPE_TOKEN_KEY,
+export const RefreshTokenServerCookie = createCookieStorage(REFRESH_TOKEN_KEY);
+export const AccessTokenServerCookie = createCookieStorage(ACCESS_TOKEN_KEY);
+export const UserIdServerCookie = createCookieStorage(USER_ID_KEY);
+export const UserTypeServerCookie = createCookieStorage<"PATIENT" | "DOCTOR">(
+	USER_TYPE_KEY,
 );
+
+const THREE_DAYS_ms = 1000 * 60 * 60 * 24 * 3;
 
 function createCookieStorage<T extends string>(COOKIE_KEY: string) {
 	return {
 		set: (data: T, rootPath: string) => {
 			cookies().set(COOKIE_KEY, data, {
-				expires: new Date(Date.now() + TEN_DAYS_ms),
+				expires: new Date(Date.now() + THREE_DAYS_ms),
 				path: rootPath,
 			});
 		},
-		get: (): T | undefined => {
+		get: () => {
 			const data = cookies().get(COOKIE_KEY);
 			if (data) return data.value as T;
 		},

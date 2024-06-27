@@ -1,4 +1,4 @@
-import type { Employee } from "@/lib/types";
+import type { Employee } from "@ikseer/lib/types";
 import { getDeletedEmployees, getEmployees } from "@ikseer/api/employees";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features

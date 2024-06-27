@@ -1,4 +1,7 @@
-import { accessTokenCookie, refreshTokenCookie } from "@/lib/cookies.client";
+import {
+	accessTokenCookie,
+	refreshTokenCookie,
+} from "@ikseer/lib/cookies.client";
 import { useRouter } from "@/navigation";
 import { Button } from "@mantine/core";
 import { useTranslations } from "next-intl";

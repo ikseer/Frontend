@@ -1,4 +1,4 @@
-import type { Visit } from "@/lib/types";
+import type { Visit } from "@ikseer/lib/types";
 import { useDoctors } from "@ikseer/api/doctors";
 import { visitSchema } from "@ikseer/api/visits";
 import {

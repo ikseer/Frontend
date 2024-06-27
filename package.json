@@ -1,6 +1,7 @@
 {
 	"name": "frontend-enhancement",
 	"private": true,
+	"packageManager": "pnpm@9.2.0",
 	"scripts": {
 		"web": "pnpm --filter @ikseer/web",
 		"web:turbo": "turbo --filter @ikseer/web",
@@ -10,7 +11,7 @@
 		"admin:turbo": "turbo --filter @ikseer/admin",
 		"admin:build": "pnpm admin:turbo build",
 		"admin:dev": "pnpm admin:turbo dev",
-		"lint": "biome lint --diagnostic-level=error --apply .",
+		"lint": "biome lint --diagnostic-level=error --write .",
 		"fix": "biome check --diagnostic-level=error --apply-unsafe .",
 		"format": "prettier -w . && biome format --write .",
 		"checkall": "turbo checkts && prettier -w . && pnpm fix",

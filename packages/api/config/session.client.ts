@@ -6,7 +6,7 @@ import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
 	UserIdCookie,
-} from "./cookies.client";
+} from "@ikseer/lib/cookies.client";
 
 export interface SessionInfo {
 	accessToken: string;

@@ -2,8 +2,8 @@
 
 import Logout from "@/app/[locale]/_components/logout";
 import { usePermissions } from "@/hooks/use-permissions";
-import { Routes } from "@/lib/routes";
-import { cn } from "@/lib/utils";
+import { Routes } from "@ikseer/lib/routes";
+import { cn } from "@ikseer/lib/utils";
 import { Link, usePathname, useRouter } from "@/navigation";
 import {
 	AppShell,

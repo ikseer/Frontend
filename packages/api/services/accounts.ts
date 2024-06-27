@@ -1,12 +1,11 @@
 import type { Patient } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { httpNoAuth } from "../config/axios-non-auth";
-import { http } from "../config/axios.client";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
 	UserIdCookie,
-} from "../config/cookies.client";
+} from "@ikseer/lib/cookies.client";
 
 export class AuthAPI {
 	constructor(private http: AxiosInstance) {}
@@ -105,7 +104,6 @@ export class AuthAPI {
 	};
 
 	updatePatient = async (patientId: string) => {
-		const id = UserIdCookie.get();
 		return await this.http.patch("/accounts/patient/", {
 			params: { user__id: patientId },
 		});
@@ -118,7 +116,6 @@ export class AuthAPI {
 	};
 
 	getPatientImage = async (patientId: string) => {
-		const id = UserIdCookie.get();
 		return await this.http.get(`/accounts/patient/${patientId}/image/`);
 	};
 

@@ -7,6 +7,12 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["hooks", "services", "config"],
+	"include": [
+		"hooks",
+		"services",
+		"config",
+		"../lib/cookies.server.ts",
+		"../lib/cookies.client.ts"
+	],
 	"exclude": ["node_modules"]
 }

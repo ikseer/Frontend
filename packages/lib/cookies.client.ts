@@ -10,13 +10,15 @@ export const USER_TYPE_KEY = "the-user-type";
 export const AccessTokenCookie = createCookieStorage(ACCESS_TOKEN_KEY);
 export const RefreshTokenCookie = createCookieStorage(REFRESH_TOKEN_KEY);
 export const UserIdCookie = createCookieStorage(USER_ID_KEY);
-export const UserTypeCookie = createCookieStorage(USER_TYPE_KEY);
+export const UserTypeCookie = createCookieStorage<"DOCTOR" | "PATIENT">(
+	USER_TYPE_KEY,
+);
 
 const THREE_DAYS_ms = 1000 * 60 * 60 * 24 * 3;
 
-function createCookieStorage(COOKIE_KEY: string) {
+function createCookieStorage<T extends string>(COOKIE_KEY: string) {
 	return {
-		set: (data: string, rootPath: string) => {
+		set: (data: T, rootPath: string) => {
 			Cookies.set(COOKIE_KEY, data, {
 				expires: new Date(Date.now() + THREE_DAYS_ms),
 				path: rootPath,
@@ -24,7 +26,7 @@ function createCookieStorage(COOKIE_KEY: string) {
 		},
 		get: () => {
 			const data = Cookies.get(COOKIE_KEY);
-			if (data) return data;
+			if (data) return data as T;
 		},
 		delete: () => {
 			Cookies.remove(COOKIE_KEY);

@@ -1,5 +1,5 @@
 "use client";
-import { useZodForm } from "@ikseer/lib/use-zod-schema";
+import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
 	Dialog,

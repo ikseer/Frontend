@@ -1,6 +1,6 @@
-import { getErrorMessageSync } from "@/lib/err-msg";
-import getTableSearchParams from "@/lib/get-search-params";
-import { notifyError } from "@/lib/notifications";
+import { getErrorMessageSync } from "@ikseer/lib/err-msg";
+import getTableSearchParams from "@ikseer/lib/get-search-params";
+import { notifyError } from "@ikseer/lib/notifications";
 import { ActionIcon, Button, Group, Menu, Tooltip } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features

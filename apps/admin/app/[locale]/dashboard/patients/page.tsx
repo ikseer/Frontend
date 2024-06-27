@@ -1,7 +1,7 @@
 "use client";
 
 import PatientsCRUDTable from "@/components/datagrids/patients/patients-crud";
-import type { Routes } from "@/lib/routes";
+import type { Routes } from "@ikseer/lib/routes";
 import { Anchor, Box, Breadcrumbs, Title } from "@mantine/core";
 import { useTranslations } from "next-intl";
 

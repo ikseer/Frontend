@@ -10,7 +10,7 @@ import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
 import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMsg } from "@ikseer/lib/get-error-msg";
-import { useZodForm } from "@ikseer/lib/use-zod-schema";
+import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
@@ -26,7 +26,7 @@ export default function Login() {
 		schema: schema,
 	});
 
-	const { mutate, isPending, data, error } = useLogin({});
+	const { mutate, isPending, error } = useLogin({});
 	const errorMsg = getErrorMsg(error);
 	console.info(errorMsg.non_field_errors?.[0]);
 	const t = useTranslations("Login");

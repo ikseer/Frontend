@@ -1,5 +1,5 @@
 import { availableLocaleCodes } from "@/next.locales";
-import { type RouteType, makeRoutes } from "@ikseer/lib/src/routes";
+import { type RouteType, makeRoutes } from "@ikseer/lib/routes";
 import { z } from "zod";
 
 export const LOGIN_REDIRECT = "/login";
@@ -9,7 +9,7 @@ export const Routes = makeRoutes(
 	(makeRoute) => {
 		return {
 			home: makeRoute("/"),
-			login: makeRoute("/login", { type: "public" }),
+			login: makeRoute("/login", { type: "auth" }),
 			dashboard: makeRoute("/dashboard", {
 				type: "private",
 			}),
