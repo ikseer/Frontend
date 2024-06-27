@@ -11,10 +11,10 @@ export default function ShowCards() {
 
 	return (
 		<div className="p-10">
-			<h1 className="text-zinc-950 dark:text-white mb-10 text-3xl font-bold text-center">
+			<h1 className="mb-10 text-3xl font-bold text-center text-zinc-950 dark:text-white">
 				Featured Products
 			</h1>
-			<div className="md:grid-cols-2 lg:grid-cols-3 grid grid-cols-1 gap-5">
+			<div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 				{Array.isArray(pages) &&
 					pages.map(
 						(currPage) =>
