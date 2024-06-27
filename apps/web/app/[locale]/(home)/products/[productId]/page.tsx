@@ -1,13 +1,13 @@
 "use client";
-import Rating from "@/components/rating";
-import { ShareComponent } from "@/components/share";
-import { useGetOneProduct } from "../../custom-hooks/use-one-product ";
-import AddToCardButton from "./components/add-to-card";
-import BuyNowButton from "./components/buy-now";
-import Price from "./components/price";
-import ShowImage from "./components/product-image/show-image";
-import SpecialOffer from "./components/special-offer";
-import SpecificProductTabs from "./components/specific-product-tabs";
+// import Rating from "@/components/rating";
+// import { ShareComponent } from "@/components/share";
+// import { useGetOneProduct } from "../../custom-hooks/use-one-product ";
+// import AddToCardButton from "./components/add-to-card";
+// import BuyNowButton from "./components/buy-now";
+// import Price from "./components/price";
+// import ShowImage from "./components/product-image/show-image";
+// import SpecialOffer from "./components/special-offer";
+// import SpecificProductTabs from "./components/specific-product-tabs";
 
 interface paramsType {
 	params: {
@@ -17,10 +17,9 @@ interface paramsType {
 }
 
 export default function CurrentProduct({ params }: paramsType) {
+	return <div>null</div>;
 	const { productId } = params;
-	console.log(productId, "params");
-	const { data } = useGetOneProduct(productId);
-
+	const { data } = useProductById(productId);
 	return (
 		<div>
 			<div className="grid grid-cols-1 gap-y-3 md:grid-cols-2 lg:gap-x-[20px] ">

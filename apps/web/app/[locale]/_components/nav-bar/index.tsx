@@ -9,7 +9,7 @@ import { ShoppingCart } from "./shopping-cart";
 export default function GuestNavBar() {
 	return (
 		<>
-			<div className="nav" />
+			<div className="shadow-lg nav" />
 			<header className="fixed top-0 z-50 flex flex-wrap w-full text-sm bg-white nav md:justify-start md:flex-nowrap">
 				<nav
 					className="relative w-full px-4 py-3 border border-gray-200 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto dark:border-gray-700 dark:bg-zinc-950"
@@ -21,7 +21,7 @@ export default function GuestNavBar() {
 							href="/"
 							aria-label="Brand"
 						>
-							<Image src="/icon.jpg" alt="Ikseer" width={20} height={20} />
+							<Image src="/icon.jpg" alt="Ikseer" width={80} height={80} />
 						</Link>
 						<ResponsiveAction />
 					</div>

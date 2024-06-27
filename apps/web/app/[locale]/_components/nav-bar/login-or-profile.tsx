@@ -14,39 +14,59 @@ import {
 } from "@ikseer/ui/src/components/ui/dropdown-menu";
 
 export function LoginOrProfile() {
+	const currentPath = usePathname();
 	const me = useGetMe();
 	if (!me) return;
 	const currentUser = me.data?.[0];
+
 	return (
 		<section className="flex items-center justify-between gap-x-2">
 			{currentUser?.username ? (
 				<ProfileDropdown href={`/user/${currentUser?.id}`} />
 			) : (
 				<>
-					<NavLink href="/login">Login</NavLink>
-					<NavLink href="/register">Register</NavLink>
+					<Link
+						href="/login"
+						className={cn(
+							currentPath === "/login"
+								? "px-4 py-2 text-white bg-teal-500 rounded-full"
+								: "text-teal-500",
+						)}
+					>
+						Login
+					</Link>
+					<Link
+						href="/register"
+						className={cn(
+							currentPath !== "/login"
+								? "px-4 py-2 text-white bg-teal-500 rounded-full"
+								: "text-teal-500",
+						)}
+					>
+						Register
+					</Link>
 				</>
 			)}
 		</section>
 	);
 }
 
-function NavLink({ href, children }: { href: string; children: string }) {
-	const currentPath = usePathname();
+// function NavLink({ href, children }: { href: string; children: string }) {
+// 	const currentPath = usePathname();
 
-	return (
-		<Link
-			href={href}
-			className={cn(
-				currentPath === href
-					? "bg-teal-500 rounded-full px-4 py-2 text-white"
-					: "text-teal-500",
-			)}
-		>
-			{children}
-		</Link>
-	);
-}
+// 	return (
+// 		<Link
+// 			href={href}
+// 			className={cn(
+// 				currentPath === "/register"
+// 					? "bg-teal-500 rounded-full px-4 py-2 text-white"
+// 					: "text-teal-500",
+// 			)}
+// 		>
+// 			{children}
+// 		</Link>
+// 	);
+// }
 
 export function ProfileDropdown({ href }: { href: string }) {
 	return (
