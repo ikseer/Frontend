@@ -1,11 +1,12 @@
-import type { Patient } from "@ikseer/lib/types";
-import type { AxiosInstance } from "axios";
-import { httpNoAuth } from "../config/axios-non-auth";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
 	UserIdCookie,
+	UserTypeCookie,
 } from "@ikseer/lib/cookies.client";
+import type { Patient } from "@ikseer/lib/types";
+import type { AxiosInstance } from "axios";
+import { httpNoAuth } from "../config/axios-non-auth";
 
 export class AuthAPI {
 	constructor(private http: AxiosInstance) {}
@@ -74,6 +75,8 @@ export class AuthAPI {
 	logout = async () => {
 		RefreshTokenCookie.delete();
 		AccessTokenCookie.delete();
+		UserIdCookie.delete();
+		UserTypeCookie.delete();
 	};
 
 	resetPassword = async (data: {
@@ -95,7 +98,8 @@ export class AuthAPI {
 	};
 
 	// Patient
-	getPatient = async (patientId: string) => {
+	getPatient = async (patientId?: string) => {
+		if (!patientId) return null;
 		return await this.http
 			.get<Patient[]>("/accounts/patient/", {
 				params: { user__id: patientId },
@@ -103,7 +107,8 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	updatePatient = async (patientId: string) => {
+	updatePatient = async (patientId: string | null) => {
+		if (!patientId) return null;
 		return await this.http.patch("/accounts/patient/", {
 			params: { user__id: patientId },
 		});
@@ -125,7 +130,8 @@ export class AuthAPI {
 	};
 
 	// Doctor
-	getDoctor = async (doctorId: string) => {
+	getDoctor = async (doctorId?: string) => {
+		if (!doctorId) return null;
 		return await this.http
 			.get("/accounts/doctor/", { params: { user__id: doctorId } })
 			.then((res) => res.data);

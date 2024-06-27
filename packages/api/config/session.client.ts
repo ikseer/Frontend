@@ -1,12 +1,13 @@
 import "client-only";
-import { jwtDecode } from "jwt-decode";
-import { useMemo } from "react";
-import { z } from "zod";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
 	UserIdCookie,
+	UserTypeCookie,
 } from "@ikseer/lib/cookies.client";
+import { jwtDecode } from "jwt-decode";
+import { useMemo } from "react";
+import { z } from "zod";
 
 export interface SessionInfo {
 	accessToken: string;
@@ -20,6 +21,7 @@ export function setSession(
 		accessToken: string;
 		refreshToken: string;
 		userId: string | null;
+		userType: "patient" | "doctor" | null;
 	} | null,
 ) {
 	if (!session) {
@@ -27,10 +29,11 @@ export function setSession(
 		RefreshTokenCookie.delete();
 		return;
 	}
-	const { accessToken, refreshToken, userId } = session;
+	const { accessToken, refreshToken, userId, userType } = session;
 	AccessTokenCookie.set(accessToken, "/");
 	RefreshTokenCookie.set(refreshToken, "/");
 	if (userId) UserIdCookie.set(userId, "/");
+	if (userType) UserTypeCookie.set(userType, "/");
 }
 
 export function useCurrentUser() {
