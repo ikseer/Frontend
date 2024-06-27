@@ -19,7 +19,7 @@ import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
-import { useZodForm } from "./test";
+import { useZodForm } from "@/lib/use-zod-form";
 import { useDebounce } from "./use-debounce";
 
 const schema = z.object({
