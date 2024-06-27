@@ -1,19 +1,22 @@
 "use client";
-import DividerText from "@/components/site/divider";
-import AuthShape from "@/components/site/thrid-party-shape";
+import DividerText from "@/components/divider";
+import AuthShape from "@/components/thrid-party-shape";
 import { Link } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
-import { useLogin } from "@/api/hooks/auth";
-import { ErrorMsg } from "@/components/site/error-msg";
-import Spinner from "@/components/site/spinner";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { useZodForm } from "@/lib/use-zod-schema";
+import { ErrorMsg } from "@/components/error-msg";
+import Spinner from "@/components/spinner";
+import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
+import { useZodForm } from "@/lib/use-zod-form";
+import { setSession } from "@ikseer/api/config/session.client";
+import { useLogin } from "@ikseer/api/hooks/accounts";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 
 const schema = z.object({
@@ -22,14 +25,36 @@ const schema = z.object({
 });
 
 export default function Login() {
+	const $t = useTranslations();
+	const t = useTranslations("Login");
 	const form = useZodForm({
 		schema: schema,
 	});
+	const redirectTo = useSearchParams()?.get("redirectTo");
+	const onSuccess = (data: {
+		access: string;
+		refresh: string;
+		user: { id: string; user_type: "doctor" | "patient" };
+	}) => {
+		const {
+			access,
+			refresh,
+			user: { id, user_type },
+		} = data;
+		setSession({
+			accessToken: access,
+			refreshToken: refresh,
+			userId: id,
+			userType: user_type,
+		});
+		const url = new URL(window.location.href);
+		url.searchParams.delete("redirectTo");
+		url.pathname = redirectTo || AFTER_LOGIN_REDIRECT;
+		window.location.href = url.toString();
+	};
 
-	const { mutate, isPending, data, error } = useLogin({});
-	const errorMsg = getErrorMsg(error);
-	console.info(errorMsg.non_field_errors?.[0]);
-	const t = useTranslations("Login");
+	const { mutate, isPending, error } = useLogin({ onSuccess });
+	const errorMsg = getErrorMessageSync(error, $t);
 
 	return (
 		<FormProvider {...form}>
@@ -44,7 +69,7 @@ export default function Login() {
 					className="flex flex-col items-center justify-center h-full rounded-lg bg-zinc-100 dark:bg-zinc-950"
 				>
 					<h1 className="mt-4 text-2xl font-bold ">{t("welcome-to-ikseer")}</h1>
-					<ErrorMsg>{errorMsg.non_field_errors?.[0]} </ErrorMsg>
+					<ErrorMsg>{errorMsg}</ErrorMsg>
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label

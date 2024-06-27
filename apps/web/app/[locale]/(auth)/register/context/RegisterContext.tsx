@@ -1,4 +1,10 @@
-import { type RefObject, createContext, useContext, useRef } from "react";
+import {
+	type ReactNode,
+	type RefObject,
+	createContext,
+	useContext,
+	useRef,
+} from "react";
 
 export const registerContext = createContext<{
 	triggerFunction: RefObject<HTMLButtonElement>;
@@ -7,7 +13,7 @@ export const registerContext = createContext<{
 export default function RegisterContextProvider({
 	children,
 }: {
-	children: React.ReactNode;
+	children: ReactNode;
 }) {
 	const triggerFunction = useRef<HTMLButtonElement>(null);
 	return (

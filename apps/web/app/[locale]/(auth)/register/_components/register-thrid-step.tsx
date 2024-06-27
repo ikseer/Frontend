@@ -3,13 +3,12 @@ import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useRouter } from "next/navigation";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
-import { usePhone } from "@/api/hooks/auth";
-import Spinner from "@/components/site/spinner";
+import Spinner from "@/components/spinner";
+import { usePhone } from "@ikseer/api/hooks/accounts";
 //@ts-ignore
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
-import { useRegisterContext } from "../context/RegisterContext";
 
 export function RegisterThridStep() {
 	const router = useRouter();

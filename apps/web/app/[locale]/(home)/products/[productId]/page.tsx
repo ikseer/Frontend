@@ -1,6 +1,6 @@
 "use client";
-import Rating from "@/components/site/rating";
-import { ShareComponent } from "@/components/site/share";
+import Rating from "@/components/rating";
+import { ShareComponent } from "@/components/share";
 import { useGetOneProduct } from "../../custom-hooks/use-one-product ";
 import AddToCardButton from "./components/add-to-card";
 import BuyNowButton from "./components/buy-now";
@@ -29,11 +29,11 @@ export default function CurrentProduct({ params }: paramsType) {
 					<h1 className="mb-3 text-2xl font-bold">
 						Product Name - {data?.name}
 					</h1>
-					<div className="gap-x-2 flex items-center justify-between mb-6">
+					<div className="flex items-center justify-between mb-6 gap-x-2">
 						<Rating rating={3} />
 						<ShareComponent link="#" text="Share this Product" />
 					</div>
-					<p className="dark:text-zinc-500 gap-x-2 flex mb-6 text-gray-500">
+					<p className="flex mb-6 text-gray-500 dark:text-zinc-500 gap-x-2">
 						<span>company</span>
 						<p>{data?.factory_company}</p>
 					</p>

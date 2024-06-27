@@ -1,4 +1,4 @@
-import type { Product } from "@/types";
+import type { Product } from "@ikseer/lib/types";
 import { create } from "zustand";
 
 interface useCardType {

@@ -1,20 +1,22 @@
 "use client";
-import { useZodForm } from "@/lib/use-zod-schema";
+import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { useTranslations } from "next-intl";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
-import { useResendOtp } from "@/api/hooks/auth";
-import { ErrorMsg } from "@/components/site/error-msg";
-import Spinner from "@/components/site/spinner";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { otpTimer } from "@/lib/otp-time";
+import { ErrorMsg } from "@/components/error-msg";
+import Spinner from "@/components/spinner";
 import { useRouter } from "@/navigation";
+import { useResendOtp } from "@ikseer/api/hooks/accounts";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
+import { otpTimer } from "@ikseer/lib/otp-time";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 
 export default function ResetPassword() {
+	const $t = useTranslations();
+	const t = useTranslations("ResetPassword");
 	const router = useRouter();
 	const form = useZodForm({
 		schema: z.object({
@@ -28,8 +30,7 @@ export default function ResetPassword() {
 	};
 
 	const { mutate, isPending, error } = useResendOtp({ onSuccess });
-	const t = useTranslations("ResetPassword");
-	const errorMsg = getErrorMsg(error);
+	const errorMsg = getErrorMessageSync(error, $t);
 
 	return (
 		<main className="auth-parent hero flex flex-col items-center justify-center">
@@ -43,10 +44,8 @@ export default function ResetPassword() {
 					>
 						<div className=" flex flex-col items-center justify-center">
 							<h1 className="text-2xl">Send your email</h1>
-							{errorMsg.detail && (
-								<ErrorMsg className="flex items-center">
-									{errorMsg.detail}
-								</ErrorMsg>
+							{errorMsg && (
+								<ErrorMsg className="flex items-center">{errorMsg}</ErrorMsg>
 							)}
 						</div>
 						<p className="text-zinc-900 dark:text-zinc-300 ">

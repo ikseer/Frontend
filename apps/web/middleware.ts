@@ -1,13 +1,16 @@
-import createMiddleware from "next-intl/middleware";
-import { localePrefix, locales } from "./navigation";
+import createIntlMiddleware from "next-intl/middleware";
+import type { NextRequest } from "next/server";
+import { locales } from "./navigation";
 
-export default createMiddleware({
-	defaultLocale: "en",
-	localePrefix,
+const intlMiddleware = createIntlMiddleware({
 	locales,
+	localePrefix: "as-needed",
+	defaultLocale: "en",
 });
+export function middleware(req: NextRequest) {
+	return intlMiddleware(req as unknown as NextRequest);
+}
 
 export const config = {
-	// Match only internationalized pathnames
-	matcher: ["/", "/(ar|en)/:path*"],
+	matcher: ["/((?!api|_next|.*\\..*).*)"],
 };

@@ -3,13 +3,13 @@ export function ResponsiveAction() {
 		<div className="md:hidden">
 			<button
 				type="button"
-				className="hs-collapse-toggle hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 flex items-center justify-center w-8 h-8 text-sm font-semibold text-gray-800 border border-gray-200 rounded-full"
+				className="flex items-center justify-center w-8 h-8 text-sm font-semibold text-gray-800 border border-gray-200 rounded-full hs-collapse-toggle hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
 				data-hs-collapse="#navbar-collapse-with-animation"
 				aria-controls="navbar-collapse-with-animation"
 				aria-label="Toggle navigation"
 			>
 				<svg
-					className="hs-collapse-open:hidden flex-shrink-0 w-4 h-4"
+					className="flex-shrink-0 w-4 h-4 hs-collapse-open:hidden"
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
 					height="24"
@@ -26,7 +26,7 @@ export function ResponsiveAction() {
 					<line x1="3" x2="21" y1="18" y2="18" />
 				</svg>
 				<svg
-					className="hs-collapse-open:block flex-shrink-0 hidden w-4 h-4"
+					className="flex-shrink-0 hidden w-4 h-4 hs-collapse-open:block"
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
 					height="24"

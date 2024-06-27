@@ -1,9 +1,8 @@
 "use client";
 
-import { useZodForm } from "@/lib/use-zod-schema";
+import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
-	Form,
 	FormControl,
 	FormField,
 	FormItem,
@@ -18,15 +17,16 @@ import { useTranslations } from "next-intl";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";
 import "../register/register.css";
-import { useOtp, useResendOtp } from "@/api/hooks/auth";
-import { TimerCircularProgressBar } from "@/components/site/circular-progressbar";
-import { ErrorMsg } from "@/components/site/error-msg";
-import Spinner from "@/components/site/spinner";
-import { getErrorMsg } from "@/lib/get-error-msg";
-import { otpTimer } from "@/lib/otp-time";
+import { TimerCircularProgressBar } from "@/components/circular-progressbar";
+import { ErrorMsg } from "@/components/error-msg";
+import Spinner from "@/components/spinner";
 import { Link, useRouter } from "@/navigation";
+import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
+import { otpTimer } from "@ikseer/lib/otp-time";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { FormProvider } from "react-hook-form";
 
 const schema = z.object({
 	otp: z.string().min(6).max(6),
@@ -44,37 +44,34 @@ export default function ConfirmPinCode() {
 	const OtpOnSuccess = () => {
 		setIsResetTimer(true);
 	};
+	const $t = useTranslations();
 	const t = useTranslations("ConfirmPin");
 	const confirmOtp = useOtp({ onSuccess });
 	const resentOtp = useResendOtp({ onSuccess: OtpOnSuccess });
 	const searchParams = useSearchParams();
 	const userEmail = searchParams.get("email");
-	const errorMsg = getErrorMsg(confirmOtp.error);
+	const errorMsg = getErrorMessageSync(confirmOtp.error, $t);
 	console.log(errorMsg);
 	return (
-		<Form {...form}>
+		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => {
 					console.log(data);
 					confirmOtp.mutate(data);
 				})}
-				className="auth-parent hero flex items-center justify-center text-center"
+				className="flex items-center justify-center text-center auth-parent hero"
 			>
 				<AuthContainer className="space-y-6">
 					<section className="space-y-2">
 						<h1 className="text-2xl font-semibold">
 							{t("verification-required")}
 						</h1>
-						<p className="text-zinc-700 dark:text-zinc-100 w-5/6 m-auto">
+						<p className="w-5/6 m-auto text-zinc-700 dark:text-zinc-100">
 							{t(
 								"to-continue-complete-this-verification-step-weve-sent-a-code-to-your-email-please-enter-it-below",
 							)}
 						</p>
-						{errorMsg && (
-							<ErrorMsg>
-								{typeof errorMsg.detail === "string" ? errorMsg.detail : ""}
-							</ErrorMsg>
-						)}
+						<ErrorMsg>{errorMsg}</ErrorMsg>
 					</section>
 					<FormField
 						control={form.control}
@@ -83,7 +80,7 @@ export default function ConfirmPinCode() {
 							<FormItem className="text-center">
 								<FormControl>
 									<InputOTP maxLength={6} {...field}>
-										<InputOTPGroup className="min-w-fit m-auto">
+										<InputOTPGroup className="m-auto min-w-fit">
 											<InputOTPSlot index={0} />
 											<InputOTPSlot index={1} />
 											<InputOTPSlot index={2} />
@@ -108,7 +105,7 @@ export default function ConfirmPinCode() {
 							>
 								{confirmOtp.isPending ? <Spinner /> : t("submit")}
 							</Button>
-							<div className=" grid w-full grid-cols-2 space-x-8">
+							<div className="grid w-full grid-cols-2 space-x-8 ">
 								<Button type="button">
 									<Link href="/otp-by-email">{t("back")}</Link>
 								</Button>
@@ -131,6 +128,6 @@ export default function ConfirmPinCode() {
 					</section>
 				</AuthContainer>
 			</form>
-		</Form>
+		</FormProvider>
 	);
 }

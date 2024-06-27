@@ -1,22 +1,25 @@
 "use client";
-import DividerText from "@/components/site/divider";
-import AuthShape from "@/components/site/thrid-party-shape";
+import DividerText from "@/components/divider";
+import AuthShape from "@/components/thrid-party-shape";
 import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
 import "../register.css";
-import { useCheckEmail, useCheckUserName, useRegister } from "@/api/hooks/auth";
-import { ErrorMsg } from "@/components/site/error-msg";
-import Radio from "@/components/site/radio";
-import Spinner from "@/components/site/spinner";
-import { otpTimer } from "@/lib/otp-time";
-import { useZodForm } from "@/lib/use-zod-schema";
+import { ErrorMsg } from "@/components/error-msg";
+import Radio from "@/components/radio";
+import Spinner from "@/components/spinner";
+import {
+	useCheckEmail,
+	useCheckUserName,
+	useRegister,
+} from "@ikseer/api/hooks/accounts";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
+import { useZodForm } from "@/lib/use-zod-form";
 import { useDebounce } from "./use-debounce";
 
 const schema = z.object({
@@ -30,6 +33,7 @@ const schema = z.object({
 
 export function RegisterFirstStep() {
 	const { triggerFunction } = useRegisterContext();
+
 	const router = useRouter();
 	const form = useZodForm({
 		schema: schema,
@@ -38,7 +42,6 @@ export function RegisterFirstStep() {
 	const onSuccess = () => {
 		router.push(`/register?email=${form.getValues().email}`);
 		triggerFunction?.current?.click();
-		otpTimer.set("120", "/");
 	};
 	const { mutate, isPending } = useRegister({ onSuccess });
 

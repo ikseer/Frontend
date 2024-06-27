@@ -1,0 +1,12 @@
+{
+	"extends": "@ikseer/config/tsconfig.json",
+	"compilerOptions": {
+		"jsx": "preserve",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": ["hooks", "services", "config"],
+	"exclude": ["node_modules"]
+}

@@ -1,12 +1,11 @@
-import PrelineScript from "@/components/site/preline-script";
+import PrelineScript from "@/components/preline-script";
 import { availableLocalesMap, defaultLocale } from "@/next.locales.mjs";
 import { LocaleProvider } from "@/providers/locale-provider";
-import ReactQueryProvider from "@/providers/react-query-provider";
 import { notFound } from "next/navigation";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@ikseer/ui/src/components/ui/toaster";
 import type React from "react";
+import { App } from "./_app";
 import GuestNavBar from "./_components/nav-bar";
 
 interface RootLayoutProps {
@@ -35,21 +34,18 @@ export default function RootLayout({
 	return (
 		<html lang={hrefLang} dir={langDir}>
 			<body>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
-					<LocaleProvider>
-						<ReactQueryProvider>
-							<GuestNavBar />
-
-							{children}
-						</ReactQueryProvider>
+				<LocaleProvider>
+					<App
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<GuestNavBar />
+						{children}
 						<Toaster />
-					</LocaleProvider>
-				</ThemeProvider>
+					</App>
+				</LocaleProvider>
 			</body>
 			<PrelineScript />
 		</html>
