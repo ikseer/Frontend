@@ -1,9 +1,3 @@
-import {
-	AccessTokenCookie,
-	RefreshTokenCookie,
-	UserIdCookie,
-	UserTypeCookie,
-} from "@ikseer/lib/cookies.client";
 import type { Patient } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { httpNoAuth } from "../config/axios-non-auth";
@@ -72,13 +66,6 @@ export class AuthAPI {
 		});
 	};
 
-	logout = async () => {
-		RefreshTokenCookie.delete();
-		AccessTokenCookie.delete();
-		UserIdCookie.delete();
-		UserTypeCookie.delete();
-	};
-
 	resetPassword = async (data: {
 		new_password1: string;
 		new_password2: string;
@@ -124,8 +111,7 @@ export class AuthAPI {
 		return await this.http.get(`/accounts/patient/${patientId}/image/`);
 	};
 
-	updatePatientImage = async (data: Blob) => {
-		const id = UserIdCookie.get();
+	updatePatientImage = async ({ id, data }: { id: string; data: Blob }) => {
 		return await this.http.patchForm(`/accounts/patient/${id}/image/`, data);
 	};
 
@@ -153,8 +139,7 @@ export class AuthAPI {
 		return await this.http.get(`/accounts/doctor/${doctorId}/image/`);
 	};
 
-	updateDoctorImage = async (data: Blob) => {
-		const id = UserIdCookie.get();
+	updateDoctorImage = async ({ id, data }: { id: string; data: Blob }) => {
 		return await this.http.patchForm(`/accounts/doctor/${id}/image/`, data);
 	};
 }

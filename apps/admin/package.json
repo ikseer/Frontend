@@ -15,6 +15,7 @@
 	"dependencies": {
 		"@dicebear/collection": "^9.0.1",
 		"@dicebear/core": "^9.0.1",
+		"@ikseer/config": "workspace:*",
 		"@ikseer/api": "workspace:*",
 		"@ikseer/lib": "workspace:*",
 		"@ikseer/ui": "workspace:*",

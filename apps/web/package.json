@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.6.0",
+		"@ikseer/config": "workspace:*",
 		"@ikseer/api": "workspace:*",
 		"@ikseer/lib": "workspace:*",
 		"@ikseer/ui": "workspace:*",

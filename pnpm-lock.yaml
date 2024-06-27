@@ -32,6 +32,9 @@ importers:
       '@ikseer/api':
         specifier: workspace:*
         version: link:../../packages/api
+      '@ikseer/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@ikseer/lib':
         specifier: workspace:*
         version: link:../../packages/lib
@@ -201,6 +204,9 @@ importers:
       '@ikseer/api':
         specifier: workspace:*
         version: link:../../packages/api
+      '@ikseer/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@ikseer/lib':
         specifier: workspace:*
         version: link:../../packages/lib
@@ -328,6 +334,9 @@ importers:
 
   packages/api:
     dependencies:
+      '@ikseer/config':
+        specifier: workspace:*
+        version: link:../config
       '@ikseer/lib':
         specifier: workspace:*
         version: link:../lib
@@ -352,6 +361,9 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      typescript:
+        specifier: ^5.5.2
+        version: 5.5.2
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -362,12 +374,14 @@ importers:
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
-      typescript:
-        specifier: ^5.5.2
-        version: 5.5.2
+
+  packages/config: {}
 
   packages/lib:
     dependencies:
+      '@ikseer/config':
+        specifier: workspace:*
+        version: link:../config
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -411,6 +425,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@ikseer/config':
+        specifier: workspace:*
+        version: link:../config
       '@ikseer/lib':
         specifier: workspace:*
         version: link:../lib

@@ -10,6 +10,7 @@ export const Routes = makeRoutes(
 		return {
 			home: makeRoute("/"),
 			login: makeRoute("/login", { type: "auth" }),
+			notAuthorized: makeRoute("/not-authorized", { type: "auth" }),
 			dashboard: makeRoute("/dashboard", {
 				type: "private",
 			}),

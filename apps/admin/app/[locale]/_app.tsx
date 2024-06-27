@@ -6,7 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
-const theme = createTheme({});
+const theme = createTheme({
+	primaryColor: "cyan",
+});
 
 const queryClient = new QueryClient();
 

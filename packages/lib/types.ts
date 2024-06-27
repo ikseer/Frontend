@@ -32,3 +32,5 @@ export interface Product {
 	discount?: boolean;
 	key?: string;
 }
+
+export type UserType = "PATIENT" | "DOCTOR" | "ADMIN";

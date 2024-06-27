@@ -109,10 +109,10 @@ export function makeRouteInner<
 
 	routeBuilder.doesMatch = function doesMatch(
 		path: string,
-		options?: Parameters<typeof pathToRegexp>[2],
+		options?: Parameters<typeof pathToRegexp>[1],
 	): boolean {
-		const newRoute = `/(${locales.join("|")})?${route === "/" ? "" : route}`;
-		const re = pathToRegexp(newRoute, undefined, options);
+		const newRoute = `{/(${locales.join("|")})}?${route === "/" ? "" : route}`;
+		const re = pathToRegexp(newRoute, options);
 		return re.test(path);
 	};
 

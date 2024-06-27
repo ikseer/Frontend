@@ -103,12 +103,8 @@ export function usePhone({ onSuccess }: { onSuccess: () => void }) {
 export function useLogin({
 	onSuccess,
 }: {
-	onSuccess?: (data: {
-		access: string;
-		refresh: string;
-		user: { id: string; user_type: "doctor" | "patient" };
-	}) => void;
-}) {
+	onSuccess?: (data: Awaited<ReturnType<typeof clientAPI.auth.login>>) => void;
+} = {}) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.login,
@@ -165,27 +161,6 @@ export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 		onError: () => {
 			toast({
 				title: "Can't reset password",
-				variant: "error",
-			});
-		},
-	});
-}
-
-// Logout
-export function useLogout({ onSuccess }: { onSuccess: () => void }) {
-	const { toast } = useToast();
-	return useMutation({
-		mutationFn: clientAPI.auth.logout,
-		onSuccess: () => {
-			onSuccess?.();
-			toast({
-				title: "Logout Success",
-				variant: "success",
-			});
-		},
-		onError: () => {
-			toast({
-				title: "Can't logout",
 				variant: "error",
 			});
 		},

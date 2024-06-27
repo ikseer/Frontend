@@ -1,10 +1,11 @@
 "use client";
 
-import { useSignIn } from "@ikseer/api/login";
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
 import { useTranslations } from "next-intl";
+import { useLogin } from "@ikseer/api/hooks/accounts";
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import * as z from "zod";
 
 export interface LoginData {
@@ -13,6 +14,7 @@ export interface LoginData {
 }
 
 export default function LoginForm() {
+	const $t = useTranslations();
 	const t = useTranslations("Login");
 	const loginSchema = z.object({
 		username: z.string(),
@@ -22,7 +24,7 @@ export default function LoginForm() {
 		mode: "uncontrolled",
 		validate: zodResolver(loginSchema),
 	});
-	const { mutate, error, isPending, isSuccess } = useSignIn();
+	const { mutate, error, isError, isPending, isSuccess } = useLogin();
 	return (
 		<form
 			className="space-y-7"
@@ -30,8 +32,10 @@ export default function LoginForm() {
 				mutate(loginInfo);
 			})}
 		>
-			{error?.detail && (
-				<p className="text-red-600 text-center text-sm">{error?.detail}</p>
+			{isError && (
+				<p className="text-red-600 text-center text-sm">
+					{getErrorMessageSync(error, $t)}
+				</p>
 			)}
 			<div className="space-y-3">
 				<TextInput
