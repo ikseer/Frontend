@@ -8,12 +8,15 @@ import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
 import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
+import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
+import { useZodForm } from "@/lib/use-zod-form";
+import { setSession } from "@ikseer/api/config/session.client";
 import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMsg } from "@ikseer/lib/get-error-msg";
-import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import { FormInput } from "@ikseer/ui/src/components/ui/input";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 
 const schema = z.object({
@@ -25,8 +28,30 @@ export default function Login() {
 	const form = useZodForm({
 		schema: schema,
 	});
+	const redirectTo = useSearchParams()?.get("redirectTo");
+	const onSuccess = (data: {
+		access: string;
+		refresh: string;
+		user: { id: string; user_type: "doctor" | "patient" };
+	}) => {
+		const {
+			access,
+			refresh,
+			user: { id, user_type },
+		} = data;
+		setSession({
+			accessToken: access,
+			refreshToken: refresh,
+			userId: id,
+			userType: user_type,
+		});
+		const url = new URL(window.location.href);
+		url.searchParams.delete("redirectTo");
+		url.pathname = redirectTo || AFTER_LOGIN_REDIRECT;
+		window.location.href = url.toString();
+	};
 
-	const { mutate, isPending, error } = useLogin({});
+	const { mutate, isPending, error } = useLogin({ onSuccess });
 	const errorMsg = getErrorMsg(error);
 	console.info(errorMsg.non_field_errors?.[0]);
 	const t = useTranslations("Login");

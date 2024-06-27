@@ -1,4 +1,4 @@
-import { Link } from "lucide-react";
+import { Link } from "@/navigation";
 import Image from "next/image";
 import { SwitchLang } from "../switch-lang";
 import { SwitchTheme } from "../switch-theme";

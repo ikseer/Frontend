@@ -10,7 +10,7 @@ export const USER_TYPE_KEY = "the-user-type";
 export const AccessTokenCookie = createCookieStorage(ACCESS_TOKEN_KEY);
 export const RefreshTokenCookie = createCookieStorage(REFRESH_TOKEN_KEY);
 export const UserIdCookie = createCookieStorage(USER_ID_KEY);
-export const UserTypeCookie = createCookieStorage<"DOCTOR" | "PATIENT">(
+export const UserTypeCookie = createCookieStorage<"patient" | "doctor">(
 	USER_TYPE_KEY,
 );
 

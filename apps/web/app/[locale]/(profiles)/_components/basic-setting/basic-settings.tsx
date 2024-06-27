@@ -1,14 +1,14 @@
 "use client";
 import NotFound from "@/app/[locale]/not-found";
 import NA from "@/components/NA";
-import { useGetMe } from "@ikseer/api/hooks/accounts";
+import { useGetPatient } from "@ikseer/api/hooks/accounts";
 import { cn } from "@ikseer/lib/utils";
 import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/src/components/ui/loading-spinner";
 import SettingContainer from "../../user/[userId]/_components/setting";
 import { BasicSettingsDialog } from "./basic-settings-diaglog";
 
 export default function BasicSettings() {
-	const { data, isPending } = useGetMe();
+	const { data, isPending } = useGetPatient();
 	if (isPending || typeof window === "undefined")
 		return <FullScreenSpinnerWithNavBar />;
 	if (!data || data.length <= 0) return <NotFound />;
@@ -58,7 +58,7 @@ export default function BasicSettings() {
 				<DisplaySection>
 					<Label>Timezone</Label>
 					<ViewInfo>
-						<NA>{userInfo.timeZone}</NA>
+						<NA>{userInfo.timezone}</NA>
 					</ViewInfo>
 				</DisplaySection>
 				<BasicSettingsDialog />

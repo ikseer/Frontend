@@ -1,6 +1,7 @@
 "use client";
-import { Link } from "@/navigation";
-import { useGetMe } from "@ikseer/api/hooks/accounts";
+import { AFTER_LOGOUT_REDIRECT } from "@/lib/constants";
+import { Link, usePathname, useRouter } from "@/navigation";
+import { useGetPatient, useLogout } from "@ikseer/api/hooks/accounts";
 import { cn } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
@@ -10,16 +11,14 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@ikseer/ui/src/components/ui/dropdown-menu";
-import { usePathname } from "next/navigation";
 
 export function LoginOrProfile() {
-	const { data } = useGetMe();
+	const { data } = useGetPatient();
 	const currentUser = data?.[0];
-
 	return (
-		<section className="flex items-center justify-between">
+		<section className="flex items-center justify-between gap-x-2">
 			{currentUser?.username ? (
-				<ProfileDropdown />
+				<ProfileDropdown href={`/user/${currentUser?.id}`} />
 			) : (
 				<>
 					<NavLink href="/login">Login</NavLink>
@@ -47,7 +46,15 @@ function NavLink({ href, children }: { href: string; children: string }) {
 	);
 }
 
-export function ProfileDropdown() {
+export function ProfileDropdown({ href }: { href: string }) {
+	const router = useRouter();
+	const onSuccess = () => {
+		router.push("/login");
+		const url = new URL(window.location.href);
+		url.pathname = AFTER_LOGOUT_REDIRECT;
+		window.location.href = url.toString();
+	};
+	const logout = useLogout({ onSuccess });
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -55,16 +62,13 @@ export function ProfileDropdown() {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-56">
 				<DropdownMenuSeparator />
-				<DropdownMenuCheckboxItem
-					onClick={() => {
-						console.log("go to profile");
-					}}
-				>
-					Profile
+
+				<DropdownMenuCheckboxItem>
+					<Link href={href}>Profile</Link>
 				</DropdownMenuCheckboxItem>
 				<DropdownMenuCheckboxItem
 					onClick={() => {
-						console.log("logout");
+						logout.mutate();
 					}}
 				>
 					Logout

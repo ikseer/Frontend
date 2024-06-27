@@ -13,10 +13,6 @@ import ProfileContainer from "../../_components/securiy-setting/profile-containe
 import SecuritySetting from "./security-setting";
 
 export default async function UserProfile() {
-	// const data = await serverAPI.auth.getPatient()
-	// console.log(data, "data from server");
-	// if (!data) return <NotFound />;
-
 	return (
 		<ProfileContainer>
 			<Tabs defaultValue="profile" className="py-4 my-10">
