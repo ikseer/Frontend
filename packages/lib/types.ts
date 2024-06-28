@@ -5,15 +5,33 @@ export interface User {
 	email: string;
 	username: string;
 	date_of_birth: string;
-	timezone: string;
-	gender: string;
+	date_joined: string;
 	created_at: string;
 	updated_at: string;
+	user_type: UserType;
+	is_staff: boolean;
+	is_active: boolean;
 	id: string;
 }
 
 export interface Patient extends User {
-	age: number;
+	timezone: string;
+	bio: string;
+	gender: "male" | "female";
+	/** uuid */
+	user: string;
+}
+
+export interface Doctor extends User {
+	timezone: string;
+	bio: string;
+	gender: "male" | "female";
+	/** uuid */
+	user: string;
+	price_for_reservation: number;
+	approved: boolean;
+	location: string;
+	specialization: string;
 }
 
 export interface Product {

@@ -102,7 +102,7 @@
 		"active-visits": "Active visits",
 		"upcomming-visits": "Upcomming visits",
 		"missed-visits": "Missed visits",
-		"total-visits": "Total visits",
+		"total-products": "Total products",
 		"search-placeholder": "Search for patients or other things"
 	},
 	"Patient": {
@@ -171,7 +171,10 @@
 		"edit-attachment-name": "Edit attachment name",
 		"no-file-description": "No file description",
 		"edit-visit": "Edit visit",
-		"patient": "Patient"
+		"patient": "Patient",
+		"email": "Email",
+		"first-name": "First name",
+		"last-name": "Last name"
 	},
 	"Navbar": {
 		"zu-hospital": "ZU Hospital",

@@ -1,16 +1,15 @@
-import { getErrorMessageSync } from "@ikseer/lib/err-msg";
-import getTableSearchParams from "@ikseer/lib/get-search-params";
-import { notifyError } from "@ikseer/lib/notifications";
-import { ActionIcon, Button, Group, Menu, Tooltip } from "@mantine/core";
 import "@mantine/core/styles.css";
-import "@mantine/dates/styles.css"; //if using mantine date picker features
+import "@mantine/dates/styles.css"; // if using mantine date picker features
+
+import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
+import { notifyError } from "@/lib/notifications";
+import { ActionIcon, Button, Group, Menu, Tooltip } from "@mantine/core";
 import { IconDownload, IconRefresh } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
 import { download, generateCsv, mkConfig } from "export-to-csv";
 import { get, merge } from "lodash";
-//@ts-ignore
+// @ts-ignore
 import { MRT_Localization_AR } from "mantine-react-table/locales/ar";
-
 import {
 	type MRT_ColumnDef,
 	type MRT_ColumnFilterFnsState,
@@ -24,6 +23,8 @@ import {
 import "mantine-react-table/styles.css"; //make sure MRT styles were imported in your app root (once)
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useState } from "react";
+import type { SearchOptions } from "@ikseer/api/config/types";
+import { getSearchParams } from "@ikseer/api/config/get-search-params";
 
 export type UseTableOptions<TData extends MRT_RowData> =
 	| {
@@ -34,14 +35,6 @@ export type UseTableOptions<TData extends MRT_RowData> =
 			deleted?: boolean;
 	  }
 	| undefined;
-
-export interface FetchOptions {
-	columnFilterFns?: MRT_ColumnFilterFnsState;
-	columnFilters?: MRT_ColumnFiltersState;
-	globalFilter?: string;
-	pagination?: MRT_PaginationState;
-	sorting?: MRT_SortingState;
-}
 
 export type OurTableColumnDef<TData extends MRT_RowData> =
 	MRT_ColumnDef<TData> & {
@@ -88,7 +81,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 		globalFilter?: string;
 		data?: TData[];
 		initialFilters?: MRT_ColumnFiltersState;
-		fetchData: (fetchOptions: FetchOptions) => Promise<{
+		fetchData: (fetchOptions: SearchOptions) => Promise<{
 			count: number;
 			results: TData[];
 		}>;
@@ -140,7 +133,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 	const { data, isError, isFetching, isLoading, refetch, error } = useQuery({
 		queryKey: [
 			deleted ? `${id}-deleted` : id,
-			getTableSearchParams(fetchOptions).toString(),
+			getSearchParams(fetchOptions).toString(),
 		],
 		queryFn: () => fetchData(fetchOptions),
 	});

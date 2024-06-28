@@ -2,7 +2,6 @@
 
 import Logout from "@/app/[locale]/_components/logout";
 import { usePermissions } from "@/hooks/use-permissions";
-import { Routes } from "@ikseer/lib/routes";
 import { cn } from "@ikseer/lib/utils";
 import { Link, usePathname, useRouter } from "@/navigation";
 import {
@@ -27,6 +26,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LangSwitch from "../_components/lang-switch";
 import { ThemeSwitch } from "../_components/theme-switch";
+import { Routes } from "@/lib/routes";
 
 export default function CollapseDesktop({
 	children,
@@ -130,7 +130,7 @@ function NavLink({
 			aria-current={active ? "page" : undefined}
 			className={cn(
 				"px-4 py-2 bg-slate-100 border-s-4 border-transparent hover:bg-slate-200 dark:bg-zinc-900/70 dark:hover:bg-zinc-900 rounded",
-				active && "border-blue-600 font-bold",
+				active && "border-cyan-600 font-bold",
 			)}
 		>
 			<Group>{children}</Group>

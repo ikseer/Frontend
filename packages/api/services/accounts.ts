@@ -1,6 +1,8 @@
-import type { Patient } from "@ikseer/lib/types";
+import type { Doctor, Patient, User } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { httpNoAuth } from "../config/axios-non-auth";
+import type { SearchOptions } from "../config/types";
+import { getSearchParams } from "../config/get-search-params";
 
 export class AuthAPI {
 	constructor(private http: AxiosInstance) {}
@@ -61,9 +63,14 @@ export class AuthAPI {
 	};
 
 	login = async (data: { username: string; password: string }) => {
-		return await httpNoAuth.post("/accounts/login/", data).then((res) => {
-			return res.data;
-		});
+		return await httpNoAuth
+			.post<{ access: string; refresh: string; user: User }>(
+				"/accounts/login/",
+				data,
+			)
+			.then((res) => {
+				return res.data;
+			});
 	};
 
 	resetPassword = async (data: {
@@ -84,14 +91,22 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	// Patient
-	getPatient = async (patientId?: string) => {
-		if (!patientId) return null;
+	// -----------------------------------
+	// Patients
+	// -----------------------------------
+
+	getPatients = async (options?: SearchOptions) => {
+		const params = getSearchParams(options);
 		return await this.http
-			.get<Patient[]>("/accounts/patient/", {
-				params: { user__id: patientId },
+			.get<{ count: number; results: Patient[] }>("/accounts/patient/", {
+				params,
 			})
 			.then((res) => res.data);
+	};
+
+	getPatient = async (patientId?: string) => {
+		if (!patientId) return null;
+		return await this.http.get<Patient>(`accounts/patient/${patientId}/`);
 	};
 
 	updatePatient = async (patientId: string | null) => {
@@ -115,11 +130,23 @@ export class AuthAPI {
 		return await this.http.patchForm(`/accounts/patient/${id}/image/`, data);
 	};
 
-	// Doctor
+	// -----------------------------------
+	// Doctors
+	// -----------------------------------
+
+	getDoctors = async (options: SearchOptions) => {
+		const params = getSearchParams(options);
+		return await this.http
+			.get<{ count: number; results: Doctor[] }>("/accounts/doctor/", {
+				params,
+			})
+			.then((res) => res.data);
+	};
+
 	getDoctor = async (doctorId?: string) => {
 		if (!doctorId) return null;
 		return await this.http
-			.get("/accounts/doctor/", { params: { user__id: doctorId } })
+			.get(`/accounts/doctor/${doctorId}/`)
 			.then((res) => res.data);
 	};
 

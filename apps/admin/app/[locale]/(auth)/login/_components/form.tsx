@@ -7,6 +7,9 @@ import { useTranslations } from "next-intl";
 import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import * as z from "zod";
+import { AFTER_LOGIN_REDIRECT } from "@/lib/routes";
+import { useRouter } from "@/navigation";
+import { setSession } from "@ikseer/api/config/session.client";
 
 export interface LoginData {
 	username: string;
@@ -16,6 +19,7 @@ export interface LoginData {
 export default function LoginForm() {
 	const $t = useTranslations();
 	const t = useTranslations("Login");
+	const router = useRouter();
 	const loginSchema = z.object({
 		username: z.string(),
 		password: z.string(),
@@ -24,7 +28,17 @@ export default function LoginForm() {
 		mode: "uncontrolled",
 		validate: zodResolver(loginSchema),
 	});
-	const { mutate, error, isError, isPending, isSuccess } = useLogin();
+	const { mutate, error, isError, isPending, isSuccess } = useLogin({
+		onSuccess(data) {
+			setSession({
+				accessToken: data.access,
+				refreshToken: data.refresh,
+				userId: data.user.id,
+				userType: data.user.is_staff ? "admin" : data.user.user_type,
+			});
+			router.push(AFTER_LOGIN_REDIRECT);
+		},
+	});
 	return (
 		<form
 			className="space-y-7"

@@ -105,23 +105,13 @@ export function useLogin({
 }: {
 	onSuccess?: (data: Awaited<ReturnType<typeof clientAPI.auth.login>>) => void;
 } = {}) {
-	const { toast } = useToast();
 	return useMutation({
 		mutationFn: clientAPI.auth.login,
 		onSuccess: (data) => {
 			onSuccess?.(data);
-			toast({
-				title: "Login Success",
-				variant: "success",
-			});
 		},
-
 		onError: (error) => {
-			toast({
-				title: "Can't login",
-				variant: "error",
-			});
-			console.info(error);
+			console.error(error);
 		},
 	});
 }

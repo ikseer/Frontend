@@ -14,6 +14,12 @@ export const Routes = makeRoutes(
 			dashboard: makeRoute("/dashboard", {
 				type: "private",
 			}),
+			products: makeRoute("/dashboard/products", {
+				type: "private",
+				search: z.object({
+					q: z.string().optional(),
+				}),
+			}),
 			patients: makeRoute("/dashboard/patients", {
 				type: "private",
 				search: z.object({
