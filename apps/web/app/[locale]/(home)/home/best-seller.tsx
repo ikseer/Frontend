@@ -12,9 +12,11 @@ export default function BestSeller() {
 	console.log(bastSellerProduct, "best seller products");
 
 	return (
-		<section>
-			<div className="text-center">
-				<h2 className="text-xl font-bold">Best Sellers</h2>
+		<section className="page-container">
+			<div className="mb-10 text-center">
+				<h2 className="text-3xl font-bold text-center  text-zinc-950 dark:text-white">
+					Best Sellers
+				</h2>
 				<p className="text-zinc-800 dark:text-zinc-400">
 					best seller products in our smart pharmacy
 				</p>
