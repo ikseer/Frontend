@@ -1,7 +1,7 @@
 "use client";
 import { SkeletonCard } from "@/components/card-skeleton";
 import { useInfiniteProducts } from "@ikseer/api/hooks/products";
-import type { Product } from "@ikseer/lib/types";
+import type { ProductsList } from "@ikseer/lib/types";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import SingleProductCard from "./single-product-card";
 
@@ -11,7 +11,6 @@ export default function ShowCards() {
 			pageParam: 12,
 			limit: 12,
 		});
-	const pages = data?.pages;
 
 	return (
 		<div className="page-container">
@@ -27,11 +26,11 @@ export default function ShowCards() {
 			) : (
 				<section className="space-y-10">
 					<div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-						{Array.isArray(pages) &&
-							pages.map(
+						{Array.isArray(data?.pages) &&
+							data.pages.map(
 								(currPage) =>
 									Array.isArray(currPage.results) &&
-									currPage.results.map((item: Product) => (
+									currPage.results.map((item: ProductsList) => (
 										<SingleProductCard key={`${item.id}`} item={item} />
 									)),
 							)}

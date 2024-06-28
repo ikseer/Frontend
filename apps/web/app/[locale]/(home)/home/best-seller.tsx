@@ -1,47 +1,38 @@
 "use client";
+import { SkeletonCard } from "@/components/card-skeleton";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { useInfiniteProducts } from "@ikseer/api/hooks/products";
-import { Minus, Plus, ShoppingCart } from "lucide-react";
-import Image from "next/image";
 
 export default function BestSeller() {
-	const bastSellerProduct = useInfiniteProducts({
+	const { data } = useInfiniteProducts({
 		pageParam: 1,
-		limit: 12,
+		limit: 10,
 		top_sales: true,
 	});
-	console.log(bastSellerProduct, "best seller products");
 
 	return (
 		<section className="page-container">
 			<div className="mb-10 text-center">
-				<h2 className="text-3xl font-bold text-center  text-zinc-950 dark:text-white">
+				<h2 className="text-3xl font-bold text-center text-zinc-950 dark:text-white">
 					Best Sellers
 				</h2>
 				<p className="text-zinc-800 dark:text-zinc-400">
 					best seller products in our smart pharmacy
 				</p>
-				{/* <CardImage src={""} /> */}
 			</div>
+			{!data ? (
+				<section className="grid grid-cols-3 gap-5 page-container">
+					{Array.from({ length: 3 }).map((item) => (
+						<SkeletonCard key={item as number} />
+					))}
+				</section>
+			) : (
+				<InfiniteMovingCards
+					items={data?.pages?.[0].results}
+					direction="right"
+					speed="slow"
+				/>
+			)}
 		</section>
-	);
-}
-
-function CardImage({ src }: { src: string }) {
-	return (
-		<div className="relative">
-			<Image
-				src={src}
-				alt="item"
-				width={100}
-				height={100}
-				className="w-full h-full"
-			/>
-			<p>Top Sales</p>
-			<div className="group">
-				<Minus />
-				<ShoppingCart className="text-white dark:text-zinc-950" />
-				<Plus />
-			</div>
-		</div>
 	);
 }
