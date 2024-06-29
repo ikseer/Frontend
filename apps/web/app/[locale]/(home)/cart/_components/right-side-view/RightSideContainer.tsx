@@ -1,4 +1,3 @@
-
 interface leftSideContainerType {
 	children: React.ReactNode;
 }

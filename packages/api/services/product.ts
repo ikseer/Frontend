@@ -1,4 +1,4 @@
-import type { ProductsHomePage } from "@ikseer/lib/types";
+import type { Product, ProductsHomePage } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 
 export class ProductsAPI {
@@ -6,7 +6,7 @@ export class ProductsAPI {
 
 	getProductById = async (id: string) => {
 		return await this.http
-			.get(`/products/product/${id}`)
+			.get<Product>(`/products/product/${id}`)
 			.then((res) => res.data);
 	};
 

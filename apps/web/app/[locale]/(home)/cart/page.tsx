@@ -18,7 +18,6 @@ export default function ShowShoppingItems() {
 						<div className="flex justify-between ">
 							<div>
 								<CartHeader />
-								{/* <CartView cartItems={cartItems} /> */}
 							</div>
 						</div>
 					</div>
