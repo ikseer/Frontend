@@ -1,5 +1,6 @@
 export interface User {
-	image: string;
+	/** uri of the image */
+	image: string | null;
 	first_name: string;
 	last_name: string;
 	email: string;

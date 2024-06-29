@@ -64,7 +64,7 @@ export default function usePatientsTable({
 			initialFilters,
 			globalFilter,
 			data,
-			fetchData: clientAPI.auth.getPatients,
+			fetchData: clientAPI.accounts.getPatients,
 		},
 		{
 			columns,

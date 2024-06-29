@@ -1,5 +1,4 @@
 import type { Doctor } from "@ikseer/lib/types";
-import { getDeletedDoctors, getDoctors } from "@ikseer/api/doctors";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features
 import type { MRT_ColumnDef } from "mantine-react-table";
@@ -9,6 +8,8 @@ import { useMemo } from "react";
 import useOurTable, {
 	type UseTableOptions,
 } from "../../../hooks/use-our-table";
+import { clientAPI } from "@ikseer/api/config/api.client";
+import { getAvatarLink } from "@ikseer/lib/get-avatar";
 
 export default function useDoctorsTable({
 	data,
@@ -20,24 +21,39 @@ export default function useDoctorsTable({
 	const columns = useMemo<MRT_ColumnDef<Doctor>[]>(
 		() => [
 			{
-				accessorKey: "full_name",
-				header: t("full-name"),
+				accessorKey: "image",
+				header: t("image"),
+				enableSorting: false,
+				enableColumnFilter: false,
+				Cell: ({ cell }) => {
+					return (
+						<img
+							alt="Doctor's avatar"
+							src={getAvatarLink(cell.row.original)}
+							className="w-16 h-16 rounded-full object-cover"
+						/>
+					);
+				},
 			},
 			{
-				accessorKey: "speciality",
-				header: t("speciality"),
+				accessorKey: "first_name",
+				header: t("first-name"),
 			},
 			{
-				accessorKey: "national_id",
-				header: t("national-id"),
+				accessorKey: "last_name",
+				header: t("last-name"),
 			},
 			{
-				accessorKey: "nationality",
-				header: t("nationality"),
+				accessorKey: "specialization",
+				header: t("specialization"),
 			},
 			{
-				accessorKey: "phone.mobile",
-				header: t("phone"),
+				accessorKey: "email",
+				header: t("email"),
+			},
+			{
+				accessorKey: "gender",
+				header: t("gender"),
 			},
 		],
 		[t],
@@ -48,7 +64,8 @@ export default function useDoctorsTable({
 			id: "doctors",
 			deleted,
 			data,
-			fetchData: deleted ? getDeletedDoctors : getDoctors,
+			// fetchData: deleted ? getDeletedDoctors : getDoctors,
+			fetchData: clientAPI.accounts.getDoctors,
 			initialFilters,
 		},
 		{
