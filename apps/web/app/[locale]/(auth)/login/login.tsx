@@ -69,7 +69,7 @@ export default function Login() {
 					className="flex flex-col items-center justify-center h-full rounded-lg bg-zinc-100 dark:bg-zinc-950"
 				>
 					<h1 className="mt-4 text-2xl font-bold ">{t("welcome-to-ikseer")}</h1>
-					<ErrorMsg>{errorMsg}</ErrorMsg>
+					{error && <ErrorMsg>{errorMsg}</ErrorMsg>}
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label

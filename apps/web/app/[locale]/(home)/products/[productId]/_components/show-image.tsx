@@ -1,25 +1,15 @@
 "use client";
+import type { ProductImage } from "@ikseer/lib/types";
 import { getLink } from "@ikseer/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 
-interface ImageProps {
-	id: string;
-	image: string;
-	priority: number;
-	product: string;
-}
-interface ShowImageProps {
-	images: ImageProps[];
-}
-
-export default function ShowImage({ images }: ShowImageProps) {
-	const sortedImages = images?.sort((a, b) => b.priority - a.priority);
+export default function ShowImage({ images }: { images: ProductImage }) {
 	const [currPriority, setCurrPriority] = useState(1);
 	return (
-		<div>
-			{Array.isArray(sortedImages) &&
-				sortedImages.map((item) =>
+		<section>
+			{Array.isArray(images) &&
+				images.map((item) =>
 					currPriority === item.priority ? (
 						<Image
 							key={item.priority}
@@ -31,9 +21,9 @@ export default function ShowImage({ images }: ShowImageProps) {
 						/>
 					) : null,
 				)}
-			<div className="gap-x-3 x flex justify-center mt-3">
-				{Array.isArray(sortedImages) &&
-					sortedImages.map((item) => (
+			<div className="flex justify-center mt-3 gap-x-3 x">
+				{Array.isArray(images) &&
+					images.map((item) => (
 						<Image
 							key={item.priority}
 							src={getLink(item.image)}
@@ -45,6 +35,6 @@ export default function ShowImage({ images }: ShowImageProps) {
 						/>
 					))}
 			</div>
-		</div>
+		</section>
 	);
 }
