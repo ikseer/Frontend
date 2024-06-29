@@ -1,9 +1,4 @@
-"use client";
 import type { Product } from "@ikseer/lib/types";
-import Image from "next/image";
-import IncrementAndDecrement from "../../../components/IncrementAndDecrement";
-import RemoveProduct from "./RemoveProduct";
-import { getLink } from "@ikseer/lib/utils";
 
 interface CartViewProps {
 	cartItems: Product[];
@@ -19,25 +14,21 @@ export default function CartView({ cartItems }: CartViewProps) {
 					>
 						<div className="gap-x-2 flex items-center col-span-5">
 							<div className="w-[70px] ">
-								<Image
+								{/* <Image
 									src={getLink(product.images[0].image)}
 									alt="cart Image"
 									width={300}
 									height={300}
-								/>
+								/> */}
 							</div>
 							<div>
 								<p>{product.name}</p>
 								<p>{product.generic_name}</p>
 							</div>
 						</div>
-						<div className="w-fit col-span-3">
-							<IncrementAndDecrement item={product} />
-						</div>
-						<div className="col-span-3">${product.price?.toFixed(3)}</div>
-						<div className="col-span-1">
-							<RemoveProduct productId={product.id} />
-						</div>
+						<div className="w-fit col-span-3"></div>
+						<div className="col-span-3">${product.price}</div>
+						<div className="col-span-1"></div>
 					</div>
 				))
 			) : (

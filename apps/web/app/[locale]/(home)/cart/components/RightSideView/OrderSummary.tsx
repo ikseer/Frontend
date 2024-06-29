@@ -1,10 +1,7 @@
 "use client";
 
-import useCart from "../../../store/cart/cart";
-
 export default function OrderSummary() {
-	const { orderPrice } = useCart();
-	const currOrderPrice = orderPrice();
+	const currOrderPrice = 0;
 	return (
 		<div>
 			<div className="flex justify-between">

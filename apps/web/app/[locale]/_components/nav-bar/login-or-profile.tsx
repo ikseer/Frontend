@@ -3,6 +3,7 @@ import { AFTER_LOGOUT_REDIRECT } from "@/lib/constants";
 import { Link, usePathname } from "@/navigation";
 import { setSession } from "@ikseer/api/config/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
+import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/src/components/ui/button";
 import {
@@ -16,12 +17,12 @@ import {
 export function LoginOrProfile() {
 	const currentPath = usePathname();
 	const me = useGetMe();
-	if (!me) return;
-	const currentUser = me.data?.[0];
+	const currentUser = me?.data?.results?.[0];
+	console.log(currentUser, "navbar me");
 
 	return (
 		<section className="flex items-center justify-between gap-x-2">
-			{currentUser?.username ? (
+			{currentUser?.id ? (
 				<ProfileDropdown href={`/user/${currentUser?.id}`} />
 			) : (
 				<>
@@ -82,6 +83,8 @@ export function ProfileDropdown({ href }: { href: string }) {
 				<DropdownMenuCheckboxItem
 					onClick={() => {
 						setSession(null);
+						UserIdCookie.delete();
+						UserTypeCookie.delete();
 						window.location.href = AFTER_LOGOUT_REDIRECT;
 					}}
 				>

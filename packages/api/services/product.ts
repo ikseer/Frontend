@@ -1,4 +1,4 @@
-import type { ProductsListPage } from "@ikseer/lib/types";
+import type { ProductsHomePage } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 
 export class ProductsAPI {
@@ -18,7 +18,7 @@ export class ProductsAPI {
 		top_sales?: boolean;
 	}) => {
 		return await this.http
-			.get<ProductsListPage>("/products/home/", { params: params })
+			.get<ProductsHomePage>("/products/home/", { params: params })
 			.then((res) => res.data);
 	};
 }

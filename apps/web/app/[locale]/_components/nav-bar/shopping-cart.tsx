@@ -1,12 +1,17 @@
+"use client";
 import { Link } from "@/navigation";
-import { serverAPI } from "@ikseer/api/config/api.server";
+import { useGetCart } from "@ikseer/api/hooks/order";
 import { LuShoppingCart } from "react-icons/lu";
-export async function ShoppingCart() {
-	const data = await serverAPI.order.getCart();
-	console.log("cart itemsss", data, "cart items");
+export function ShoppingCart() {
+	const { data } = useGetCart();
+	const itemsNumber = data?.items
+		?.map((ele) => ele.quantity)
+		.reduce((a, b) => a + b, 0);
+
 	return (
 		<Link className="cursor-pointer" href="/cart">
 			<LuShoppingCart />
+			{itemsNumber && <span>{itemsNumber}</span>}
 		</Link>
 	);
 }

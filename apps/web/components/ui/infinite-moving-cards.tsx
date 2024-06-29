@@ -99,7 +99,7 @@ export const InfiniteMovingCards = ({
 							className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
 						/>
 						<ImageView
-							href={`/product/${item.id}`}
+							productId={item.id}
 							src={item.image[0].image}
 							alt="top sales"
 						/>

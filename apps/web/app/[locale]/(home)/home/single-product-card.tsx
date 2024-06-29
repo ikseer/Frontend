@@ -12,7 +12,7 @@ export default function SingleProductCard({ item }: { item: ProductsList }) {
 			<ImageView
 				src={getLink(item?.image[0]?.image)}
 				alt="Description"
-				href={`/products/${item.id}`}
+				productId={item.id}
 			/>
 			<div className="relative p-4 md:p-5">
 				<section className="flex items-center justify-between">
