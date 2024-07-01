@@ -113,7 +113,9 @@ export class AccountsAPI {
 
 	getPatient = async (patientId?: string) => {
 		if (!patientId) return null;
-		return await this.http.get<Patient>(`accounts/patient/${patientId}/`);
+		return await this.http
+			.get<Patient>(`accounts/patient/${patientId}/`)
+			.then((res) => res.data);
 	};
 
 	updatePatient = async (patientId: string | null) => {

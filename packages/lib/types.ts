@@ -49,7 +49,7 @@ export interface HomeProduct {
 	generic_name: string;
 	name: string;
 	price: number | null;
-	image: ProductImage[];
+	image: string;
 	discount: ProductDiscount;
 }
 

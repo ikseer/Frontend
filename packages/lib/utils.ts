@@ -19,12 +19,11 @@ export function fixedForwardRef<T, P = Record<string, never>>(
 
 export function getLink(link: string) {
 	let newLink = link;
-	if (!link) newLink = "https://i.suar.me/v3z85/m";
-export function getLink(link?: string) {
-	if (!link) return "";
+	if (!newLink) newLink = "https://i.suar.me/v3z85/m";
+	if (!newLink) return "";
 	const linkRegex = /^https?:\/\//;
-	if (linkRegex.test(link)) return link;
-	return `${BACKEND_URL}${link}`;
+	if (linkRegex.test(newLink)) return newLink;
+	return `${BACKEND_URL}${newLink}`;
 }
 
 export function getDiscountAmount(product: Product | HomeProduct) {

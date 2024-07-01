@@ -23,8 +23,7 @@ export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
 				variant: "success",
 			});
 		},
-		onError: (e) => {
-			console.log(e);
+		onError: () => {
 			toast({
 				title: "Can't create cart item",
 				variant: "error",
@@ -40,7 +39,7 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 
 	return useMutation({
 		mutationKey: ["edit-cart-item", data.product, data.cart],
-		mutationFn: clientAPI.order.EditCartItem,
+		mutationFn: clientAPI.order.editCartItem,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
