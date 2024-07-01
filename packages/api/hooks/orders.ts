@@ -23,8 +23,7 @@ export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
 				variant: "success",
 			});
 		},
-		onError: (e) => {
-			console.log(e);
+		onError: () => {
 			toast({
 				title: "Can't create cart item",
 				variant: "error",
@@ -33,14 +32,14 @@ export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
 	});
 }
 
-// TODo handle the error message data to display correct error message when add or delete item.
+// TODO: handle the error message data to display correct error message when add or delete item.
 export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ["edit-cart-item", data.product, data.cart],
-		mutationFn: clientAPI.order.EditCartItem,
+		mutationFn: clientAPI.order.editCartItem,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -48,8 +47,7 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 				variant: "success",
 			});
 		},
-		onError: (e) => {
-			console.log(e);
+		onError: () => {
 			toast({
 				title: "Can't add item to cart",
 				variant: "error",

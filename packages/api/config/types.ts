@@ -21,15 +21,16 @@ export type FilterFn =
 	| "arrIncludesSome"
 	| "weakEquals"
 	| "inNumberRange"
-	| "foreignKey";
+	| "foreignKey"
+	| (string & Record<never, never>);
 
 /**
  * These filter options are compatible with mantine-react-table.
  */
-export interface SearchOptions {
-	columnFilterFns?: Record<string, FilterFn | (string & Record<never, never>)>;
-	columnFilters?: {
+export type SearchOptions = {
+	filters?: {
 		id: string;
+		operator?: FilterFn;
 		value: unknown;
 	}[];
 	globalFilter?: string;
@@ -43,4 +44,4 @@ export interface SearchOptions {
 		desc: boolean;
 		id: string;
 	}[];
-}
+};

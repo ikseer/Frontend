@@ -1,4 +1,25 @@
-import localeConfig from "./i18n/config.json" assert { type: "json" };
+export const localeConfig = [
+	{
+		code: "ar",
+		localName: "العربية",
+		name: "Arabic",
+		langDir: "rtl",
+		dateFormat: "YYYY.MM.DD",
+		hrefLang: "ar",
+		enabled: true,
+		default: true,
+	},
+	{
+		code: "en",
+		localName: "English",
+		name: "English",
+		langDir: "ltr",
+		dateFormat: "MM.DD.YYYY",
+		hrefLang: "en-GB",
+		enabled: false,
+		default: false,
+	},
+];
 
 // As set of available and enabled locales for the website
 // This is used for allowing us to redirect the user to any

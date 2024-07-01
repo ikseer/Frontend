@@ -58,7 +58,7 @@ export interface Product {
 	generic_name: string;
 	name: string;
 	price: number | null;
-	discount: ProductDiscount;
+	discount: ProductDiscount | null;
 	images: ProductImage[];
 	review: unknown; // TODO
 	wisthlist: string[];

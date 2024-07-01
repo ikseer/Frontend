@@ -1,10 +1,3 @@
-// source: https://www.flightcontrol.dev/blog/fix-nextjs-routing-to-have-full-type-safety
-
-import {
-	type ReadonlyURLSearchParams,
-	useParams as useNextParams,
-	useSearchParams as useNextSearchParams,
-} from "next/navigation";
 import { compile, pathToRegexp } from "path-to-regexp";
 import { z } from "zod";
 
@@ -19,8 +12,8 @@ export type RouteBuilder<
 		options?: { search?: z.input<Search> } & Parameters<typeof compile>[1],
 	): string;
 	parse: (input: z.input<Params>) => z.output<Params>;
-	useParams: () => z.output<Params>;
-	useSearchParams: () => z.output<Search>;
+	// useParams: () => z.output<Params>;
+	// useSearchParams: () => z.output<Search>;
 	params: z.output<Params>;
 	search: z.output<Params>;
 	doesMatch: (path: string) => boolean;
@@ -56,7 +49,7 @@ export function makeRouteInner<
 
 	const {
 		params: paramsSchema = empty as Params,
-		search: searchSchema = empty as Search,
+		search: _ = empty as Search,
 		type,
 	} = options;
 
@@ -85,27 +78,27 @@ export function makeRouteInner<
 		return res.data;
 	};
 
-	routeBuilder.useParams = function useParams(): z.output<Params> {
-		const res = paramsSchema.safeParse(useNextParams());
-		if (!res.success) {
-			throw new Error(
-				`Invalid route params for ${route}: ${res.error.message}`,
-			);
-		}
-		return res.data;
-	};
+	// routeBuilder.useParams = function useParams(): z.output<Params> {
+	// 	const res = paramsSchema.safeParse(useNextParams());
+	// 	if (!res.success) {
+	// 		throw new Error(
+	// 			`Invalid route params for ${route}: ${res.error.message}`,
+	// 		);
+	// 	}
+	// 	return res.data;
+	// };
 
-	routeBuilder.useSearchParams = function useSearchParams(): z.output<Search> {
-		const res = searchSchema.safeParse(
-			convertURLSearchParamsToObject(useNextSearchParams()),
-		);
-		if (!res.success) {
-			throw new Error(
-				`Invalid search params for ${route}: ${res.error.message}`,
-			);
-		}
-		return res.data;
-	};
+	// routeBuilder.useSearchParams = function useSearchParams(): z.output<Search> {
+	// 	const res = searchSchema.safeParse(
+	// 		convertURLSearchParamsToObject(useNextSearchParams()),
+	// 	);
+	// 	if (!res.success) {
+	// 		throw new Error(
+	// 			`Invalid search params for ${route}: ${res.error.message}`,
+	// 		);
+	// 	}
+	// 	return res.data;
+	// };
 
 	routeBuilder.doesMatch = function doesMatch(
 		path: string,
@@ -154,20 +147,20 @@ export function makeRoutes<T>(
 	);
 }
 
-function convertURLSearchParamsToObject(
-	params: ReadonlyURLSearchParams | null,
-): Record<string, string | string[]> {
-	if (!params) {
-		return {};
-	}
+// function convertURLSearchParamsToObject(
+// 	params: ReadonlyURLSearchParams | null,
+// ): Record<string, string | string[]> {
+// 	if (!params) {
+// 		return {};
+// 	}
 
-	const obj: Record<string, string | string[]> = {};
-	for (const [key, value] of params.entries()) {
-		if (params.getAll(key).length > 1) {
-			obj[key] = params.getAll(key);
-		} else {
-			obj[key] = value;
-		}
-	}
-	return obj;
-}
+// 	const obj: Record<string, string | string[]> = {};
+// 	for (const [key, value] of params.entries()) {
+// 		if (params.getAll(key).length > 1) {
+// 			obj[key] = params.getAll(key);
+// 		} else {
+// 			obj[key] = value;
+// 		}
+// 	}
+// 	return obj;
+// }

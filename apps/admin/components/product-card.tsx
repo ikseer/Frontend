@@ -1,3 +1,5 @@
+import { Routes } from "@/lib/routes";
+import { Link } from "@/navigation";
 import type { HomeProduct } from "@ikseer/lib/types";
 import {
 	getDiscountAmount,
@@ -23,9 +25,14 @@ export function ProductCard({ product }: { product: HomeProduct }) {
 				{product.name}
 			</Text>
 			<ProductPrice product={product} />
-			<Button leftSection={<Edit2 />} variant="subtle">
-				Edit
-			</Button>
+			<Link
+				href={Routes.productPage({ productId: product.id })}
+				className="w-full"
+			>
+				<Button leftSection={<Edit2 />} variant="subtle" className="w-full">
+					Edit
+				</Button>
+			</Link>
 		</Card>
 	);
 }
