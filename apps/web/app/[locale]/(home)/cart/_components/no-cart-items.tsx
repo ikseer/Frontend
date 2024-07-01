@@ -1,5 +1,5 @@
 import { Link } from "@/navigation";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import { ShoppingBasket } from "lucide-react";
 
 export default function NoCartItem() {

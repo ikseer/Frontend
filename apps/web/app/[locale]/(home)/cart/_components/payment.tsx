@@ -1,4 +1,4 @@
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 
 export default function PaymentMethod() {
 	return (

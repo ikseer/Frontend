@@ -3,9 +3,9 @@ import {
 	useCreateCartItem,
 	useEditCartItem,
 	useGetCart,
-} from "@ikseer/api/hooks/order";
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { useToast } from "@ikseer/ui/src/components/ui/use-toast";
+} from "@ikseer/api/hooks/orders";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import { Minus, Plus } from "lucide-react";
 
 export default function AddDeleteItem({ productId }: { productId: string }) {

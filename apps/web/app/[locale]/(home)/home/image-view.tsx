@@ -1,6 +1,6 @@
 import { Link } from "@/navigation";
 import { getLink } from "@ikseer/lib/utils";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import AddDeleteItem from "../_components/add-delete-item";

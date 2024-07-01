@@ -13,8 +13,8 @@ export default function BasicSettings() {
 	const { data, isPending } = useGetPatient(userId as string);
 	if (isPending || typeof window === "undefined")
 		return <FullScreenSpinnerWithNavBar />;
-	if (!data || data.length <= 0) return <NotFound />;
-	const userInfo = data[0];
+	if (!data) return <NotFound />;
+	const userInfo = data;
 
 	return (
 		<main>

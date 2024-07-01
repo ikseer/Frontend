@@ -1,7 +1,7 @@
 "use client";
 import type { CartItems } from "@ikseer/lib/types";
 import { getLink } from "@ikseer/lib/utils";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Table,
 	TableBody,
@@ -11,7 +11,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@ikseer/ui/src/components/ui/table";
+} from "@ikseer/ui/components/ui/table";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import AddDeleteItem from "../../_components/add-delete-item";
