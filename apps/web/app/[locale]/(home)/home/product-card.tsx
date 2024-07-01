@@ -1,12 +1,10 @@
 "use client";
-import type { ProductsList } from "@ikseer/lib/types";
+import type { HomeProduct } from "@ikseer/lib/types";
 import { getLink } from "@ikseer/lib/utils";
 
 import ImageView from "./image-view";
 
-export default function SingleProductCard({ item }: { item: ProductsList }) {
-	console.info(item, "items ");
-
+export function ProductCard({ item }: { item: HomeProduct }) {
 	return (
 		<div className="flex flex-col border shadow-lg bg-zinc-100 rounded-xl dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-zinc-700">
 			<ImageView

@@ -4,7 +4,7 @@ import "@mantine/dates/styles.css"; // if using mantine date picker features
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { notifyError } from "@/lib/notifications";
 import { ActionIcon, Button, Group, Menu, Tooltip } from "@mantine/core";
-import { IconDownload, IconRefresh } from "@tabler/icons-react";
+import { Download, Refresh } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { download, generateCsv, mkConfig } from "export-to-csv";
 import { get, merge } from "lodash";
@@ -161,16 +161,12 @@ export default function useOurTable<TData extends MRT_RowData>(
 					<Group>
 						<Tooltip label="Refresh Data">
 							<ActionIcon variant="subtle" c="white" onClick={() => refetch()}>
-								<IconRefresh />
+								<Refresh />
 							</ActionIcon>
 						</Tooltip>
 						<Menu>
 							<Menu.Target>
-								<Button
-									leftSection={<IconDownload />}
-									variant="subtle"
-									c="white"
-								>
+								<Button leftSection={<Download />} variant="subtle" c="white">
 									{t("export")}
 								</Button>
 							</Menu.Target>
@@ -205,7 +201,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 										}
 										setIsExporting(false);
 									}}
-									leftSection={<IconDownload />}
+									leftSection={<Download />}
 								>
 									{t("export-all-rows")}
 								</Menu.Item>
@@ -221,7 +217,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 												),
 										)
 									}
-									leftSection={<IconDownload />}
+									leftSection={<Download />}
 								>
 									{t("export-page-rows")}
 								</Menu.Item>
@@ -240,7 +236,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 												),
 										)
 									}
-									leftSection={<IconDownload />}
+									leftSection={<Download />}
 								>
 									{t("export-selected-rows")}
 								</Menu.Item>

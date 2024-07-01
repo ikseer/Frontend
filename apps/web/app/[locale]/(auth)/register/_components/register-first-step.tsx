@@ -13,8 +13,8 @@ import {
 	useCheckUserName,
 	useRegister,
 } from "@ikseer/api/hooks/accounts";
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { FormInput } from "@ikseer/ui/src/components/ui/input";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { FormInput } from "@ikseer/ui/components/ui/input";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { z } from "zod";

@@ -1,4 +1,3 @@
-import { type createEmployee, employeeSchema } from "@ikseer/api/employees";
 import {
 	Button,
 	Group,
@@ -15,9 +14,7 @@ import { useEffect } from "react";
 import type { z } from "zod";
 
 type EmployeeFormProps = Omit<ModalProps, "onSubmit" | "children"> & {
-	onSubmit: (
-		data: Parameters<typeof createEmployee>[0],
-	) => ReturnType<typeof createEmployee>;
+	onSubmit: typeof createEmployee;
 	initialValues?: z.infer<typeof employeeSchema>;
 	onSuccess?: () => void;
 };

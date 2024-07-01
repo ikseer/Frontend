@@ -16,7 +16,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { IconDashboard, IconStethoscope, IconUser } from "@tabler/icons-react";
+import { Gauge, Pill, Stethoscope, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LangSwitch from "../_components/lang-switch";
@@ -25,7 +25,9 @@ import { Routes } from "@/lib/routes";
 
 export default function CollapseDesktop({
 	children,
-}: { children: React.ReactNode }) {
+}: {
+	children: React.ReactNode;
+}) {
 	const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
 	const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 	const t = useTranslations("Navbar");
@@ -83,31 +85,36 @@ export default function CollapseDesktop({
 					{perms.dashboard.canSeeDashboard() && (
 						<MyNavLink
 							href="/dashboard"
-							leftSection={<IconDashboard />}
+							leftSection={<Gauge />}
 							label={t("dashboard")}
 						/>
 					)}
 					{perms.patient.canSeePatient() && (
 						<MyNavLink
 							href="/dashboard/patients"
-							leftSection={<IconUser />}
+							leftSection={<User />}
 							label={t("patients")}
 						/>
 					)}
 					{perms.doctor.canSeeDoctors() && (
 						<MyNavLink
 							href="/dashboard/doctors"
-							leftSection={<IconStethoscope />}
+							leftSection={<Stethoscope />}
 							label={t("doctors")}
 						/>
 					)}
-					{perms.employee.canSeeEmployees() && (
+					<MyNavLink
+						href="/dashboard/products"
+						leftSection={<Pill />}
+						label={t("products")}
+					/>
+					{/* {perms.employee.canSeeEmployees() && (
 						<MyNavLink
 							label={t("employees")}
 							href="/dashboard/employees"
-							leftSection={<IconStethoscope />}
+							leftSection={<Stethoscope />}
 						/>
-					)}
+					)} */}
 				</Stack>
 				<div className="md:hidden mt-4">
 					<Divider mb="md" />
@@ -146,7 +153,7 @@ function SearchField({ className }: { className?: string }) {
 			className={className}
 			onSubmit={form.onSubmit(({ q }) => {
 				router.push(
-					Routes.patients(
+					Routes.products(
 						{},
 						{
 							search: { q },

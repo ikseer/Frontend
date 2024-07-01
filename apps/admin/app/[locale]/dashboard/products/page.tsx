@@ -1,19 +1,20 @@
 "use client";
-import { SkeletonCard } from "@/components/card-skeleton";
-import { useInfiniteProducts } from "@ikseer/api/hooks/products";
-import type { HomeProduct } from "@ikseer/lib/types";
-import { Button } from "@ikseer/ui/components/ui/button";
-import { ProductCard } from "./product-card";
 
-export default function ShowCards() {
+import { Button, Input, Title } from "@mantine/core";
+import { Search } from "lucide-react";
+import { useInfiniteProducts } from "@ikseer/api/hooks/products";
+import { SkeletonCard } from "@ikseer/ui/components/card-skeleton";
+import type { HomeProduct } from "@ikseer/lib/types";
+import { ProductCard } from "@/components/product-card";
+
+export default function Product() {
 	const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isPending } =
 		useInfiniteProducts();
 
 	return (
-		<div className="page-container">
-			<h1 className="mb-10 text-3xl font-bold text-center text-zinc-950 dark:text-white">
-				Featured Products
-			</h1>
+		<div>
+			<Title component={"h1"}>Products</Title>
+			<Input leftSection={<Search />} placeholder="Search for products" />
 			{isPending ? (
 				<section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 					{Array.from({ length: 12 }).map((item) => (
@@ -28,7 +29,7 @@ export default function ShowCards() {
 								(currPage) =>
 									Array.isArray(currPage.results) &&
 									currPage.results.map((item: HomeProduct) => (
-										<ProductCard key={`${item.id}`} item={item} />
+										<ProductCard key={`${item.id}`} product={item} />
 									)),
 							)}
 					</div>

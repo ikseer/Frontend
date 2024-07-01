@@ -5,7 +5,10 @@ import type { ReactNode } from "react";
 export default function AuthContainer({
 	children,
 	className,
-}: { children: ReactNode; className?: string }) {
+}: {
+	children: ReactNode;
+	className?: string;
+}) {
 	return (
 		<main
 			className={cn(

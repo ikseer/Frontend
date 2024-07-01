@@ -20,7 +20,10 @@ export default function DashboardHeader() {
 function HeaderCard({
 	text,
 	statistics,
-}: { text: string; statistics?: number }) {
+}: {
+	text: string;
+	statistics?: number;
+}) {
 	return (
 		<Card className="flex-1">
 			<Text size="xl" fw="bold" c="cyan.6">

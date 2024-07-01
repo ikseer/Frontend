@@ -34,8 +34,10 @@ export interface SearchOptions {
 	}[];
 	globalFilter?: string;
 	pagination?: {
-		pageIndex: number;
-		pageSize: number;
+		/** 0-based index for the page which is of size `pagination.pageSize` */
+		pageIndex?: number;
+		/** default to 15 */
+		pageSize?: number;
 	};
 	sorting?: {
 		desc: boolean;

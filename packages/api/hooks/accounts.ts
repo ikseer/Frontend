@@ -1,5 +1,5 @@
 import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
-import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
+import { toast, useToast } from "@ikseer/ui/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clientAPI } from "../config/api.client";
 import { setSession } from "../config/session.client";

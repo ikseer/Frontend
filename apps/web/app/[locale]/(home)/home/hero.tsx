@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import { LuMapPin } from "react-icons/lu";
 import { LuArrowRight } from "react-icons/lu";
 

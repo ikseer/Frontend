@@ -7,7 +7,9 @@ import { Share } from "./_components/share";
 
 export default function CurrentProduct({
 	params,
-}: { params: { productId: string } }) {
+}: {
+	params: { productId: string };
+}) {
 	const { productId } = params;
 	const { data: product } = useProductById(productId);
 	if (!product) {

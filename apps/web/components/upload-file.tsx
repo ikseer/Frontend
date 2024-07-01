@@ -3,13 +3,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { FileUploader } from "react-drag-drop-files";
 
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { LoadingSpinner } from "@ikseer/ui/src/components/ui/loading-spinner";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { LoadingSpinner } from "@ikseer/ui/components/ui/loading-spinner";
 
 interface UploadFileProps {
-	api: (data: {
-		file: File;
-	}) => Promise<Document>;
+	api: (data: { file: File }) => Promise<Document>;
 	value?: string | null;
 	onChange?: (value: string | null) => void;
 	disabled?: boolean;

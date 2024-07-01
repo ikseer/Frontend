@@ -10,8 +10,11 @@ export function getSearchParams({
 	const params = new URLSearchParams();
 
 	if (pagination) {
-		params.set("page", (pagination.pageIndex + 1).toString());
-		params.set("limit", pagination.pageSize.toString());
+		if (pagination.pageIndex)
+			params.set("page", (pagination.pageIndex + 1).toString());
+		if (pagination.pageSize)
+			params.set("limit", pagination.pageSize.toString());
+		else params.set("limit", "15");
 	}
 
 	if (sorting && sorting.length > 0)

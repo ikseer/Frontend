@@ -3,7 +3,7 @@
 import DoctorForm from "@/components/forms/doctor";
 import type { doctorSchema } from "@ikseer/api/services/accounts";
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Plus } from "lucide-react";
 import { MantineReactTable } from "mantine-react-table";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -82,7 +82,7 @@ export default function DoctorsCRUDTable() {
 					}}
 				/>
 				<Button
-					leftSection={<IconPlus />}
+					leftSection={<Plus />}
 					onClick={() => {
 						setInitialValues(undefined);
 						setFormState("create");

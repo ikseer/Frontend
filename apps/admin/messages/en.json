@@ -108,7 +108,7 @@
 		"upcomming-visits": "Upcomming visits",
 		"missed-visits": "Missed visits",
 		"total-products": "Total products",
-		"search-placeholder": "Search for patients or other things"
+		"search-placeholder": "Search for products"
 	},
 	"Patient": {
 		"bio": "Bio",
@@ -188,6 +188,7 @@
 		"patients": "Patients",
 		"add-patient": "Add patient",
 		"doctors": "Doctors",
+		"products": "Products",
 		"employees": "Employees"
 	},
 	"Patients": {

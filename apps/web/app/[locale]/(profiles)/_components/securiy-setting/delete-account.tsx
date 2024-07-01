@@ -1,5 +1,5 @@
 import { ErrorMsg } from "@/components/error-msg";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 
 export default function DeleteAccount() {
 	return (

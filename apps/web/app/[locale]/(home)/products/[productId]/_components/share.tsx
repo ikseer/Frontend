@@ -1,6 +1,6 @@
 import { Copy } from "lucide-react";
 
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Dialog,
 	DialogClose,
@@ -10,9 +10,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@ikseer/ui/src/components/ui/dialog";
-import { Input } from "@ikseer/ui/src/components/ui/input";
-import { Label } from "@ikseer/ui/src/components/ui/label";
+} from "@ikseer/ui/components/ui/dialog";
+import { Input } from "@ikseer/ui/components/ui/input";
+import { Label } from "@ikseer/ui/components/ui/label";
 
 export function Share() {
 	return (

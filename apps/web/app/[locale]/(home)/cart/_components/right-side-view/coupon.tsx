@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { FormInput } from "@ikseer/ui/src/components/ui/input";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { FormInput } from "@ikseer/ui/components/ui/input";
 import { FormProvider, useForm } from "react-hook-form";
 interface CouponType {
 	coupon: string;

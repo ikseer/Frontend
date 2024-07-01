@@ -1,4 +1,9 @@
-import type { Doctor, Patient, User } from "@ikseer/lib/types";
+import type {
+	Doctor,
+	PaginationResult,
+	Patient,
+	User,
+} from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { httpNoAuth } from "../config/axios-non-auth";
 import type { SearchOptions } from "../config/types";
@@ -65,10 +70,11 @@ export class AccountsAPI {
 
 	login = async (data: { username: string; password: string }) => {
 		return await httpNoAuth
-			.post<{ access: string; refresh: string; user: User }>(
-				"/accounts/login/",
-				data,
-			)
+			.post<{
+				access: string;
+				refresh: string;
+				user: User;
+			}>("/accounts/login/", data)
 			.then((res) => {
 				return res.data;
 			});
@@ -99,7 +105,7 @@ export class AccountsAPI {
 	getPatients = async (options?: SearchOptions) => {
 		const params = getSearchParams(options);
 		return await this.http
-			.get<{ count: number; results: Patient[] }>("/accounts/patient/", {
+			.get<PaginationResult<Patient>>("/accounts/patient/", {
 				params,
 			})
 			.then((res) => res.data);
@@ -112,14 +118,12 @@ export class AccountsAPI {
 
 	updatePatient = async (patientId: string | null) => {
 		if (!patientId) return null;
-		return await this.http.patch("/accounts/patient/", {
-			params: { user__id: patientId },
-		});
+		return await this.http.patch(`/accounts/patient/${patientId}/`);
 	};
 
 	deletePatient = async (patientId: string) => {
 		return await this.http
-			.delete("/accounts/patient/", { params: { user__id: patientId } })
+			.delete(`/accounts/patient/${patientId}/`)
 			.then((res) => res.data);
 	};
 
@@ -134,7 +138,7 @@ export class AccountsAPI {
 	getDoctors = async (options?: SearchOptions) => {
 		const params = getSearchParams(options);
 		return await this.http
-			.get<{ count: number; results: Doctor[] }>("/accounts/doctor/", {
+			.get<PaginationResult<Doctor>>("/accounts/doctor/", {
 				params,
 			})
 			.then((res) => res.data);
@@ -150,7 +154,10 @@ export class AccountsAPI {
 	updateDoctor = async ({
 		id,
 		newData,
-	}: { id: string; newData: z.infer<typeof doctorSchema> }) => {
+	}: {
+		id: string;
+		newData: z.infer<typeof doctorSchema>;
+	}) => {
 		return await this.http
 			.post(`/accounts/doctor/${id}/`, newData)
 			.then((res) => res.data);

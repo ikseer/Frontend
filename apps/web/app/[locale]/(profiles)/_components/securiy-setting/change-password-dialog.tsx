@@ -1,6 +1,6 @@
 "use client";
 import { useZodForm } from "@/lib/use-zod-form";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -9,9 +9,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@ikseer/ui/src/components/ui/dialog";
-import { FormInput } from "@ikseer/ui/src/components/ui/input";
-import { Label } from "@ikseer/ui/src/components/ui/label";
+} from "@ikseer/ui/components/ui/dialog";
+import { FormInput } from "@ikseer/ui/components/ui/input";
+import { Label } from "@ikseer/ui/components/ui/label";
 import { Pen } from "lucide-react";
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";

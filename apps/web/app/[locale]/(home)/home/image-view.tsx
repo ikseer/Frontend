@@ -3,10 +3,10 @@ import {
 	useCreateCartItem,
 	useEditCartItem,
 	useGetCart,
-} from "@ikseer/api/hooks/order";
+} from "@ikseer/api/hooks/orders";
 import { getLink } from "@ikseer/lib/utils";
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { toast } from "@ikseer/ui/src/components/ui/use-toast";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { toast } from "@ikseer/ui/components/ui/use-toast";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
