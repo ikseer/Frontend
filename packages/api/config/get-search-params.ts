@@ -1,8 +1,7 @@
-import type { SearchOptions } from "./types";
+import type { FilterFn, SearchOptions } from "./types";
 
 export function getSearchParams({
-	columnFilterFns,
-	columnFilters,
+	filters,
 	globalFilter,
 	pagination,
 	sorting,
@@ -27,25 +26,20 @@ export function getSearchParams({
 
 	if (globalFilter) params.set("full_name__icontains", globalFilter);
 
-	if (columnFilters)
-		for (const { id, value } of columnFilters) {
+	if (filters)
+		for (const { id, value, operator } of filters) {
 			if (
 				typeof value === "string" ||
 				typeof value === "number" ||
 				typeof value === "boolean"
 			)
-				params.set(
-					`${getId(id)}${getOperator(columnFilterFns?.[id])}`,
-					value.toString(),
-				);
+				params.set(`${getId(id)}${getOperator(operator)}`, value.toString());
 		}
 
 	return params;
 }
 
-function getOperator(
-	op?: NonNullable<SearchOptions["columnFilterFns"]>[string],
-) {
+function getOperator(op?: FilterFn) {
 	// TODO: handle more operators
 	if (op === "contains") return "__icontains";
 	return "";

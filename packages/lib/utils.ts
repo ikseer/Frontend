@@ -27,7 +27,7 @@ export function getLink(link: string) {
 }
 
 export function getDiscountAmount(product: Product | HomeProduct) {
-	if (!product.discount.discount_amount || !product.price) return 0;
+	if (!product.discount?.discount_amount || !product.price) return 0;
 	let amount = 0;
 	if (product.discount.discount_type === "amount")
 		amount = Number.parseFloat(product.discount.discount_amount);

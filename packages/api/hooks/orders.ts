@@ -32,7 +32,7 @@ export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
 	});
 }
 
-// TODo handle the error message data to display correct error message when add or delete item.
+// TODO: handle the error message data to display correct error message when add or delete item.
 export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
@@ -47,8 +47,7 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 				variant: "success",
 			});
 		},
-		onError: (e) => {
-			console.log(e);
+		onError: () => {
 			toast({
 				title: "Can't add item to cart",
 				variant: "error",
