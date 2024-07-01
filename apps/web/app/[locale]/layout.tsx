@@ -3,7 +3,7 @@ import { availableLocalesMap, defaultLocale } from "@/next.locales.mjs";
 import { LocaleProvider } from "@/providers/locale-provider";
 import { notFound } from "next/navigation";
 import "./globals.css";
-import { Toaster } from "@ikseer/ui/src/components/ui/toaster";
+import { Toaster } from "@ikseer/ui/components/ui/toaster";
 import type React from "react";
 import { App } from "./_app";
 import GuestNavBar from "./_components/nav-bar";

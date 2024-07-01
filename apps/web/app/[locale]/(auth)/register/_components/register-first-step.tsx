@@ -8,18 +8,18 @@ import "../register.css";
 import { ErrorMsg } from "@/components/error-msg";
 import Radio from "@/components/radio";
 import Spinner from "@/components/spinner";
+import { useZodForm } from "@/lib/use-zod-form";
 import {
 	useCheckEmail,
 	useCheckUserName,
 	useRegister,
 } from "@ikseer/api/hooks/accounts";
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { FormInput } from "@ikseer/ui/src/components/ui/input";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { FormInput } from "@ikseer/ui/components/ui/input";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
-import { useZodForm } from "@/lib/use-zod-form";
 import { useDebounce } from "./use-debounce";
 
 const schema = z.object({

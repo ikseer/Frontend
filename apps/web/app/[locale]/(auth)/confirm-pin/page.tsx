@@ -1,19 +1,19 @@
 "use client";
 
 import { useZodForm } from "@/lib/use-zod-form";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@ikseer/ui/src/components/ui/form";
+} from "@ikseer/ui/components/ui/form";
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSlot,
-} from "@ikseer/ui/src/components/ui/input-otp";
+} from "@ikseer/ui/components/ui/input-otp";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 import AuthContainer from "../register/auth-container";

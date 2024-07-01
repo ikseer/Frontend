@@ -3,8 +3,8 @@
 import { patientSchema } from "@ikseer/api/patients";
 import { Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { IconMessageCircleUser, IconShieldPlus } from "@tabler/icons-react";
 import { useMutation } from "@tanstack/react-query";
+import { MessageCircleUser, ShieldPlus } from "lucide-react";
 import { zodResolver } from "mantine-form-zod-resolver";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
@@ -72,7 +72,7 @@ export default function PatientForm({
 		>
 			<section className="space-y-6">
 				<AccordionTitle
-					Icon={<IconMessageCircleUser />}
+					Icon={<MessageCircleUser />}
 					mainText={t("main-details")}
 					additionalText={t("complete-the-main-details-of-the-patient")}
 				/>
@@ -80,7 +80,7 @@ export default function PatientForm({
 			</section>
 			<section className="space-y-6">
 				<AccordionTitle
-					Icon={<IconShieldPlus />}
+					Icon={<ShieldPlus />}
 					mainText={t("other-details")}
 					additionalText={t("additional-details-you-can-complete-later")}
 				/>

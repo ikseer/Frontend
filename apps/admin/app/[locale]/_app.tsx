@@ -15,7 +15,10 @@ const queryClient = new QueryClient();
 export default function App({
 	children,
 	langDir,
-}: { children: React.ReactNode; langDir: string }) {
+}: {
+	children: React.ReactNode;
+	langDir: string;
+}) {
 	useI18nZodErrors();
 	return (
 		<QueryClientProvider client={queryClient}>

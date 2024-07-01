@@ -2,27 +2,22 @@
 
 import Logout from "@/app/[locale]/_components/logout";
 import { usePermissions } from "@/hooks/use-permissions";
-import { Routes } from "@ikseer/lib/routes";
-import { cn } from "@ikseer/lib/utils";
-import { Link, usePathname, useRouter } from "@/navigation";
+import { Routes } from "@/lib/routes";
+import { usePathname, useRouter } from "@/navigation";
 import {
 	AppShell,
 	Burger,
-	Button,
 	Divider,
 	Group,
+	NavLink,
+	type NavLinkProps,
 	Stack,
 	Text,
 	TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import {
-	IconDashboard,
-	IconPlus,
-	IconStethoscope,
-	IconUser,
-} from "@tabler/icons-react";
+import { Gauge, Pill, Stethoscope, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LangSwitch from "../_components/lang-switch";
@@ -30,7 +25,9 @@ import { ThemeSwitch } from "../_components/theme-switch";
 
 export default function CollapseDesktop({
 	children,
-}: { children: React.ReactNode }) {
+}: {
+	children: React.ReactNode;
+}) {
 	const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
 	const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 	const t = useTranslations("Navbar");
@@ -68,7 +65,6 @@ export default function CollapseDesktop({
 					<div className="hidden md:flex items-center gap-2 h-full grow">
 						<SearchField className="min-w-0 md:basis-[300px] lg:basis-[600px] shrink" />
 						<div className="grow" />
-						<AddPatientButton />
 						<LangSwitch />
 						<ThemeSwitch />
 						<Divider orientation="vertical" />
@@ -79,30 +75,46 @@ export default function CollapseDesktop({
 			{/* TODO: fix for small screens */}
 			<AppShell.Navbar p="md">
 				<Text fw="bold" size="xl">
-					{t("zu-hospital")}
+					Ikseer <br />
+					<Text size="sm" c="gray.5">
+						Smart pharmacy
+					</Text>
 				</Text>
 				<SearchField className="w-full md:hidden mt-4" />
-				<Stack gap={"md"} mt="md">
+				<Stack mt="md">
 					{perms.dashboard.canSeeDashboard() && (
-						<NavLink href="/dashboard">
-							<IconDashboard /> {t("dashboard")}
-						</NavLink>
+						<MyNavLink
+							href="/dashboard"
+							leftSection={<Gauge />}
+							label={t("dashboard")}
+						/>
 					)}
 					{perms.patient.canSeePatient() && (
-						<NavLink href="/dashboard/patients">
-							<IconUser /> {t("patients")}
-						</NavLink>
+						<MyNavLink
+							href="/dashboard/patients"
+							leftSection={<User />}
+							label={t("patients")}
+						/>
 					)}
 					{perms.doctor.canSeeDoctors() && (
-						<NavLink href="/dashboard/doctors">
-							<IconStethoscope /> {t("doctors")}
-						</NavLink>
+						<MyNavLink
+							href="/dashboard/doctors"
+							leftSection={<Stethoscope />}
+							label={t("doctors")}
+						/>
 					)}
-					{perms.employee.canSeeEmployees() && (
-						<NavLink href="/dashboard/employees">
-							<IconStethoscope /> {t("employees")}
-						</NavLink>
-					)}
+					<MyNavLink
+						href="/dashboard/products"
+						leftSection={<Pill />}
+						label={t("products")}
+					/>
+					{/* {perms.employee.canSeeEmployees() && (
+						<MyNavLink
+							label={t("employees")}
+							href="/dashboard/employees"
+							leftSection={<Stethoscope />}
+						/>
+					)} */}
 				</Stack>
 				<div className="md:hidden mt-4">
 					<Divider mb="md" />
@@ -118,23 +130,15 @@ export default function CollapseDesktop({
 	);
 }
 
-function NavLink({
-	href,
-	children,
-}: { href: string; children: React.ReactNode }) {
+function MyNavLink(props: NavLinkProps & { href: string }) {
 	const pathname = usePathname();
-	const active = pathname === href;
+	const active = pathname === props.href;
 	return (
-		<Link
-			href={href}
+		<NavLink
 			aria-current={active ? "page" : undefined}
-			className={cn(
-				"px-4 py-2 bg-slate-100 border-s-4 border-transparent hover:bg-slate-200 dark:bg-zinc-900/70 dark:hover:bg-zinc-900 rounded",
-				active && "border-blue-600 font-bold",
-			)}
-		>
-			<Group>{children}</Group>
-		</Link>
+			active={active}
+			{...props}
+		/>
 	);
 }
 
@@ -149,7 +153,7 @@ function SearchField({ className }: { className?: string }) {
 			className={className}
 			onSubmit={form.onSubmit(({ q }) => {
 				router.push(
-					Routes.patients(
+					Routes.products(
 						{},
 						{
 							search: { q },
@@ -164,18 +168,5 @@ function SearchField({ className }: { className?: string }) {
 				{...form.getInputProps("q")}
 			/>
 		</form>
-	);
-}
-
-function AddPatientButton() {
-	const t = useTranslations("Navbar");
-	const perms = usePermissions();
-	if (!perms.patient.canCreatePatient()) return null;
-	return (
-		<Link href="/dashboard/add-patient">
-			<Button leftSection={<IconPlus />} className="min-w-fit">
-				{t("add-patient")}
-			</Button>
-		</Link>
 	);
 }

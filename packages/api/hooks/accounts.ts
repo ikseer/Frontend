@@ -1,26 +1,29 @@
 import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
-import { toast, useToast } from "@ikseer/ui/src/components/ui/use-toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast, useToast } from "@ikseer/ui/components/ui/use-toast";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clientAPI } from "../config/api.client";
 import { setSession } from "../config/session.client";
 
-// Register
+// --------------------------
+// Authentication
+// --------------------------
+
 export function useCheckUserName() {
 	return useMutation({
-		mutationFn: clientAPI.auth.checkUserName,
+		mutationFn: clientAPI.accounts.checkUserName,
 	});
 }
 
 export function useCheckEmail() {
 	return useMutation({
-		mutationFn: clientAPI.auth.checkEmail,
+		mutationFn: clientAPI.accounts.checkEmail,
 	});
 }
 
 export function useRegister({ onSuccess }: { onSuccess: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.register,
+		mutationFn: clientAPI.accounts.register,
 		onSuccess: () => {
 			toast({
 				title: "Account created",
@@ -42,7 +45,7 @@ export function useRegister({ onSuccess }: { onSuccess: () => void }) {
 export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.otp,
+		mutationFn: clientAPI.accounts.otp,
 		onSuccess: (data) => {
 			const {
 				refresh: refreshToken,
@@ -82,7 +85,7 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 export function usePhone({ onSuccess }: { onSuccess: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.phone,
+		mutationFn: clientAPI.accounts.phone,
 		onSuccess: () => {
 			onSuccess();
 			toast({
@@ -99,38 +102,28 @@ export function usePhone({ onSuccess }: { onSuccess: () => void }) {
 	});
 }
 
-// Login
 export function useLogin({
 	onSuccess,
 }: {
-	onSuccess?: (data: Awaited<ReturnType<typeof clientAPI.auth.login>>) => void;
+	onSuccess?: (
+		data: Awaited<ReturnType<typeof clientAPI.accounts.login>>,
+	) => void;
 } = {}) {
-	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.login,
+		mutationFn: clientAPI.accounts.login,
 		onSuccess: (data) => {
 			onSuccess?.(data);
-			toast({
-				title: "Login Success",
-				variant: "success",
-			});
 		},
-
 		onError: (error) => {
-			toast({
-				title: "Can't login",
-				variant: "error",
-			});
-			console.info(error);
+			console.error(error);
 		},
 	});
 }
 
-// Reset password
 export function useResendOtp({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.resendOtp,
+		mutationFn: clientAPI.accounts.resendOtp,
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
@@ -150,7 +143,7 @@ export function useResendOtp({ onSuccess }: { onSuccess?: () => void }) {
 export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: clientAPI.auth.resetPassword,
+		mutationFn: clientAPI.accounts.resetPassword,
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
@@ -167,32 +160,11 @@ export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 	});
 }
 
-// Change password
 export const useChangePassword = () => {
 	return useMutation({
-		mutationFn: clientAPI.auth.changePassword,
-		onSuccess(data) {
-			console.log(data, "success");
-		},
-		onError(data) {
-			console.log(data, "error");
-		},
+		mutationFn: clientAPI.accounts.changePassword,
 	});
 };
-
-export function useGetPatient(id: string) {
-	return useQuery({
-		queryKey: ["patient", id],
-		queryFn: () => clientAPI.auth.getPatient(id),
-	});
-}
-
-export function useGetDoctor(id: string) {
-	return useQuery({
-		queryKey: ["doctor", id],
-		queryFn: () => clientAPI.auth.getDoctor(id),
-	});
-}
 
 export function useGetMe() {
 	const userId = UserIdCookie.get();
@@ -202,10 +174,21 @@ export function useGetMe() {
 	if (userType === "patient") return useGetPatient(userId);
 }
 
+// --------------------------
+// Patient
+// --------------------------
+
+export function useGetPatient(id: string) {
+	return useQuery({
+		queryKey: ["patient", id],
+		queryFn: () => clientAPI.accounts.getPatient(id),
+	});
+}
+
 export function useUpdatePatient() {
 	const userId = UserIdCookie.get();
 	return useMutation({
-		mutationFn: () => clientAPI.auth.updatePatient(userId as string),
+		mutationFn: () => clientAPI.accounts.updatePatient(userId as string),
 		onSuccess() {
 			toast({
 				title: "Profile updated",
@@ -216,15 +199,70 @@ export function useUpdatePatient() {
 			toast({
 				title: "Can't update profile",
 				variant: "error",
+			});
+		},
+	});
+}
+
+export function useDeletePatient(
+	id: string,
+	{ onSuccess }: { onSuccess?: () => void } = {},
+) {
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: () => clientAPI.accounts.deletePatient(id),
+		onSuccess: () => {
+			onSuccess?.();
+			toast({
+				title: "Account deleted",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't delete account",
+				variant: "error",
+			});
+		},
+	});
+}
+
+// --------------------------
+// Doctor
+// --------------------------
+
+export function useGetDoctor(id: string) {
+	return useQuery({
+		queryKey: ["doctor", id],
+		queryFn: () => clientAPI.accounts.getDoctor(id),
+	});
+}
+
+export function useCreateDoctor({
+	onSuccess,
+}: {
+	onSuccess?: (
+		data: Awaited<ReturnType<typeof clientAPI.accounts.createDoctor>>,
+	) => void;
+} = {}) {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: clientAPI.accounts.createDoctor,
+		onSuccess(data) {
+			onSuccess?.(data);
+			queryClient.invalidateQueries({
+				queryKey: ["deleted-doctors"],
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["doctors"],
 			});
 		},
 	});
 }
 
 export function useUpdateDoctor() {
-	const docterId = UserIdCookie.get();
 	return useMutation({
-		mutationFn: () => clientAPI.auth.updateDoctor(docterId as string),
+		mutationFn: clientAPI.accounts.updateDoctor,
 		onSuccess() {
 			toast({
 				title: "Profile updated",
@@ -240,12 +278,13 @@ export function useUpdateDoctor() {
 	});
 }
 
-export function useDeletePatient({ onSuccess }: { onSuccess?: () => void }) {
-	const { toast } = useToast();
+export function useDeleteDoctor({
+	onSuccess,
+}: { onSuccess?: () => void } = {}) {
 	const userId = UserIdCookie.get();
 
 	return useMutation({
-		mutationFn: () => clientAPI.auth.deletePatient(userId as string),
+		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
@@ -261,77 +300,3 @@ export function useDeletePatient({ onSuccess }: { onSuccess?: () => void }) {
 		},
 	});
 }
-
-export function useDeleteDoctor({ onSuccess }: { onSuccess?: () => void }) {
-	const userId = UserIdCookie.get();
-
-	return useMutation({
-		mutationFn: () => clientAPI.auth.deleteDoctor(userId as string),
-		onSuccess: () => {
-			onSuccess?.();
-			toast({
-				title: "Account deleted",
-				variant: "success",
-			});
-		},
-		onError: () => {
-			toast({
-				title: "Can't delete account",
-				variant: "error",
-			});
-		},
-	});
-}
-
-export function useGetPatientImage(userId: string) {
-	return useQuery({
-		queryKey: ["patient-image", userId],
-		queryFn: () => clientAPI.auth.getPatientImage(userId),
-	});
-}
-
-export function useGetDoctorImage(userId: string) {
-	return useQuery({
-		queryKey: ["doctor-image", userId],
-		queryFn: () => clientAPI.auth.getPatientImage(userId),
-	});
-}
-
-// Update image
-export function useUpdatePatientImage() {
-	const { toast } = useToast();
-	return useMutation({
-		mutationFn: clientAPI.auth.updatePatientImage,
-		onSuccess() {
-			toast({
-				title: "Profile image updated",
-				variant: "success",
-			});
-		},
-		onError() {
-			toast({
-				title: "Can't update profile image",
-				variant: "error",
-			});
-		},
-	});
-}
-
-export const useUpdateDoctorImage = () => {
-	const { toast } = useToast();
-	return useMutation({
-		mutationFn: clientAPI.auth.updateDoctorImage,
-		onSuccess() {
-			toast({
-				title: "Profile image updated",
-				variant: "success",
-			});
-		},
-		onError() {
-			toast({
-				title: "Can't update profile image",
-				variant: "error",
-			});
-		},
-	});
-};

@@ -6,7 +6,7 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@ikseer/ui/src/components/ui/select";
+} from "@ikseer/ui/components/ui/select";
 import { useLocale } from "next-intl";
 
 export function SwitchLang() {

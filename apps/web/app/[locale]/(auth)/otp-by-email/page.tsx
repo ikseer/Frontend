@@ -1,6 +1,6 @@
 "use client";
 import { useZodForm } from "@/lib/use-zod-form";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import { useTranslations } from "next-intl";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
@@ -12,7 +12,7 @@ import { useRouter } from "@/navigation";
 import { useResendOtp } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { otpTimer } from "@ikseer/lib/otp-time";
-import { FormInput } from "@ikseer/ui/src/components/ui/input";
+import { FormInput } from "@ikseer/ui/components/ui/input";
 
 export default function ResetPassword() {
 	const $t = useTranslations();

@@ -11,7 +11,7 @@
 
 	& [data-accept] {
 		color: var(--mantine-color-white);
-		background-color: var(--mantine-color-blue-6);
+		background-color: var(--mantine-color-cyan-6);
 	}
 
 	&[data-reject] {

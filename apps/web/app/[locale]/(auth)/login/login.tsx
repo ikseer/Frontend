@@ -10,11 +10,12 @@ import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
 import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
 import { useZodForm } from "@/lib/use-zod-form";
+import type { clientAPI } from "@ikseer/api/config/api.client";
 import { setSession } from "@ikseer/api/config/session.client";
 import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
-import { Button } from "@ikseer/ui/src/components/ui/button";
-import { FormInput } from "@ikseer/ui/src/components/ui/input";
+import { Button } from "@ikseer/ui/components/ui/button";
+import { FormInput } from "@ikseer/ui/components/ui/input";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { z } from "zod";
@@ -31,11 +32,9 @@ export default function Login() {
 		schema: schema,
 	});
 	const redirectTo = useSearchParams()?.get("redirectTo");
-	const onSuccess = (data: {
-		access: string;
-		refresh: string;
-		user: { id: string; user_type: "doctor" | "patient" };
-	}) => {
+	const onSuccess = (
+		data: Awaited<ReturnType<typeof clientAPI.accounts.login>>,
+	) => {
 		const {
 			access,
 			refresh,
@@ -69,7 +68,7 @@ export default function Login() {
 					className="flex flex-col items-center justify-center h-full rounded-lg bg-zinc-100 dark:bg-zinc-950"
 				>
 					<h1 className="mt-4 text-2xl font-bold ">{t("welcome-to-ikseer")}</h1>
-					<ErrorMsg>{errorMsg}</ErrorMsg>
+					{error && <ErrorMsg>{errorMsg}</ErrorMsg>}
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label

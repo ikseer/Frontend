@@ -1,10 +1,10 @@
-import { userTypeTokenCookie } from "@ikseer/lib/cookies.client";
+import { UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { useMemo } from "react";
 
 export type UserType = "patient" | "doctor" | "admin" | "employee";
 
 export function usePermissions() {
-	const userType = userTypeTokenCookie.get();
+	const userType = UserTypeCookie.get();
 
 	return useMemo(
 		() => ({

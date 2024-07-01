@@ -1,6 +1,6 @@
 "use client";
 
-import { FullScreenLoadingSpinner } from "@ikseer/ui/src/components/ui/loading-spinner";
+import { FullScreenLoadingSpinner } from "@ikseer/ui/components/ui/loading-spinner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";

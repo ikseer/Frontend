@@ -68,8 +68,7 @@
 		"active-visits": "الزيارات الحالية",
 		"missed-visits": "الزيارات الفائتة",
 		"upcomming-visits": "الزيارات القادمة",
-		"total-visits": "إجمالي الزيارات",
-		"search-placeholder": "البحث عن المرضى أو أشياء أخرى"
+		"total-visits": "إجمالي الزيارات"
 	},
 	"Doctors": {
 		"dashboard": "لوحة التحكم",

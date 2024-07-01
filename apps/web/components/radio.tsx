@@ -3,7 +3,10 @@ import { useFormContext } from "react-hook-form";
 export default function Radio({
 	name,
 	value,
-}: { name: string; value: string }) {
+}: {
+	name: string;
+	value: string;
+}) {
 	const { register } = useFormContext();
 	return (
 		<input

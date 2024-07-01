@@ -5,7 +5,10 @@ import NA from "./NA";
 export default function DetailsCard({
 	title,
 	details,
-}: { title?: string; details: { title: string; value: React.ReactNode }[] }) {
+}: {
+	title?: string;
+	details: { title: string; value: React.ReactNode }[];
+}) {
 	return (
 		<div className="border border-slate-200 dark:border-slate-700 p-2 md:p-4 bg-gray-500/10 rounded">
 			{title && (

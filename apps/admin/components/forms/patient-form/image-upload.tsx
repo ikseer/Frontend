@@ -6,14 +6,16 @@ import {
 	IMAGE_MIME_TYPE,
 } from "@mantine/dropzone";
 import type { UseFormReturnType } from "@mantine/form";
-import { IconUpload } from "@tabler/icons-react";
+import { Upload } from "lucide-react";
 import { useState } from "react";
 import type { z } from "zod";
 import "./image.css";
 
 export default function UploadImage({
 	form,
-}: { form: UseFormReturnType<z.infer<typeof patientSchema>> }) {
+}: {
+	form: UseFormReturnType<z.infer<typeof patientSchema>>;
+}) {
 	const [files, setFiles] = useState<FileWithPath[]>([]);
 	const previews = files.map((file) => {
 		const imageUrl = URL.createObjectURL(file);
@@ -37,7 +39,7 @@ export default function UploadImage({
 				}}
 				className="root"
 			>
-				<IconUpload />
+				<Upload />
 			</Dropzone>
 
 			<Stack h={100}>{previews}</Stack>

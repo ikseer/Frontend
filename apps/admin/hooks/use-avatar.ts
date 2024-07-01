@@ -13,7 +13,7 @@ export default function useAvatar(
 			backgroundColor: ["white"],
 			backgroundType: ["solid"],
 			...options,
-		}).toDataUriSync();
+		}).toDataUri();
 	}, [avatar, options]);
 	return ava;
 }

@@ -1,4 +1,4 @@
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import Image from "next/image";
 
 export default function LinkAccounts() {
@@ -27,7 +27,11 @@ function Account({
 	href,
 	alt,
 	button,
-}: { href: string; alt: string; button: string }) {
+}: {
+	href: string;
+	alt: string;
+	button: string;
+}) {
 	return (
 		<section className="flex items-center justify-between p-4 border-2 rounded-md border-zinc-100 dark:border-zinc-400 bg-zinc-200 dark:bg-zinc-800">
 			<Image src={href} alt={alt} width={30} height={30} />

@@ -1,15 +1,10 @@
 "use client";
 
 import DoctorForm from "@/components/forms/doctor";
-import {
-	type doctorSchema,
-	useCreateDoctor,
-	useDeleteDoctor,
-	useRestoreDoctor,
-	useUpdateDoctor,
-} from "@ikseer/api/doctors";
+import { useCreateDoctor, useUpdateDoctor } from "@ikseer/api/hooks/accounts";
+import type { doctorSchema } from "@ikseer/api/services/accounts";
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Plus } from "lucide-react";
 import { MantineReactTable } from "mantine-react-table";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -26,8 +21,8 @@ export default function DoctorsCRUDTable() {
 
 	const createDoctor = useCreateDoctor();
 	const updateDoctor = useUpdateDoctor();
-	const deleteDoctor = useDeleteDoctor();
-	const restoreDoctor = useRestoreDoctor();
+	// const deleteDoctor = useDeleteDoctor();
+	// const restoreDoctor = useRestoreDoctor();
 
 	const doctorsTable = useDoctorsTable({
 		deleted: tab === "deleted",
@@ -39,13 +34,10 @@ export default function DoctorsCRUDTable() {
 							const doctor = row.original;
 							setInitialValues({
 								id: doctor.id,
-								full_name: doctor.full_name,
+								first_name: doctor.first_name,
+								last_name: doctor.last_name,
 								date_of_birth: new Date(doctor.date_of_birth),
-								phone: doctor.phone || {},
-								address: doctor.address || {},
-								national_id: doctor.national_id,
-								speciality: doctor.speciality,
-								nationality: doctor.nationality,
+								specialization: doctor.specialization,
 								gender: doctor.gender,
 							});
 							setFormState("update");
@@ -53,7 +45,7 @@ export default function DoctorsCRUDTable() {
 					>
 						{t("edit")}
 					</Menu.Item>
-					{tab === "deleted" ? (
+					{/* {tab === "deleted" ? (
 						<Menu.Item
 							disabled={restoreDoctor.isPending}
 							onClick={() => restoreDoctor.mutateAsync(row.original.id)}
@@ -67,7 +59,7 @@ export default function DoctorsCRUDTable() {
 						>
 							{t("delete")}
 						</Menu.Item>
-					)}
+					)} */}
 				</>
 			),
 		},
@@ -90,7 +82,7 @@ export default function DoctorsCRUDTable() {
 					}}
 				/>
 				<Button
-					leftSection={<IconPlus />}
+					leftSection={<Plus />}
 					onClick={() => {
 						setInitialValues(undefined);
 						setFormState("create");
@@ -105,7 +97,10 @@ export default function DoctorsCRUDTable() {
 					if (formState === "create") return createDoctor.mutateAsync(data);
 					if (!initialValues?.id)
 						throw new Error("Can't find the ID being updated");
-					return updateDoctor.mutateAsync({ ...data, id: initialValues?.id });
+					return updateDoctor.mutateAsync({
+						newData: data,
+						id: initialValues?.id,
+					});
 				}}
 				opened={!!formState}
 				onSuccess={() => setFormState(undefined)}

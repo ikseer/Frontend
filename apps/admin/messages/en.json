@@ -8,6 +8,7 @@
 		}
 	},
 	"Forms": {
+		"bio": "Bio",
 		"add-new-patient": "Add new patient",
 		"main-details": "Main details",
 		"complete-the-main-details-of-the-patient": "Complete the main details of the patient",
@@ -17,7 +18,8 @@
 		"user-is-already-exist": "User is already exist",
 		"new-national-id": "This national ID is new",
 		"see-details": "See details",
-		"full-name": "Full Name",
+		"first-name": "First name",
+		"last-name": "Last name",
 		"AddPatiententer-the-full-name-of-4-parts-as-in-the-national-id": "Enter the full name of 4 parts as in the national ID",
 		"address": "Address",
 		"nothing-found": "Nothing found...",
@@ -45,7 +47,7 @@
 		"widowed": "Widowed",
 		"divorsed": "Divorced",
 		"error-fetching-the-patient": "Error fetching the patient",
-		"speciality": "Speciality",
+		"specialization": "Specialization",
 		"nationality": "Nationality",
 		"email": "Email",
 		"national-id-at-least-14-digits-0": "National ID",
@@ -62,6 +64,7 @@
 		"no-patient-with-this-national-id-exists": "No patient with this national ID exists"
 	},
 	"Doctors": {
+		"bio": "Bio",
 		"current": "Current",
 		"deleted": "Deleted",
 		"doctors": "Doctors",
@@ -69,16 +72,18 @@
 		"no-file-name": "No file name",
 		"download": "Download",
 		"delete": "Delete",
-		"full-name": "Full name",
-		"speciality": "Speciality",
-		"national-id": "National ID",
-		"nationality": "Nationality",
-		"phone": "Phone",
+		"first-name": "First name",
+		"last-name": "Last name",
+		"specialization": "Specialization",
+		"gender": "Gender",
+		"email": "Email",
+		"image": "Image",
 		"add-doctor": "Add doctor",
 		"restore": "Restore",
 		"edit": "Edit"
 	},
 	"Employees": {
+		"bio": "Bio",
 		"current": "Current",
 		"deleted": "Deleted",
 		"employees": "Employees",
@@ -102,10 +107,11 @@
 		"active-visits": "Active visits",
 		"upcomming-visits": "Upcomming visits",
 		"missed-visits": "Missed visits",
-		"total-visits": "Total visits",
-		"search-placeholder": "Search for patients or other things"
+		"total-products": "Total products",
+		"search-placeholder": "Search for products"
 	},
 	"Patient": {
+		"bio": "Bio",
 		"no-file-name": "No file name",
 		"download": "Download",
 		"current": "Current",
@@ -171,7 +177,10 @@
 		"edit-attachment-name": "Edit attachment name",
 		"no-file-description": "No file description",
 		"edit-visit": "Edit visit",
-		"patient": "Patient"
+		"patient": "Patient",
+		"email": "Email",
+		"first-name": "First name",
+		"last-name": "Last name"
 	},
 	"Navbar": {
 		"zu-hospital": "ZU Hospital",
@@ -179,6 +188,7 @@
 		"patients": "Patients",
 		"add-patient": "Add patient",
 		"doctors": "Doctors",
+		"products": "Products",
 		"employees": "Employees"
 	},
 	"Patients": {
