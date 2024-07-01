@@ -79,3 +79,56 @@ export function useDeleteOrderItem(id: string) {
 		},
 	});
 }
+
+export default function useCreateOrder(onSuccess: (id: string) => void) {
+	const { toast } = useToast();
+	return useMutation({
+		mutationKey: ["create-order"],
+		mutationFn: clientAPI.order.createOrder,
+		onSuccess: (data) => {
+			console.log(data);
+			onSuccess?.(data.id);
+			toast({
+				title: "Order created",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't create order",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useGetActiveOrders() {
+	return useQuery({
+		queryKey: ["get-active-orders"],
+		queryFn: () => clientAPI.order.getActiveOrders(),
+	});
+}
+
+export function useGetPaymobToken(
+	onSuccess?: (data: { token: string }) => void,
+) {
+	return useMutation({
+		mutationKey: ["get-first-paymob-access-token"],
+		mutationFn: clientAPI.order.getPaymobToken,
+		onSuccess: (data) => {
+			onSuccess?.(data);
+		},
+	});
+}
+
+export function useCreatePaymobOrderId(
+	onSuccess?: (data: { paymob_order_id: string; amount_cents: string }) => void,
+) {
+	return useMutation({
+		mutationKey: ["create-paymob-order-id"],
+		mutationFn: clientAPI.order.createPaymobOrderId,
+		onSuccess: (data) => {
+			onSuccess?.(data);
+		},
+	});
+}

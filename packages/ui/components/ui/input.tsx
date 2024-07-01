@@ -29,7 +29,7 @@ const FormInput = ({
 			disabled={disabled}
 			render={({ field }) => (
 				<Form.FormItem>
-					{label && <Form.FormLabel>{label}</Form.FormLabel>}
+					{label && <Form.FormLabel htmlFor={name}>{label}</Form.FormLabel>}
 					<Form.FormControl>
 						<input
 							type={type}

@@ -1,1 +1,6 @@
 export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+export const PAYMOB_API_KEY = process.env.NEXT_PUBLIC_PAYMOB_API_KEY;
+export const PAYMOB_SECERT_KEY = process.env.NEXT_PUBLIC_PAYMOB_SECERT_KEY;
+export const PAYMOB_PUBLIC_KEY = process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY;
+export const PAYMOB_INTEGRATION_ID =
+	process.env.NEXT_PUBLIC_PAYMOB_INTEGRATION_ID;
