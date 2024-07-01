@@ -10,7 +10,7 @@ export default function SingleProductCard({ item }: { item: ProductsList }) {
 	return (
 		<div className="flex flex-col border shadow-lg bg-zinc-100 rounded-xl dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-zinc-700">
 			<ImageView
-				src={getLink(item?.image[0]?.image)}
+				src={getLink(item?.image)}
 				alt="Description"
 				productId={item.id}
 			/>
