@@ -1,4 +1,4 @@
-import type { PaginationResult, Product, HomeProduct } from "@ikseer/lib/types";
+import type { HomeProduct, PaginationResult, Product } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { getSearchParams } from "../config/get-search-params";
 import type { SearchOptions } from "../config/types";
@@ -18,6 +18,12 @@ export class ProductsAPI {
 			.get<PaginationResult<HomeProduct>>("/products/home/", {
 				params: params,
 			})
+			.then((res) => res.data);
+	};
+
+	deleteProduct = async (id: string) => {
+		return await this.http
+			.delete(`/products/product/${id}`)
 			.then((res) => res.data);
 	};
 }

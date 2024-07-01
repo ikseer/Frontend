@@ -49,7 +49,7 @@ export interface HomeProduct {
 	generic_name: string;
 	name: string;
 	price: number | null;
-	image: ProductImage[];
+	image: string;
 	discount: ProductDiscount;
 }
 
@@ -108,16 +108,19 @@ export interface Cart {
 	id: string;
 	created_at: string;
 	updated_at: string;
-	items: {
-		id: string;
-		product_name: string;
-		create_at: string;
-		updated_at: string;
-		quantity: number;
-		cart: string;
-		product: string;
-	}[];
+	items: CartItems[];
 	user: string;
+}
+export interface CartItems {
+	id: string;
+	product_name: string;
+	create_at: string;
+	updated_at: string;
+	quantity: number;
+	cart: string;
+	product: string;
+	product_final_price: number;
+	product_image: string;
 }
 export interface CreateCartItem {
 	quantity: number;

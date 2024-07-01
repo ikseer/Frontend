@@ -5,10 +5,10 @@ import type {
 	User,
 } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
-import { httpNoAuth } from "../config/axios-non-auth";
-import type { SearchOptions } from "../config/types";
-import { getSearchParams } from "../config/get-search-params";
 import { z } from "zod";
+import { httpNoAuth } from "../config/axios-non-auth";
+import { getSearchParams } from "../config/get-search-params";
+import type { SearchOptions } from "../config/types";
 
 export class AccountsAPI {
 	constructor(private http: AxiosInstance) {}
@@ -113,7 +113,9 @@ export class AccountsAPI {
 
 	getPatient = async (patientId?: string) => {
 		if (!patientId) return null;
-		return await this.http.get<Patient>(`accounts/patient/${patientId}/`);
+		return await this.http
+			.get<Patient>(`accounts/patient/${patientId}/`)
+			.then((res) => res.data);
 	};
 
 	updatePatient = async (patientId: string | null) => {

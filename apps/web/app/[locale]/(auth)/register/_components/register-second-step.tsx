@@ -2,9 +2,9 @@
 
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
+import { useZodForm } from "@/lib/use-zod-form";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
-import { useZodForm } from "@/lib/use-zod-form";
 import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	FormControl,

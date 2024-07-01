@@ -2,6 +2,7 @@
 
 import Logout from "@/app/[locale]/_components/logout";
 import { usePermissions } from "@/hooks/use-permissions";
+import { Routes } from "@/lib/routes";
 import { usePathname, useRouter } from "@/navigation";
 import {
 	AppShell,
@@ -9,10 +10,10 @@ import {
 	Divider,
 	Group,
 	NavLink,
+	type NavLinkProps,
 	Stack,
 	Text,
 	TextInput,
-	type NavLinkProps,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
@@ -21,7 +22,6 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LangSwitch from "../_components/lang-switch";
 import { ThemeSwitch } from "../_components/theme-switch";
-import { Routes } from "@/lib/routes";
 
 export default function CollapseDesktop({
 	children,

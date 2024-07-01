@@ -1,3 +1,4 @@
+import type { clientAPI } from "@ikseer/api/config/api.client";
 import { doctorSchema } from "@ikseer/api/services/accounts";
 import {
 	Button,
@@ -6,15 +7,14 @@ import {
 	type ModalProps,
 	Radio,
 	Stack,
-	Textarea,
 	TextInput,
+	Textarea,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import type { z } from "zod";
-import type { clientAPI } from "@ikseer/api/config/api.client";
 
 type DoctorFormProps = Omit<ModalProps, "onSubmit" | "children"> & {
 	onSubmit: (typeof clientAPI)["accounts"]["createDoctor"];

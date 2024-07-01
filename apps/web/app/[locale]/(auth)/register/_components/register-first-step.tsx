@@ -8,6 +8,7 @@ import "../register.css";
 import { ErrorMsg } from "@/components/error-msg";
 import Radio from "@/components/radio";
 import Spinner from "@/components/spinner";
+import { useZodForm } from "@/lib/use-zod-form";
 import {
 	useCheckEmail,
 	useCheckUserName,
@@ -19,7 +20,6 @@ import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { z } from "zod";
 import { useRegisterContext } from "../context/RegisterContext";
-import { useZodForm } from "@/lib/use-zod-form";
 import { useDebounce } from "./use-debounce";
 
 const schema = z.object({

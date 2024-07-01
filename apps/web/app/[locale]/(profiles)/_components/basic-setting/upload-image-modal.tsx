@@ -25,7 +25,7 @@ export default function UploadImageModal(props: DialogProps) {
 				<section className="space-y-5 rounded p-7">
 					<UploadFile
 						value={link}
-						api={clientAPI.auth.getPatientImage}
+						api={clientAPI.accounts.getPatientImage}
 						onChange={(link) => {
 							setLink(link || null);
 						}}

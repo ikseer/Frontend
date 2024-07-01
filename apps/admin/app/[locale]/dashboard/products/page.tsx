@@ -1,5 +1,4 @@
 "use client";
-
 import { Button, Input, Title } from "@mantine/core";
 import { Search } from "lucide-react";
 import { useInfiniteProducts } from "@ikseer/api/hooks/products";

@@ -1,6 +1,7 @@
 "use client";
 
 import DoctorForm from "@/components/forms/doctor";
+import { useCreateDoctor, useUpdateDoctor } from "@ikseer/api/hooks/accounts";
 import type { doctorSchema } from "@ikseer/api/services/accounts";
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
 import { Plus } from "lucide-react";
@@ -9,7 +10,6 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import type { z } from "zod";
 import useDoctorsTable from "./use-doctors-table";
-import { useCreateDoctor, useUpdateDoctor } from "@ikseer/api/hooks/accounts";
 
 export default function DoctorsCRUDTable() {
 	const [tab, setTab] = useState<"deleted" | "current">("current");

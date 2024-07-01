@@ -10,6 +10,7 @@ import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
 import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
 import { useZodForm } from "@/lib/use-zod-form";
+import type { clientAPI } from "@ikseer/api/config/api.client";
 import { setSession } from "@ikseer/api/config/session.client";
 import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
@@ -31,11 +32,9 @@ export default function Login() {
 		schema: schema,
 	});
 	const redirectTo = useSearchParams()?.get("redirectTo");
-	const onSuccess = (data: {
-		access: string;
-		refresh: string;
-		user: { id: string; user_type: "doctor" | "patient" };
-	}) => {
+	const onSuccess = (
+		data: Awaited<ReturnType<typeof clientAPI.accounts.login>>,
+	) => {
 		const {
 			access,
 			refresh,
