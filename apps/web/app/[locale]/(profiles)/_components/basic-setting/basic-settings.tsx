@@ -4,7 +4,7 @@ import NA from "@/components/NA";
 import { useGetPatient } from "@ikseer/api/hooks/accounts";
 import { UserIdCookie } from "@ikseer/lib/cookies.client";
 import { cn } from "@ikseer/lib/utils";
-import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/src/components/ui/loading-spinner";
+import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/components/ui/loading-spinner";
 import SettingContainer from "../../user/[userId]/_components/setting";
 import { BasicSettingsDialog } from "./basic-settings-diaglog";
 
@@ -85,7 +85,11 @@ function Label({
 	htmlFor,
 	children,
 	className,
-}: { htmlFor?: string; children: React.ReactNode; className?: string }) {
+}: {
+	htmlFor?: string;
+	children: React.ReactNode;
+	className?: string;
+}) {
 	return (
 		<label htmlFor={htmlFor} className={cn("font-semibold", className)}>
 			{children}{" "}
@@ -95,7 +99,10 @@ function Label({
 function ViewInfo({
 	children,
 	className,
-}: { children: React.ReactNode; className?: string }) {
+}: {
+	children: React.ReactNode;
+	className?: string;
+}) {
 	return (
 		<p
 			className={cn(

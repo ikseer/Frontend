@@ -1,6 +1,6 @@
 "use client";
 import { Link } from "@/navigation";
-import { useGetCart } from "@ikseer/api/hooks/order";
+import { useGetCart } from "@ikseer/api/hooks/orders";
 import { LuShoppingCart } from "react-icons/lu";
 export function ShoppingCart() {
 	const { data } = useGetCart();

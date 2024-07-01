@@ -1,13 +1,13 @@
 // "use client";
 // import { useZodForm } from "@/lib/use-zod-form";
-// import { Button } from "@ikseer/ui/src/components/ui/button";
+// import { Button } from "@ikseer/ui/components/ui/button";
 // import { useTranslations } from "next-intl";
 // import { FormProvider } from "react-hook-form";
 // import { z } from "zod";
 // import AuthContainer from "../register/auth-container";
 // import "../register/register.css";
 // import { useResetPassword } from "@ikseer/api/hooks/auth";
-// import { FormInput } from "@ikseer/ui/src/components/ui/input";
+// import { FormInput } from "@ikseer/ui/components/ui/input";
 
 // export default function ResetPassword() {
 // 	const form = useZodForm({

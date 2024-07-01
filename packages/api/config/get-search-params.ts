@@ -1,18 +1,20 @@
-import type { MRT_FilterOption } from "mantine-react-table";
-import type { FetchOptions } from "../hooks/use-our-table";
+import type { SearchOptions } from "./types";
 
-export default function getTableSearchParams({
+export function getSearchParams({
 	columnFilterFns,
 	columnFilters,
 	globalFilter,
 	pagination,
 	sorting,
-}: FetchOptions) {
+}: SearchOptions = {}) {
 	const params = new URLSearchParams();
 
 	if (pagination) {
-		params.set("page", (pagination.pageIndex + 1).toString());
-		params.set("limit", pagination.pageSize.toString());
+		if (pagination.pageIndex)
+			params.set("page", (pagination.pageIndex + 1).toString());
+		if (pagination.pageSize)
+			params.set("limit", pagination.pageSize.toString());
+		else params.set("limit", "15");
 	}
 
 	if (sorting && sorting.length > 0)
@@ -41,7 +43,9 @@ export default function getTableSearchParams({
 	return params;
 }
 
-function getOperator(op?: MRT_FilterOption) {
+function getOperator(
+	op?: NonNullable<SearchOptions["columnFilterFns"]>[string],
+) {
 	// TODO: handle more operators
 	if (op === "contains") return "__icontains";
 	return "";

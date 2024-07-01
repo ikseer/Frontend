@@ -7,6 +7,12 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src", "../lib/utils.ts"],
+	"include": [
+		"src",
+		"../lib/utils.ts",
+		"components",
+		"../../apps/web/app/[locale]/(home)/home/product-card.tsx",
+		"../../apps/web/app/[locale]/(home)/home/image-view.tsx"
+	],
 	"exclude": ["node_modules"]
 }

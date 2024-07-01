@@ -5,9 +5,15 @@ import { useInfiniteProducts } from "@ikseer/api/hooks/products";
 
 export default function BestSeller() {
 	const { data } = useInfiniteProducts({
-		pageParam: 1,
-		limit: 10,
-		top_sales: true,
+		pagination: {
+			pageSize: 10,
+		},
+		columnFilters: [
+			{
+				id: "top_sales",
+				value: true,
+			},
+		],
 	});
 
 	return (

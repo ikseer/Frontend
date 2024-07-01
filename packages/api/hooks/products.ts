@@ -1,17 +1,21 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { clientAPI } from "../config/api.client";
+import type { SearchOptions } from "../config/types";
 
-export const useInfiniteProducts = (params: {
-	pageParam: number;
-	limit: number;
-	top_sales?: boolean;
-}) => {
+export const useInfiniteProducts = (options?: SearchOptions) => {
 	return useInfiniteQuery({
-		queryKey: ["product-get"],
-		queryFn: () => clientAPI.products.getProducts(params),
-		initialPageParam: 1,
+		queryKey: ["product-get", options],
+		queryFn: ({ pageParam }) =>
+			clientAPI.products.getProducts({
+				...options,
+				pagination: {
+					...options?.pagination,
+					pageIndex: pageParam,
+				},
+			}),
+		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages) => {
-			return lastPage.next ? allPages.length + 1 : undefined;
+			return lastPage.next ? allPages.length : undefined;
 		},
 	});
 };

@@ -1,6 +1,6 @@
 // "use client";
 // import { BACKEND_URL } from "@ikseer/lib/constants";
-// import { Button } from "@ikseer/ui/src/components/ui/button";
+// import { Button } from "@ikseer/ui/components/ui/button";
 // import Image from "next/image";
 // import { useRef, useState } from "react";
 

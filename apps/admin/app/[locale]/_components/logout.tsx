@@ -1,8 +1,8 @@
-import {
-	accessTokenCookie,
-	refreshTokenCookie,
-} from "@ikseer/lib/cookies.client";
+"use client";
+
+import { Routes } from "@/lib/routes";
 import { useRouter } from "@/navigation";
+import { setSession } from "@ikseer/api/config/session.client";
 import { Button } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
@@ -15,10 +15,8 @@ export default function Logout({ width, mt }: { width?: string; mt?: string }) {
 			mt={mt}
 			variant="transparent"
 			onClick={() => {
-				localStorage.removeItem("user");
-				accessTokenCookie.delete();
-				refreshTokenCookie.delete();
-				router.push("/login");
+				setSession(null);
+				router.push(Routes.login());
 			}}
 		>
 			{t("logout")}

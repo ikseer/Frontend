@@ -1,7 +1,7 @@
 "use client";
 
 import ImageView from "@/app/[locale]/(home)/home/image-view";
-import type { ProductsList } from "@ikseer/lib/types";
+import type { HomeProduct } from "@ikseer/lib/types";
 import { cn } from "@ikseer/lib/utils";
 import React, { useEffect, useState } from "react";
 
@@ -12,7 +12,7 @@ export const InfiniteMovingCards = ({
 	pauseOnHover = true,
 	className,
 }: {
-	items: ProductsList[];
+	items: HomeProduct[];
 	direction?: "left" | "right";
 	speed?: "fast" | "normal" | "slow";
 	pauseOnHover?: boolean;

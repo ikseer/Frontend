@@ -1,4 +1,4 @@
-import { Skeleton } from "@ikseer/ui/src/components/ui/skeleton";
+import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
 
 export function SkeletonCard() {
 	return (

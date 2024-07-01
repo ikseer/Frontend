@@ -1,62 +1,80 @@
+export interface PaginationResult<Data> {
+	count: number;
+	next: string | null;
+	previous: string | null;
+	results: Data[];
+}
+
 export interface User {
-	image: string;
+	/** uri of the image */
+	image: string | null;
 	first_name: string;
 	last_name: string;
 	email: string;
 	username: string;
 	date_of_birth: string;
-	timezone: string;
-	gender: string;
+	date_joined: string;
 	created_at: string;
 	updated_at: string;
+	user_type: UserType;
+	is_staff: boolean;
+	is_active: boolean;
 	id: string;
 }
 
+export type UserType = "patient" | "doctor" | "admin";
+
 export interface Patient extends User {
-	age: number;
+	timezone: string;
+	bio: string;
+	gender: "male" | "female";
+	/** uuid */
+	user: string;
 }
 
-export interface ProductsList {
+export interface Doctor extends User {
+	timezone: string;
+	bio: string;
+	gender: "male" | "female";
+	/** uuid */
+	user: string;
+	price_for_reservation: number;
+	approved: boolean;
+	location: string;
+	specialization: string;
+}
+
+export interface HomeProduct {
 	id: string;
 	generic_name: string;
 	name: string;
-	price: number;
-	image: string;
+	price: number | null;
+	image: ProductImage[];
 	discount: ProductDiscount;
 }
 
 export interface Product {
 	id: string;
-	images: [];
-	review: [];
+	generic_name: string;
+	name: string;
+	price: number | null;
+	discount: ProductDiscount;
+	images: ProductImage[];
+	review: unknown; // TODO
 	wisthlist: string[];
 	final_price: number;
 	created_at: string;
 	updated_at: string;
-	name: string;
-	generic_name: string;
+	/** Form of the medication (e.g., tablet, capsule, liquid */
 	form: string;
 	short_description: string;
 	description: string;
-	price: string;
-	stock: string;
+	stock: number;
 	code: string;
+	/** uuid */
 	category: string;
+	/** uuid */
 	pharmacy: string;
-}
-export interface ProductPage {
-	count: number;
-	next: string | null;
-	previous: string | null;
-	results: Product[];
-}
-[];
-
-export interface ProductsHomePage {
-	count: number;
-	next: string | null;
-	previous: string | null;
-	results: ProductsList[];
 }
 
 export interface ProductReview {
@@ -67,6 +85,7 @@ export interface ProductReview {
 	user: string;
 	product: string;
 }
+
 export interface ProductImage {
 	image: string;
 	id: string;
@@ -77,8 +96,8 @@ export interface ProductImage {
 }
 
 export interface ProductDiscount {
-	discount_amount: null | number;
-	discount_type: null | string;
+	discount_amount: null | string;
+	discount_type: null | "amount" | "percentage";
 	start_date: null | string;
 	end_date: null | string;
 	active: boolean;
@@ -108,8 +127,7 @@ export interface CreateCartItem {
 	cart: string;
 	product: string;
 }
+
 export interface EditCartItem extends CreateCartItem {
 	cartItemId: string;
 }
-
-export type UserType = "patient" | "doctor" | "admin";

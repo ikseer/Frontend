@@ -2,7 +2,11 @@ export default function Price({
 	old_price,
 	price,
 	discount,
-}: { price: number; old_price?: number; discount?: number }) {
+}: {
+	price: number;
+	old_price?: number;
+	discount?: number;
+}) {
 	return (
 		<section>
 			{old_price ? (

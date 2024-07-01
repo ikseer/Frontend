@@ -1,5 +1,3 @@
-import type { Employee } from "@ikseer/lib/types";
-import { getDeletedEmployees, getEmployees } from "@ikseer/api/employees";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features
 import type { MRT_ColumnDef } from "mantine-react-table";
@@ -9,6 +7,8 @@ import { useMemo } from "react";
 import useOurTable, {
 	type UseTableOptions,
 } from "../../../hooks/use-our-table";
+
+type Employee = never;
 
 export default function useEmployeesTable({
 	data,
@@ -48,7 +48,7 @@ export default function useEmployeesTable({
 			id: "employees",
 			deleted,
 			data,
-			fetchData: deleted ? getDeletedEmployees : getEmployees,
+			fetchData: async () => ({ count: 0, results: [] }),
 			initialFilters,
 		},
 		{

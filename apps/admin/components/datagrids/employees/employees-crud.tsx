@@ -1,15 +1,9 @@
 "use client";
 
 import EmployeeForm from "@/components/forms/employee";
-import {
-	type employeeSchema,
-	useCreateEmployee,
-	useDeleteEmployee,
-	useRestoreEmployee,
-	useUpdateEmployee,
-} from "@ikseer/api/employees";
+
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Plus } from "lucide-react";
 import { MantineReactTable } from "mantine-react-table";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -24,10 +18,10 @@ export default function EmployeesCRUDTable() {
 	>();
 	const t = useTranslations("Employees");
 
-	const createEmployee = useCreateEmployee();
-	const updateEmployee = useUpdateEmployee();
-	const deleteEmployee = useDeleteEmployee();
-	const restoreEmployee = useRestoreEmployee();
+	// const createEmployee = useCreateEmployee();
+	// const updateEmployee = useUpdateEmployee();
+	// const deleteEmployee = useDeleteEmployee();
+	// const restoreEmployee = useRestoreEmployee();
 
 	const employeesTable = useEmployeesTable({
 		deleted: tab === "deleted",
@@ -56,14 +50,14 @@ export default function EmployeesCRUDTable() {
 					{tab === "deleted" ? (
 						<Menu.Item
 							disabled={restoreEmployee.isPending}
-							onClick={() => restoreEmployee.mutateAsync(row.original.id)}
+							// onClick={() => restoreEmployee.mutateAsync(row.original.id)}
 						>
 							{t("restore")}
 						</Menu.Item>
 					) : (
 						<Menu.Item
 							disabled={deleteEmployee.isPending}
-							onClick={() => deleteEmployee.mutateAsync(row.original.id)}
+							// onClick={() => deleteEmployee.mutateAsync(row.original.id)}
 						>
 							{t("delete")}
 						</Menu.Item>
@@ -90,7 +84,7 @@ export default function EmployeesCRUDTable() {
 					}}
 				/>
 				<Button
-					leftSection={<IconPlus />}
+					leftSection={<Plus />}
 					onClick={() => {
 						setInitialValues(undefined);
 						setFormState("create");

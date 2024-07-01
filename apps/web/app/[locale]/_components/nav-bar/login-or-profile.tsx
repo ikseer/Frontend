@@ -5,14 +5,14 @@ import { setSession } from "@ikseer/api/config/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
 import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn } from "@ikseer/lib/utils";
-import { Button } from "@ikseer/ui/src/components/ui/button";
+import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@ikseer/ui/src/components/ui/dropdown-menu";
+} from "@ikseer/ui/components/ui/dropdown-menu";
 
 export function LoginOrProfile() {
 	const currentPath = usePathname();
