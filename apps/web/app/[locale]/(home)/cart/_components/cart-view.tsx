@@ -1,7 +1,6 @@
 "use client";
 import type { CartItems } from "@ikseer/lib/types";
 import { getLink } from "@ikseer/lib/utils";
-import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Table,
 	TableBody,
@@ -12,9 +11,9 @@ import {
 	TableHeader,
 	TableRow,
 } from "@ikseer/ui/components/ui/table";
-import { Trash } from "lucide-react";
 import Image from "next/image";
 import AddDeleteItem from "../../_components/add-delete-item";
+import DeleteItemById from "../../_components/delete-item";
 
 export default function CartItemView({
 	cartItems,
@@ -53,9 +52,7 @@ export default function CartItemView({
 						</TableCell>
 						<TableCell>{cart.product_final_price}</TableCell>
 						<TableCell className="text-right">
-							<Button>
-								<Trash />
-							</Button>
+							<DeleteItemById cartItemId={cart.id} />
 						</TableCell>
 					</TableRow>
 				))}

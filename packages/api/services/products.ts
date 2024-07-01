@@ -20,4 +20,10 @@ export class ProductsAPI {
 			})
 			.then((res) => res.data);
 	};
+
+	deleteProduct = async (id: string) => {
+		return await this.http
+			.delete(`/products/product/${id}`)
+			.then((res) => res.data);
+	};
 }

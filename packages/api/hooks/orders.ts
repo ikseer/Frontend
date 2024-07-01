@@ -56,3 +56,26 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 		},
 	});
 }
+
+export function useDeleteOrderItem(id: string) {
+	const { toast } = useToast();
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationKey: ["delete-cart-item", id],
+		mutationFn: () => clientAPI.order.deleteCartItem(id),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+			toast({
+				title: "Item deleted",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't delete item",
+				variant: "error",
+			});
+		},
+	});
+}
