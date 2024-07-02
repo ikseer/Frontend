@@ -6,7 +6,11 @@ export default function AuthShape({
 	authImage,
 	text,
 	className,
-}: { authImage: string; text?: string; className?: string }) {
+}: {
+	authImage: string;
+	text?: string;
+	className?: string;
+}) {
 	return (
 		<section
 			className={cn("bg-white dark:bg-zinc-900  mb-6 rounded", className)}

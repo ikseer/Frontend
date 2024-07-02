@@ -3,7 +3,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from "@ikseer/ui/src/components/ui/tabs";
+} from "@ikseer/ui/components/ui/tabs";
 import { LuUser } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { MdPayment } from "react-icons/md"; /*didn't exist in lu*/

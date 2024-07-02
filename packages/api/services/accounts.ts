@@ -1,8 +1,16 @@
-import type { Patient } from "@ikseer/lib/types";
+import type {
+	Doctor,
+	PaginationResult,
+	Patient,
+	User,
+} from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
+import { z } from "zod";
 import { httpNoAuth } from "../config/axios-non-auth";
+import { getSearchParams } from "../config/get-search-params";
+import type { SearchOptions } from "../config/types";
 
-export class AuthAPI {
+export class AccountsAPI {
 	constructor(private http: AxiosInstance) {}
 
 	checkUserName = async (username: string) => {
@@ -61,9 +69,15 @@ export class AuthAPI {
 	};
 
 	login = async (data: { username: string; password: string }) => {
-		return await httpNoAuth.post("/accounts/login/", data).then((res) => {
-			return res.data;
-		});
+		return await httpNoAuth
+			.post<{
+				access: string;
+				refresh: string;
+				user: User;
+			}>("/accounts/login/", data)
+			.then((res) => {
+				return res.data;
+			});
 	};
 
 	resetPassword = async (data: {
@@ -84,62 +98,118 @@ export class AuthAPI {
 			.then((res) => res.data);
 	};
 
-	// Patient
+	// -----------------------------------
+	// Patients
+	// -----------------------------------
+
+	getPatients = async (options?: SearchOptions) => {
+		const params = getSearchParams(options);
+		return await this.http
+			.get<PaginationResult<Patient>>("/accounts/patient/", {
+				params,
+			})
+			.then((res) => res.data);
+	};
+
 	getPatient = async (patientId?: string) => {
 		if (!patientId) return null;
 		return await this.http
-			.get<Patient[]>("/accounts/patient/", {
-				params: { user__id: patientId },
-			})
+			.get<Patient>(`accounts/patient/${patientId}/`)
 			.then((res) => res.data);
 	};
 
 	updatePatient = async (patientId: string | null) => {
 		if (!patientId) return null;
-		return await this.http.patch("/accounts/patient/", {
-			params: { user__id: patientId },
-		});
+		return await this.http.patch(`/accounts/patient/${patientId}/`);
 	};
 
 	deletePatient = async (patientId: string) => {
 		return await this.http
-			.delete("/accounts/patient/", { params: { user__id: patientId } })
+			.delete(`/accounts/patient/${patientId}/`)
 			.then((res) => res.data);
 	};
 
-	getPatientImage = async (patientId: string) => {
-		return await this.http.get(`/accounts/patient/${patientId}/image/`);
+	// -----------------------------------
+	// Doctors
+	// -----------------------------------
+
+	createDoctor = async (data: z.infer<typeof doctorSchema>) => {
+		return await this.http.post("accounts/doctor/", data);
 	};
 
-	updatePatientImage = async ({ id, data }: { id: string; data: Blob }) => {
-		return await this.http.patchForm(`/accounts/patient/${id}/image/`, data);
-	};
-
-	// Doctor
-	getDoctor = async (doctorId?: string) => {
-		if (!doctorId) return null;
+	getDoctors = async (options?: SearchOptions) => {
+		const params = getSearchParams(options);
 		return await this.http
-			.get("/accounts/doctor/", { params: { user__id: doctorId } })
+			.get<PaginationResult<Doctor>>("/accounts/doctor/", {
+				params,
+			})
 			.then((res) => res.data);
 	};
 
-	updateDoctor = async (doctorId: string) => {
+	getDoctor = async (id?: string) => {
+		if (!id) return null;
 		return await this.http
-			.post("/accounts/doctor/", { params: { user__id: doctorId } })
+			.get(`/accounts/doctor/${id}/`)
 			.then((res) => res.data);
 	};
 
-	deleteDoctor = async (doctorId: string) => {
+	updateDoctor = async ({
+		id,
+		newData,
+	}: {
+		id: string;
+		newData: z.infer<typeof doctorSchema>;
+	}) => {
 		return await this.http
-			.delete("/accounts/doctor/", { params: { user__id: doctorId } })
+			.post(`/accounts/doctor/${id}/`, newData)
 			.then((res) => res.data);
 	};
 
-	getDoctorImage = async (doctorId: string) => {
-		return await this.http.get(`/accounts/doctor/${doctorId}/image/`);
-	};
-
-	updateDoctorImage = async ({ id, data }: { id: string; data: Blob }) => {
-		return await this.http.patchForm(`/accounts/doctor/${id}/image/`, data);
+	deleteDoctor = async (id: string) => {
+		return await this.http
+			.delete(`/accounts/doctor/${id}/`)
+			.then((res) => res.data);
 	};
 }
+
+export const doctorSchema = z.object({
+	first_name: z.string().min(2),
+	last_name: z.string().min(2),
+	email: z.preprocess((val) => val || undefined, z.string().optional()),
+	specialization: z.string().min(2),
+	gender: z.preprocess(
+		(val) => val || undefined,
+		z.literal("female").or(z.literal("male")).optional(),
+	),
+	license_number: z.preprocess(
+		(val) => val || undefined,
+		z.string().optional(),
+	),
+	experience_years: z.preprocess(
+		(val) => val || undefined,
+		z.number().optional(),
+	),
+	work_days: z.preprocess((val) => val || undefined, z.string().optional()),
+	marital_status: z.preprocess(
+		(val) => val || undefined,
+		z.string().optional(),
+	),
+	bio: z.preprocess((val) => val || undefined, z.string().optional()),
+	// address: z
+	// 	.object({
+	// 		street: z.string().optional(),
+	// 		city: z.string().optional(),
+	// 		governorate: z.string().optional(),
+	// 	})
+	// 	.optional(),
+	// phone: z
+	// 	.object({
+	// 		mobile: z.preprocess(
+	// 			(val) => val || undefined,
+	// 			z.string().min(3).optional(),
+	// 		),
+	// 	})
+	// 	.optional(),
+	/** date in ISO format */
+	date_of_birth: z.preprocess((val) => val || undefined, z.date().optional()),
+});

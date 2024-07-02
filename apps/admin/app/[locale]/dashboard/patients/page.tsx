@@ -1,13 +1,15 @@
 "use client";
 
 import PatientsCRUDTable from "@/components/datagrids/patients/patients-crud";
-import type { Routes } from "@ikseer/lib/routes";
+import type { Routes } from "@/lib/routes";
 import { Anchor, Box, Breadcrumbs, Title } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
 export default function PatientsPage({
 	searchParams,
-}: { searchParams: typeof Routes.patients.search }) {
+}: {
+	searchParams: typeof Routes.patients.search;
+}) {
 	const t = useTranslations("Patients");
 	return (
 		<Box>

@@ -1,19 +1,17 @@
-import type { patientSchema } from "@ikseer/api/patients";
 import { type ComboboxItem, Select, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
-import type { z } from "zod";
 import {
 	EgyptCities,
 	EgyptGovernorate,
 	type EgyptGovernorateKey,
 } from "./form-data";
 
-export default function AddressField({
+export default function AddressField<T>({
 	form,
 }: {
-	form: UseFormReturnType<z.infer<typeof patientSchema>>;
+	form: UseFormReturnType<T>;
 }) {
 	const t = useTranslations("Forms");
 	const locale = useLocale() as "ar" | "en";

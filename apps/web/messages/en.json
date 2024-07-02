@@ -55,5 +55,10 @@
 		"back": "Back",
 		"submit": "Submit",
 		"resent": "Resent"
+	},
+	"Common": {
+		"errors": {
+			"something-went-wrong": "Something Went wrong"
+		}
 	}
 }

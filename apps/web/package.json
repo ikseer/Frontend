@@ -10,8 +10,8 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.6.0",
-		"@ikseer/config": "workspace:*",
 		"@ikseer/api": "workspace:*",
+		"@ikseer/config": "workspace:*",
 		"@ikseer/lib": "workspace:*",
 		"@ikseer/ui": "workspace:*",
 		"@radix-ui/react-dialog": "^1.1.1",
@@ -24,6 +24,7 @@
 		"axios": "^1.7.2",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
+		"framer-motion": "^11.2.12",
 		"google-libphonenumber": "^3.2.35",
 		"input-otp": "^1.2.4",
 		"js-cookie": "^3.0.5",
