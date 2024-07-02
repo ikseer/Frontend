@@ -22,9 +22,7 @@ const schema = z.object({
 export default function Payment() {
 	const getPaymobToken = useGetPaymobToken((data) => {
 		console.log(data);
-		window.open(
-			`https://accept.paymob.com/api/acceptance/iframes/452689?payment_token=${data.token}`,
-		);
+		window.location.href = `https://accept.paymob.com/api/acceptance/iframes/831751?payment_token=${data.token}`;
 	});
 
 	const createPaymobOrderId = useCreatePaymobOrderId((data) => {
@@ -50,7 +48,7 @@ export default function Payment() {
 		<FormProvider {...form}>
 			<form
 				className="space-y-6 page-container"
-				onSubmit={form.handleSubmit((data: _) => {
+				onSubmit={form.handleSubmit((data) => {
 					createOrder.mutate({ ...data, user: userId });
 				})}
 			>

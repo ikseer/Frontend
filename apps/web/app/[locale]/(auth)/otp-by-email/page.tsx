@@ -33,7 +33,7 @@ export default function ResetPassword() {
 	const errorMsg = getErrorMessageSync(error, $t);
 
 	return (
-		<main className="auth-parent hero flex flex-col items-center justify-center">
+		<main className="flex flex-col items-center justify-center auth-parent hero">
 			<FormProvider {...form}>
 				<AuthContainer>
 					<form
@@ -42,27 +42,31 @@ export default function ResetPassword() {
 						onSubmit={form.handleSubmit((data) => mutate(data.email))}
 						autoComplete="off"
 					>
-						<div className=" flex flex-col items-center justify-center">
+						<div className="flex flex-col items-center justify-center gap-y-2">
 							<h1 className="text-2xl">Send your email</h1>
-							{errorMsg && (
+							<p className="text-zinc-900 dark:text-zinc-300 ">
+								{t(
+									"if-you-forgot-your-password-please-enter-your-email-below-to-rest-it",
+								)}
+							</p>
+							{error && (
 								<ErrorMsg className="flex items-center">{errorMsg}</ErrorMsg>
 							)}
 						</div>
-						<p className="text-zinc-900 dark:text-zinc-300 ">
-							{t(
-								"if-you-forgot-your-password-please-enter-your-email-below-to-rest-it",
-							)}
-						</p>
 						<FormInput
 							name="email"
 							className="rounded-md"
 							placeholder="example@email.com"
 						/>
-						<Button
-							className="hover:bg-teal-700 bg-teal-600 min-w-[300px]"
-							disabled={isPending}
-						>
-							{isPending ? <Spinner /> : t("reset-password")}
+						<Button variant="submit" disabled={isPending} className="w-full">
+							{isPending ? (
+								<>
+									{" "}
+									{t("reset-password")} &nbsp; <Spinner />{" "}
+								</>
+							) : (
+								t("reset-password")
+							)}
 						</Button>
 					</form>
 				</AuthContainer>

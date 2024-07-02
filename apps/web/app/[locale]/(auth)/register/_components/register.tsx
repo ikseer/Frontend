@@ -1,7 +1,7 @@
 "use client";
 import StepperNavigationButtons from "../Stepper/stepper-navigation-buttons";
 import RegisterContainer from "../auth-container";
-import RegisterContextProvider from "../context/RegisterContext";
+import RegisterContextProvider from "../context/register-context";
 import { RegisterFirstStep } from "./register-first-step";
 import { RegisterSecondStep } from "./register-second-step";
 import { RegisterThridStep } from "./register-thrid-step";

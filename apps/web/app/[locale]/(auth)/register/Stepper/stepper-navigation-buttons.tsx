@@ -1,5 +1,5 @@
 "use client";
-import { useRegisterContext } from "../context/RegisterContext";
+import { useRegisterContext } from "../context/register-context";
 
 export default function StepperNavigationButtons() {
 	const { triggerFunction: ref } = useRegisterContext();

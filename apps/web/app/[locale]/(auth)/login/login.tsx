@@ -21,8 +21,8 @@ import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 
 const schema = z.object({
-	username: z.string(),
-	password: z.string(),
+	username: z.string().min(1),
+	password: z.string().min(1),
 });
 
 export default function Login() {
@@ -106,7 +106,13 @@ export default function Login() {
 						className="w-3/4 h-[42px] my-5"
 						disabled={isPending}
 					>
-						{isPending ? <Spinner /> : "Login"}
+						{isPending ? (
+							<>
+								Login &nbsp; <Spinner />
+							</>
+						) : (
+							"Login"
+						)}
 					</Button>
 
 					<div className="w-3/4">
