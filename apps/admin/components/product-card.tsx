@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: HomeProduct }) {
 		<Card>
 			<Card.Section>
 				<Image
-					src={getLink(product?.image[0]?.image)}
+					src={getLink(product.image)}
 					alt={product.name}
 					width={300}
 					height={300}

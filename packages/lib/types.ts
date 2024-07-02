@@ -51,6 +51,7 @@ export interface HomeProduct {
 	price: number | null;
 	image: string;
 	discount: ProductDiscount;
+	review: string;
 }
 
 export interface Product {
@@ -60,7 +61,7 @@ export interface Product {
 	price: number | null;
 	discount: ProductDiscount | null;
 	images: ProductImage[];
-	review: unknown; // TODO
+	review: unknown[]; // TODO
 	wisthlist: string[];
 	final_price: number;
 	created_at: string;
@@ -75,6 +76,8 @@ export interface Product {
 	category: string;
 	/** uuid */
 	pharmacy: string;
+	factory_company: string;
+	strength: string;
 }
 
 export interface ProductReview {
@@ -87,12 +90,15 @@ export interface ProductReview {
 }
 
 export interface ProductImage {
-	image: string;
 	id: string;
+	/** uuid */
+	product: string;
+	/** URI */
+	image: string;
+	/** date */
 	updated_at: string;
 	created_at: string;
 	priority: number;
-	product: string;
 }
 
 export interface ProductDiscount {
