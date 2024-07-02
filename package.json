@@ -24,7 +24,7 @@
 		"turbo": "^2.0.5"
 	},
 	"engines": {
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"prettier": {
 		"useTabs": true
