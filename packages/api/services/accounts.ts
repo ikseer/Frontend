@@ -93,17 +93,6 @@ export class AccountsAPI {
 		return this.http.post("/accounts/password/change/", data);
 	};
 
-	changePassword = async (data: {
-		old_password: string;
-		new_password1: string;
-		new_password2: string;
-		id: string;
-	}) => {
-		return await this.http
-			.post(`/accounts/password/change/${data.id}/`, data)
-			.then((res) => res.data);
-	};
-
 	// -----------------------------------
 	// Patients
 	// -----------------------------------

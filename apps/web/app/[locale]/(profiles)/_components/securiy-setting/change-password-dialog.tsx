@@ -1,5 +1,6 @@
 "use client";
 import { useZodForm } from "@/lib/use-zod-form";
+import { useResetPassword } from "@ikseer/api/hooks/accounts";
 import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Dialog,
@@ -19,19 +20,24 @@ import { z } from "zod";
 
 const schema = z
 	.object({
-		old_password: z.string(),
 		new_password1: z.string(),
 		new_password2: z.string(),
 	})
 	.refine((data) => data.new_password1 === data.new_password2, {
 		message: "Passwords do not match",
-		path: ["confirm_password"],
+		path: ["new_password2"],
 	});
 
 export function ChangePasswordDialog() {
 	const [isOpen, setIsOpen] = useState(false);
 	const form = useZodForm({
 		schema: schema,
+	});
+
+	const changePassword = useResetPassword({
+		onSuccess: () => {
+			setIsOpen(false);
+		},
 	});
 
 	return (
@@ -49,18 +55,12 @@ export function ChangePasswordDialog() {
 					</DialogDescription>
 				</DialogHeader>
 				<FormProvider {...form}>
-					<form className="py-4 space-y-4">
-						<div className="grid items-center w-full grid-cols-3 gap-4">
-							<Label htmlFor="old_password">Old password</Label>
-							<div className="col-span-2">
-								<FormInput
-									name="old_password"
-									placeholder="Old password"
-									type="password"
-								/>
-							</div>
-						</div>
-
+					<form
+						className="py-4 space-y-4"
+						onSubmit={form.handleSubmit((data) => {
+							changePassword.mutate(data);
+						})}
+					>
 						<div className="grid items-center grid-cols-3 gap-4">
 							<Label htmlFor="new_password1">New password</Label>
 							<div className="col-span-2">
@@ -68,6 +68,7 @@ export function ChangePasswordDialog() {
 									name="new_password1"
 									placeholder="New password"
 									type="password"
+									className="rounded-md"
 								/>
 							</div>
 						</div>
@@ -78,24 +79,25 @@ export function ChangePasswordDialog() {
 									name="new_password2"
 									placeholder="Repeat password"
 									type="password"
+									className="rounded-md"
 								/>
 							</div>
 						</div>
+						<DialogFooter>
+							<Button
+								type="button"
+								variant="danger"
+								onClick={() => {
+									setIsOpen(false);
+								}}
+							>
+								cancel
+							</Button>
+							<Button type="submit" variant="submit">
+								Save changes
+							</Button>
+						</DialogFooter>
 					</form>
-					<DialogFooter>
-						<Button
-							type="button"
-							variant="danger"
-							onClick={() => {
-								setIsOpen(false);
-							}}
-						>
-							cancel
-						</Button>
-						<Button type="submit" variant="submit">
-							Save changes
-						</Button>
-					</DialogFooter>
 				</FormProvider>
 			</DialogContent>
 		</Dialog>

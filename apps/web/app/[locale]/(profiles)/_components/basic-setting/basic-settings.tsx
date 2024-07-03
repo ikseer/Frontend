@@ -21,7 +21,6 @@ export default function BasicSettings() {
 	};
 	return (
 		<main>
-			<UserImage />
 			<SettingContainer
 				mainText="Basic Setting"
 				secondaryText="Edit your basic details like full name."
@@ -69,9 +68,9 @@ export default function BasicSettings() {
 	);
 }
 
-function UserImage() {
-	return <h1>user image here</h1>;
-}
+// function UserImage() {
+// 	return <h1>user image here</h1>;
+// }
 
 function DisplaySection({ children }: { children: React.ReactNode }) {
 	return (

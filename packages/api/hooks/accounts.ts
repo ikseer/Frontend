@@ -149,24 +149,18 @@ export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
-				title: "Password reset success",
+				title: "Password Change success",
 				variant: "success",
 			});
 		},
 		onError: () => {
 			toast({
-				title: "Can't reset password",
+				title: "Can't Change password",
 				variant: "error",
 			});
 		},
 	});
 }
-
-export const useChangePassword = () => {
-	return useMutation({
-		mutationFn: clientAPI.accounts.changePassword,
-	});
-};
 
 export function useGetMe() {
 	const userId = UserIdCookie.get();
