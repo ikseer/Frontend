@@ -3,7 +3,7 @@ import { getLink } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
-import AddDeleteItem from "../_components/add-delete-item";
+import AddDeleteItem from "../../(home)/_components/add-delete-item";
 
 export default function ImageView({
 	productId,
