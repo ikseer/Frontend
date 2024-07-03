@@ -35,6 +35,7 @@ export default function Login() {
 	const onSuccess = (
 		data: Awaited<ReturnType<typeof clientAPI.accounts.login>>,
 	) => {
+		console.log(data, "login data");
 		const {
 			access,
 			refresh,

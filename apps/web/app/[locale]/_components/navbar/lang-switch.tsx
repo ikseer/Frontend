@@ -8,14 +8,17 @@ import {
 	SelectValue,
 } from "@ikseer/ui/components/ui/select";
 import { useLocale } from "next-intl";
+import { useSearchParams } from "next/navigation";
 
-export function SwitchLang() {
+export function LangSwitch() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const locale = useLocale();
-
-	const handleChange = (lang: Locale) => {
-		router.replace(pathname, { locale: lang });
+	const searchParams = useSearchParams();
+	const handleChange = (newLocale: Locale) => {
+		const currentSearchParams = new URLSearchParams(searchParams);
+		const searchString = currentSearchParams.toString();
+		router.replace(`${pathname}?${searchString}`, { locale: newLocale });
 	};
 
 	return (

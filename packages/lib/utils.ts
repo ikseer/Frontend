@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { BACKEND_URL } from "./constants";
-import type { HomeProduct, Product } from "./types";
+import type { HomeProduct, Product, User } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -41,4 +41,13 @@ export function getDiscountAmount(product: Product | HomeProduct) {
 export function getDiscountdPrice(product: Product | HomeProduct) {
 	const amount = getDiscountAmount(product);
 	return ((product.price || 0) - amount).toFixed(2);
+}
+
+export function getAvatarLink(user: User) {
+	const linkRegex = /^https?:\/\//;
+	return user.image
+		? linkRegex.test(user.image)
+			? user.image
+			: `${BACKEND_URL}/files/download/${user.image}`
+		: `https://api.dicebear.com/8.x/shapes/png?seed=user-${user.id}`;
 }

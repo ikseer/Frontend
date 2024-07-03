@@ -18,7 +18,7 @@ export function LoginOrProfile() {
 	const currentPath = usePathname();
 	const me = useGetMe();
 	const currentUser = me?.data?.results?.[0];
-	console.log(currentUser, "navbar me");
+	console.log(currentUser, me, "navbar me");
 
 	return (
 		<section className="flex items-center justify-between gap-x-2">

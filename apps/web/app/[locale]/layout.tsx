@@ -6,7 +6,7 @@ import "./globals.css";
 import { Toaster } from "@ikseer/ui/components/ui/toaster";
 import type React from "react";
 import { App } from "./_app";
-import GuestNavBar from "./_components/nav-bar";
+import Navbar from "./_components/navbar";
 
 interface RootLayoutProps {
 	children: React.ReactNode;
@@ -41,7 +41,7 @@ export default function RootLayout({
 						enableSystem
 						disableTransitionOnChange
 					>
-						<GuestNavBar />
+						<Navbar />
 						{children}
 						<Toaster />
 					</App>
