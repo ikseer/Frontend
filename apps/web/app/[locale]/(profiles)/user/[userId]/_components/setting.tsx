@@ -1,4 +1,4 @@
-import Background from "./Background.svg";
+import background from "./background.svg";
 
 export default function SettingContainer({
 	mainText,
@@ -10,7 +10,7 @@ export default function SettingContainer({
 	return (
 		<div
 			className=" p-6 mt-6 bg-no-repeat bg-cover rounded-lg"
-			style={{ backgroundImage: `url(${Background.src})` }}
+			style={{ backgroundImage: `url(${background.src})` }}
 		>
 			<div className="flex items-center">
 				<h2 className="dark:text-gray-200 mb-2 mr-2 text-4xl">Setting</h2>

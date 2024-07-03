@@ -50,7 +50,7 @@ export default function Payment() {
 		<FormProvider {...form}>
 			<form
 				className="space-y-6 page-container"
-				onSubmit={form.handleSubmit((data: _) => {
+				onSubmit={form.handleSubmit((data) => {
 					createOrder.mutate({ ...data, user: userId });
 				})}
 			>
