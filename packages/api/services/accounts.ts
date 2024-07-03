@@ -127,9 +127,9 @@ export class AccountsAPI {
 		return await this.http.patch(`/accounts/patient/${data.id}/`, data);
 	};
 
-	deletePatient = async (patientId: string) => {
+	deletePatient = async (patientId: string, method?: "soft" | "hard") => {
 		return await this.http
-			.delete(`/accounts/patient/${patientId}/`)
+			.delete(`/accounts/patient/${patientId}/?method=${method}`)
 			.then((res) => res.data);
 	};
 
@@ -169,9 +169,9 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
-	deleteDoctor = async (id: string) => {
+	deleteDoctor = async (id: string, method?: "soft" | "hard") => {
 		return await this.http
-			.delete(`/accounts/doctor/${id}/`)
+			.delete(`/accounts/doctor/${id}/?method=${method}`)
 			.then((res) => res.data);
 	};
 }

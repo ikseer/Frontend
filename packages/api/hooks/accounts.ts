@@ -169,6 +169,17 @@ export function useGetMe() {
 	if (userType === "doctor") return useGetDoctor(userId);
 	if (userType === "patient") return useGetPatient(userId);
 }
+export function useDeleteMe({
+	onSuccess,
+	method,
+}: { onSuccess?: () => void; method: "hard" | "soft" }) {
+	const userId = UserIdCookie.get();
+	const userType = UserTypeCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useDeleteDoctor({ onSuccess, method });
+	if (userType === "patient")
+		return useDeletePatient(userId, { onSuccess }, method);
+}
 
 // --------------------------
 // Patient
@@ -210,10 +221,11 @@ export function useUpdatePatient({
 export function useDeletePatient(
 	id: string,
 	{ onSuccess }: { onSuccess?: () => void } = {},
+	method: "hard" | "soft" = "soft",
 ) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: () => clientAPI.accounts.deletePatient(id),
+		mutationFn: () => clientAPI.accounts.deletePatient(id, method),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
@@ -283,11 +295,12 @@ export function useUpdateDoctor() {
 
 export function useDeleteDoctor({
 	onSuccess,
-}: { onSuccess?: () => void } = {}) {
+	method,
+}: { onSuccess?: () => void; method?: "hard" | "soft" } = {}) {
 	const userId = UserIdCookie.get();
 
 	return useMutation({
-		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string),
+		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string, method),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
