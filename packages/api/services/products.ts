@@ -14,7 +14,7 @@ import { CRUD_API } from "../utils/crud-api";
 
 export class ProductsAPI {
 	images: CRUD_API<ProductImage>;
-	coupons: CRUD_API<ProductCoupon>;
+	coupons: CRUD_API<ProductCoupon, z.infer<typeof couponSchema>>;
 	discounts: CRUD_API<ProductDiscount>;
 
 	constructor(private http: AxiosInstance) {
@@ -73,4 +73,13 @@ export const productDetailsSchema = z.object({
 		.array(z.object({ id: z.string(), url: z.string() }))
 		.min(1)
 		.max(5),
+});
+
+export const couponSchema = z.object({
+	discount_type: z.enum(["amount", "percentage"]),
+	discount_amount: z.number().min(0),
+	usage_limit: z.number().min(0).optional().nullable(),
+	end_date: z.date(),
+	start_date: z.date(),
+	minimum_purchase_amount: z.number().min(0).optional().nullable(),
 });
