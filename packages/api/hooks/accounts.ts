@@ -187,11 +187,18 @@ export function useGetPatient(id: string) {
 	});
 }
 
-export function useUpdatePatient() {
-	const userId = UserIdCookie.get();
+export function useUpdatePatient({
+	onSuccess,
+}: { onSuccess?: () => void } = {}) {
+	const { toast } = useToast();
+	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: () => clientAPI.accounts.updatePatient(userId as string),
+		mutationFn: clientAPI.accounts.updatePatient,
 		onSuccess() {
+			onSuccess?.();
+			queryClient.invalidateQueries({
+				queryKey: ["patient", UserIdCookie.get()],
+			});
 			toast({
 				title: "Profile updated",
 				variant: "success",

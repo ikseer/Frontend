@@ -124,9 +124,18 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
-	updatePatient = async (patientId: string | null) => {
-		if (!patientId) return null;
-		return await this.http.patch(`/accounts/patient/${patientId}/`);
+	updatePatient = async ({
+		...data
+	}: {
+		id: string;
+		first_name: string;
+		last_name: string;
+		gender: string;
+		date_of_birth: string;
+		timezone: string;
+	}) => {
+		if (!data.id) return null;
+		return await this.http.patch(`/accounts/patient/${data.id}/`, data);
 	};
 
 	deletePatient = async (patientId: string) => {
