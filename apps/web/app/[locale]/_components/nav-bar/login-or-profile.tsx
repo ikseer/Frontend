@@ -1,7 +1,7 @@
 "use client";
 import { AFTER_LOGOUT_REDIRECT } from "@/lib/constants";
 import { Link, usePathname } from "@/navigation";
-import { setSession } from "@ikseer/api/config/session.client";
+import { setSession } from "@ikseer/api/utils/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
 import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn } from "@ikseer/lib/utils";

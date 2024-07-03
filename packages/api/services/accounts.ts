@@ -6,11 +6,27 @@ import type {
 } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { z } from "zod";
-import { httpNoAuth } from "../config/axios-non-auth";
-import { getSearchParams } from "../config/get-search-params";
-import type { SearchOptions } from "../config/types";
+import { httpNoAuth } from "../utils/axios-non-auth";
+import { getSearchParams } from "../utils/get-search-params";
+import type { SearchOptions } from "../utils/types";
 
 export class AccountsAPI {
+	getStatistics = async () => {
+		return await this.http
+			.get<{
+				total_patients: number;
+				total_doctors: number;
+				total_pharmacies: number;
+				total_products: number;
+				total_orders: number;
+			}>("/accounts/statistics/")
+			.then((res) => res.data);
+	};
+
+	// ------------------------
+	// Accounts
+	// ------------------------
+
 	constructor(private http: AxiosInstance) {}
 
 	checkUserName = async (username: string) => {
@@ -111,6 +127,15 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
+	getDeletedDoctors = async (options?: SearchOptions) => {
+		const params = getSearchParams(options);
+		return await this.http
+			.get<PaginationResult<Doctor>>("/accounts/doctor/deleted/", {
+				params,
+			})
+			.then((res) => res.data);
+	};
+
 	getPatient = async (patientId?: string) => {
 		if (!patientId) return null;
 		return await this.http
@@ -129,6 +154,12 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
+	restorePatient = async (id: string) => {
+		return await this.http
+			.post(`/accounts/deleted-patient/restore/${id}/`)
+			.then((res) => res.data);
+	};
+
 	// -----------------------------------
 	// Doctors
 	// -----------------------------------
@@ -141,6 +172,15 @@ export class AccountsAPI {
 		const params = getSearchParams(options);
 		return await this.http
 			.get<PaginationResult<Doctor>>("/accounts/doctor/", {
+				params,
+			})
+			.then((res) => res.data);
+	};
+
+	getDeletedPatients = async (options?: SearchOptions) => {
+		const params = getSearchParams(options);
+		return await this.http
+			.get<PaginationResult<Patient>>("/accounts/patient/deleted/", {
 				params,
 			})
 			.then((res) => res.data);
@@ -168,6 +208,12 @@ export class AccountsAPI {
 	deleteDoctor = async (id: string) => {
 		return await this.http
 			.delete(`/accounts/doctor/${id}/`)
+			.then((res) => res.data);
+	};
+
+	restoreDoctor = async (id: string) => {
+		return await this.http
+			.post(`/accounts/deleted-doctor/restore/${id}/`)
 			.then((res) => res.data);
 	};
 }

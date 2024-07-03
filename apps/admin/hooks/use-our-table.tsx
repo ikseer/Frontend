@@ -21,8 +21,8 @@ import {
 // @ts-ignore
 import { MRT_Localization_AR } from "mantine-react-table/locales/ar";
 import "mantine-react-table/styles.css"; //make sure MRT styles were imported in your app root (once)
-import { getSearchParams } from "@ikseer/api/config/get-search-params";
-import type { SearchOptions } from "@ikseer/api/config/types";
+import { getSearchParams } from "@ikseer/api/utils/get-search-params";
+import type { SearchOptions } from "@ikseer/api/utils/types";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useState } from "react";
 

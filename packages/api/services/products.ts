@@ -1,11 +1,27 @@
-import type { HomeProduct, PaginationResult, Product } from "@ikseer/lib/types";
+import type {
+	HomeProduct,
+	PaginationResult,
+	Product,
+	ProductCoupon,
+	ProductDiscount,
+	ProductImage,
+} from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
-import { getSearchParams } from "../config/get-search-params";
-import type { SearchOptions } from "../config/types";
+import { getSearchParams } from "../utils/get-search-params";
+import type { SearchOptions } from "../utils/types";
 import { z } from "zod";
+import { CRUD_API } from "../utils/crud-api";
 
 export class ProductsAPI {
-	constructor(private http: AxiosInstance) {}
+	images: CRUD_API<ProductImage>;
+	coupons: CRUD_API<ProductCoupon>;
+	discounts: CRUD_API<ProductDiscount>;
+
+	constructor(private http: AxiosInstance) {
+		this.images = new CRUD_API("/products/product_image/", http, true);
+		this.coupons = new CRUD_API("/products/coupon/", http);
+		this.discounts = new CRUD_API("/products/discount/", http);
+	}
 
 	// ------------------------------------------------
 	// Products
@@ -46,10 +62,6 @@ export class ProductsAPI {
 			.delete(`/products/product/${id}/`)
 			.then((res) => res.data);
 	};
-
-	// ------------------------------------------------
-	// Images
-	// ------------------------------------------------
 }
 
 export const productDetailsSchema = z.object({

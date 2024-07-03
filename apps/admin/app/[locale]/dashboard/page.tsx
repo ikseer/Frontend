@@ -1,12 +1,12 @@
-"use client";
-
 import { Box } from "@mantine/core";
 import DashboardHeader from "./_components/header";
+import { serverAPI } from "@ikseer/api/utils/api.server";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+	const stats = await serverAPI.accounts.getStatistics();
 	return (
 		<Box>
-			<DashboardHeader />
+			<DashboardHeader stats={stats} />
 		</Box>
 	);
 }

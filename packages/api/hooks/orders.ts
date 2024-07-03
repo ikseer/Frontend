@@ -1,7 +1,7 @@
 import type { CreateCartItem } from "@ikseer/lib/types";
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { clientAPI } from "../config/api.client";
+import { clientAPI } from "../utils/api.client";
 
 export function useGetCart() {
 	return useQuery({

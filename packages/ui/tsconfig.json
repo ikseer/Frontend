@@ -2,17 +2,8 @@
 	"extends": "@ikseer/config/tsconfig.json",
 	"compilerOptions": {
 		"jsx": "preserve",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./src/*"]
-		}
+		"baseUrl": "."
 	},
-	"include": [
-		"src",
-		"../lib/utils.ts",
-		"components",
-		"../../apps/web/app/[locale]/(home)/home/product-card.tsx",
-		"../../apps/web/app/[locale]/(home)/home/image-view.tsx"
-	],
+	"include": ["components"],
 	"exclude": ["node_modules"]
 }

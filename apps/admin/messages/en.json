@@ -104,6 +104,8 @@
 		"total-patients": "Total patients",
 		"total-employees": "Total Employees",
 		"total-doctors": "Total doctors",
+		"total-pharmacies": "Total pharmacies",
+		"total-orders": "Total orders",
 		"active-visits": "Active visits",
 		"upcomming-visits": "Upcomming visits",
 		"missed-visits": "Missed visits",

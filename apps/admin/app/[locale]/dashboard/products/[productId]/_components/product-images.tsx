@@ -11,7 +11,7 @@ export default function ProductImages({ product }: { product: Product }) {
 	const images = product.images;
 
 	return (
-		<Box mt="xl">
+		<Box>
 			<Title component={"h2"} mb="md">
 				Product images
 			</Title>

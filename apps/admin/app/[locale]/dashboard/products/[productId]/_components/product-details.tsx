@@ -5,7 +5,7 @@ import { Edit2 } from "lucide-react";
 export function ProductDetails({ product }: { product: Product }) {
 	return (
 		<>
-			<Flex justify={"space-between"} mt="md" gap="md">
+			<Flex justify={"space-between"} gap="md">
 				<Title component="h1">Product details</Title>
 				<Button
 					variant="default"
