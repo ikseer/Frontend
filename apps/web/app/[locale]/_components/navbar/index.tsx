@@ -1,7 +1,7 @@
-import LargeScreenNavbar from "./large-screen";
-import SmallScreenNavbar from "./small-screen";
+import { LargeScreenNavbar } from "./large-screen";
+import { SmallScreenNavbar } from "./small-screen";
 
-export default function Navbar() {
+export function Navbar() {
 	return (
 		<nav>
 			<LargeScreenNavbar />

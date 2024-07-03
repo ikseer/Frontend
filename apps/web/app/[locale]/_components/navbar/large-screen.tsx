@@ -19,14 +19,14 @@ import { LangSwitch } from "./lang-switch";
 import { NavLink } from "./small-screen";
 import { SwitchTheme } from "./switch-theme";
 
-export default function LargeScreenNavbar() {
+export function LargeScreenNavbar() {
 	const session = useCurrentUser();
 	const currentPath = usePathname();
 
 	return (
 		<header
 			className="hidden ms z-50 md:flex flex-wrap sm:flex-nowrap sm:justify-start border-zinc-200 dark:border-zinc-700 bg-white 
-	dark:bg-zinc-950 border-b w-full text-sm page-container h-[70px] shadow-lg nav"
+dark:bg-zinc-950 border-b w-full text-sm page-container h-[70px] shadow-lg nav"
 		>
 			<nav
 				className="sm:flex sm:justify-between sm:items-center relative w-full"

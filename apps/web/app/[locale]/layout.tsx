@@ -6,7 +6,7 @@ import "./globals.css";
 import { Toaster } from "@ikseer/ui/components/ui/toaster";
 import type React from "react";
 import { App } from "./_app";
-import Navbar from "./_components/navbar";
+import { Navbar } from "./_components/navbar";
 
 interface RootLayoutProps {
 	children: React.ReactNode;
