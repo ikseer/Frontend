@@ -50,19 +50,21 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 			const {
 				refresh: refreshToken,
 				access: accessToken,
-				user: { id, user_type },
+				user: { user_type },
+				profile_id,
 			} = data;
 			console.info(
 				refreshToken,
 				accessToken,
 				data,
 				user_type,
+				profile_id,
 				"login returnded data",
 			);
 			setSession({
 				accessToken,
 				refreshToken,
-				userId: id,
+				userId: profile_id,
 				userType: user_type,
 			});
 			onSuccess?.();

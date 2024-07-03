@@ -18,8 +18,10 @@ export default function ImageView({
 	topSales?: boolean;
 	hasDiscount?: boolean;
 }) {
+	console.log(productId);
+
 	return (
-		<section className="relative overflow-hidden group/image rounded-t-xl">
+		<section className="group/image rounded-t-xl relative overflow-hidden">
 			<Link href={`/products/${productId}`}>
 				<Image
 					className="aspect-[4/3] object-cover w-full transition ease-in-out rounded-t-xl hover:scale-110"
@@ -40,7 +42,7 @@ export default function ImageView({
 					>
 						<Plus className="text-zinc-50 dark:text-zinc-950" />
 					</Button>
-					<p className="flex items-center px-3 py-1 text-xl bg-teal-600 rounded-full aspect-square">
+					<p className="aspect-square flex items-center px-3 py-1 text-xl bg-teal-600 rounded-full">
 						{productQuantity}
 					</p>
 					<Button
@@ -55,7 +57,7 @@ export default function ImageView({
 				</div>
 				<Button
 					type="button"
-					className="hidden p-2 rounded-full cursor-pointer group-hover/image:block"
+					className="group-hover/image:block hidden p-2 rounded-full cursor-pointer"
 					variant="submit"
 				>
 					<ShoppingCart className="text-zinc-50 dark:text-zinc-950" />

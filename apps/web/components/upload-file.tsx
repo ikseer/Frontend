@@ -29,7 +29,7 @@ export function UploadFile({
 	const upload = useMutation({
 		mutationFn: async (file: File) => {
 			const doc = await api({ file });
-			onChange?.(doc);
+			// onChange?.(doc);
 			return doc;
 		},
 		onSuccess: (doc) => {

@@ -2,13 +2,12 @@
 
 import { Link, usePathname } from "@/navigation";
 import { AlignJustify, LogOut } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { LangSwitch } from "./lang-switch";
-import { DashboardSection } from "./left-sidebar";
 import "./open.css";
 import { setSession, useCurrentUser } from "@ikseer/api/config/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
+import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn, getAvatarLink } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/components/ui/button";
 import {
@@ -17,6 +16,7 @@ import {
 	SheetTrigger,
 } from "@ikseer/ui/components/ui/sheet";
 import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
+import CartIcon from "./cart-icon";
 import { SwitchTheme } from "./switch-theme";
 
 export function SmallScreenNavbar() {
@@ -57,7 +57,7 @@ export function SmallScreenNavbar() {
 					<SheetContent>
 						<div className="md:flex-row md:justify-end md:items-center gap-x-0 gap-y-4 md:gap-y-0 md:gap-x-7 md:mt-0 md:px-0 md:ps-7 flex flex-col px-5 mt-5 space-y-6">
 							{session && <GreetingSection />}
-							<DashboardLinks />
+
 							<SiteMap />
 							<SideNavFooter />
 						</div>
@@ -84,27 +84,26 @@ function GreetingSection() {
 
 	return (
 		<section className="flex items-center justify-between border-zinc-300  border-b-[2px] md:border-b-[0px] pb-6 w-full">
-			<div className="flex items-center gap-2 cursor-pointer">
-				<img
-					src={getAvatarLink(me.data)}
-					alt={"user avatar"}
-					className="w-7 h-7 rounded-full"
-				/>
-				<Link
-					className="hover:text-black/70 text-base font-medium"
-					href="/profile"
-				>
-					{me.data.fullName}
-				</Link>
-			</div>
+			<section className="flex items-center justify-between gap-2 cursor-pointer">
+				<div className="gap-x-1 flex items-center">
+					<Image
+						src={getAvatarLink(me.data)}
+						alt={"user avatar"}
+						className="w-6 h-6 rounded-full"
+						width={100}
+						height={100}
+					/>
+					<Link
+						className="text-zinc-900 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-300 text-sm font-medium"
+						href={`/user/${me.data.id}`}
+					>
+						{me.data.first_name}
+					</Link>
+				</div>
+				<CartIcon />
+			</section>
 		</section>
 	);
-}
-
-function DashboardLinks() {
-	const session = useCurrentUser();
-	if (!session) return;
-	return <DashboardSection className="border-zinc-300  border-b-[2px]" />;
 }
 
 function SiteMap() {
@@ -124,7 +123,6 @@ function SiteMap() {
 }
 
 function SideNavFooter() {
-	const t = useTranslations("NavBar");
 	const session = useCurrentUser();
 	return (
 		<section className=" space-y-6 text-base font-medium cursor-pointer">
@@ -138,11 +136,12 @@ function SideNavFooter() {
 						variant="ghost"
 						onClick={() => {
 							setSession(null);
+							UserIdCookie.delete();
+							UserTypeCookie.delete();
 							window.location.href = "/";
 						}}
 					>
-						<LogOut />
-						{t("logout")}
+						<LogOut /> &nbsp; Logout
 					</Button>
 				) : (
 					<div className="flex flex-col gap-2">
@@ -165,16 +164,18 @@ function SideNavFooter() {
 export function NavLink({
 	href,
 	children,
-}: { href: string; children: React.ReactNode }) {
+	className,
+}: { href: string; children: React.ReactNode; className?: string }) {
 	const currPath = usePathname();
 
 	return (
 		<Link
-			className={
+			className={cn(
 				currPath === href
 					? "text-teal-500 font-bold"
-					: "text-zinc-800 dark:text-zinc-300 hover:text-zinc-800/70 dark:hover:text-zinc-200/70"
-			}
+					: "text-zinc-800 dark:text-zinc-300 hover:text-zinc-800/70 dark:hover:text-zinc-200/70",
+				className,
+			)}
 			href={href}
 		>
 			{children}

@@ -42,7 +42,7 @@ export function RegisterThridStep() {
 		>
 			<section className="w-2/3 space-y-5">
 				<div className="space-y-2">
-					<h1 className="text-4xl text-center dark:text-white">
+					<h1 className="dark:text-white text-4xl text-center">
 						{t("phone-number")}
 					</h1>
 					<p className="text-sm text-center">
@@ -71,17 +71,17 @@ export function RegisterThridStep() {
 				</div>
 				<div className="space-y-2">
 					<Button
-						className="w-full bg-teal-600 hover:bg-teal-700"
+						className="hover:bg-teal-700 w-full bg-teal-600"
 						type="submit"
 						disabled={!!errors?.phone || isPending}
 					>
-						{!isPending ? (
+						{isPending ? (
 							<>
 								{" "}
 								{t("save-and-continue")} &nbsp; <Spinner />{" "}
 							</>
 						) : (
-							<Spinner />
+							t("save-and-continue")
 						)}
 					</Button>
 					<Button

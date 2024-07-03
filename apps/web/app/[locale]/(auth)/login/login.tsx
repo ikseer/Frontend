@@ -39,12 +39,13 @@ export default function Login() {
 		const {
 			access,
 			refresh,
-			user: { id, user_type },
+			user: { user_type },
+			profile_id,
 		} = data;
 		setSession({
 			accessToken: access,
 			refreshToken: refresh,
-			userId: id,
+			userId: profile_id,
 			userType: user_type,
 		});
 		const url = new URL(window.location.href);
@@ -59,22 +60,22 @@ export default function Login() {
 	return (
 		<FormProvider {...form}>
 			<form
-				className="flex items-center justify-center auth-parent hero"
+				className="auth-parent hero flex items-center justify-center"
 				autoComplete="off"
 				onSubmit={form.handleSubmit((LoginData) => mutate(LoginData))}
 				noValidate
 			>
 				<section
 					style={{ width: "550px" }}
-					className="flex flex-col items-center justify-center h-full rounded-lg bg-zinc-100 dark:bg-zinc-950"
+					className="bg-zinc-100 dark:bg-zinc-950 flex flex-col items-center justify-center h-full rounded-lg"
 				>
-					<h1 className="mt-4 text-2xl font-bold ">{t("welcome-to-ikseer")}</h1>
+					<h1 className=" mt-4 text-2xl font-bold">{t("welcome-to-ikseer")}</h1>
 					{error && <ErrorMsg>{errorMsg}</ErrorMsg>}
 					<div className="w-3/4 mt-5 space-y-4">
 						<section className="flex w-full">
 							<label
 								htmlFor="username"
-								className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
+								className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
 							>
 								<LuMail />
 							</label>
@@ -83,13 +84,13 @@ export default function Login() {
 								name="username"
 								placeholder={t("email-or-username")}
 								type="text"
-								className="h-10 rounded-e-md"
+								className="rounded-e-md h-10"
 							/>
 						</section>
 						<section className="flex w-full">
 							<label
 								htmlFor="password"
-								className="flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400"
+								className="min-w-fit rounded-s-md border-e-0 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 flex items-center h-10 px-4 text-sm text-gray-500 border border-gray-200 cursor-pointer"
 							>
 								<LuKeyRound />
 							</label>
@@ -97,7 +98,7 @@ export default function Login() {
 								name="password"
 								placeholder={t("password")}
 								type="password"
-								className="h-10 rounded-e-md"
+								className="rounded-e-md h-10"
 							/>
 						</section>
 					</div>
@@ -117,7 +118,7 @@ export default function Login() {
 					</Button>
 
 					<div className="w-3/4">
-						<section className="flex gap-x-1">
+						<section className="gap-x-1 flex">
 							<span>{t("forgot-your-password")}</span>
 							<Link
 								href="/otp-by-email"
@@ -126,7 +127,7 @@ export default function Login() {
 								Change password!
 							</Link>
 						</section>
-						<section className="flex gap-x-1">
+						<section className="gap-x-1 flex">
 							<span>{t("dont-have-an-account")}</span>
 							<Link
 								href="/register"

@@ -3,6 +3,7 @@
 import { Link, usePathname } from "@/navigation";
 import { setSession, useCurrentUser } from "@ikseer/api/config/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
+import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn, getAvatarLink } from "@ikseer/lib/utils";
 import {
 	DropdownMenu,
@@ -12,9 +13,16 @@ import {
 	DropdownMenuTrigger,
 } from "@ikseer/ui/components/ui/dropdown-menu";
 import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
-import { Menu, X } from "lucide-react";
-import { useTranslations } from "next-intl";
+import {
+	CircleUserRound,
+	CreditCard,
+	LogOut,
+	Menu,
+	ShoppingCart,
+	X,
+} from "lucide-react";
 import Image from "next/image";
+import CartIcon from "./cart-icon";
 import { LangSwitch } from "./lang-switch";
 import { NavLink } from "./small-screen";
 import { SwitchTheme } from "./switch-theme";
@@ -25,8 +33,8 @@ export function LargeScreenNavbar() {
 
 	return (
 		<header
-			className="hidden ms z-50 md:flex flex-wrap sm:flex-nowrap sm:justify-start border-zinc-200 dark:border-zinc-700 bg-white 
-dark:bg-zinc-950 border-b w-full text-sm page-container h-[70px] shadow-lg nav"
+			className="hidden fixed ms z-50 md:flex flex-wrap sm:flex-nowrap sm:justify-start border-zinc-200 dark:border-zinc-700 bg-white 
+dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 		>
 			<nav
 				className="sm:flex sm:justify-between sm:items-center relative w-full"
@@ -100,6 +108,7 @@ dark:bg-zinc-950 border-b w-full text-sm page-container h-[70px] shadow-lg nav"
 									</Link>
 								</>
 							)}
+							<CartIcon />
 						</div>
 					</div>
 				</div>
@@ -109,7 +118,6 @@ dark:bg-zinc-950 border-b w-full text-sm page-container h-[70px] shadow-lg nav"
 }
 
 function UserDropdown() {
-	const t = useTranslations("NavBar");
 	const me = useGetMe();
 	if (me?.isLoading)
 		return <Skeleton className="bg-slate-300 w-[40px] h-[40px] rounded-full" />;
@@ -118,41 +126,51 @@ function UserDropdown() {
 		<section>
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					{me?.data ? (
-						<Image
-							className="rounded-full object-cover w-[40px] h-[40px]"
-							src={getAvatarLink(me.data)}
-							alt="user avatar"
-							width={40}
-							height={40}
-						/>
-					) : (
-						t("admin")
+					{me?.data && (
+						<div className="w-10 h-10">
+							<Image
+								className="object-cover w-full h-full rounded-full"
+								src={getAvatarLink(me.data)}
+								alt="user avatar"
+								width={100}
+								height={100}
+							/>
+						</div>
 					)}
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
-					{me?.data ? (
+					{me?.data && (
 						<>
 							<DropdownMenuItem asChild>
-								<Link href="/products">Products</Link>
+								<Link href={`/user/${me.data.id}`}>
+									<CircleUserRound className="w-5 h-5" strokeWidth={0.9} />{" "}
+									&nbsp; profile
+								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
-								<Link href="/best-seller">best seller</Link>
+								<Link href="/cart">
+									<ShoppingCart className="w-5 h-5" strokeWidth={0.9} /> &nbsp;
+									cart
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<Link href="/orders">
+									<CreditCard className="w-5 h-5" strokeWidth={0.9} /> &nbsp;
+									Orders
+								</Link>
 							</DropdownMenuItem>
 						</>
-					) : (
-						<DropdownMenuItem asChild>
-							<Link href="/admin">{t("dashboard")}</Link>
-						</DropdownMenuItem>
 					)}
 					<DropdownMenuSeparator />
 					<DropdownMenuItem
 						onClick={() => {
 							setSession(null);
+							UserIdCookie.delete();
+							UserTypeCookie.delete();
 							window.location.href = "/";
 						}}
 					>
-						{t("logout")}
+						<LogOut className="w-5 h-5" strokeWidth={0.9} /> &nbsp; Logout
 					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>

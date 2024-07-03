@@ -52,7 +52,12 @@ export class AccountsAPI {
 
 	otp = async (data: { otp: string }) => {
 		return await httpNoAuth
-			.post("/accounts/verify-email-otp/", data)
+			.post<{
+				access: string;
+				refresh: string;
+				user: User;
+				profile_id: string;
+			}>("/accounts/verify-email-otp/", data)
 			.then((res) => res.data);
 	};
 
@@ -74,6 +79,7 @@ export class AccountsAPI {
 				access: string;
 				refresh: string;
 				user: User;
+				profile_id: string;
 			}>("/accounts/login/", data)
 			.then((res) => {
 				return res.data;

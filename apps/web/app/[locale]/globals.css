@@ -78,7 +78,7 @@
 
 @layer components {
 	.nav {
-		@apply h-[60px];
+		@apply h-[60px] px-16;
 	}
 
 	.hero {

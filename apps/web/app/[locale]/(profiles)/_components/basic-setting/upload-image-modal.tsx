@@ -1,31 +1,31 @@
 "use client";
 
-import { UploadFile } from "@/components/upload-file";
-import { clientAPI } from "@ikseer/api/config/api.client";
+// import { UploadFile } from "@/components/upload-file";
+// import { clientAPI } from "@ikseer/api/config/api.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
-import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
+// import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { Dialog, DialogContent } from "@ikseer/ui/components/ui/dialog";
-import { useToast } from "@ikseer/ui/components/ui/use-toast";
+// import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import type { DialogProps } from "@radix-ui/react-dialog";
-import { useQueryClient } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+// import { useQueryClient } from "@tanstack/react-query";
+// import { useTranslations } from "next-intl";
+// import { useState } from "react";
 
 export default function UploadImageModal(props: DialogProps) {
-	const $t = useTranslations();
-	const { toast } = useToast();
+	// const $t = useTranslations();
+	// const { toast } = useToast();
 	const me = useGetMe();
-	const queryClient = useQueryClient();
 	if (!me?.data) return;
-	const [link, setLink] = useState<string | null>();
+	// const queryClient = useQueryClient();
+	// const [link, setLink] = useState<string | null>();
 
 	return (
 		<Dialog {...props}>
 			<DialogContent>
-				<section className="space-y-5 rounded p-7">
-					<UploadFile
+				<section className="p-7 space-y-5 rounded">
+					{/* <UploadFile
 						value={link}
-						api={clientAPI.auth.getPatientImage}
+						api={clientAPI.accounts.getPatients}
 						onChange={(link) => {
 							setLink(link || null);
 						}}
@@ -47,7 +47,7 @@ export default function UploadImageModal(props: DialogProps) {
 								variant: "error",
 							});
 						}}
-					/>
+					/> */}
 				</section>
 			</DialogContent>
 		</Dialog>
