@@ -5,7 +5,6 @@ import CartItemView from "./_components/cart-view";
 import { Coupon } from "./_components/coupon";
 import NoCartItem from "./_components/no-cart-items";
 import OrderDetails from "./_components/order-details";
-import PaymentMethod from "./_components/payment";
 
 export default function Cart() {
 	const { data, isLoading } = useGetCart();
@@ -22,18 +21,17 @@ export default function Cart() {
 
 	const cartItems = data.items;
 	const totalPrice = cartItems.reduce(
-		(acc, curr) => acc + Number(curr.product_final_price),
+		(acc, curr) => acc + Number(curr.product_final_price * curr.quantity),
 		0,
 	);
 	return (
-		<main className="grid grid-cols-3 page-container md:grid-cols-4 gap-x-4">
+		<main className="page-container md:grid-cols-4 gap-x-5 grid grid-cols-3">
 			<section className="col-span-3">
 				<CartItemView cartItems={cartItems} />
 			</section>
-			<section className="flex flex-col col-span-3 space-y-10 md:col-span-1">
+			<section className="md:col-span-1 flex flex-col col-span-3 space-y-10">
 				<Coupon />
 				<OrderDetails totalPrice={totalPrice} price={totalPrice} discount={0} />
-				<PaymentMethod />
 			</section>
 		</main>
 	);

@@ -37,7 +37,7 @@ export default function ActiveOrders() {
 			<TableBody>
 				{activeOrders.map((order) => (
 					<TableRow key={order.created_at}>
-						<TableCell className="flex items-center font-medium gap-x-2">
+						<TableCell className="gap-x-2 flex items-center font-medium">
 							{order.owner}
 						</TableCell>
 						<TableCell>{order.phone}</TableCell>

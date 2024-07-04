@@ -15,9 +15,12 @@ export function Coupon() {
 	});
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit((data) => console.log(data))}>
-				<h1>Coupon</h1>
-				<FormInput name="coupon" />
+			<form
+				onSubmit={form.handleSubmit((data) => console.log(data))}
+				className="px-2 py-6 space-y-3 border rounded-md shadow-xl"
+			>
+				<h1 className="text-2xl font-bold">Coupon</h1>
+				<FormInput name="coupon" className="rounded-md" />
 				<Button type="submit" className="w-full">
 					Apply your coupon
 				</Button>

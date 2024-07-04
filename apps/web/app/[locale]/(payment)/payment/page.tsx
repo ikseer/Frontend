@@ -47,7 +47,7 @@ export default function Payment() {
 	return (
 		<FormProvider {...form}>
 			<form
-				className="space-y-6 page-container"
+				className="page-container space-y-6"
 				onSubmit={form.handleSubmit((data) => {
 					createOrder.mutate({ ...data, user: userId });
 				})}
@@ -56,12 +56,12 @@ export default function Payment() {
 				<FormInput name="owner" label="Owner" className="rounded-md" />
 				<FormInput name="location" label="Location" className="rounded-md" />
 				<FormInput name="phone" label="Phone" className="rounded-md" />
-				<section className="flex gap-x-6">
-					<div className="flex items-center gap-x-2">
+				<section className="gap-x-6 flex">
+					<div className="gap-x-2 flex items-center">
 						<Radio name="payment" value="paymob" />
 						<label htmlFor="paymob">Paymob</label>
 					</div>
-					<div className="flex items-center gap-x-2">
+					<div className="gap-x-2 flex items-center">
 						<Radio name="payment" value="noPayment" />
 						<label htmlFor="noPayment">Pay when order reach</label>
 					</div>

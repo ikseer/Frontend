@@ -20,7 +20,7 @@ export default function CartItemView({
 	className,
 }: { cartItems: CartItems[]; className?: string }) {
 	const totalPrice = cartItems.reduce(
-		(acc, curr) => acc + Number(curr.product_final_price),
+		(acc, curr) => acc + Number(curr.product_final_price * curr.quantity),
 		0,
 	);
 	return (
@@ -37,7 +37,7 @@ export default function CartItemView({
 			<TableBody>
 				{cartItems.map((cart) => (
 					<TableRow key={cart.id}>
-						<TableCell className="flex items-center font-medium gap-x-2">
+						<TableCell className="gap-x-2 flex items-center font-medium">
 							<Image
 								src={getLink(cart.product_image)}
 								alt="product"
@@ -50,7 +50,7 @@ export default function CartItemView({
 						<TableCell>
 							<AddDeleteItem productId={cart.product} />
 						</TableCell>
-						<TableCell>{cart.product_final_price}</TableCell>
+						<TableCell>{cart.product_final_price * cart.quantity}</TableCell>
 						<TableCell className="text-right">
 							<DeleteItemById cartItemId={cart.id} />
 						</TableCell>
