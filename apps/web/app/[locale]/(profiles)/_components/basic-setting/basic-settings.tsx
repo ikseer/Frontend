@@ -15,10 +15,12 @@ export default function BasicSettings() {
 		return <FullScreenSpinnerWithNavBar />;
 	if (!data) return <NotFound />;
 	const userInfo = data;
-
+	const formateCurrentData = (date: string) => {
+		const dateTime = new Date(date);
+		return dateTime.toDateString();
+	};
 	return (
 		<main>
-			<UserImage />
 			<SettingContainer
 				mainText="Basic Setting"
 				secondaryText="Edit your basic details like full name."
@@ -28,15 +30,12 @@ export default function BasicSettings() {
 				<DisplaySection>
 					<section className="col-span-1">
 						<Label htmlFor="first_name">Full Name</Label>
-						{/* <p className="text-zinc-700 dark:text-zinc-300">
-						First and last name
-					</p> */}
 					</section>
 					<ViewInfo className="col-span-1">
-						<NA>{userInfo.username}</NA>
+						<NA>{userInfo.first_name}</NA>
 					</ViewInfo>
 					<ViewInfo className="col-span-1">
-						<NA>{userInfo.email}</NA>
+						<NA>{userInfo.last_name}</NA>
 					</ViewInfo>
 				</DisplaySection>
 				<DisplaySection>
@@ -54,7 +53,7 @@ export default function BasicSettings() {
 				<DisplaySection>
 					<Label htmlFor="date_of_birth">Date of Birth</Label>
 					<ViewInfo>
-						<NA>{userInfo.date_of_birth}</NA>
+						<NA>{formateCurrentData(userInfo.date_of_birth)} </NA>
 					</ViewInfo>
 				</DisplaySection>
 				<DisplaySection>
@@ -69,13 +68,13 @@ export default function BasicSettings() {
 	);
 }
 
-function UserImage() {
-	return <h1>user image here</h1>;
-}
+// function UserImage() {
+// 	return <h1>user image here</h1>;
+// }
 
 function DisplaySection({ children }: { children: React.ReactNode }) {
 	return (
-		<section className="grid grid-cols-3 gap-4 place-content-center">
+		<section className="place-content-center lg:text-base grid grid-cols-3 gap-4 text-sm">
 			{children}
 		</section>
 	);

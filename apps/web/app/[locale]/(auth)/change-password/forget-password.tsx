@@ -37,7 +37,7 @@ export default function ForgetPasswordComponent() {
 			>
 				<h1 className="text-2xl font-semibold text-center">Reset Password</h1>
 				<div className="w-full space-y-1">
-					<label htmlFor="newPassword">New password</label>
+					<label htmlFor="new_password1">New password</label>
 					<FormInput
 						type="password"
 						name="new_password1"
@@ -45,7 +45,7 @@ export default function ForgetPasswordComponent() {
 					/>
 				</div>
 				<div className="w-full space-y-1">
-					<label htmlFor="confirmPassword">Confirm password</label>
+					<label htmlFor="new_password2">Confirm password</label>
 					<FormInput
 						type="password"
 						name="new_password2"
@@ -54,11 +54,18 @@ export default function ForgetPasswordComponent() {
 				</div>
 				<Button
 					type="submit"
-					className="w-full text-lg"
+					className="w-full"
 					variant="submit"
 					disabled={resetPassword.isPending}
 				>
-					{resetPassword.isPending ? <Spinner /> : "Confirm new password"}
+					{resetPassword.isPending ? (
+						<>
+							{" "}
+							Confirm new password &nbsp; <Spinner />{" "}
+						</>
+					) : (
+						"Confirm new password"
+					)}
 				</Button>
 			</form>
 		</FormProvider>

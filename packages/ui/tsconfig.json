@@ -11,8 +11,8 @@
 		"src",
 		"../lib/utils.ts",
 		"components",
-		"../../apps/web/app/[locale]/(home)/home/product-card.tsx",
-		"../../apps/web/app/[locale]/(home)/home/image-view.tsx"
+		"../../apps/web/app/[locale]/_components/home/product-card.tsx",
+		"../../apps/web/app/[locale]/_components/home/image-view.tsx"
 	],
 	"exclude": ["node_modules"]
 }

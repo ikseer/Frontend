@@ -8,35 +8,44 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@ikseer/ui/components/ui/select";
+import { Controller, useFormContext } from "react-hook-form";
 
 export function SelectBuilder({
 	data,
 	title,
 	placeholder,
 	contentClassName,
+	name,
 }: {
 	data: { value: string; label: string }[];
 	title: string;
 	placeholder?: string;
 	contentClassName?: string;
+	name: string;
 }) {
+	const { control } = useFormContext();
+	// add error msg
 	return (
-		<Select>
-			<SelectTrigger>
-				<SelectValue placeholder={`${placeholder ?? "choose from dropdown"}`} />
-			</SelectTrigger>
-			<SelectContent className={cn("h-64", contentClassName)}>
-				<SelectGroup>
-					<SelectLabel>{title}</SelectLabel>
-					{data.map((item) => {
-						return (
-							<SelectItem key={item.value} value={item.value}>
-								{item.label}
-							</SelectItem>
-						);
-					})}
-				</SelectGroup>
-			</SelectContent>
-		</Select>
+		<Controller
+			name={name}
+			control={control}
+			render={({ field }) => (
+				<Select value={field.value} onValueChange={field.onChange}>
+					<SelectTrigger>
+						<SelectValue placeholder={placeholder ?? "Choose from dropdown"} />
+					</SelectTrigger>
+					<SelectContent className={cn("h-64", contentClassName)}>
+						<SelectGroup>
+							<SelectLabel>{title}</SelectLabel>
+							{data.map((item) => (
+								<SelectItem key={item.value} value={item.value}>
+									{item.label}
+								</SelectItem>
+							))}
+						</SelectGroup>
+					</SelectContent>
+				</Select>
+			)}
+		/>
 	);
 }

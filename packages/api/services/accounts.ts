@@ -52,7 +52,12 @@ export class AccountsAPI {
 
 	otp = async (data: { otp: string }) => {
 		return await httpNoAuth
-			.post("/accounts/verify-email-otp/", data)
+			.post<{
+				access: string;
+				refresh: string;
+				user: User;
+				profile_id: string;
+			}>("/accounts/verify-email-otp/", data)
 			.then((res) => res.data);
 	};
 
@@ -74,6 +79,7 @@ export class AccountsAPI {
 				access: string;
 				refresh: string;
 				user: User;
+				profile_id: string;
 			}>("/accounts/login/", data)
 			.then((res) => {
 				return res.data;
@@ -85,17 +91,6 @@ export class AccountsAPI {
 		new_password2: string;
 	}) => {
 		return this.http.post("/accounts/password/change/", data);
-	};
-
-	changePassword = async (data: {
-		old_password: string;
-		new_password1: string;
-		new_password2: string;
-		id: string;
-	}) => {
-		return await this.http
-			.post(`/accounts/password/change/${data.id}/`, data)
-			.then((res) => res.data);
 	};
 
 	// -----------------------------------
@@ -118,14 +113,23 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
-	updatePatient = async (patientId: string | null) => {
-		if (!patientId) return null;
-		return await this.http.patch(`/accounts/patient/${patientId}/`);
+	updatePatient = async ({
+		...data
+	}: {
+		id: string;
+		first_name: string;
+		last_name: string;
+		gender: string;
+		date_of_birth: string;
+		timezone: string;
+	}) => {
+		if (!data.id) return null;
+		return await this.http.patch(`/accounts/patient/${data.id}/`, data);
 	};
 
-	deletePatient = async (patientId: string) => {
+	deletePatient = async (patientId: string, method?: "soft" | "hard") => {
 		return await this.http
-			.delete(`/accounts/patient/${patientId}/`)
+			.delete(`/accounts/patient/${patientId}/?method=${method}`)
 			.then((res) => res.data);
 	};
 
@@ -165,9 +169,9 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
-	deleteDoctor = async (id: string) => {
+	deleteDoctor = async (id: string, method?: "soft" | "hard") => {
 		return await this.http
-			.delete(`/accounts/doctor/${id}/`)
+			.delete(`/accounts/doctor/${id}/?method=${method}`)
 			.then((res) => res.data);
 	};
 }

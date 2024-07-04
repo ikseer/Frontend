@@ -19,7 +19,7 @@ import { FormInput } from "@ikseer/ui/components/ui/input";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { z } from "zod";
-import { useRegisterContext } from "../context/RegisterContext";
+import { useRegisterContext } from "../context/register-context";
 import { useDebounce } from "./use-debounce";
 
 const schema = z.object({
@@ -51,12 +51,12 @@ export function RegisterFirstStep() {
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		checkUserName.mutate(form.getValues().username);
-	}, [useDebounce(form.getValues().username, 700)]);
+	}, [useDebounce(form.getValues().username, 400)]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		checkEmail.mutate(form.getValues().email);
-	}, [useDebounce(form.getValues().email, 700)]);
+	}, [useDebounce(form.getValues().email, 400)]);
 
 	const usernameisExist = checkUserName.data?.username_exists;
 	const emailisExist = checkEmail.data?.email_exists;
@@ -156,7 +156,13 @@ export function RegisterFirstStep() {
 						className="w-full bg-teal-600 rounded-md hover:bg-teal-700"
 						disabled={isPending}
 					>
-						{isPending ? <Spinner /> : t("sign-up")}
+						{isPending ? (
+							<>
+								{t("sign-up")} &nbsp; <Spinner />
+							</>
+						) : (
+							t("sign-up")
+						)}
 					</Button>
 
 					<section className="w-3/4">

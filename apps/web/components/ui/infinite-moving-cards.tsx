@@ -1,6 +1,6 @@
 "use client";
 
-import ImageView from "@/app/[locale]/(home)/home/image-view";
+import ImageView from "@/app/[locale]/_components/home/image-view";
 import type { HomeProduct } from "@ikseer/lib/types";
 import { cn } from "@ikseer/lib/utils";
 import React, { useEffect, useState } from "react";

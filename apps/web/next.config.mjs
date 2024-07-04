@@ -22,6 +22,9 @@ const nextConfig = {
 			{
 				hostname: "i.suar.me",
 			},
+			{
+				hostname: "api.dicebear.com",
+			},
 		],
 	},
 };

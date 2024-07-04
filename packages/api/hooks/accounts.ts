@@ -50,19 +50,21 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 			const {
 				refresh: refreshToken,
 				access: accessToken,
-				user: { id, user_type },
+				user: { user_type },
+				profile_id,
 			} = data;
 			console.info(
 				refreshToken,
 				accessToken,
 				data,
 				user_type,
+				profile_id,
 				"login returnded data",
 			);
 			setSession({
 				accessToken,
 				refreshToken,
-				userId: id,
+				userId: profile_id,
 				userType: user_type,
 			});
 			onSuccess?.();
@@ -147,24 +149,18 @@ export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
-				title: "Password reset success",
+				title: "Password Change success",
 				variant: "success",
 			});
 		},
 		onError: () => {
 			toast({
-				title: "Can't reset password",
+				title: "Can't Change password",
 				variant: "error",
 			});
 		},
 	});
 }
-
-export const useChangePassword = () => {
-	return useMutation({
-		mutationFn: clientAPI.accounts.changePassword,
-	});
-};
 
 export function useGetMe() {
 	const userId = UserIdCookie.get();
@@ -172,6 +168,17 @@ export function useGetMe() {
 	if (!userId || !userType) return;
 	if (userType === "doctor") return useGetDoctor(userId);
 	if (userType === "patient") return useGetPatient(userId);
+}
+export function useDeleteMe({
+	onSuccess,
+	method,
+}: { onSuccess?: () => void; method: "hard" | "soft" }) {
+	const userId = UserIdCookie.get();
+	const userType = UserTypeCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useDeleteDoctor({ onSuccess, method });
+	if (userType === "patient")
+		return useDeletePatient(userId, { onSuccess }, method);
 }
 
 // --------------------------
@@ -185,11 +192,18 @@ export function useGetPatient(id: string) {
 	});
 }
 
-export function useUpdatePatient() {
-	const userId = UserIdCookie.get();
+export function useUpdatePatient({
+	onSuccess,
+}: { onSuccess?: () => void } = {}) {
+	const { toast } = useToast();
+	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: () => clientAPI.accounts.updatePatient(userId as string),
+		mutationFn: clientAPI.accounts.updatePatient,
 		onSuccess() {
+			onSuccess?.();
+			queryClient.invalidateQueries({
+				queryKey: ["patient", UserIdCookie.get()],
+			});
 			toast({
 				title: "Profile updated",
 				variant: "success",
@@ -207,10 +221,11 @@ export function useUpdatePatient() {
 export function useDeletePatient(
 	id: string,
 	{ onSuccess }: { onSuccess?: () => void } = {},
+	method: "hard" | "soft" = "soft",
 ) {
 	const { toast } = useToast();
 	return useMutation({
-		mutationFn: () => clientAPI.accounts.deletePatient(id),
+		mutationFn: () => clientAPI.accounts.deletePatient(id, method),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
@@ -280,11 +295,12 @@ export function useUpdateDoctor() {
 
 export function useDeleteDoctor({
 	onSuccess,
-}: { onSuccess?: () => void } = {}) {
+	method,
+}: { onSuccess?: () => void; method?: "hard" | "soft" } = {}) {
 	const userId = UserIdCookie.get();
 
 	return useMutation({
-		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string),
+		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string, method),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({
