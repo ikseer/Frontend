@@ -3,7 +3,6 @@
 import { Link, usePathname } from "@/navigation";
 import { setSession, useCurrentUser } from "@ikseer/api/config/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
-import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn, getAvatarLink } from "@ikseer/lib/utils";
 import {
 	DropdownMenu,
@@ -165,8 +164,6 @@ function UserDropdown() {
 					<DropdownMenuItem
 						onClick={() => {
 							setSession(null);
-							UserIdCookie.delete();
-							UserTypeCookie.delete();
 							window.location.href = "/";
 						}}
 					>

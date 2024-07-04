@@ -39,13 +39,15 @@ export default function Login() {
 		const {
 			access,
 			refresh,
-			user: { user_type },
+			user: { id, user_type },
 			profile_id,
 		} = data;
+		console.log("user id", id);
 		setSession({
 			accessToken: access,
 			refreshToken: refresh,
-			userId: profile_id,
+			profileId: profile_id,
+			userId: id,
 			userType: user_type,
 		});
 		const url = new URL(window.location.href);

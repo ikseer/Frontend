@@ -1,7 +1,6 @@
 "use client";
 import { setSession } from "@ikseer/api/config/session.client";
 import { useDeleteMe } from "@ikseer/api/hooks/accounts";
-import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import {
 	AlertDialog,
 	AlertDialogCancel,
@@ -42,8 +41,6 @@ export function DeleteAccountDiaglog() {
 						onClick={() => {
 							deleteAccount?.mutate();
 							setSession(null);
-							UserIdCookie.delete();
-							UserTypeCookie.delete();
 							window.location.href = "/login";
 						}}
 					>
