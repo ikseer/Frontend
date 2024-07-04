@@ -1,4 +1,4 @@
-import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
+import { ProfileIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { toast, useToast } from "@ikseer/ui/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clientAPI } from "../config/api.client";
@@ -50,7 +50,7 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 			const {
 				refresh: refreshToken,
 				access: accessToken,
-				user: { user_type },
+				user: { id, user_type },
 				profile_id,
 			} = data;
 			console.info(
@@ -64,8 +64,9 @@ export function useOtp({ onSuccess }: { onSuccess?: () => void }) {
 			setSession({
 				accessToken,
 				refreshToken,
-				userId: profile_id,
+				profileId: profile_id,
 				userType: user_type,
+				userId: id,
 			});
 			onSuccess?.();
 			toast({
@@ -163,17 +164,18 @@ export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 }
 
 export function useGetMe() {
-	const userId = UserIdCookie.get();
+	const profileId = ProfileIdCookie.get();
+	console.log(profileId, "profileId");
 	const userType = UserTypeCookie.get();
-	if (!userId || !userType) return;
-	if (userType === "doctor") return useGetDoctor(userId);
-	if (userType === "patient") return useGetPatient(userId);
+	if (!profileId || !userType) return;
+	if (userType === "doctor") return useGetDoctor(profileId);
+	if (userType === "patient") return useGetPatient(profileId);
 }
 export function useDeleteMe({
 	onSuccess,
 	method,
 }: { onSuccess?: () => void; method: "hard" | "soft" }) {
-	const userId = UserIdCookie.get();
+	const userId = ProfileIdCookie.get();
 	const userType = UserTypeCookie.get();
 	if (!userId || !userType) return;
 	if (userType === "doctor") return useDeleteDoctor({ onSuccess, method });
@@ -202,7 +204,7 @@ export function useUpdatePatient({
 		onSuccess() {
 			onSuccess?.();
 			queryClient.invalidateQueries({
-				queryKey: ["patient", UserIdCookie.get()],
+				queryKey: ["patient", ProfileIdCookie.get()],
 			});
 			toast({
 				title: "Profile updated",
@@ -297,7 +299,7 @@ export function useDeleteDoctor({
 	onSuccess,
 	method,
 }: { onSuccess?: () => void; method?: "hard" | "soft" } = {}) {
-	const userId = UserIdCookie.get();
+	const userId = ProfileIdCookie.get();
 
 	return useMutation({
 		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string, method),

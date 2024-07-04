@@ -123,7 +123,7 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-intl:
         specifier: ^3.15.2
-        version: 3.15.2(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 3.15.2(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next-nprogress-bar:
         specifier: ^2.3.12
         version: 2.3.12
@@ -197,6 +197,12 @@ importers:
 
   apps/web:
     dependencies:
+      "@chatscope/chat-ui-kit-react":
+        specifier: ^2.0.3
+        version: 2.0.3(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@chatscope/chat-ui-kit-styles":
+        specifier: ^1.4.0
+        version: 1.4.0
       "@hookform/resolvers":
         specifier: ^3.6.0
         version: 3.6.0(react-hook-form@7.52.0(react@18.3.1))
@@ -265,7 +271,7 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-intl:
         specifier: ^3.15.2
-        version: 3.15.2(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 3.15.2(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next-nprogress-bar:
         specifier: ^2.3.12
         version: 2.3.12
@@ -401,7 +407,7 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-intl:
         specifier: ^3.15.2
-        version: 3.15.2(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 3.15.2(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       path-to-regexp:
         specifier: ^7.0.0
         version: 7.0.0
@@ -782,6 +788,22 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  "@chatscope/chat-ui-kit-react@2.0.3":
+    resolution:
+      {
+        integrity: sha512-0IkjFskRec7SHrFivOQPiZMie5GLQL+ZnROiIbj4yptbC3aMEMFdHRAZrfqlid3uQx9kYhdtn34wMLh1vVNMLA==,
+      }
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: ^16.12.0 || ^17.0.0 || ^18.2.0
+      react-dom: ^16.12.0 || ^17.0.0 || ^18.2.0
+
+  "@chatscope/chat-ui-kit-styles@1.4.0":
+    resolution:
+      {
+        integrity: sha512-016mBJD3DESw7Nh+lkKcPd22xG92ghA0VpIXIbjQtmXhC7Ve6wRazTy8z1Ahut+Tbv179+JxrftuMngsj/yV8Q==,
+      }
+
   "@dicebear/adventurer-neutral@9.0.1":
     resolution:
       {
@@ -1158,6 +1180,43 @@ packages:
       {
         integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==,
       }
+
+  "@fortawesome/fontawesome-common-types@0.2.36":
+    resolution:
+      {
+        integrity: sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==,
+      }
+    engines: { node: ">=6" }
+
+  "@fortawesome/fontawesome-free@5.15.4":
+    resolution:
+      {
+        integrity: sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==,
+      }
+    engines: { node: ">=6" }
+
+  "@fortawesome/fontawesome-svg-core@1.2.36":
+    resolution:
+      {
+        integrity: sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==,
+      }
+    engines: { node: ">=6" }
+
+  "@fortawesome/free-solid-svg-icons@5.15.4":
+    resolution:
+      {
+        integrity: sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==,
+      }
+    engines: { node: ">=6" }
+
+  "@fortawesome/react-fontawesome@0.1.19":
+    resolution:
+      {
+        integrity: sha512-Hyb+lB8T18cvLNX0S3llz7PcSOAJMLwiVKBuuzwM/nI5uoBw+gQjnf9il0fR1C3DKOI5Kc79pkJ4/xB0Uw9aFQ==,
+      }
+    peerDependencies:
+      "@fortawesome/fontawesome-svg-core": ~1 || ~6
+      react: ">=16.x"
 
   "@hookform/resolvers@3.6.0":
     resolution:
@@ -2930,6 +2989,12 @@ packages:
     resolution:
       {
         integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==,
+      }
+
+  classnames@2.5.1:
+    resolution:
+      {
+        integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==,
       }
 
   client-only@0.0.1:
@@ -5247,6 +5312,20 @@ snapshots:
   "@biomejs/cli-win32-x64@1.8.2":
     optional: true
 
+  "@chatscope/chat-ui-kit-react@2.0.3(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+    dependencies:
+      "@chatscope/chat-ui-kit-styles": 1.4.0
+      "@fortawesome/fontawesome-free": 5.15.4
+      "@fortawesome/fontawesome-svg-core": 1.2.36
+      "@fortawesome/free-solid-svg-icons": 5.15.4
+      "@fortawesome/react-fontawesome": 0.1.19(@fortawesome/fontawesome-svg-core@1.2.36)(react@18.3.1)
+      classnames: 2.5.1
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  "@chatscope/chat-ui-kit-styles@1.4.0": {}
+
   "@dicebear/adventurer-neutral@9.0.1(@dicebear/core@9.0.1)":
     dependencies:
       "@dicebear/core": 9.0.1
@@ -5464,6 +5543,24 @@ snapshots:
   "@formatjs/intl-localematcher@0.5.4":
     dependencies:
       tslib: 2.6.3
+
+  "@fortawesome/fontawesome-common-types@0.2.36": {}
+
+  "@fortawesome/fontawesome-free@5.15.4": {}
+
+  "@fortawesome/fontawesome-svg-core@1.2.36":
+    dependencies:
+      "@fortawesome/fontawesome-common-types": 0.2.36
+
+  "@fortawesome/free-solid-svg-icons@5.15.4":
+    dependencies:
+      "@fortawesome/fontawesome-common-types": 0.2.36
+
+  "@fortawesome/react-fontawesome@0.1.19(@fortawesome/fontawesome-svg-core@1.2.36)(react@18.3.1)":
+    dependencies:
+      "@fortawesome/fontawesome-svg-core": 1.2.36
+      prop-types: 15.8.1
+      react: 18.3.1
 
   "@hookform/resolvers@3.6.0(react-hook-form@7.52.0(react@18.3.1))":
     dependencies:
@@ -6543,6 +6640,8 @@ snapshots:
     dependencies:
       clsx: 2.0.0
 
+  classnames@2.5.1: {}
+
   client-only@0.0.1: {}
 
   clsx@2.0.0: {}
@@ -6973,7 +7072,7 @@ snapshots:
 
   negotiator@0.6.3: {}
 
-  next-intl@3.15.2(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-intl@3.15.2(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
       "@formatjs/intl-localematcher": 0.2.32
       negotiator: 0.6.3
