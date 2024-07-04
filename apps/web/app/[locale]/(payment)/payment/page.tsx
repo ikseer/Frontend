@@ -21,14 +21,12 @@ const schema = z.object({
 
 export default function Payment() {
 	const getPaymobToken = useGetPaymobToken((data) => {
-		console.log(data);
 		window.open(
 			`https://accept.paymob.com/api/acceptance/iframes/452689?payment_token=${data.token}`,
 		);
 	});
 
 	const createPaymobOrderId = useCreatePaymobOrderId((data) => {
-		console.log(data, "useCreatePaymobOrderId");
 		getPaymobToken.mutate({
 			amountInCents: data.amount_cents,
 			orderId: data.paymob_order_id,
@@ -36,7 +34,6 @@ export default function Payment() {
 	});
 
 	const createOrder = useCreateOrder((order) => {
-		console.log(order, "order");
 		createPaymobOrderId.mutate(order);
 	});
 
