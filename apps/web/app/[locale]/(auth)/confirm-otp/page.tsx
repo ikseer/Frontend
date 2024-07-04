@@ -71,7 +71,7 @@ export default function ConfirmPinCode() {
 								"to-continue-complete-this-verification-step-weve-sent-a-code-to-your-email-please-enter-it-below",
 							)}
 						</p>
-						<ErrorMsg>{errorMsg}</ErrorMsg>
+						{confirmOtp.error && <ErrorMsg>{errorMsg}</ErrorMsg>}
 					</section>
 					<FormField
 						control={form.control}
@@ -103,7 +103,15 @@ export default function ConfirmPinCode() {
 								className="w-full"
 								disabled={confirmOtp.isPaused}
 							>
-								{confirmOtp.isPending ? <Spinner /> : t("submit")}
+								{confirmOtp.isPending ? (
+									<>
+										{" "}
+										{t("submit")} &nbsp;
+										<Spinner />{" "}
+									</>
+								) : (
+									t("submit")
+								)}
 							</Button>
 							<div className="grid w-full grid-cols-2 space-x-8 ">
 								<Button type="button">
@@ -117,7 +125,14 @@ export default function ConfirmPinCode() {
 									}}
 									disabled={resentOtp.isPending}
 								>
-									{resentOtp.isPending ? <Spinner /> : t("resent")}
+									{resentOtp.isPending ? (
+										<>
+											{" "}
+											{t("resent")} &nbsp; <Spinner />{" "}
+										</>
+									) : (
+										t("resent")
+									)}
 								</Button>
 							</div>
 						</div>

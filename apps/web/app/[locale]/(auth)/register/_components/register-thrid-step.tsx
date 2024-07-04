@@ -75,7 +75,14 @@ export function RegisterThridStep() {
 						type="submit"
 						disabled={!!errors?.phone || isPending}
 					>
-						{!isPending ? t("save-and-continue") : <Spinner />}
+						{isPending ? (
+							<>
+								{" "}
+								{t("save-and-continue")} &nbsp; <Spinner />{" "}
+							</>
+						) : (
+							t("save-and-continue")
+						)}
 					</Button>
 					<Button
 						type="button"

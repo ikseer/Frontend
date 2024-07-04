@@ -1,0 +1,4 @@
+.isOpen[data-state="open"] button {
+	color: hsl(353 66% 50%) !important;
+	background-color: hsl(353 66% 93%);
+}

@@ -13,6 +13,7 @@ export function TimerCircularProgressBar({
 	const totalDuration = 120;
 	const initialTime = otpTimer.get() || totalDuration;
 	const [timeLeft, setTimeLeft] = useState(initialTime);
+
 	useEffect(() => {
 		if (isResetTimer) {
 			const newTime = totalDuration;

@@ -2,6 +2,7 @@
 
 import { TimerCircularProgressBar } from "@/components/circular-progressbar";
 import { ErrorMsg } from "@/components/error-msg";
+import Spinner from "@/components/spinner";
 import { useZodForm } from "@/lib/use-zod-form";
 import { useOtp, useResendOtp } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
@@ -22,7 +23,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
-import { useRegisterContext } from "../context/RegisterContext";
+import { useRegisterContext } from "../context/register-context";
 
 const schema = z.object({
 	otp: z.string().min(6).max(6),
@@ -52,12 +53,11 @@ export function RegisterSecondStep() {
 	const searchParams = useSearchParams();
 	const userEmail = searchParams.get("email");
 	const errorMsg = getErrorMessageSync(confirmOtp.error, $t);
-
 	useEffect(() => {
 		if (userEmail) {
 			setIsResetTimer(true);
 		}
-	});
+	}, [userEmail]);
 
 	return (
 		<FormProvider {...form}>
@@ -74,7 +74,7 @@ export function RegisterSecondStep() {
 							"please-enter-the-code-sent-to-your-email-it-expires-after-10-minutes",
 						)}
 					</p>
-					{errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
+					{confirmOtp.error && <ErrorMsg>{errorMsg}</ErrorMsg>}
 				</section>
 				<FormField
 					control={form.control}
@@ -101,14 +101,30 @@ export function RegisterSecondStep() {
 					<p className="text-center">{t("dont-get-the-code")}</p>
 					<section className="flex flex-col items-center gap-y-5">
 						<div className="gap-x-2 w-[400px] grid grid-cols-2">
-							<Button type="submit">{t("submit")}</Button>
+							<Button type="submit" disabled={confirmOtp.isPending}>
+								{confirmOtp.isPending ? (
+									<>
+										{t("submit")} &nbsp; <Spinner />
+									</>
+								) : (
+									t("submit")
+								)}
+							</Button>
 							<Button
+								disabled={resendOtp.isPending}
 								type="button"
 								onClick={() => {
 									resendOtp.mutate(userEmail as string);
 								}}
 							>
-								{t("resend")}
+								{resendOtp.isPending ? (
+									<>
+										{" "}
+										{t("resend")} &nbsp; <Spinner />
+									</>
+								) : (
+									t("resend")
+								)}
 							</Button>
 						</div>
 						<TimerCircularProgressBar

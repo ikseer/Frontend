@@ -7,6 +7,7 @@ import type {
 	ProductImage,
 } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
+import { httpNoAuth } from "../utils/axios-non-auth";
 import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
 import { z } from "zod";
@@ -41,7 +42,7 @@ export class ProductsAPI {
 
 	getProducts = async (options?: SearchOptions) => {
 		const params = getSearchParams(options);
-		return await this.http
+		return await httpNoAuth
 			.get<PaginationResult<HomeProduct>>("/products/home/", {
 				params: params,
 			})
@@ -58,8 +59,26 @@ export class ProductsAPI {
 	};
 
 	deleteProduct = async (id: string) => {
-		return await this.http
+		return await httpNoAuth
 			.delete(`/products/product/${id}/`)
+			.then((res) => res.data);
+	};
+
+	addToWishList = async (id: string) => {
+		return await this.http
+			.post(`/products/wishlist/${id}/`)
+			.then((res) => res.data);
+	};
+
+	removeFromWishList = async (id: string) => {
+		return await this.http
+			.delete(`/products/wishlist/${id}/`)
+			.then((res) => res.data);
+	};
+
+	getDiscountedProduct = async () => {
+		return await this.http
+			.get<PaginationResult<HomeProduct>>("/products/discount/")
 			.then((res) => res.data);
 	};
 }

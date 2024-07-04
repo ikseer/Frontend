@@ -1,6 +1,7 @@
 import { PAYMOB_API_KEY, PAYMOB_INTEGRATION_ID } from "@ikseer/lib/constants";
 import type { Cart, CreateCartItem, EditCartItem } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
+import { httpNoAuth } from "../utils/axios-non-auth";
 
 export class OrdersAPI {
 	constructor(private http: AxiosInstance) {}
@@ -76,18 +77,19 @@ export class OrdersAPI {
 		orderId,
 		amountInCents,
 	}: { orderId: string; amountInCents: string }) => {
-		const { token } = await this.http
+		console.log(PAYMOB_API_KEY, "paymob api key");
+		const data = await httpNoAuth
 			.post<{ token: string }>("https://accept.paymob.com/api/auth/tokens", {
 				api_key: PAYMOB_API_KEY,
 			})
 			.then((res) => res.data);
-		console.log(token, "token order", orderId);
-		return await this.http
+		console.log(data, data.token, "token order", orderId);
+		return await httpNoAuth
 			.post<{ token: string }>(
 				"https://accept.paymob.com/api/acceptance/payment_keys",
 				{
-					auth_token: token,
-					amount_cents: amountInCents,
+					auth_token: data.token,
+					amount_cents: amountInCents.toString(),
 					expiration: 3600,
 					order_id: orderId,
 					billing_data: {

@@ -4,11 +4,15 @@ import {
 	useEditCartItem,
 	useGetCart,
 } from "@ikseer/api/hooks/orders";
+import { cn } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import { Minus, Plus } from "lucide-react";
 
-export default function AddDeleteItem({ productId }: { productId: string }) {
+export default function AddDeleteItem({
+	productId,
+	className,
+}: { productId: string; className?: string }) {
 	const { data: myCart, isRefetching: _ } = useGetCart();
 	const createCartItem = useCreateCartItem({
 		cart: myCart?.id as string,
@@ -52,25 +56,28 @@ export default function AddDeleteItem({ productId }: { productId: string }) {
 	};
 
 	return (
-		<section className="flex items-center gap-x-2">
+		<section
+			className={cn(
+				"gap-x-1 w-fit flex items-center p-1.5 bg-teal-600 rounded-lg",
+				className,
+			)}
+		>
 			<Button
-				variant="submit"
 				iconOnly
-				className="rounded-full"
+				className="w-7 h-7 rounded-full"
 				disabled={addItemToCart.isPending}
 				onClick={() => handleEditItem(productQuantity + 1)}
 			>
-				{<Plus className="w-4 h-4" />}
+				{<Plus className="w-3 h-3" />}
 			</Button>
 			<span>{addItemToCart.isPending ? <Spinner /> : productQuantity}</span>
 			<Button
-				variant="submit"
 				iconOnly
 				disabled={addItemToCart.isPending || !productQuantity}
-				className="rounded-full"
+				className="w-7 h-7 rounded-full"
 				onClick={() => handleEditItem(productQuantity - 1)}
 			>
-				{<Minus className="w-4 h-4" />}
+				{<Minus className="w-3 h-3" />}
 			</Button>
 		</section>
 	);

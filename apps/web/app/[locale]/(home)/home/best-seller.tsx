@@ -20,7 +20,7 @@ export default function BestSeller() {
 	return (
 		<section className="page-container">
 			<div className="mb-10 text-center">
-				<h2 className="text-3xl font-bold text-center text-zinc-950 dark:text-white">
+				<h2 className="text-zinc-950 dark:text-white text-3xl font-bold text-center">
 					Best Sellers
 				</h2>
 				<p className="text-zinc-800 dark:text-zinc-400">
@@ -28,7 +28,7 @@ export default function BestSeller() {
 				</p>
 			</div>
 			{!data ? (
-				<section className="grid grid-cols-3 gap-5 page-container">
+				<section className="page-container grid grid-cols-3 gap-5">
 					{Array.from({ length: 3 }).map((item) => (
 						<SkeletonCard key={item as number} />
 					))}

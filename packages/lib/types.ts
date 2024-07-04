@@ -57,7 +57,8 @@ export interface HomeProduct {
 	price: number | null;
 	image: string;
 	discount: ProductDiscount;
-	review: string;
+	review: number;
+	stock: number;
 }
 
 export interface Product extends Entity {
@@ -106,6 +107,8 @@ export interface ProductDiscount extends Entity {
 	end_date: null | string;
 	active: boolean;
 	product: string;
+	after_price: number;
+	before_price: number;
 }
 
 export interface ProductCoupon extends Entity {
