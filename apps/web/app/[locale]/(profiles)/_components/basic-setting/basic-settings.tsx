@@ -2,14 +2,14 @@
 import NotFound from "@/app/[locale]/not-found";
 import NA from "@/components/NA";
 import { useGetPatient } from "@ikseer/api/hooks/accounts";
-import { UserIdCookie } from "@ikseer/lib/cookies.client";
+import { ProfileIdCookie } from "@ikseer/lib/cookies.client";
 import { cn } from "@ikseer/lib/utils";
 import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/components/ui/loading-spinner";
 import SettingContainer from "../../user/[userId]/_components/setting";
 import { BasicSettingsDialog } from "./basic-settings-diaglog";
 
 export default function BasicSettings() {
-	const userId = UserIdCookie.get();
+	const userId = ProfileIdCookie.get();
 	const { data, isPending } = useGetPatient(userId as string);
 	if (isPending || typeof window === "undefined")
 		return <FullScreenSpinnerWithNavBar />;
