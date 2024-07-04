@@ -6,7 +6,7 @@ import { clientAPI } from "../utils/api.client";
 export function useGetCart() {
 	return useQuery({
 		queryKey: ["get-cart"],
-		queryFn: () => clientAPI.order.getCart(),
+		queryFn: () => clientAPI.orders.getCart(),
 	});
 }
 
@@ -15,7 +15,7 @@ export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationKey: ["create-cart-item", data.product, data.cart],
-		mutationFn: clientAPI.order.createCartItem,
+		mutationFn: clientAPI.orders.createCartItem,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -39,7 +39,7 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 
 	return useMutation({
 		mutationKey: ["edit-cart-item", data.product, data.cart],
-		mutationFn: clientAPI.order.editCartItem,
+		mutationFn: clientAPI.orders.editCartItem,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -62,7 +62,7 @@ export function useDeleteOrderItem(id: string) {
 
 	return useMutation({
 		mutationKey: ["delete-cart-item", id],
-		mutationFn: () => clientAPI.order.deleteCartItem(id),
+		mutationFn: () => clientAPI.orders.deleteCartItem(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -83,7 +83,7 @@ export default function useCreateOrder(onSuccess: (id: string) => void) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationKey: ["create-order"],
-		mutationFn: clientAPI.order.createOrder,
+		mutationFn: clientAPI.orders.createOrder,
 		onSuccess: (data) => {
 			console.log(data);
 			onSuccess?.(data.id);
@@ -104,7 +104,7 @@ export default function useCreateOrder(onSuccess: (id: string) => void) {
 export function useGetActiveOrders() {
 	return useQuery({
 		queryKey: ["get-active-orders"],
-		queryFn: () => clientAPI.order.getActiveOrders(),
+		queryFn: () => clientAPI.orders.getActiveOrders(),
 	});
 }
 
@@ -113,7 +113,7 @@ export function useGetPaymobToken(
 ) {
 	return useMutation({
 		mutationKey: ["get-first-paymob-access-token"],
-		mutationFn: clientAPI.order.getPaymobToken,
+		mutationFn: clientAPI.orders.getPaymobToken,
 		onSuccess: (data) => {
 			onSuccess?.(data);
 		},
@@ -125,7 +125,7 @@ export function useCreatePaymobOrderId(
 ) {
 	return useMutation({
 		mutationKey: ["create-paymob-order-id"],
-		mutationFn: clientAPI.order.createPaymobOrderId,
+		mutationFn: clientAPI.orders.createPaymobOrderId,
 		onSuccess: (data) => {
 			onSuccess?.(data);
 		},

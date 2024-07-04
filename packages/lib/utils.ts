@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { BACKEND_URL } from "./constants";
 import type { HomeProduct, Product } from "./types";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -22,6 +23,31 @@ export function getLink(link: string) {
 	const linkRegex = /^https?:\/\//;
 	if (linkRegex.test(link)) return link;
 	return `${BACKEND_URL}${link}`;
+}
+
+export function zFile(
+	options: {
+		maxUploadSize?: number;
+		acceptedFileTypes?: string[];
+	} = {},
+) {
+	return z
+		.instanceof(File)
+		.optional()
+		.refine((file) => {
+			return (
+				!file ||
+				options.maxUploadSize === undefined ||
+				file.size <= options.maxUploadSize
+			);
+		}, "File size must be less than 3MB")
+		.refine((file) => {
+			return (
+				!file ||
+				options.acceptedFileTypes === undefined ||
+				options.acceptedFileTypes.includes(file.type)
+			);
+		}, "Invalid file type");
 }
 
 export function getDiscountAmount(product: Product | HomeProduct) {

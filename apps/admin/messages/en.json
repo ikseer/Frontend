@@ -49,6 +49,13 @@
 		"error-fetching-the-patient": "Error fetching the patient",
 		"specialization": "Specialization",
 		"nationality": "Nationality",
+		"latitude": "Latitude",
+		"longitude": "Longitude",
+		"phone": "Phone",
+		"location": "Location",
+		"name": "Name",
+		"open-time": "Open time",
+		"close-time": "Close time",
 		"email": "Email",
 		"national-id-at-least-14-digits-0": "National ID",
 		"logout": "Logout"

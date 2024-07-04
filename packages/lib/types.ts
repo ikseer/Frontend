@@ -147,3 +147,17 @@ export interface CreateCartItem {
 export interface EditCartItem extends CreateCartItem {
 	cartItemId: string;
 }
+
+export interface Pharmacy extends Entity {
+	name: string;
+	location: string;
+	phone: string;
+	/** URI of the image */
+	image: string | null;
+	open_time?: string;
+	close_time?: string;
+	/** Decimal number */
+	latitude: string | null;
+	/** Decimal number */
+	longitude: string | null;
+}

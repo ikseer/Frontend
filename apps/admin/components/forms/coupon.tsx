@@ -31,14 +31,12 @@ type CouponFormProps = Omit<ModalProps, "onSubmit"> & {
 	onSubmit: (data: CouponFormData) => Promise<unknown>;
 	initialValues?: CouponFormData;
 	onSuccess?: () => void;
-	formState: "update" | "create" | undefined;
 };
 
 export default function CouponForm({
 	onSuccess,
 	initialValues,
 	onSubmit,
-	formState,
 	...props
 }: CouponFormProps) {
 	const t = useTranslations("Forms");
@@ -54,12 +52,7 @@ export default function CouponForm({
 		}
 	}, [props.opened, initialValues, form.setValues]);
 
-	const saveCoupon = useMutation({
-		mutationFn: onSubmit,
-		onSuccess,
-	});
-
-	const updateCoupon = useMutation({
+	const save = useMutation({
 		mutationFn: onSubmit,
 		onSuccess,
 	});
@@ -68,8 +61,7 @@ export default function CouponForm({
 		<Modal {...props}>
 			<form
 				onSubmit={form.onSubmit((data) => {
-					if (formState === "create") saveCoupon.mutate(data);
-					else updateCoupon.mutate(data);
+					save.mutate(data);
 				})}
 			>
 				<Stack>
@@ -104,7 +96,7 @@ export default function CouponForm({
 						label="End date"
 						{...form.getInputProps("end_date")}
 					/>
-					<Button mt="md" type="submit" loading={saveCoupon.isPending}>
+					<Button mt="md" type="submit" loading={save.isPending}>
 						{t("save")}
 					</Button>
 				</Stack>

@@ -2,7 +2,7 @@ import { PAYMOB_API_KEY, PAYMOB_INTEGRATION_ID } from "@ikseer/lib/constants";
 import type { Cart, CreateCartItem, EditCartItem } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 
-export class OrderAPI {
+export class OrdersAPI {
 	constructor(private http: AxiosInstance) {}
 
 	getCart = async () => {

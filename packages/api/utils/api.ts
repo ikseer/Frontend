@@ -1,12 +1,14 @@
 import type { AxiosInstance } from "axios";
 import { AccountsAPI } from "../services/accounts";
-import { OrderAPI } from "../services/orders";
+import { OrdersAPI } from "../services/orders";
 import { ProductsAPI } from "../services/products";
+import { PharmaciesAPI } from "services/pharmacies";
 
 export function getAPI(http: AxiosInstance) {
 	return {
 		accounts: new AccountsAPI(http),
 		products: new ProductsAPI(http),
-		order: new OrderAPI(http),
+		orders: new OrdersAPI(http),
+		pharmacies: new PharmaciesAPI(http),
 	};
 }
