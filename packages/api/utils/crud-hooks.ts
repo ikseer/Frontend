@@ -55,12 +55,25 @@ export function createCRUDHooks<
 			...options,
 		});
 
-	const useUpdate = (options?: UseMutationOptions<T, Error, UpdateData>) =>
+	const useUpdate = (
+		options?: UseMutationOptions<
+			T,
+			Error,
+			Partial<UpdateData> & { id: string }
+		>,
+	) =>
 		useMutation({
 			mutationKey: [key, "update"],
 			mutationFn: crud.update,
 			...options,
 		});
 
-	return { useGetById, useList, useInifinite, useCreate, useUpdate };
+	const useDelete = (options?: UseMutationOptions<T, Error, { id: string }>) =>
+		useMutation({
+			mutationKey: [key, "delete"],
+			mutationFn: crud.del,
+			...options,
+		});
+
+	return { useGetById, useList, useInifinite, useCreate, useUpdate, useDelete };
 }

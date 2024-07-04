@@ -1,3 +1,5 @@
+"use client";
+
 import "@mantine/dropzone/styles.css";
 
 import type { Product } from "@ikseer/lib/types";
@@ -6,9 +8,40 @@ import type { ReactNode } from "react";
 import { FilesDropzone } from "./files-dropzone";
 import { Files } from "lucide-react";
 import { ImageCard } from "./image-card";
+import { useMutation } from "@tanstack/react-query";
+import { clientAPI } from "@ikseer/api/utils/api.client";
+import { revalidateProducts } from "./utils.server";
 
 export default function ProductImages({ product }: { product: Product }) {
-	const images = product.images;
+	const images = product.images.toSorted((a, b) => b.priority - a.priority);
+
+	const updateOrder = useMutation({
+		mutationFn: async ({ i, j }: { i: number; j: number }) => {
+			for (const [k, img] of images.entries()) {
+				if (k === i) {
+					// change to j
+					await clientAPI.products.images.update({
+						id: img.id,
+						priority: images.length - 1 - j,
+					});
+				} else if (k === j) {
+					// change to i
+					await clientAPI.products.images.update({
+						id: img.id,
+						priority: images.length - 1 - i,
+					});
+				} else if (images.length - 1 - img.priority !== k) {
+					await clientAPI.products.images.update({
+						id: img.id,
+						priority: images.length - 1 - k, // because images are reversed
+					});
+				}
+			}
+		},
+		onSuccess: () => {
+			revalidateProducts();
+		},
+	});
 
 	return (
 		<Box>
@@ -27,8 +60,15 @@ export default function ProductImages({ product }: { product: Product }) {
 				</AttachmentNotFound>
 			) : (
 				<Stack gap="lg" mt="md">
-					{images.map((img) => (
-						<ImageCard image={img} key={img.id} />
+					{images.map((img, i) => (
+						<ImageCard
+							isLoading={updateOrder.isPending}
+							image={img}
+							key={img.id}
+							index={i}
+							isLast={i === images.length - 1}
+							onSwap={(i, j) => updateOrder.mutate({ i, j })}
+						/>
 					))}
 				</Stack>
 			)}

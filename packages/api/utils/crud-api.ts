@@ -37,12 +37,12 @@ export class CRUD_API<
 			.then((res) => res.data);
 	};
 
-	update = async ({ id, ...data }: UpdateData & { id: string }) => {
+	update = async ({ id, ...data }: Partial<UpdateData> & { id: string }) => {
 		const fn = this.isFormData ? this.http.patchForm : this.http.patch;
 		return await fn<T>(`${this.route}${id}/`, data).then((res) => res.data);
 	};
 
-	del = async (id: string) => {
+	del = async ({ id }: { id: string }) => {
 		return await this.http
 			.delete(`${this.route}${id}/`)
 			.then((res) => res.data);
