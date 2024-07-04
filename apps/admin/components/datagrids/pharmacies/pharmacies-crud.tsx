@@ -93,10 +93,9 @@ export default function PharmaciesCRUDTable() {
 			<PharmacyForm
 				onSubmit={(data) => {
 					if (formState === "create") return create.mutateAsync(data);
-					return update.mutateAsync({
-						newData: data,
-						id: initialValues?.id,
-					});
+					if (!initialValues?.id)
+						throw new Error("Missing id to be able to edit");
+					return update.mutateAsync({ ...data, id: initialValues?.id });
 				}}
 				opened={!!formState}
 				onSuccess={() => setFormState(undefined)}

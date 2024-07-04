@@ -3,9 +3,11 @@ import {
 	Button,
 	Modal,
 	type ModalProps,
+	NumberInput,
 	Stack,
 	TextInput,
 } from "@mantine/core";
+import { TimeInput } from "@mantine/dates";
 import { useForm, zodResolver } from "@mantine/form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
@@ -67,35 +69,36 @@ export default function PharmacyForm({
 					<TextInput
 						withAsterisk
 						label={t("name")}
+						autoComplete="off"
 						{...form.getInputProps("name")}
 					/>
 					<TextInput
 						withAsterisk
 						label={t("phone")}
+						autoComplete="off"
 						{...form.getInputProps("phone")}
 					/>
 					<TextInput
 						label={t("location")}
+						autoComplete="off"
 						{...form.getInputProps("location")}
 					/>
-					<TextInput
+					<TimeInput
 						label={t("open-time")}
-						type="email"
 						{...form.getInputProps("open_time")}
 					/>
-					<TextInput
+					<TimeInput
 						label={t("close-time")}
-						type="email"
 						{...form.getInputProps("close_time")}
 					/>
-					<TextInput
+					<NumberInput
 						label={t("latitude")}
-						type="email"
+						autoComplete="off"
 						{...form.getInputProps("latitude")}
 					/>
-					<TextInput
+					<NumberInput
 						label={t("longitude")}
-						type="email"
+						autoComplete="off"
 						{...form.getInputProps("latitude")}
 					/>
 					<Button mt="md" type="submit" loading={submit.isPending}>

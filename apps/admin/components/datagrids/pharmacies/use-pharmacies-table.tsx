@@ -46,7 +46,7 @@ export default function usePharmaciesTable({
 			id: "pharmacies",
 			deleted,
 			data,
-			fetchData: clientAPI.pharmacies.list,
+			fetchData: clientAPI.pharmacies.pharmacy.list,
 			initialFilters,
 		},
 		{
