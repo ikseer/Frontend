@@ -1,5 +1,5 @@
-import BestSeller from "./_components/home/best-seller";
-import ShowProducts from "./_components/home/show-products";
+import BestSeller from "./(home)/home/best-seller";
+import ShowProducts from "./(home)/home/products";
 
 export default function Home() {
 	return (

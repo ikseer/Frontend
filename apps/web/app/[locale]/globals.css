@@ -82,7 +82,7 @@
 	}
 
 	.hero {
-		@apply min-h-[calc(100vh)];
+		@apply min-h-[calc(100vh-60px)];
 	}
 	.page-container {
 		@apply px-16 py-10;
