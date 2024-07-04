@@ -1,12 +1,12 @@
 import "client-only";
 
 import { BACKEND_URL } from "@ikseer/lib/constants";
-import axios, { isAxiosError, type AxiosError } from "axios";
-import { jwtDecode } from "jwt-decode";
 import {
 	AccessTokenCookie,
 	RefreshTokenCookie,
 } from "@ikseer/lib/cookies.client";
+import axios, { isAxiosError, type AxiosError } from "axios";
+import { jwtDecode } from "jwt-decode";
 import { setSession } from "./session.client";
 
 console.info("====", BACKEND_URL);
@@ -78,6 +78,7 @@ const refreshAccessToken = async () => {
 			refreshToken,
 			userId: null,
 			userType: null,
+			profileId: null,
 		});
 		return accessToken;
 	} catch {}

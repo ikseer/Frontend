@@ -14,6 +14,7 @@ export interface SessionInfo {
 	refreshToken: string;
 	userId: string;
 	userType: UserType;
+	profileId: string | null;
 }
 
 export function setSession(
@@ -46,15 +47,18 @@ export function useCurrentUser() {
 	const refreshToken = RefreshTokenCookie.get();
 	const userId = ProfileIdCookie.get();
 	const userType = UserTypeCookie.get();
+	const profileId = ProfileIdCookie.get();
 
 	const session = useMemo<SessionInfo | null>(() => {
-		if (!accessToken || !refreshToken || !userId || !userType) return null;
+		if (!accessToken || !refreshToken || !userId || !userType || !profileId)
+			return null;
 		try {
 			return {
 				accessToken,
 				refreshToken,
 				userId,
 				userType,
+				profileId,
 			};
 		} catch (e) {
 			AccessTokenCookie.delete();
@@ -63,7 +67,7 @@ export function useCurrentUser() {
 			console.error("invalid access token", accessToken);
 		}
 		return null;
-	}, [accessToken, refreshToken, userType, userId]);
+	}, [accessToken, refreshToken, userType, userId, profileId]);
 
 	return session;
 }

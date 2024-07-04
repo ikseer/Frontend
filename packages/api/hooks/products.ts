@@ -1,5 +1,10 @@
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import {
+	useInfiniteQuery,
+	useMutation,
+	useQuery,
+	useQueryClient,
+} from "@tanstack/react-query";
 import { clientAPI } from "../config/api.client";
 import type { SearchOptions } from "../config/types";
 
@@ -48,3 +53,52 @@ export const useDeleteProductById = (id: string) => {
 		},
 	});
 };
+
+export function useAddToWishList() {
+	const { toast } = useToast();
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: clientAPI.products.addToWishList,
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ["product-get"],
+			});
+			toast({
+				variant: "success",
+				title: "added to wishlist",
+			});
+		},
+		onError: () => {
+			toast({
+				variant: "error",
+				title: "can't add to wishlist",
+			});
+		},
+	});
+}
+
+export function useRemoveFromWishList() {
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.products.removeFromWishList,
+		onSuccess: () => {
+			toast({
+				variant: "success",
+				title: "added to wishlist",
+			});
+		},
+		onError: () => {
+			toast({
+				variant: "error",
+				title: "can't remove from wishlist",
+			});
+		},
+	});
+}
+
+export function useGetDiscountedProducts() {
+	return useQuery({
+		queryKey: ["discounted-product"],
+		queryFn: clientAPI.products.getDiscountedProduct,
+	});
+}
