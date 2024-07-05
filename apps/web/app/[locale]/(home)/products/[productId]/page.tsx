@@ -11,7 +11,6 @@ import { ShoppingBasket } from "lucide-react";
 import AddDeleteItem from "../../_components/add-delete-item";
 import { ProductCard } from "../../_components/product-card";
 import ProductsImage from "./_components/products-image";
-// import { ReportAProblem } from "./_components/report-problem-dialog";
 import { Share } from "./_components/share-dialog";
 
 export default function CurrentProduct({
@@ -43,6 +42,7 @@ export default function CurrentProduct({
 			</div>
 		);
 	}
+
 	return (
 		<main className="page-container space-y-6">
 			<section className="grid grid-cols-1 gap-y-3 md:grid-cols-2 lg:gap-x-[20px]">
@@ -63,7 +63,7 @@ export default function CurrentProduct({
 						</h3>
 						<p className="text-lg text-red-700">
 							{" "}
-							{product?.stock} left in stok
+							{product?.stock} left in stock
 						</p>
 					</div>
 					<div className="gap-x-5 flex">

@@ -1,7 +1,20 @@
 import { PAYMOB_API_KEY, PAYMOB_INTEGRATION_ID } from "@ikseer/lib/constants";
 import type { Cart, CreateCartItem, EditCartItem } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
+import { z } from "zod";
 import { httpNoAuth } from "../config/axios-non-auth";
+
+export const paymentSchema = z.object({
+	first_name: z.string(),
+	last_name: z.string(),
+	country: z.string(),
+	city: z.string(),
+	street: z.string(),
+	phone: z.string(),
+	email: z.string().email(),
+	payment: z.string(),
+	zip_code: z.string(),
+});
 
 export class OrderAPI {
 	constructor(private http: AxiosInstance) {}
@@ -26,17 +39,9 @@ export class OrderAPI {
 			.delete(`/orders/cart-item/${id}/`)
 			.then((res) => res.data);
 	};
-	createOrder = async (data: {
-		first_name: string;
-		last_name: string;
-		country: string;
-		city: string;
-		street: string;
-		phone: string;
-		zipcode: string;
-		email: string;
-		user: string;
-	}) => {
+	createOrder = async (
+		data: z.infer<typeof paymentSchema> & { user: string },
+	) => {
 		return await this.http
 			.post<{ id: string }>("/orders/orders/", data)
 			.then((res) => res.data);
@@ -49,6 +54,10 @@ export class OrderAPI {
 				next: string;
 				previous: string;
 				results: {
+					first_name: string;
+					last_name: string;
+					street: string;
+					zip_code: string;
 					owner: string;
 					location: string;
 					phone: string;

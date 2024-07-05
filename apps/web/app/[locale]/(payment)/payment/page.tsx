@@ -8,25 +8,13 @@ import useCreateOrder, {
 	useCreatePaymobOrderId,
 	useGetPaymobToken,
 } from "@ikseer/api/hooks/orders";
+import { paymentSchema } from "@ikseer/api/services/orders";
 import { UserIdCookie } from "@ikseer/lib/cookies.client";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { FormInput } from "@ikseer/ui/components/ui/input";
 import { Label } from "@ikseer/ui/components/ui/label";
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";
-import { z } from "zod";
-
-const schema = z.object({
-	first_name: z.string(),
-	last_name: z.string(),
-	country: z.string(),
-	city: z.string(),
-	street: z.string(),
-	phone: z.string(),
-	email: z.string().email(),
-	payment: z.string(),
-	zipcode: z.string(),
-});
 
 export default function Payment() {
 	const router = useRouter();
@@ -51,7 +39,7 @@ export default function Payment() {
 	});
 
 	const form = useZodForm({
-		schema: schema,
+		schema: paymentSchema,
 	});
 
 	const userId = UserIdCookie.get() as string;
@@ -82,7 +70,7 @@ export default function Payment() {
 				<FormInput name="country" label="Country" className="rounded-md" />
 				<FormInput name="city" label="City" className="rounded-md" />
 				<FormInput name="street" label="Street" className="rounded-md" />
-				<FormInput name="zipcode" label="Zipcode" className="rounded-md" />
+				<FormInput name="zip_code" label="zip_code" className="rounded-md" />
 				<FormInput name="phone" label="Phone" className="rounded-md" />
 				<FormInput name="email" label="Email" className="rounded-md" />
 				<section className="space-y-2">

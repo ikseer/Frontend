@@ -86,12 +86,17 @@ export function useAddToWishList() {
 
 export function useRemoveFromWishList() {
 	const { toast } = useToast();
+	const queryClient = useQueryClient();
+
 	return useMutation({
 		mutationFn: clientAPI.products.removeFromWishList,
 		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ["get-wishlist"],
+			});
 			toast({
 				variant: "success",
-				title: "added to wishlist",
+				title: "removed from wishlist",
 			});
 		},
 		onError: () => {

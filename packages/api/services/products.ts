@@ -28,7 +28,14 @@ export class ProductsAPI {
 	};
 	getWishList = async () => {
 		return await this.http
-			.get("/products/wishlistitem/")
+			.get<
+				PaginationResult<{
+					id: string;
+					create_at: string;
+					product: string;
+					user: string;
+				}>
+			>("/products/wishlistitem/")
 			.then((res) => res.data);
 	};
 
