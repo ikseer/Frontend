@@ -54,6 +54,13 @@ export const useDeleteProductById = (id: string) => {
 	});
 };
 
+export function useGetWishList() {
+	return useQuery({
+		queryKey: ["get-wishlist"],
+		queryFn: clientAPI.products.getWishList,
+	});
+}
+
 export function useAddToWishList() {
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
@@ -61,7 +68,7 @@ export function useAddToWishList() {
 		mutationFn: clientAPI.products.addToWishList,
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ["product-get"],
+				queryKey: ["get-wishlist"],
 			});
 			toast({
 				variant: "success",

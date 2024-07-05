@@ -26,17 +26,24 @@ export class ProductsAPI {
 			.delete(`/products/product/${id}/`)
 			.then((res) => res.data);
 	};
-
-	addToWishList = async (product: string) => {
+	getWishList = async () => {
 		return await this.http
-			.post("/products/wishlist/", { product })
+			.get("/products/wishlistitem/")
+			.then((res) => res.data);
+	};
+
+	addToWishList = async ({
+		product,
+		user,
+	}: { product: string; user: string }) => {
+		return await this.http
+			.post("/products/wishlistitem/", { product, user })
 			.then((res) => res.data);
 	};
 
 	removeFromWishList = async (product: string) => {
-		console.log(product);
 		return await this.http
-			.delete("/products/wishlist/", {})
+			.delete(`/products/wishlistitem/${product}`)
 			.then((res) => res.data);
 	};
 
