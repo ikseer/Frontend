@@ -33,7 +33,6 @@ export default function CurrentProduct({
 	});
 
 	const relatedData = data?.pages?.[0]?.results;
-	console.log(product);
 	if (!product) {
 		return (
 			<div className="page-container">

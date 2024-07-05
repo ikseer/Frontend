@@ -9,17 +9,13 @@ export default function ImageView({
 	productId,
 	src,
 	alt,
-	topSales: _,
-	hasDiscount: __,
+	topSales,
 }: {
 	productId: string;
 	src: string;
 	alt: string;
 	topSales?: boolean;
-	hasDiscount?: boolean;
 }) {
-	console.log(productId);
-
 	return (
 		<section className="group rounded-t-xl relative overflow-hidden">
 			<Link href={`/products/${productId}`}>
@@ -37,8 +33,13 @@ export default function ImageView({
 				</div>
 			</section>
 			<section className="group-hover:flex top-2 right-4 absolute z-10 items-center justify-center hidden w-10 h-10 p-2 rounded-lg">
-				<WishList id={productId} isWishList={false} />
+				<WishList id={productId} />
 			</section>
+			{topSales && (
+				<section className="group-hover:flex top-2 left-4 bg-gradient-to-r from-red-500 to-red-700 mix-blend-multiply absolute z-10 items-center justify-center hidden w-24 p-1 font-semibold font-bold text-black rounded-lg shadow-lg">
+					Top Sales
+				</section>
+			)}
 		</section>
 	);
 }

@@ -1,12 +1,10 @@
 "use client";
 import { SkeletonCard } from "@/components/card-skeleton";
 import { useGetDiscountedProducts } from "@ikseer/api/hooks/products";
-import type { HomeProduct } from "@ikseer/lib/types";
-import { ProductCard } from "../(home)/_components/product-card";
+import { DiscountCard } from "../(home)/_components/discount-card";
 
 export default function Discount() {
 	const { data, isPending } = useGetDiscountedProducts();
-
 	return (
 		<div className="page-container">
 			{isPending ? (
@@ -19,8 +17,8 @@ export default function Discount() {
 				<section className="space-y-10">
 					<div className="md:grid-cols-2 lg:grid-cols-3 grid grid-cols-1 gap-5">
 						{Array.isArray(data?.results) &&
-							data?.results.map((item: HomeProduct) => (
-								<ProductCard key={`${item.id}`} item={item} />
+							data?.results.map((item) => (
+								<DiscountCard key={item.id} item={item} />
 							))}
 					</div>
 				</section>
