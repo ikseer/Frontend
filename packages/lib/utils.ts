@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { BACKEND_URL } from "./constants";
 import type { HomeProduct, Product, User } from "./types";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -18,16 +19,39 @@ export function fixedForwardRef<T, P = Record<string, never>>(
 }
 
 export function getLink(link: string) {
-	let newLink = link;
-	if (!newLink) newLink = "https://i.suar.me/v3z85/m";
-	if (!newLink) return "";
+	if (!link) return "https://i.suar.me/v3z85/m";
 	const linkRegex = /^https?:\/\//;
-	if (linkRegex.test(newLink)) return newLink;
-	return `${BACKEND_URL}${newLink}`;
+	if (linkRegex.test(link)) return link;
+	return `${BACKEND_URL}${link}`;
+}
+
+export function zFile(
+	options: {
+		maxUploadSize?: number;
+		acceptedFileTypes?: string[];
+	} = {},
+) {
+	return z
+		.instanceof(File)
+		.optional()
+		.refine((file) => {
+			return (
+				!file ||
+				options.maxUploadSize === undefined ||
+				file.size <= options.maxUploadSize
+			);
+		}, "File size must be less than 3MB")
+		.refine((file) => {
+			return (
+				!file ||
+				options.acceptedFileTypes === undefined ||
+				options.acceptedFileTypes.includes(file.type)
+			);
+		}, "Invalid file type");
 }
 
 export function getDiscountAmount(product: Product | HomeProduct) {
-	if (!product.discount.discount_amount || !product.price) return 0;
+	if (!product.discount?.discount_amount || !product.price) return 0;
 	let amount = 0;
 	if (product.discount.discount_type === "amount")
 		amount = Number.parseFloat(product.discount.discount_amount);

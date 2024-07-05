@@ -1,54 +1,52 @@
+import type { Pharmacy } from "@ikseer/lib/types";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features
 import type { MRT_ColumnDef } from "mantine-react-table";
 import "mantine-react-table/styles.css"; //make sure MRT styles were imported in your app root (once)
-import { useTranslations } from "next-intl";
+import { clientAPI } from "@ikseer/api/utils/api.client";
 import { useMemo } from "react";
 import useOurTable, {
 	type UseTableOptions,
 } from "../../../hooks/use-our-table";
 
-type Employee = never;
-
-export default function useEmployeesTable({
+export default function usePharmaciesTable({
 	data,
 	initialFilters,
 	tableOptions,
 	deleted,
-}: UseTableOptions<Employee> = {}) {
-	const t = useTranslations("Employees");
-	const columns = useMemo<MRT_ColumnDef<Employee>[]>(
+}: UseTableOptions<Pharmacy> = {}) {
+	const columns = useMemo<MRT_ColumnDef<Pharmacy>[]>(
 		() => [
 			{
-				accessorKey: "full_name",
-				header: t("full-name"),
+				accessorKey: "name",
+				header: "Name",
 			},
 			{
-				accessorKey: "speciality",
-				header: t("speciality"),
+				accessorKey: "phone",
+				header: "Phone",
 			},
 			{
-				accessorKey: "national_id",
-				header: t("national-id"),
+				accessorKey: "location",
+				header: "Location",
 			},
 			{
-				accessorKey: "nationality",
-				header: t("nationality"),
+				accessorKey: "latitude",
+				header: "Latitude",
 			},
 			{
-				accessorKey: "phone.mobile",
-				header: t("phone"),
+				accessorKey: "longitude",
+				header: "Longitude",
 			},
 		],
-		[t],
+		[],
 	);
 
 	return useOurTable(
 		{
-			id: "employees",
+			id: "pharmacies",
 			deleted,
 			data,
-			fetchData: async () => ({ count: 0, results: [] }),
+			fetchData: clientAPI.pharmacies.pharmacy.list,
 			initialFilters,
 		},
 		{

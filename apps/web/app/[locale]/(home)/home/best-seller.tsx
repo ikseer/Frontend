@@ -1,4 +1,5 @@
 "use client";
+
 import { SkeletonCard } from "@/components/card-skeleton";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { useInfiniteProducts } from "@ikseer/api/hooks/products";
@@ -8,7 +9,7 @@ export default function BestSeller() {
 		pagination: {
 			pageSize: 10,
 		},
-		columnFilters: [
+		filters: [
 			{
 				id: "top_sales",
 				value: true,

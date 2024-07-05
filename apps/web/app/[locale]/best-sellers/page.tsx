@@ -9,7 +9,7 @@ export default function BestSeller() {
 		pagination: {
 			pageSize: 15,
 		},
-		columnFilters: [
+		filters: [
 			{
 				id: "top_sales",
 				value: true,

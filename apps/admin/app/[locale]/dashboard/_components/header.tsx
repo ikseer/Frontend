@@ -1,18 +1,39 @@
 "use client";
+
 import { usePermissions } from "@/hooks/use-permissions";
 import { Card, Skeleton, Text } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
-export default function DashboardHeader() {
+export default function DashboardHeader({
+	stats,
+}: {
+	stats: {
+		total_patients: number;
+		total_doctors: number;
+		total_pharmacies: number;
+		total_products: number;
+		total_orders: number;
+	};
+}) {
 	const t = useTranslations("Dashboard");
 	const perms = usePermissions();
 	if (!perms.dashboard.canSeeStatistics()) return;
 	return (
 		<section className="flex flex-col gap-x-4 gap-y-8">
-			<HeaderCard text={t("total-patients")} statistics={234} />
-			<HeaderCard text={t("total-doctors")} statistics={10} />
-			<HeaderCard text={t("total-products")} statistics={10847} />
-			<HeaderCard text={t("total-employees")} statistics={10} />
+			<HeaderCard
+				text={t("total-patients")}
+				statistics={stats.total_patients}
+			/>
+			<HeaderCard text={t("total-doctors")} statistics={stats.total_doctors} />
+			<HeaderCard
+				text={t("total-products")}
+				statistics={stats.total_products}
+			/>
+			<HeaderCard
+				text={t("total-pharmacies")}
+				statistics={stats.total_pharmacies}
+			/>
+			<HeaderCard text={t("total-orders")} statistics={stats.total_orders} />
 		</section>
 	);
 }

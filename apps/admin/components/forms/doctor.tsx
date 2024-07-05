@@ -1,4 +1,4 @@
-import type { clientAPI } from "@ikseer/api/config/api.client";
+import type { clientAPI } from "@ikseer/api/utils/api.client";
 import { doctorSchema } from "@ikseer/api/services/accounts";
 import {
 	Button,

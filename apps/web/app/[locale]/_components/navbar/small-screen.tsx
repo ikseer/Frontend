@@ -5,7 +5,7 @@ import { AlignJustify, LogOut } from "lucide-react";
 import Image from "next/image";
 import { LangSwitch } from "./lang-switch";
 import "./open.css";
-import { setSession, useCurrentUser } from "@ikseer/api/config/session.client";
+import { setSession, useCurrentUser } from "@ikseer/api/utils/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
 import { UserIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { cn, getAvatarLink } from "@ikseer/lib/utils";

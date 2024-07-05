@@ -1,12 +1,25 @@
-import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import {
 	useInfiniteQuery,
 	useMutation,
 	useQuery,
 	useQueryClient,
 } from "@tanstack/react-query";
-import { clientAPI } from "../config/api.client";
-import type { SearchOptions } from "../config/types";
+import { clientAPI } from "../utils/api.client";
+import type { SearchOptions } from "../utils/types";
+import { createCRUDHooks } from "../utils/crud-hooks";
+import { useToast } from "@ikseer/ui/components/ui/use-toast";
+
+export const imagesHooks = createCRUDHooks("images", clientAPI.products.images);
+
+export const couponsHooks = createCRUDHooks(
+	"coupons",
+	clientAPI.products.coupons,
+);
+
+export const discountsHooks = createCRUDHooks(
+	"discounts",
+	clientAPI.products.discounts,
+);
 
 export const useInfiniteProducts = (options?: SearchOptions) => {
 	return useInfiniteQuery({

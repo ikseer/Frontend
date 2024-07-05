@@ -1,3 +1,12 @@
+export interface Entity {
+	/** uuid */
+	id: string;
+	/** date in ISO format */
+	created_at: string;
+	/** date in ISO format */
+	updated_at: string;
+}
+
 export interface PaginationResult<Data> {
 	count: number;
 	next: string | null;
@@ -5,7 +14,7 @@ export interface PaginationResult<Data> {
 	results: Data[];
 }
 
-export interface User {
+export interface User extends Entity {
 	/** uri of the image */
 	image: string | null;
 	first_name: string;
@@ -14,12 +23,9 @@ export interface User {
 	username: string;
 	date_of_birth: string;
 	date_joined: string;
-	created_at: string;
-	updated_at: string;
 	user_type: UserType;
 	is_staff: boolean;
 	is_active: boolean;
-	id: string;
 }
 
 export type UserType = "patient" | "doctor" | "admin";
@@ -55,18 +61,15 @@ export interface HomeProduct {
 	stock: number;
 }
 
-export interface Product {
-	id: string;
+export interface Product extends Entity {
 	generic_name: string;
 	name: string;
 	price: number | null;
-	discount: ProductDiscount;
+	discount: ProductDiscount | null;
 	images: ProductImage[];
-	review: unknown; // TODO
+	review: unknown[]; // TODO
 	wisthlist: string[];
 	final_price: number;
-	created_at: string;
-	updated_at: string;
 	/** Form of the medication (e.g., tablet, capsule, liquid */
 	form: string;
 	short_description: string;
@@ -77,10 +80,11 @@ export interface Product {
 	category: string;
 	/** uuid */
 	pharmacy: string;
+	factory_company: string;
+	strength: string;
 }
 
-export interface ProductReview {
-	id: string;
+export interface ProductReview extends Entity {
 	name: string;
 	rating: number;
 	review: string;
@@ -88,18 +92,17 @@ export interface ProductReview {
 	product: string;
 }
 
-export interface ProductImage {
-	image: string;
-	id: string;
-	updated_at: string;
-	created_at: string;
-	priority: number;
+export interface ProductImage extends Entity {
+	/** uuid */
 	product: string;
+	/** URI */
+	image: string;
+	priority: number;
 }
 
-export interface ProductDiscount {
+export interface ProductDiscount extends Entity {
 	discount_amount: null | string;
-	discount_type: null | "amount" | "percentage";
+	discount_type: "amount" | "percentage";
 	start_date: null | string;
 	end_date: null | string;
 	active: boolean;
@@ -108,24 +111,36 @@ export interface ProductDiscount {
 	before_price: number;
 }
 
-export interface Cart {
-	id: string;
-	created_at: string;
-	updated_at: string;
+export interface ProductCoupon extends Entity {
+	code: string;
+	/** float */
+	discount_amount: string;
+	discount_type: "amount" | "percentage";
+	/** date in ISO format */
+	start_date: string;
+	/** date in ISO format */
+	end_date: string;
+	active: boolean;
+	usage_limit: number | null;
+	usage_count: number;
+	/** float */
+	minimum_purchase_amount: string | null;
+}
+
+export interface Cart extends Entity {
 	items: CartItems[];
 	user: string;
 }
-export interface CartItems {
-	id: string;
+
+export interface CartItems extends Entity {
 	product_name: string;
-	create_at: string;
-	updated_at: string;
 	quantity: number;
 	cart: string;
 	product: string;
 	product_final_price: number;
 	product_image: string;
 }
+
 export interface CreateCartItem {
 	quantity: number;
 	cart: string;
@@ -134,4 +149,18 @@ export interface CreateCartItem {
 
 export interface EditCartItem extends CreateCartItem {
 	cartItemId: string;
+}
+
+export interface Pharmacy extends Entity {
+	name: string;
+	location: string;
+	phone: string;
+	/** URI of the image */
+	image: string | null;
+	open_time?: string;
+	close_time?: string;
+	/** Decimal number */
+	latitude: string | null;
+	/** Decimal number */
+	longitude: string | null;
 }

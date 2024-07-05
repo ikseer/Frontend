@@ -4,10 +4,10 @@ import "@mantine/dates/styles.css"; // if using mantine date picker features
 import { notifyError } from "@/lib/notifications";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { ActionIcon, Button, Group, Menu, Tooltip } from "@mantine/core";
+import { Download, RefreshCcw } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { download, generateCsv, mkConfig } from "export-to-csv";
 import { get, merge } from "lodash";
-import { Download, Refresh } from "lucide-react";
 import {
 	type MRT_ColumnDef,
 	type MRT_ColumnFilterFnsState,
@@ -21,8 +21,8 @@ import {
 // @ts-ignore
 import { MRT_Localization_AR } from "mantine-react-table/locales/ar";
 import "mantine-react-table/styles.css"; //make sure MRT styles were imported in your app root (once)
-import { getSearchParams } from "@ikseer/api/config/get-search-params";
-import type { SearchOptions } from "@ikseer/api/config/types";
+import { getSearchParams } from "@ikseer/api/utils/get-search-params";
+import type { SearchOptions } from "@ikseer/api/utils/types";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useState } from "react";
 
@@ -101,7 +101,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 	}, [tempId, idProp]);
 
 	const [isExporting, setIsExporting] = useState(false);
-	//Manage MRT state that we want to pass to our API
+	// Manage MRT state that we want to pass to our API
 	const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>(
 		initialFilters || [],
 	);
@@ -122,8 +122,10 @@ export default function useOurTable<TData extends MRT_RowData>(
 	});
 
 	const fetchOptions = {
-		columnFilterFns,
-		columnFilters,
+		filters: columnFilters.map((filter) => ({
+			...filter,
+			operator: columnFilterFns[filter.id],
+		})),
 		globalFilter,
 		pagination,
 		sorting,
@@ -161,7 +163,7 @@ export default function useOurTable<TData extends MRT_RowData>(
 					<Group>
 						<Tooltip label="Refresh Data">
 							<ActionIcon variant="subtle" c="white" onClick={() => refetch()}>
-								<Refresh />
+								<RefreshCcw />
 							</ActionIcon>
 						</Tooltip>
 						<Menu>

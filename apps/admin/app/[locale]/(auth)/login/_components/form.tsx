@@ -2,7 +2,7 @@
 
 import { AFTER_LOGIN_REDIRECT } from "@/lib/routes";
 import { useRouter } from "@/navigation";
-import { setSession } from "@ikseer/api/config/session.client";
+import { setSession } from "@ikseer/api/utils/session.client";
 import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { Button, TextInput } from "@mantine/core";
@@ -35,6 +35,7 @@ export default function LoginForm() {
 				refreshToken: data.refresh,
 				userId: data.user.id,
 				userType: data.user.is_staff ? "admin" : data.user.user_type,
+				profileId: data.profile_id,
 			});
 			router.push(AFTER_LOGIN_REDIRECT);
 		},
