@@ -27,9 +27,14 @@ export class OrderAPI {
 			.then((res) => res.data);
 	};
 	createOrder = async (data: {
-		owner: string;
-		location: string;
+		first_name: string;
+		last_name: string;
+		country: string;
+		city: string;
+		street: string;
 		phone: string;
+		zipcode: string;
+		email: string;
 		user: string;
 	}) => {
 		return await this.http

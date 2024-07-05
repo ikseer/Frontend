@@ -27,15 +27,16 @@ export class ProductsAPI {
 			.then((res) => res.data);
 	};
 
-	addToWishList = async (id: string) => {
+	addToWishList = async (product: string) => {
 		return await this.http
-			.post(`/products/wishlist/${id}/`)
+			.post("/products/wishlist/", { product })
 			.then((res) => res.data);
 	};
 
-	removeFromWishList = async (id: string) => {
+	removeFromWishList = async (product: string) => {
+		console.log(product);
 		return await this.http
-			.delete(`/products/wishlist/${id}/`)
+			.delete("/products/wishlist/", {})
 			.then((res) => res.data);
 	};
 

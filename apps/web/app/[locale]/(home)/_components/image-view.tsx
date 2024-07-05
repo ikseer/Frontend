@@ -24,11 +24,11 @@ export default function ImageView({
 		<section className="group rounded-t-xl relative overflow-hidden">
 			<Link href={`/products/${productId}`}>
 				<Image
-					className="aspect-[4/3] object-cover w-full transition ease-in-out rounded-t-xl hover:scale-110"
+					className="aspect-[5/3] object-cover w-full transition ease-in-out rounded-t-xl hover:scale-110"
 					src={getLink(src)}
 					alt={alt}
-					width={50}
-					height={50}
+					width={400}
+					height={400}
 				/>
 			</Link>
 			<section className="absolute text-end  bottom-[5px]  w-full group/addButton hidden group-hover:block">
