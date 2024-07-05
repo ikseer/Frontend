@@ -1,10 +1,14 @@
-import { couponSchema } from "@ikseer/api/services/products";
+import "@mantine/dates/styles.css";
+
+import { couponSchema as schema } from "@ikseer/api/services/products";
 import {
 	Button,
+	Checkbox,
 	Modal,
 	NumberInput,
 	Select,
 	Stack,
+	TextInput,
 	type ModalProps,
 } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
@@ -16,7 +20,11 @@ import type { z } from "zod";
 
 const TEN_DAYS_MS = 10 * 24 * 60 * 60 * 1000;
 
-type CouponFormData = z.infer<typeof couponSchema>;
+type CouponFormData = z.infer<typeof schema>;
+
+const getRandomCoupon = () => {
+	return Math.random().toString(36).slice(2);
+};
 
 export const getEmptyValues = () =>
 	({
@@ -25,6 +33,9 @@ export const getEmptyValues = () =>
 		usage_limit: 1000,
 		start_date: new Date(),
 		end_date: new Date(Date.now() + TEN_DAYS_MS),
+		minimum_purchase_amount: 0,
+		code: getRandomCoupon(),
+		active: true,
 	}) satisfies CouponFormData;
 
 type CouponFormProps = Omit<ModalProps, "onSubmit"> & {
@@ -42,7 +53,7 @@ export default function CouponForm({
 	const t = useTranslations("Forms");
 	const form = useForm<CouponFormData>({
 		mode: "uncontrolled",
-		validate: zodResolver(couponSchema),
+		validate: zodResolver(schema),
 		initialValues: initialValues || getEmptyValues(),
 	});
 
@@ -65,6 +76,16 @@ export default function CouponForm({
 				})}
 			>
 				<Stack>
+					<Checkbox
+						defaultChecked={form.getValues().active}
+						label="Is active?"
+						{...form.getInputProps("active")}
+					/>
+					<TextInput
+						withAsterisk
+						label="Code"
+						{...form.getInputProps("code")}
+					/>
 					<Select
 						label="Discount type"
 						placeholder="choose type"

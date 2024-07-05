@@ -96,9 +96,11 @@ export const productDetailsSchema = z.object({
 
 export const couponSchema = z.object({
 	discount_type: z.enum(["amount", "percentage"]),
-	discount_amount: z.number().min(0),
-	usage_limit: z.number().min(0).optional().nullable(),
-	end_date: z.date(),
-	start_date: z.date(),
-	minimum_purchase_amount: z.number().min(0).optional().nullable(),
+	discount_amount: z.coerce.number().min(0),
+	usage_limit: z.coerce.number().min(0).optional().nullable(),
+	end_date: z.coerce.date(),
+	start_date: z.coerce.date(),
+	minimum_purchase_amount: z.coerce.number().min(0).optional().nullable(),
+	code: z.string().min(1),
+	active: z.boolean(),
 });

@@ -1,5 +1,6 @@
 "use client";
 
+import { couponsHooks } from "@ikseer/api/hooks/products";
 import type { ProductCoupon } from "@ikseer/lib/types";
 import { cn } from "@ikseer/lib/utils";
 import { ActionIcon, Button, Menu } from "@mantine/core";
@@ -12,6 +13,8 @@ export function CouponCard({
 }: { coupon: ProductCoupon; onEdit: () => void }) {
 	const fmt = useFormatter();
 	const discountAmount = Number.parseFloat(coupon.discount_amount).toFixed(2);
+	const update = couponsHooks.useUpdate();
+	const del = couponsHooks.useDelete();
 	return (
 		<div className="relative bg-background dark:bg-slate-900 border border-muted rounded-lg shadow-lg overflow-hidden">
 			<span
@@ -54,8 +57,9 @@ export function CouponCard({
 								<Menu.Label>Coupon actions</Menu.Label>
 								<Menu.Item
 									leftSection={coupon.active ? <X /> : <Check />}
+									disabled={update.isPending}
 									onClick={() => {
-										alert("not implemented yet");
+										update.mutate({ id: coupon.id, active: !coupon.active });
 									}}
 								>
 									{coupon.active ? "Deactivate" : "Activate"}
@@ -63,11 +67,12 @@ export function CouponCard({
 								<Menu.Item
 									c="red"
 									leftSection={<Trash2 />}
+									disabled={del.isPending}
 									onClick={() => {
 										if (
 											confirm("Are you sure you want to delete the coupon?")
 										) {
-											alert("not implemented yet");
+											del.mutate({ id: coupon.id });
 										}
 									}}
 								>

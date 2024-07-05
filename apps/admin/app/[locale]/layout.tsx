@@ -15,8 +15,7 @@ const inter = Inter({ subsets: ["latin"] });
 const noto = Noto_Kufi_Arabic({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
-	title: "Hospital for medical care",
-	description: "medical care website",
+	title: "Ikseer dashboard",
 };
 
 export default function RootLayout({

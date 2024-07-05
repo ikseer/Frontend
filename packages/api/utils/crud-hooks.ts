@@ -2,6 +2,7 @@ import {
 	useInfiniteQuery,
 	useMutation,
 	useQuery,
+	useQueryClient,
 	type UseMutationOptions,
 	type UseQueryOptions,
 } from "@tanstack/react-query";
@@ -14,9 +15,18 @@ export function createCRUDHooks<
 	CreationData = Exclude<T, keyof Entity>,
 	UpdateData = CreationData,
 >(key: string, crud: CRUD_API<T, CreationData, UpdateData>) {
+	const keys = {
+		getById: (id?: string) => [key, "by-id", id],
+		list: (searchOps?: SearchOptions) => [key, "list", searchOps],
+		infinite: (searchOps?: SearchOptions) => [key, "infinite", searchOps],
+		create: () => [key, "create"],
+		update: (id?: string) => [key, "update", id],
+		delete: (id?: string) => [key, "delete", id],
+	};
+
 	const useGetById = (id?: string, options?: UseQueryOptions<T>) =>
 		useQuery({
-			queryKey: [key, "by-id", id],
+			queryKey: keys.getById(id),
 			queryFn: () => crud.getById(id as string),
 			enabled: !!id,
 			...options,
@@ -27,14 +37,14 @@ export function createCRUDHooks<
 		options?: UseQueryOptions<PaginationResult<T>>,
 	) =>
 		useQuery({
-			queryKey: [key, "list", searchOps],
+			queryKey: keys.list(searchOps),
 			queryFn: () => crud.list(searchOps),
 			...options,
 		});
 
 	const useInifinite = (searchOps?: SearchOptions) =>
 		useInfiniteQuery<PaginationResult<T>>({
-			queryKey: [key, "infinite", searchOps],
+			queryKey: keys.infinite(searchOps),
 			initialPageParam: 0,
 			getNextPageParam: (lastPage, allPages) =>
 				lastPage.next ? allPages.length : undefined,
@@ -48,12 +58,23 @@ export function createCRUDHooks<
 				}),
 		});
 
-	const useCreate = (options?: UseMutationOptions<T, Error, CreationData>) =>
-		useMutation({
-			mutationKey: [key, "create"],
+	const useCreate = (options?: UseMutationOptions<T, Error, CreationData>) => {
+		const queryClient = useQueryClient();
+		return useMutation({
+			mutationKey: keys.create(),
 			mutationFn: crud.create,
 			...options,
+			onSuccess: (...args) => {
+				queryClient.invalidateQueries({
+					queryKey: keys.list().slice(0, 2),
+				});
+				queryClient.invalidateQueries({
+					queryKey: keys.infinite().slice(0, 2),
+				});
+				options?.onSuccess?.(...args);
+			},
 		});
+	};
 
 	const useUpdate = (
 		options?: UseMutationOptions<
@@ -61,19 +82,51 @@ export function createCRUDHooks<
 			Error,
 			Partial<UpdateData> & { id: string }
 		>,
-	) =>
-		useMutation({
-			mutationKey: [key, "update"],
+	) => {
+		const queryClient = useQueryClient();
+		return useMutation({
+			mutationKey: keys.update(),
 			mutationFn: crud.update,
 			...options,
+			onSuccess: (...args) => {
+				queryClient.invalidateQueries({
+					queryKey: keys.list().slice(0, 2),
+				});
+				queryClient.invalidateQueries({
+					queryKey: keys.infinite().slice(0, 2),
+				});
+				options?.onSuccess?.(...args);
+			},
 		});
+	};
 
-	const useDelete = (options?: UseMutationOptions<T, Error, { id: string }>) =>
-		useMutation({
-			mutationKey: [key, "delete"],
+	const useDelete = (
+		options?: UseMutationOptions<T, Error, { id: string }>,
+	) => {
+		const queryClient = useQueryClient();
+		return useMutation({
+			mutationKey: keys.delete(),
 			mutationFn: crud.del,
 			...options,
+			onSuccess: (...args) => {
+				queryClient.invalidateQueries({
+					queryKey: keys.list().slice(0, 2),
+				});
+				queryClient.invalidateQueries({
+					queryKey: keys.infinite().slice(0, 2),
+				});
+				options?.onSuccess?.(...args);
+			},
 		});
+	};
 
-	return { useGetById, useList, useInifinite, useCreate, useUpdate, useDelete };
+	return {
+		useGetById,
+		useList,
+		useInifinite,
+		useCreate,
+		useUpdate,
+		useDelete,
+		keys,
+	};
 }

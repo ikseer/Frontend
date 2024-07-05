@@ -39,20 +39,23 @@ export default function CouponsPage() {
 					query={query}
 					render={(data) => {
 						return data.pages.map((page) =>
-							page.results.map((coupon) => (
+							page.results.map((data) => (
 								<CouponCard
-									coupon={coupon}
-									key={coupon.id}
+									coupon={data}
+									key={data.id}
 									onEdit={() => {
 										setInitialValues({
-											id: coupon.id,
-											discount_type: coupon.discount_type,
-											discount_amount: Number.parseFloat(
-												coupon.discount_amount,
-											),
-											usage_limit: coupon.usage_limit,
-											start_date: new Date(coupon.start_date),
-											end_date: new Date(coupon.end_date),
+											id: data.id,
+											discount_type: data.discount_type,
+											discount_amount: Number.parseFloat(data.discount_amount),
+											usage_limit: data.usage_limit,
+											start_date: new Date(data.start_date),
+											end_date: new Date(data.end_date),
+											minimum_purchase_amount: data.minimum_purchase_amount
+												? Number.parseFloat(data.minimum_purchase_amount)
+												: null,
+											active: data.active,
+											code: data.code,
 										});
 										setFormState("update");
 									}}
@@ -79,7 +82,7 @@ export default function CouponsPage() {
 				initialValues={initialValues}
 				opened={!!formState}
 				onClose={() => setFormState(undefined)}
-				formState={formState}
+				onSuccess={() => setFormState(undefined)}
 				onSubmit={async (data) => {
 					if (formState === "create") return create.mutateAsync(data);
 					if (!initialValues?.id)
