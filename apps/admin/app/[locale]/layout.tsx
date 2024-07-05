@@ -2,8 +2,8 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "./globals.css";
 
-import { cn } from "@ikseer/lib/utils";
 import { availableLocalesMap, defaultLocale } from "@/next.locales";
+import { cn } from "@ikseer/lib/utils";
 import { ColorSchemeScript } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import type { Metadata } from "next";
@@ -15,8 +15,7 @@ const inter = Inter({ subsets: ["latin"] });
 const noto = Noto_Kufi_Arabic({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
-	title: "Hospital for medical care",
-	description: "medical care website",
+	title: "Ikseer dashboard",
 };
 
 export default function RootLayout({

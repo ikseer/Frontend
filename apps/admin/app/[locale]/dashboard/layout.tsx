@@ -17,7 +17,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { Gauge, Pill, Stethoscope, User } from "lucide-react";
+import { Building, Gauge, Pill, Stethoscope, Ticket, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LangSwitch from "../_components/lang-switch";
@@ -84,27 +84,37 @@ export default function CollapseDesktop({
 				<Stack mt="md">
 					{perms.dashboard.canSeeDashboard() && (
 						<MyNavLink
-							href="/dashboard"
+							href={Routes.dashboard()}
 							leftSection={<Gauge />}
 							label={t("dashboard")}
 						/>
 					)}
 					{perms.patient.canSeePatient() && (
 						<MyNavLink
-							href="/dashboard/patients"
+							href={Routes.patients()}
 							leftSection={<User />}
 							label={t("patients")}
 						/>
 					)}
 					{perms.doctor.canSeeDoctors() && (
 						<MyNavLink
-							href="/dashboard/doctors"
+							href={Routes.doctors()}
 							leftSection={<Stethoscope />}
 							label={t("doctors")}
 						/>
 					)}
 					<MyNavLink
-						href="/dashboard/products"
+						href={Routes.coupons()}
+						leftSection={<Ticket />}
+						label={"Coupons"}
+					/>
+					<MyNavLink
+						href={Routes.pharmacies()}
+						leftSection={<Building />}
+						label={"Pharmacies"}
+					/>
+					<MyNavLink
+						href={Routes.products()}
 						leftSection={<Pill />}
 						label={t("products")}
 					/>

@@ -5,8 +5,21 @@ import {
 	useQuery,
 	useQueryClient,
 } from "@tanstack/react-query";
-import { clientAPI } from "../config/api.client";
-import type { SearchOptions } from "../config/types";
+import { clientAPI } from "../utils/api.client";
+import { createCRUDHooks } from "../utils/crud-hooks";
+import type { SearchOptions } from "../utils/types";
+
+export const imagesHooks = createCRUDHooks("images", clientAPI.products.images);
+
+export const couponsHooks = createCRUDHooks(
+	"coupons",
+	clientAPI.products.coupons,
+);
+
+export const discountsHooks = createCRUDHooks(
+	"discounts",
+	clientAPI.products.discounts,
+);
 
 export const useInfiniteProducts = (options?: SearchOptions) => {
 	return useInfiniteQuery({

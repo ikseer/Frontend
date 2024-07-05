@@ -1,6 +1,6 @@
 "use client";
+import NA from "@ikseer/ui/components/NA";
 import { Card, Group, Skeleton, Stack, Text } from "@mantine/core";
-import NA from "./NA";
 
 export default function DetailsCard({
 	title,

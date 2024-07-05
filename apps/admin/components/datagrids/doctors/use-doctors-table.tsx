@@ -3,7 +3,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"; //if using mantine date picker features
 import type { MRT_ColumnDef } from "mantine-react-table";
 import "mantine-react-table/styles.css"; //make sure MRT styles were imported in your app root (once)
-import { clientAPI } from "@ikseer/api/config/api.client";
+import { clientAPI } from "@ikseer/api/utils/api.client";
 import { getAvatarLink } from "@ikseer/lib/get-avatar";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
@@ -64,8 +64,9 @@ export default function useDoctorsTable({
 			id: "doctors",
 			deleted,
 			data,
-			// fetchData: deleted ? getDeletedDoctors : getDoctors,
-			fetchData: clientAPI.accounts.getDoctors,
+			fetchData: deleted
+				? clientAPI.accounts.getDeletedDoctors
+				: clientAPI.accounts.getDoctors,
 			initialFilters,
 		},
 		{

@@ -22,6 +22,9 @@ const nextConfig = {
 			{
 				hostname: "**.dropboxusercontent.com",
 			},
+			{
+				hostname: "i.suar.me",
+			},
 		],
 	},
 };

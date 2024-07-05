@@ -20,11 +20,26 @@ export const Routes = makeRoutes(
 					q: z.string().optional(),
 				}),
 			}),
+			productPage: makeRoute("/dashboard/products/:productId", {
+				type: "private",
+				params: z.object({
+					productId: z.string().uuid(),
+				}),
+			}),
 			patients: makeRoute("/dashboard/patients", {
 				type: "private",
 				search: z.object({
 					q: z.string().optional(),
 				}),
+			}),
+			doctors: makeRoute("/dashboard/doctors", {
+				type: "private",
+			}),
+			coupons: makeRoute("/dashboard/coupons", {
+				type: "private",
+			}),
+			pharmacies: makeRoute("/dashboard/pharmacies", {
+				type: "private",
 			}),
 			editPatient: makeRoute("/dashboard/patient/:patientId/edit", {
 				type: "private",

@@ -1,7 +1,7 @@
 // "use client";
 
 // // import { UploadFile } from "@/components/upload-file";
-// // import { clientAPI } from "@ikseer/api/config/api.client";
+// // import { clientAPI } from "@ikseer/api/utils/api.client";
 // import { useGetMe } from "@ikseer/api/hooks/accounts";
 // // import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 // import { Dialog, DialogContent } from "@ikseer/ui/components/ui/dialog";

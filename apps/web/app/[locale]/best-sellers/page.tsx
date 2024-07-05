@@ -7,9 +7,9 @@ import { ProductCard } from "../(home)/_components/product-card";
 export default function BestSeller() {
 	const { data, isPending } = useInfiniteProducts({
 		pagination: {
-			pageSize: 15,
+			pageSize: 10,
 		},
-		columnFilters: [
+		filters: [
 			{
 				id: "number_of_sales__gte",
 				value: 200,

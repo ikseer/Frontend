@@ -2,7 +2,7 @@
 
 import { Routes } from "@/lib/routes";
 import { useRouter } from "@/navigation";
-import { setSession } from "@ikseer/api/config/session.client";
+import { setSession } from "@ikseer/api/utils/session.client";
 import { Button } from "@mantine/core";
 import { useTranslations } from "next-intl";
 

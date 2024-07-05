@@ -24,7 +24,7 @@ export default function CurrentProduct({
 		pagination: {
 			pageSize: 12,
 		},
-		columnFilters: [
+		filters: [
 			{
 				id: "category",
 				value: product?.category,
