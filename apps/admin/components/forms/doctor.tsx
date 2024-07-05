@@ -1,5 +1,4 @@
-import type { clientAPI } from "@ikseer/api/utils/api.client";
-import { doctorSchema } from "@ikseer/api/services/accounts";
+import { doctorSchema as schema } from "@ikseer/api/services/accounts";
 import {
 	Button,
 	Group,
@@ -16,18 +15,23 @@ import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import type { z } from "zod";
 
+type FormData = z.infer<typeof schema>;
+
 type DoctorFormProps = Omit<ModalProps, "onSubmit" | "children"> & {
-	onSubmit: (typeof clientAPI)["accounts"]["createDoctor"];
-	initialValues?: z.infer<typeof doctorSchema>;
+	onSubmit: (data: FormData) => Promise<unknown>;
+	initialValues?: FormData;
 	onSuccess?: () => void;
 };
 
 export const emptyValues = {
 	first_name: "",
 	last_name: "",
+	email: "",
 	specialization: "",
-};
+	approved: true,
+} satisfies FormData;
 
+/** Use it for edit only */
 export default function DoctorForm({
 	onSuccess,
 	initialValues,
@@ -35,9 +39,9 @@ export default function DoctorForm({
 	...props
 }: DoctorFormProps) {
 	const t = useTranslations("Forms");
-	const form = useForm<z.infer<typeof doctorSchema>>({
+	const form = useForm<FormData>({
 		mode: "uncontrolled",
-		validate: zodResolver(doctorSchema),
+		validate: zodResolver(schema),
 		initialValues: initialValues || emptyValues,
 	});
 
@@ -47,32 +51,23 @@ export default function DoctorForm({
 		}
 	}, [props.opened, initialValues, form.setValues]);
 
-	const saveDoctor = useMutation({
+	const save = useMutation({
 		mutationFn: onSubmit,
 		onSuccess,
 	});
 
 	useEffect(() => {
-		if (saveDoctor.isError) {
-			const errors = saveDoctor.error as unknown as Record<string, string[]>;
+		if (save.isError) {
+			const errors = save.error as unknown as Record<string, string[]>;
 			for (const key in errors) {
 				form.setFieldError(key, errors[key]);
 			}
 		}
-	}, [saveDoctor.isError, saveDoctor.error, form.setFieldError]);
+	}, [save.isError, save.error, form.setFieldError]);
 
 	return (
 		<Modal {...props}>
-			<form
-				onSubmit={form.onSubmit(({ ...data }) => {
-					const newData = {
-						...data,
-						date_of_birth: data?.date_of_birth?.toISOString().slice(0, 10),
-					};
-					// @ts-ignore
-					saveDoctor.mutate(newData);
-				})}
-			>
+			<form onSubmit={form.onSubmit((data) => save.mutateAsync(data))}>
 				<Stack>
 					<TextInput
 						withAsterisk
@@ -100,7 +95,7 @@ export default function DoctorForm({
 						</Group>
 					</Radio.Group>
 					<Textarea label={t("bio")} {...form.getInputProps("bio")} />
-					<Button mt="md" type="submit" loading={saveDoctor.isPending}>
+					<Button mt="md" type="submit" loading={save.isPending}>
 						{t("save")}
 					</Button>
 				</Stack>

@@ -50,6 +50,18 @@ export function zFile(
 		}, "Invalid file type");
 }
 
+export function zNullish(t: z.ZodType) {
+	return z.preprocess((val) => val || undefined, t.optional().nullable());
+}
+
+export function zUsername() {
+	return z
+		.string()
+		.min(2)
+		.max(150)
+		.regex(/^[\w.@+-]+$/);
+}
+
 export function getDiscountAmount(product: Product | HomeProduct) {
 	if (!product.discount?.discount_amount || !product.price) return 0;
 	let amount = 0;
