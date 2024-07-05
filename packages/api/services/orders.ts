@@ -78,7 +78,6 @@ export class OrderAPI {
 	};
 
 	createPaymobOrderId = async (order: string) => {
-		console.log(order, "order from services");
 		return await this.http
 			.post<{ paymob_order_id: string; amount_cents: string }>(
 				"/orders/paymob/",
@@ -91,13 +90,11 @@ export class OrderAPI {
 		orderId,
 		amountInCents,
 	}: { orderId: string; amountInCents: string }) => {
-		console.log(PAYMOB_API_KEY, "paymob api key");
 		const data = await httpNoAuth
 			.post<{ token: string }>("https://accept.paymob.com/api/auth/tokens", {
 				api_key: PAYMOB_API_KEY,
 			})
 			.then((res) => res.data);
-		console.log(data, data.token, "token order", orderId);
 		return await httpNoAuth
 			.post<{ token: string }>(
 				"https://accept.paymob.com/api/acceptance/payment_keys",

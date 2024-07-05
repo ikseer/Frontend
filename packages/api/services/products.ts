@@ -1,4 +1,9 @@
-import type { HomeProduct, PaginationResult, Product } from "@ikseer/lib/types";
+import type {
+	DiscountProduct,
+	HomeProduct,
+	PaginationResult,
+	Product,
+} from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { httpNoAuth } from "../config/axios-non-auth";
 import { getSearchParams } from "../config/get-search-params";
@@ -56,7 +61,7 @@ export class ProductsAPI {
 
 	getDiscountedProduct = async () => {
 		return await this.http
-			.get<PaginationResult<HomeProduct>>("/products/discount/")
+			.get<PaginationResult<DiscountProduct>>("/products/discount/")
 			.then((res) => res.data);
 	};
 }

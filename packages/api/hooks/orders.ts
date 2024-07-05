@@ -47,8 +47,7 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 				variant: "success",
 			});
 		},
-		onError: (e) => {
-			console.log(e);
+		onError: () => {
 			toast({
 				title: "Can't add item to cart",
 				variant: "error",
