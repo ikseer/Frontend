@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, usePathname } from "@/navigation";
-import { setSession, useCurrentUser } from "@ikseer/api/config/session.client";
+import { setSession, useCurrentUser } from "@ikseer/api/utils/session.client";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
 import { cn, getAvatarLink } from "@ikseer/lib/utils";
 import {

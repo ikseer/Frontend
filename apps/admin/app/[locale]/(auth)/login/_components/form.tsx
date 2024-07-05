@@ -35,6 +35,7 @@ export default function LoginForm() {
 				refreshToken: data.refresh,
 				userId: data.user.id,
 				userType: data.user.is_staff ? "admin" : data.user.user_type,
+				profileId: data.profile_id,
 			});
 			router.push(AFTER_LOGIN_REDIRECT);
 		},
