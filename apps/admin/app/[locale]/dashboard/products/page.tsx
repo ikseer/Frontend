@@ -10,6 +10,8 @@ import { useCallback, useState } from "react";
 import { debounce } from "lodash";
 import ProductDetailsForm from "@/components/forms/product-details";
 import { revalidateProducts } from "./[productId]/_components/utils.server";
+import type { HomeProduct } from "@ikseer/lib/types";
+import { ProductCard } from "@/components/product-card";
 
 export default function ProductsPage() {
 	const [isCreating, setIsCreating] = useState(false);
