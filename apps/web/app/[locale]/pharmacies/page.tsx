@@ -22,8 +22,8 @@ export default function OurPharmacies() {
 	return (
 		<main className="max-w-screen max-h-[calc(100vh-60px)]">
 			{data && (
-				//@ts-ignore
 				<MapContainer
+					//@ts-ignore
 					center={[51.505, -0.09]}
 					zoom={13}
 					scrollWheelZoom={true}
