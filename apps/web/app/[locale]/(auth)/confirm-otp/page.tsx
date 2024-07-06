@@ -51,12 +51,10 @@ export default function ConfirmPinCode() {
 	const searchParams = useSearchParams();
 	const userEmail = searchParams.get("email");
 	const errorMsg = getErrorMessageSync(confirmOtp.error, $t);
-	console.log(errorMsg);
 	return (
 		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit((data) => {
-					console.log(data);
 					confirmOtp.mutate(data);
 				})}
 				className="flex items-center justify-center text-center auth-parent hero"

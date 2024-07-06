@@ -1,11 +1,11 @@
 "use client";
 
-import { Button, Flex, Input, Title } from "@mantine/core";
-import { Plus, Search } from "lucide-react";
+import { Flex } from "@mantine/core";
+import { Plus } from "lucide-react";
 import { productsHooks, useInfiniteProducts } from "@ikseer/api/hooks/products";
 import { SkeletonCard } from "@ikseer/ui/components/card-skeleton";
-import type { HomeProduct } from "@ikseer/lib/types";
-import { ProductCard } from "@/components/product-card";
+import { Button, Input, Title } from "@mantine/core";
+import { Search } from "lucide-react";
 import { useCallback, useState } from "react";
 import { debounce } from "lodash";
 import ProductDetailsForm from "@/components/forms/product-details";

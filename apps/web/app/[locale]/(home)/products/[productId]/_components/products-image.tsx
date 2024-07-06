@@ -19,9 +19,9 @@ export default function ProductsImage({ images }: { images: ProductImage[] }) {
 							src={item.image}
 							alt="new Image"
 							className={cn(
-								"w-full rounded-sm cursor-pointer",
+								"w-full rounded-sm cursor-pointer rounded-lg",
 								item.image === img &&
-									"shadow-lg  outline outline-4 outline-offset-2 outline-teal-600 ",
+									"shadow-lg outline outline-4 outline-offset-2 outline-teal-600 rounded-lg",
 							)}
 							width={200}
 							height={200}
@@ -32,7 +32,7 @@ export default function ProductsImage({ images }: { images: ProductImage[] }) {
 			<ImageMagnifier
 				src={img}
 				alt="new Image"
-				className="w-full rounded-sm cursor-pointer"
+				className="w-full cursor-pointer"
 				width={500}
 				height={500}
 			/>

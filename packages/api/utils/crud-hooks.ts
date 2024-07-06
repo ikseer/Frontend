@@ -1,13 +1,13 @@
+import type { Entity, PaginationResult } from "@ikseer/lib/types";
 import {
+	type UseMutationOptions,
+	type UseQueryOptions,
 	useInfiniteQuery,
 	useMutation,
 	useQuery,
 	useQueryClient,
-	type UseMutationOptions,
-	type UseQueryOptions,
 } from "@tanstack/react-query";
 import type { CRUD_API } from "./crud-api";
-import type { Entity, PaginationResult } from "@ikseer/lib/types";
 import type { SearchOptions } from "./types";
 
 export function createCRUDHooks<

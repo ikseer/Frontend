@@ -5,11 +5,11 @@ import {
 	Button,
 	Checkbox,
 	Modal,
+	type ModalProps,
 	NumberInput,
 	Select,
 	Stack,
 	TextInput,
-	type ModalProps,
 } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { useForm, zodResolver } from "@mantine/form";

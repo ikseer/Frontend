@@ -3,8 +3,8 @@
 import type { Product } from "@ikseer/lib/types";
 import { Tabs } from "@mantine/core";
 import { ProductDetails } from "./product-details";
-import ProductImages from "./product-images";
 import { ProductDiscount } from "./product-discount";
+import ProductImages from "./product-images";
 
 export function ProductPageTabs({ product }: { product: Product }) {
 	return (

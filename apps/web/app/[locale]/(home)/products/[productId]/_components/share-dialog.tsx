@@ -13,8 +13,10 @@ import {
 } from "@ikseer/ui/components/ui/dialog";
 import { Input } from "@ikseer/ui/components/ui/input";
 import { Label } from "@ikseer/ui/components/ui/label";
+import { useToast } from "@ikseer/ui/components/ui/use-toast";
 
 export function Share() {
+	const { toast } = useToast();
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -35,11 +37,19 @@ export function Share() {
 						<Input
 							name="share"
 							id="link"
-							defaultValue="https://ui.shadcn.com/docs/installation"
+							defaultValue={window.location.href}
 							readOnly
 						/>
 					</div>
-					<Button type="submit" size="sm" className="px-3">
+					<Button
+						type="submit"
+						size="sm"
+						className="px-3"
+						onClick={() => {
+							navigator.clipboard.writeText(window.location.href);
+							toast({ description: "Copied to clipboard" });
+						}}
+					>
 						<span className="sr-only">Copy</span>
 						<Copy className="w-4 h-4" />
 					</Button>

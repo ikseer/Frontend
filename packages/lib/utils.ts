@@ -1,9 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 import { BACKEND_URL } from "./constants";
 import type { HomeProduct, Product, User } from "./types";
-import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));

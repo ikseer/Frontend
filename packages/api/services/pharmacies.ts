@@ -1,8 +1,8 @@
 import type { Pharmacy } from "@ikseer/lib/types";
 import { zFile } from "@ikseer/lib/utils";
 import type { AxiosInstance } from "axios";
-import { CRUD_API } from "../utils/crud-api";
 import { z } from "zod";
+import { CRUD_API } from "../utils/crud-api";
 
 export class PharmaciesAPI {
 	pharmacy: CRUD_API<Pharmacy, z.infer<typeof pharmacySchema>>;

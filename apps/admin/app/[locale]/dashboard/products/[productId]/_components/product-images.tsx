@@ -2,14 +2,14 @@
 
 import "@mantine/dropzone/styles.css";
 
+import { clientAPI } from "@ikseer/api/utils/api.client";
 import type { Product } from "@ikseer/lib/types";
 import { Box, Stack, Title } from "@mantine/core";
+import { useMutation } from "@tanstack/react-query";
+import { Files } from "lucide-react";
 import type { ReactNode } from "react";
 import { FilesDropzone } from "./files-dropzone";
-import { Files } from "lucide-react";
 import { ImageCard } from "./image-card";
-import { useMutation } from "@tanstack/react-query";
-import { clientAPI } from "@ikseer/api/utils/api.client";
 import { revalidateProducts } from "./utils.server";
 
 export default function ProductImages({ product }: { product: Product }) {

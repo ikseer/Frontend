@@ -1,8 +1,8 @@
 "use client";
 
 import PharmacyForm from "@/components/forms/pharmacy";
-import type { pharmacySchema as schema } from "@ikseer/api/services/pharmacies";
 import { pharmaciesHooks as hooks } from "@ikseer/api/hooks/pharmacies";
+import type { pharmacySchema as schema } from "@ikseer/api/services/pharmacies";
 import { Box, Button, Flex, Menu, SegmentedControl } from "@mantine/core";
 import { Plus } from "lucide-react";
 import { MantineReactTable } from "mantine-react-table";

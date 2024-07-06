@@ -1,7 +1,7 @@
 import type { Entity, PaginationResult } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
-import type { SearchOptions } from "./types";
 import { getSearchParams } from "./get-search-params";
+import type { SearchOptions } from "./types";
 
 export class CRUD_API<
 	T = Entity,
