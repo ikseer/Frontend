@@ -1,8 +1,8 @@
 import type { AxiosInstance } from "axios";
 import { AccountsAPI } from "../services/accounts";
 import { OrdersAPI } from "../services/orders";
-import { ProductsAPI } from "../services/products";
 import { PharmaciesAPI } from "../services/pharmacies";
+import { ProductsAPI } from "../services/products";
 
 export function getAPI(http: AxiosInstance) {
 	return {

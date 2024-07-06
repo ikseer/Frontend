@@ -1,6 +1,6 @@
 "use client";
-import { setSession } from "@ikseer/api/utils/session.client";
 import { useDeleteMe } from "@ikseer/api/hooks/accounts";
+import { setSession } from "@ikseer/api/utils/session.client";
 import {
 	AlertDialog,
 	AlertDialogCancel,

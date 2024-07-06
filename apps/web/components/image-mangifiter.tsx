@@ -56,6 +56,7 @@ const ImageMagnifier = ({
 				src={src}
 				width={width}
 				height={height}
+				className="rounded-md"
 				alt={alt}
 				onMouseEnter={(e) => mouseEnter(e)}
 				onMouseLeave={(e) => mouseLeave(e)}

@@ -1,4 +1,5 @@
 import type {
+	DiscountProduct,
 	HomeProduct,
 	PaginationResult,
 	Product,
@@ -7,11 +8,11 @@ import type {
 	ProductImage,
 } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
+import { z } from "zod";
 import { httpNoAuth } from "../utils/axios-non-auth";
+import { CRUD_API } from "../utils/crud-api";
 import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
-import { z } from "zod";
-import { CRUD_API } from "../utils/crud-api";
 
 export class ProductsAPI {
 	images: CRUD_API<ProductImage>;
@@ -63,22 +64,37 @@ export class ProductsAPI {
 			.delete(`/products/product/${id}/`)
 			.then((res) => res.data);
 	};
-
-	addToWishList = async (id: string) => {
+	getWishList = async () => {
 		return await this.http
-			.post(`/products/wishlist/${id}/`)
+			.get<
+				PaginationResult<{
+					id: string;
+					create_at: string;
+					product: string;
+					user: string;
+				}>
+			>("/products/wishlistitem/")
 			.then((res) => res.data);
 	};
 
-	removeFromWishList = async (id: string) => {
+	addToWishList = async ({
+		product,
+		user,
+	}: { product: string; user: string }) => {
 		return await this.http
-			.delete(`/products/wishlist/${id}/`)
+			.post("/products/wishlistitem/", { product, user })
+			.then((res) => res.data);
+	};
+
+	removeFromWishList = async (product: string) => {
+		return await this.http
+			.delete(`/products/wishlistitem/${product}`)
 			.then((res) => res.data);
 	};
 
 	getDiscountedProduct = async () => {
 		return await this.http
-			.get<PaginationResult<HomeProduct>>("/products/discount/")
+			.get<PaginationResult<DiscountProduct>>("/products/discount/")
 			.then((res) => res.data);
 	};
 }

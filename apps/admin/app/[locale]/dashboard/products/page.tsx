@@ -1,13 +1,13 @@
 "use client";
 
-import { Button, Input, Title } from "@mantine/core";
-import { Search } from "lucide-react";
-import { useInfiniteProducts } from "@ikseer/api/hooks/products";
-import { SkeletonCard } from "@ikseer/ui/components/card-skeleton";
-import type { HomeProduct } from "@ikseer/lib/types";
 import { ProductCard } from "@/components/product-card";
-import { useCallback, useState } from "react";
+import { useInfiniteProducts } from "@ikseer/api/hooks/products";
+import type { HomeProduct } from "@ikseer/lib/types";
+import { SkeletonCard } from "@ikseer/ui/components/card-skeleton";
+import { Button, Input, Title } from "@mantine/core";
 import { debounce } from "lodash";
+import { Search } from "lucide-react";
+import { useCallback, useState } from "react";
 
 export default function ProductsPage() {
 	const [searchQuery, setSearchQuery] = useState("");

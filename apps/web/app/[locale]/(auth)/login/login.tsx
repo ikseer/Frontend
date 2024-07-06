@@ -10,9 +10,9 @@ import { ErrorMsg } from "@/components/error-msg";
 import Spinner from "@/components/spinner";
 import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
 import { useZodForm } from "@/lib/use-zod-form";
+import { useLogin } from "@ikseer/api/hooks/accounts";
 import type { clientAPI } from "@ikseer/api/utils/api.client";
 import { setSession } from "@ikseer/api/utils/session.client";
-import { useLogin } from "@ikseer/api/hooks/accounts";
 import { getErrorMessageSync } from "@ikseer/lib/get-error-msg";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { FormInput } from "@ikseer/ui/components/ui/input";
@@ -35,14 +35,12 @@ export default function Login() {
 	const onSuccess = (
 		data: Awaited<ReturnType<typeof clientAPI.accounts.login>>,
 	) => {
-		console.log(data, "login data");
 		const {
 			access,
 			refresh,
 			user: { id, user_type },
 			profile_id,
 		} = data;
-		console.log("user id", id);
 		setSession({
 			accessToken: access,
 			refreshToken: refresh,

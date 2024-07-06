@@ -4,6 +4,7 @@ import {
 	useEditCartItem,
 	useGetCart,
 } from "@ikseer/api/hooks/orders";
+import { useProductById } from "@ikseer/api/hooks/products";
 import { cn } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
@@ -22,6 +23,7 @@ export default function AddDeleteItem({
 		cart: myCart?.id as string,
 		product: productId,
 	});
+	const { data } = useProductById(productId);
 
 	const { items: products, id: cartId } = myCart || {};
 	const productInCart = products?.find(
@@ -65,7 +67,12 @@ export default function AddDeleteItem({
 			<Button
 				iconOnly
 				className="w-7 h-7 rounded-full"
-				disabled={addItemToCart.isPending}
+				disabled={
+					!!(
+						addItemToCart.isPending ||
+						(data?.stock && data?.stock <= productQuantity)
+					)
+				}
 				onClick={() => handleEditItem(productQuantity + 1)}
 			>
 				{<Plus className="w-3 h-3" />}

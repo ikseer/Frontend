@@ -1,3 +1,4 @@
+import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import {
 	useInfiniteQuery,
 	useMutation,
@@ -5,9 +6,8 @@ import {
 	useQueryClient,
 } from "@tanstack/react-query";
 import { clientAPI } from "../utils/api.client";
-import type { SearchOptions } from "../utils/types";
 import { createCRUDHooks } from "../utils/crud-hooks";
-import { useToast } from "@ikseer/ui/components/ui/use-toast";
+import type { SearchOptions } from "../utils/types";
 
 export const imagesHooks = createCRUDHooks("images", clientAPI.products.images);
 
@@ -67,6 +67,13 @@ export const useDeleteProductById = (id: string) => {
 	});
 };
 
+export function useGetWishList() {
+	return useQuery({
+		queryKey: ["get-wishlist"],
+		queryFn: clientAPI.products.getWishList,
+	});
+}
+
 export function useAddToWishList() {
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
@@ -74,7 +81,7 @@ export function useAddToWishList() {
 		mutationFn: clientAPI.products.addToWishList,
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ["product-get"],
+				queryKey: ["get-wishlist"],
 			});
 			toast({
 				variant: "success",
@@ -92,12 +99,17 @@ export function useAddToWishList() {
 
 export function useRemoveFromWishList() {
 	const { toast } = useToast();
+	const queryClient = useQueryClient();
+
 	return useMutation({
 		mutationFn: clientAPI.products.removeFromWishList,
 		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ["get-wishlist"],
+			});
 			toast({
 				variant: "success",
-				title: "added to wishlist",
+				title: "removed from wishlist",
 			});
 		},
 		onError: () => {

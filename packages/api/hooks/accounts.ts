@@ -165,7 +165,6 @@ export function useResetPassword({ onSuccess }: { onSuccess?: () => void }) {
 
 export function useGetMe() {
 	const profileId = ProfileIdCookie.get();
-	console.log(profileId, "profileId");
 	const userType = UserTypeCookie.get();
 	if (!profileId || !userType) return;
 	if (userType === "doctor") return useGetDoctor(profileId);

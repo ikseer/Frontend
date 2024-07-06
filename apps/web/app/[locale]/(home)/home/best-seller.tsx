@@ -11,8 +11,8 @@ export default function BestSeller() {
 		},
 		filters: [
 			{
-				id: "top_sales",
-				value: true,
+				id: "number_of_sales__gte",
+				value: 200,
 			},
 		],
 	});

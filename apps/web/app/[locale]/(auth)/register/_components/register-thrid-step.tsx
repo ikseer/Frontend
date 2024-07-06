@@ -36,7 +36,6 @@ export function RegisterThridStep() {
 		<form
 			className="flex flex-col items-center justify-center py-10"
 			onSubmit={handleSubmit((data) => {
-				console.log(data, data.phone, "sended data");
 				mutate(data.phone);
 			})}
 		>

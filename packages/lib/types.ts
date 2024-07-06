@@ -59,6 +59,7 @@ export interface HomeProduct {
 	discount: ProductDiscount;
 	review: number;
 	stock: number;
+	number_of_sales: number;
 }
 
 export interface Product extends Entity {
@@ -163,4 +164,19 @@ export interface Pharmacy extends Entity {
 	latitude: string | null;
 	/** Decimal number */
 	longitude: string | null;
+}
+
+export interface DiscountProduct {
+	active: boolean;
+	after_price: number;
+	before_price: number;
+	created_at: string;
+	discount_amount: string;
+	discount_type: string;
+	end_date: string;
+	id: string;
+	image: string;
+	product: string;
+	start_date: string;
+	updated_at: string;
 }

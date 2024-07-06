@@ -85,7 +85,6 @@ export default function useCreateOrder(onSuccess: (id: string) => void) {
 		mutationKey: ["create-order"],
 		mutationFn: clientAPI.orders.createOrder,
 		onSuccess: (data) => {
-			console.log(data);
 			onSuccess?.(data.id);
 			toast({
 				title: "Order created",
