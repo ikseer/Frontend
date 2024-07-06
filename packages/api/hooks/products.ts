@@ -9,7 +9,17 @@ import { clientAPI } from "../utils/api.client";
 import { createCRUDHooks } from "../utils/crud-hooks";
 import type { SearchOptions } from "../utils/types";
 
+export const productsHooks = createCRUDHooks(
+	"products",
+	clientAPI.products.products,
+);
+
 export const imagesHooks = createCRUDHooks("images", clientAPI.products.images);
+
+export const categoriesHooks = createCRUDHooks(
+	"categories",
+	clientAPI.products.categories,
+);
 
 export const couponsHooks = createCRUDHooks(
 	"coupons",

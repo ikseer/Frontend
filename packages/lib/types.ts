@@ -15,7 +15,7 @@ export interface PaginationResult<Data> {
 }
 
 export interface User extends Entity {
-	/** uri of the image */
+	/** URI of the image */
 	image: string | null;
 	first_name: string;
 	last_name: string;
@@ -28,7 +28,7 @@ export interface User extends Entity {
 	is_active: boolean;
 }
 
-export type UserType = "patient" | "doctor" | "admin";
+export type UserType = "patient" | "doctor" | "employee";
 
 export interface Patient extends User {
 	timezone: string;
@@ -126,6 +126,12 @@ export interface ProductCoupon extends Entity {
 	usage_count: number;
 	/** float */
 	minimum_purchase_amount: string | null;
+}
+
+export interface ProductCategory extends Entity {
+	name: string;
+	/** URI of the image */
+	image: string | null;
 }
 
 export interface Cart extends Entity {

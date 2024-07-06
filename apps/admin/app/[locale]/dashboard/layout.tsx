@@ -17,7 +17,15 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { Building, Gauge, Pill, Stethoscope, Ticket, User } from "lucide-react";
+import {
+	Building,
+	Gauge,
+	Pill,
+	Stethoscope,
+	Ticket,
+	User,
+	Users2,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LangSwitch from "../_components/lang-switch";
@@ -103,6 +111,11 @@ export default function CollapseDesktop({
 							label={t("doctors")}
 						/>
 					)}
+					<MyNavLink
+						href={Routes.users()}
+						leftSection={<Users2 />}
+						label={"Users"}
+					/>
 					<MyNavLink
 						href={Routes.coupons()}
 						leftSection={<Ticket />}

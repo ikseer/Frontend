@@ -1,8 +1,15 @@
 import { ProfileIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
-import { toast, useToast } from "@ikseer/ui/components/ui/use-toast";
+import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clientAPI } from "../utils/api.client";
 import { setSession } from "../utils/session.client";
+import { createCRUDHooks } from "../utils/crud-hooks";
+
+export const usersHooks = createCRUDHooks("users", clientAPI.accounts.users);
+export const doctorsHooks = createCRUDHooks(
+	"doctors",
+	clientAPI.accounts.doctors,
+);
 
 // --------------------------
 // Authentication
@@ -167,19 +174,8 @@ export function useGetMe() {
 	const profileId = ProfileIdCookie.get();
 	const userType = UserTypeCookie.get();
 	if (!profileId || !userType) return;
-	if (userType === "doctor") return useGetDoctor(profileId);
+	if (userType === "doctor") return doctorsHooks.useGetById(profileId);
 	if (userType === "patient") return useGetPatient(profileId);
-}
-export function useDeleteMe({
-	onSuccess,
-	method,
-}: { onSuccess?: () => void; method: "hard" | "soft" }) {
-	const userId = ProfileIdCookie.get();
-	const userType = UserTypeCookie.get();
-	if (!userId || !userType) return;
-	if (userType === "doctor") return useDeleteDoctor({ onSuccess, method });
-	if (userType === "patient")
-		return useDeletePatient(userId, { onSuccess }, method);
 }
 
 // --------------------------
@@ -227,81 +223,6 @@ export function useDeletePatient(
 	const { toast } = useToast();
 	return useMutation({
 		mutationFn: () => clientAPI.accounts.deletePatient(id, method),
-		onSuccess: () => {
-			onSuccess?.();
-			toast({
-				title: "Account deleted",
-				variant: "success",
-			});
-		},
-		onError: () => {
-			toast({
-				title: "Can't delete account",
-				variant: "error",
-			});
-		},
-	});
-}
-
-// --------------------------
-// Doctor
-// --------------------------
-
-export function useGetDoctor(id: string) {
-	return useQuery({
-		queryKey: ["doctor", id],
-		queryFn: () => clientAPI.accounts.getDoctor(id),
-	});
-}
-
-export function useCreateDoctor({
-	onSuccess,
-}: {
-	onSuccess?: (
-		data: Awaited<ReturnType<typeof clientAPI.accounts.createDoctor>>,
-	) => void;
-} = {}) {
-	const queryClient = useQueryClient();
-	return useMutation({
-		mutationFn: clientAPI.accounts.createDoctor,
-		onSuccess(data) {
-			onSuccess?.(data);
-			queryClient.invalidateQueries({
-				queryKey: ["deleted-doctors"],
-			});
-			queryClient.invalidateQueries({
-				queryKey: ["doctors"],
-			});
-		},
-	});
-}
-
-export function useUpdateDoctor() {
-	return useMutation({
-		mutationFn: clientAPI.accounts.updateDoctor,
-		onSuccess() {
-			toast({
-				title: "Profile updated",
-				variant: "success",
-			});
-		},
-		onError() {
-			toast({
-				title: "Can't update profile",
-				variant: "error",
-			});
-		},
-	});
-}
-
-export function useDeleteDoctor({
-	onSuccess,
-	method,
-}: { onSuccess?: () => void; method?: "hard" | "soft" } = {}) {
-	const userId = ProfileIdCookie.get();
-
-	return useMutation({
-		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string, method),
 		onSuccess: () => {
 			onSuccess?.();
 			toast({

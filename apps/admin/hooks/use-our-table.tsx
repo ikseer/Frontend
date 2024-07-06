@@ -113,9 +113,12 @@ export default function useOurTable<TData extends MRT_RowData>(
 					"contains",
 				]),
 			),
-		); //default to "contains" for all columns
+		); // default to "contains" for all columns
+
 	const [globalFilter, setGlobalFilter] = useState("");
+
 	const [sorting, setSorting] = useState<MRT_SortingState>([]);
+
 	const [pagination, setPagination] = useState<MRT_PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
