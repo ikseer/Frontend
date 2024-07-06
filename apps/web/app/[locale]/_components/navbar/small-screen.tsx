@@ -117,6 +117,7 @@ function SiteMap() {
 				<NavLink href="/products">Products</NavLink>
 				<NavLink href="/best-sellers">Best seller</NavLink>
 				<NavLink href="/discounts">Discount</NavLink>
+				<NavLink href="/pharmacies">pharmacies</NavLink>
 			</div>
 		</div>
 	);

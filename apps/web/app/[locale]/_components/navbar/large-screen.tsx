@@ -2,7 +2,7 @@
 
 import { Link, usePathname } from "@/navigation";
 import { useGetMe } from "@ikseer/api/hooks/accounts";
-import { setSession, useCurrentUser } from "@ikseer/api/utils/session.client";
+import { setSession } from "@ikseer/api/utils/session.client";
 import { cn, getAvatarLink } from "@ikseer/lib/utils";
 import {
 	DropdownMenu,
@@ -28,8 +28,9 @@ import { NavLink } from "./small-screen";
 import { SwitchTheme } from "./switch-theme";
 
 export function LargeScreenNavbar() {
-	const session = useCurrentUser();
+	// const session = useCurrentUser();
 	const currentPath = usePathname();
+	const me = useGetMe();
 
 	return (
 		<>
@@ -84,10 +85,11 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 							<NavLink href="/products">Products</NavLink>
 							<NavLink href="/best-sellers">Best sellers</NavLink>
 							<NavLink href="/discounts">Discount</NavLink>
+							<NavLink href="/pharmacies">Pharmacies</NavLink>
 							<div className="gap-x-2 sm:ms-auto flex items-center">
 								<LangSwitch />
 								<SwitchTheme />
-								{session ? (
+								{me?.data ? (
 									<>
 										<UserDropdown />
 									</>
@@ -121,7 +123,7 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 					</div>
 				</nav>
 			</header>
-			<div className="nav" />
+			<div className="nav hidden md:block" />
 		</>
 	);
 }

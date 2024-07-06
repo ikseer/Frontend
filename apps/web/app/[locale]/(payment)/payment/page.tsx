@@ -35,7 +35,7 @@ export default function Payment() {
 
 	const createOrder = useCreateOrder((order) => {
 		if (payNow) createPaymobOrderId.mutate(order);
-		else router.push("/orders");
+		router.push("/orders");
 	});
 
 	const form = useZodForm({
