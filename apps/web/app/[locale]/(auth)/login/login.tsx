@@ -35,14 +35,12 @@ export default function Login() {
 	const onSuccess = (
 		data: Awaited<ReturnType<typeof clientAPI.accounts.login>>,
 	) => {
-		console.log(data, "login data");
 		const {
 			access,
 			refresh,
 			user: { id, user_type },
 			profile_id,
 		} = data;
-		console.log("user id", id);
 		setSession({
 			accessToken: access,
 			refreshToken: refresh,

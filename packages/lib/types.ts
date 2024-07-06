@@ -127,6 +127,12 @@ export interface ProductCoupon extends Entity {
 	minimum_purchase_amount: string | null;
 }
 
+export interface ProductCategory extends Entity {
+	name: string;
+	/** URI of the image */
+	image: string | null;
+}
+
 export interface Cart extends Entity {
 	items: CartItems[];
 	user: string;

@@ -178,14 +178,6 @@ export function useGetMe() {
 	if (userType === "patient") return useGetPatient(profileId);
 }
 
-export function useDeleteMe({ onSuccess }: { onSuccess?: () => void }) {
-	const userId = ProfileIdCookie.get();
-	const userType = UserTypeCookie.get();
-	if (!userId || !userType) return;
-	if (userType === "doctor") return doctorsHooks.useDelete({ onSuccess });
-	if (userType === "patient") return useDeletePatient(userId, { onSuccess });
-}
-
 // --------------------------
 // Patient
 // --------------------------

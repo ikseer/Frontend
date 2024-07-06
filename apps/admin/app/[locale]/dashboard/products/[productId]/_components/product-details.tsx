@@ -1,8 +1,16 @@
+import ProductDetailsForm from "@/components/forms/product-details";
+import { productsHooks } from "@ikseer/api/hooks/products";
+import type { productDetailsSchema } from "@ikseer/api/services/products";
 import type { Product } from "@ikseer/lib/types";
 import { Button, Flex, Table, Text, Title } from "@mantine/core";
 import { Edit2 } from "lucide-react";
+import { useState } from "react";
+import type { z } from "zod";
+import { revalidateProduct } from "./utils.server";
 
 export function ProductDetails({ product }: { product: Product }) {
+	const [isEditing, setIsEditing] = useState(false);
+	const update = productsHooks.useUpdate();
 	return (
 		<>
 			<Flex justify={"space-between"} gap="md">
@@ -10,7 +18,7 @@ export function ProductDetails({ product }: { product: Product }) {
 				<Button
 					variant="default"
 					leftSection={<Edit2 />}
-					onClick={() => alert("not implemented yet")}
+					onClick={() => setIsEditing(true)}
 				>
 					Edit
 				</Button>
@@ -103,6 +111,31 @@ export function ProductDetails({ product }: { product: Product }) {
 					</Table.Tr>
 				</Table.Tbody>
 			</Table>
+			<ProductDetailsForm
+				opened={isEditing}
+				initialValues={{
+					name: product.name,
+					generic_name: product.generic_name,
+					short_description: product.short_description,
+					description: product.description,
+					strength: product.strength,
+					price: product.price || 0,
+					stock: product.stock,
+					pharmacy: product.pharmacy,
+					category: product.category,
+					form: product.form as z.infer<typeof productDetailsSchema>["form"],
+					code: product.code,
+					factory_company: product.factory_company,
+				}}
+				onSuccess={async () => {
+					await revalidateProduct(product.id);
+					setIsEditing(false);
+				}}
+				onClose={() => setIsEditing(false)}
+				onSubmit={(data) => {
+					return update.mutateAsync({ id: product.id, ...data });
+				}}
+			/>
 		</>
 	);
 }

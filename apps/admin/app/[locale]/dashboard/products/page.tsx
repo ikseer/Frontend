@@ -1,20 +1,25 @@
 "use client";
 
-import { Button, Input, Title } from "@mantine/core";
-import { Search } from "lucide-react";
-import { useInfiniteProducts } from "@ikseer/api/hooks/products";
+import { Button, Flex, Input, Title } from "@mantine/core";
+import { Plus, Search } from "lucide-react";
+import { productsHooks, useInfiniteProducts } from "@ikseer/api/hooks/products";
 import { SkeletonCard } from "@ikseer/ui/components/card-skeleton";
 import type { HomeProduct } from "@ikseer/lib/types";
 import { ProductCard } from "@/components/product-card";
 import { useCallback, useState } from "react";
 import { debounce } from "lodash";
+import ProductDetailsForm from "@/components/forms/product-details";
+import { revalidateProducts } from "./[productId]/_components/utils.server";
 
 export default function ProductsPage() {
+	const [isCreating, setIsCreating] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
 	const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isPending } =
 		useInfiniteProducts({
 			filters: [{ id: "name", operator: "contains", value: searchQuery }],
 		});
+
+	const create = productsHooks.useCreate();
 
 	const handleSearchChange = useCallback(
 		debounce((q: string) => {
@@ -25,9 +30,26 @@ export default function ProductsPage() {
 
 	return (
 		<div>
-			<Title mb="md" component={"h1"}>
-				Products
-			</Title>
+			<Flex justify={"space-between"}>
+				<Title mb="md" component={"h1"}>
+					Products
+				</Title>
+				<Button leftSection={<Plus />} onClick={() => setIsCreating(true)}>
+					Create product
+				</Button>
+			</Flex>
+			<ProductDetailsForm
+				opened={isCreating}
+				onSuccess={async () => {
+					await revalidateProducts();
+					setIsCreating(false);
+				}}
+				onClose={() => setIsCreating(false)}
+				onSubmit={(data) => {
+					console.log(data);
+					return create.mutateAsync(data);
+				}}
+			/>
 			<Input
 				mb="md"
 				leftSection={<Search />}

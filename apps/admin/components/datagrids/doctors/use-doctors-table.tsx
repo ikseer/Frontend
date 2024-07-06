@@ -10,6 +10,7 @@ import { useMemo } from "react";
 import useOurTable, {
 	type UseTableOptions,
 } from "../../../hooks/use-our-table";
+import NA from "@ikseer/ui/components/NA";
 
 export default function useDoctorsTable({
 	data,
@@ -38,10 +39,16 @@ export default function useDoctorsTable({
 			{
 				accessorKey: "first_name",
 				header: t("first-name"),
+				Cell: ({ cell }) => {
+					return <NA>{cell.getValue() as string}</NA>;
+				},
 			},
 			{
 				accessorKey: "last_name",
 				header: t("last-name"),
+				Cell: ({ cell }) => {
+					return <NA>{cell.getValue() as string}</NA>;
+				},
 			},
 			{
 				accessorKey: "specialization",

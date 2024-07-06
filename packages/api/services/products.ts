@@ -2,6 +2,7 @@ import type {
 	HomeProduct,
 	PaginationResult,
 	Product,
+	ProductCategory,
 	ProductCoupon,
 	ProductDiscount,
 	ProductImage,
@@ -12,16 +13,21 @@ import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
 import { z } from "zod";
 import { CRUD_API } from "../utils/crud-api";
+import { zFile } from "@ikseer/lib/utils";
 
 export class ProductsAPI {
 	images: CRUD_API<ProductImage>;
 	coupons: CRUD_API<ProductCoupon, z.infer<typeof couponSchema>>;
 	discounts: CRUD_API<ProductDiscount>;
+	products: CRUD_API<Product, z.infer<typeof productDetailsSchema>>;
+	categories: CRUD_API<ProductCategory, z.infer<typeof categorySchema>>;
 
 	constructor(private http: AxiosInstance) {
 		this.images = new CRUD_API("/products/product_image/", http, true);
 		this.coupons = new CRUD_API("/products/coupon/", http);
 		this.discounts = new CRUD_API("/products/discount/", http);
+		this.products = new CRUD_API("/products/product/", http);
+		this.categories = new CRUD_API("/products/category/", http);
 	}
 
 	// ------------------------------------------------
@@ -84,14 +90,22 @@ export class ProductsAPI {
 }
 
 export const productDetailsSchema = z.object({
+	code: z.string().min(1),
 	name: z.string().min(1),
+	generic_name: z.string().min(1),
 	description: z.string().min(1),
+	short_description: z.string().min(1),
+	strength: z.string().min(1),
+	factory_company: z.string().min(1),
+	form: z
+		.literal("tablet")
+		.or(z.literal("capsule"))
+		.or(z.literal("liquid"))
+		.or(z.literal("N/A")),
 	price: z.number().min(0),
 	stock: z.number().min(0),
-	images: z
-		.array(z.object({ id: z.string(), url: z.string() }))
-		.min(1)
-		.max(5),
+	category: z.string().uuid(),
+	pharmacy: z.string().uuid(),
 });
 
 export const couponSchema = z.object({
@@ -103,4 +117,9 @@ export const couponSchema = z.object({
 	minimum_purchase_amount: z.coerce.number().min(0).optional().nullable(),
 	code: z.string().min(1),
 	active: z.boolean(),
+});
+
+export const categorySchema = z.object({
+	name: z.string().min(1),
+	image: zFile(),
 });

@@ -9,6 +9,7 @@ import { useMemo } from "react";
 import useOurTable, {
 	type UseTableOptions,
 } from "../../../hooks/use-our-table";
+import NA from "@ikseer/ui/components/NA";
 
 export default function useUsersTable({
 	data,
@@ -36,10 +37,16 @@ export default function useUsersTable({
 			{
 				accessorKey: "first_name",
 				header: "First name",
+				Cell: ({ cell }) => {
+					return <NA>{cell.getValue() as string}</NA>;
+				},
 			},
 			{
 				accessorKey: "last_name",
 				header: "Last name",
+				Cell: ({ cell }) => {
+					return <NA>{cell.getValue() as string}</NA>;
+				},
 			},
 			{
 				accessorKey: "user_type",

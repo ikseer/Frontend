@@ -9,7 +9,17 @@ import type { SearchOptions } from "../utils/types";
 import { createCRUDHooks } from "../utils/crud-hooks";
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
 
+export const productsHooks = createCRUDHooks(
+	"products",
+	clientAPI.products.products,
+);
+
 export const imagesHooks = createCRUDHooks("images", clientAPI.products.images);
+
+export const categoriesHooks = createCRUDHooks(
+	"categories",
+	clientAPI.products.categories,
+);
 
 export const couponsHooks = createCRUDHooks(
 	"coupons",
