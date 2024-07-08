@@ -168,38 +168,3 @@ Supporting Arabic, a right-to-left (RTL) language, required careful handling of 
         loadPreline();
       }, [path]);
       ```
-
-## Eslint and Prettier: Best Friends or Bitter Enemies?
-
-- Eslint and Prettier are both incredibly popular tools in the JavaScript world, each serving a distinct purpose. However, using them together can sometimes lead to conflicts and headaches.
-
-### Eslint
-
-- **Purpose:** Static code analysis tool that identifies stylistic and potential coding errors in your code.
-- **Think of it as** A strict grammar checker and editor who points out mistakes and suggests improvements.
-
-[https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRpbYPn4WJFVFQGJrIejHnlYehSYyTXdvPuEgD0mrIq7TI2ggSWmyKQzIgXbKdshoHWUvJF4V5W5eWxPUQ-vWA3U7bBm8eWGZc52goT](https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRpbYPn4WJFVFQGJrIejHnlYehSYyTXdvPuEgD0mrIq7TI2ggSWmyKQzIgXbKdshoHWUvJF4V5W5eWxPUQ-vWA3U7bBm8eWGZc52goT)
-
-### Prettier
-
-- **Purpose:** Code formatter that automatically formats your code according to a consistent style guide (usually based on an established configuration file).
-- **Think of it as** A meticulous housekeeper who tidies up your code, making it neat and uniform.
-
-[https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQ3ceqtHHVn_CRtwUdMGGP3OaVCTR5tkgfp0o8JNG-N27mPRHgGzR-tL0-2IsLW68KbCRLvphiYc0T6J7rG1qJCxarv5DA](https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQ3ceqtHHVn_CRtwUdMGGP3OaVCTR5tkgfp0o8JNG-N27mPRHgGzR-tL0-2IsLW68KbCRLvphiYc0T6J7rG1qJCxarv5DA)
-
-### Common Problems with Using Eslint and Prettier Together
-
-- **Conflicting rules:** Both tools have overlapping rules (e.g., indentation, spacing) that can lead to disagreements and formatting inconsistencies. This can be confusing and frustrating for developers.
-- **Redundancy:** If you configure both tools to handle the same rule, one will override the other, making one of them redundant. This can result in unnecessary configurations and wasted effort.
-- **Unexpected formatting:** Sometimes, Prettier's automatic formatting might conflict with Eslint's error messages, causing confusing situations and difficulty in understanding the actual errors.
-
-### Tips for Smooth Sailing with Eslint and Prettier
-
-- **Prioritize:** Decide which tool takes precedence for specific rules. Often, Prettier handles formatting while Eslint focuses on stylistic and error checks.
-- **Configure carefully:** Create a shared configuration file for both tools to ensure consistency and avoid conflicts.
-- **Use plugins:** Utilize dedicated plugins like `eslint-plugin-prettier` to integrate both tools seamlessly and handle potential conflicts gracefully.
-- **Lint after formatting:** Ensure you run Eslint after Prettier to pick up any remaining linting issues caused by Prettier's formatting changes.
-
-### Conclusion
-
-- Eslint and Prettier, when used in harmony, become a formidable duo that elevates your code quality and developer experience. However, navigating their potential conflicts requires careful configuration and prioritization. By utilizing shared configurations, dedicated plugins, and a well-defined order of operations, you can unlock the combined benefits of linting and formatting, ensuring clean, consistent, and error-free code with minimal friction. So, embrace their strengths, manage their quirks, and enjoy the peace of mind that comes from knowing your code is in good hands. Remember, with the right approach, Eslint and Prettier can be your best friends on the path to coding excellence.
