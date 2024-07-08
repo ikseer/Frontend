@@ -48,7 +48,6 @@ export default function ProductsPage() {
 				}}
 				onClose={() => setIsCreating(false)}
 				onSubmit={(data) => {
-					console.log(data);
 					return create.mutateAsync(data);
 				}}
 			/>
