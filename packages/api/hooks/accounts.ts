@@ -187,7 +187,7 @@ export function useDeleteMe({
 // --------------------------
 export function useGetPatients() {
 	return useQuery({
-		queryKey: ["doctors"],
+		queryKey: ["patients"],
 		queryFn: () => clientAPI.accounts.getPatients(),
 	});
 }

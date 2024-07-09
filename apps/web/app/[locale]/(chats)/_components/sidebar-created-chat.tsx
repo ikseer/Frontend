@@ -5,6 +5,7 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 import { UserTypeCookie } from "@ikseer/lib/cookies.client";
 import type { Chat } from "@ikseer/lib/types";
+import { getAvatarLink } from "@ikseer/lib/utils";
 
 export function CreatedChatSidebar({
 	chatedWithMe,
@@ -26,7 +27,7 @@ export function CreatedChatSidebar({
 						onClick={() => setChatId(chat?.id)}
 					>
 						<Avatar
-							src={him?.image || "https://i.suar.me/oqmy7/m"}
+							src={him?.image ? him?.image : getAvatarLink(him)}
 							name={him?.first_name}
 							status="available"
 						/>
