@@ -3,7 +3,9 @@ import Radio from "@/components/radio";
 import { SelectBuilder } from "@/components/select-builder";
 import Spinner from "@/components/spinner";
 import { useZodForm } from "@/lib/use-zod-form";
-import { useGetMe, useUpdatePatient } from "@ikseer/api/hooks/accounts";
+import { useGetMe, useUpdateMe } from "@ikseer/api/hooks/accounts";
+import { doctorSchema } from "@ikseer/api/services/accounts";
+import { UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Dialog,
@@ -32,14 +34,15 @@ const Patientschema = z.object({
 
 export function BasicSettingsDialog() {
 	const [isOpen, setIsOpen] = useState(false);
+	const userType = UserTypeCookie.get();
 	const me = useGetMe();
 	const onSuccess = () => {
 		setIsOpen(false);
 	};
-	const updateProfile = useUpdatePatient({ onSuccess });
+	const updateProfile = useUpdateMe({ onSuccess });
 	const data = me?.data;
 	const form = useZodForm({
-		schema: Patientschema,
+		schema: userType === "doctor" ? doctorSchema : Patientschema,
 		defaultValues: data,
 	});
 
@@ -65,9 +68,13 @@ export function BasicSettingsDialog() {
 						onSubmit={form.handleSubmit((data) => {
 							const newData = {
 								...data,
-								date_of_birth: new Date(data.date_of_birth).toISOString(),
+								date_of_birth:
+									data?.date_of_birth &&
+									new Date(data?.date_of_birth).toISOString(),
 								id: userId,
 							};
+							console.log(newData, "new data");
+							//@ts-ignore
 							updateProfile.mutate(newData);
 						})}
 					>
@@ -122,6 +129,17 @@ export function BasicSettingsDialog() {
 								<label htmlFor="female">Female</label>
 							</div>
 						</div>
+						{userType === "doctor" && (
+							<div className="grid items-center grid-cols-3 gap-4">
+								<Label htmlFor="specialization">Date of birth</Label>
+								<div className="col-span-2">
+									<FormInput
+										name="specialization"
+										className="col-span-3 rounded-md"
+									/>
+								</div>
+							</div>
+						)}
 						<DialogFooter>
 							<section className="space-x-4 space-y-4">
 								<Button

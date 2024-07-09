@@ -198,14 +198,14 @@ export class AccountsAPI {
 	};
 
 	updateDoctor = async ({
-		id,
-		newData,
+		...data
 	}: {
 		id: string;
 		newData: z.infer<typeof doctorSchema>;
 	}) => {
+		console.log(data, "data");
 		return await this.http
-			.post(`/accounts/doctor/${id}/`, newData)
+			.patch(`/accounts/doctor/${data.id}/`, data)
 			.then((res) => res.data);
 	};
 
@@ -260,6 +260,7 @@ export const doctorSchema = z.object({
 		z.string().optional(),
 	),
 	bio: z.preprocess((val) => val || undefined, z.string().optional()),
+	timezone: z.string().optional(),
 	// address: z
 	// 	.object({
 	// 		street: z.string().optional(),
@@ -276,5 +277,8 @@ export const doctorSchema = z.object({
 	// 	})
 	// 	.optional(),
 	/** date in ISO format */
-	date_of_birth: z.preprocess((val) => val || undefined, z.date().optional()),
+	date_of_birth: z.union([
+		z.preprocess((val) => val || undefined, z.date().optional()),
+		z.string().optional(),
+	]),
 });

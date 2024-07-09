@@ -182,6 +182,14 @@ export function useDeleteMe({
 		return useDeletePatient(userId, { onSuccess }, method);
 }
 
+export function useUpdateMe({ onSuccess }: { onSuccess?: () => void }) {
+	const userId = ProfileIdCookie.get();
+	const userType = UserTypeCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useUpdateDoctor({ onSuccess });
+	if (userType === "patient") return useUpdatePatient({ onSuccess });
+}
+
 // --------------------------
 // Patient
 // --------------------------
@@ -288,10 +296,15 @@ export function useCreateDoctor({
 	});
 }
 
-export function useUpdateDoctor() {
+export function useUpdateDoctor({ onSuccess }: { onSuccess?: () => void }) {
+	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: clientAPI.accounts.updateDoctor,
 		onSuccess() {
+			queryClient.invalidateQueries({
+				queryKey: ["doctor", ProfileIdCookie.get()],
+			});
+			onSuccess?.();
 			toast({
 				title: "Profile updated",
 				variant: "success",
