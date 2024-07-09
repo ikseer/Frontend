@@ -329,3 +329,45 @@ export function useDeleteDoctor({
 		},
 	});
 }
+
+export function useUploadPatientImage() {
+	const queryClient = useQueryClient();
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.accounts.updatePatientImage,
+		onSuccess: () => {
+			toast({
+				title: "your profile image is updated",
+				variant: "success",
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["patient", ProfileIdCookie.get()],
+			});
+		},
+	});
+}
+
+export function useUploadDoctorImage() {
+	const queryClient = useQueryClient();
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.accounts.updateDoctorImage,
+		onSuccess: () => {
+			toast({
+				title: "your profile image is updated",
+				variant: "success",
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["doctor", ProfileIdCookie.get()],
+			});
+		},
+	});
+}
+
+export function useUpdateProfileImage() {
+	const userType = UserTypeCookie.get();
+	const userId = ProfileIdCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useUploadDoctorImage();
+	if (userType === "patient") return useUploadPatientImage();
+}

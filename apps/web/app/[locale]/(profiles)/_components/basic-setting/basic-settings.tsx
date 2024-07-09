@@ -1,16 +1,35 @@
 "use client";
 import NotFound from "@/app/[locale]/not-found";
 import NA from "@/components/NA";
-import { useGetPatient } from "@ikseer/api/hooks/accounts";
-import { ProfileIdCookie } from "@ikseer/lib/cookies.client";
-import { cn } from "@ikseer/lib/utils";
+import UserImage from "@app/(profiles)/_components/basic-setting/user-image";
+import { useGetDoctor, useGetPatient } from "@ikseer/api/hooks/accounts";
+import { ProfileIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
+import type { Doctor, Patient } from "@ikseer/lib/types";
+import { cn, getAvatarLink } from "@ikseer/lib/utils";
 import { FullScreenSpinnerWithNavBar } from "@ikseer/ui/components/ui/loading-spinner";
 import SettingContainer from "../../user/[userId]/_components/setting";
 import { BasicSettingsDialog } from "./basic-settings-diaglog";
 
 export default function BasicSettings() {
 	const userId = ProfileIdCookie.get();
-	const { data, isPending } = useGetPatient(userId as string);
+	const userType = UserTypeCookie.get();
+	let data: Patient | Doctor;
+	let isPending: boolean;
+	const { data: patientInfo, isPending: patientIsPending } = useGetPatient(
+		userId as string,
+	);
+	const { data: doctorInfo, isPending: doctorIsPending } = useGetDoctor(
+		userId as string,
+	);
+
+	if (userType === "doctor") {
+		data = doctorInfo as Doctor;
+		isPending = doctorIsPending;
+	} else {
+		data = patientInfo as Patient;
+		isPending = patientIsPending;
+	}
+
 	if (isPending || typeof window === "undefined")
 		return <FullScreenSpinnerWithNavBar />;
 	if (!data) return <NotFound />;
@@ -19,13 +38,16 @@ export default function BasicSettings() {
 		const dateTime = new Date(date);
 		return dateTime.toDateString();
 	};
+
 	return (
 		<main>
 			<SettingContainer
 				mainText="Basic Setting"
 				secondaryText="Edit your basic details like full name."
 			/>
-
+			<UserImage
+				src={userInfo.image ? userInfo.image : getAvatarLink(userInfo)}
+			/>
 			<section className="space-y-6">
 				<DisplaySection>
 					<section className="col-span-1">

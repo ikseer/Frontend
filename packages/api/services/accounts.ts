@@ -215,6 +215,21 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
+	updatePatientImage = async (data: {
+		id: string;
+		data: { image: string };
+	}) => {
+		return await this.http
+			.patchForm(`/accounts/patient/${data.id}/`, data.data)
+			.then((res) => res.data);
+	};
+
+	updateDoctorImage = async (data: { id: string; data: { image: string } }) => {
+		return await this.http
+			.patchForm(`/accounts/doctor/${data.id}/`, data.data)
+			.then((res) => res.data);
+	};
+
 	restoreDoctor = async (id: string) => {
 		return await this.http
 			.post(`/accounts/deleted-doctor/restore/${id}/`)

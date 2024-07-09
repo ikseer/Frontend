@@ -1,69 +1,64 @@
-// "use client";
-// import { BACKEND_URL } from "@ikseer/lib/constants";
-// import { Button } from "@ikseer/ui/components/ui/button";
-// import Image from "next/image";
-// import { useRef, useState } from "react";
+"use client";
+import Spinner from "@/components/spinner";
+import { useUpdateProfileImage } from "@ikseer/api/hooks/accounts";
+import { ProfileIdCookie } from "@ikseer/lib/cookies.client";
+import { Edit3 } from "lucide-react";
+import type React from "react";
+import { useRef } from "react";
 
-// type UserImageRefType = React.RefObject<HTMLInputElement>;
-// export default function UserImage({ image }: { image: string }) {
-// 	const { mutate, isSuccess } = useUpdateProfileImage();
+export default function UserImage({ src }: { src: string }) {
+	const updateImage = useUpdateProfileImage();
+	const fileInputRef = useRef<HTMLInputElement>(null);
+	const userId = ProfileIdCookie.get();
 
-// 	const handleUpdateImage = (uploadImageRef: UserImageRefType) => {
-// 		if (uploadImageRef?.current) uploadImageRef.current.click();
-// 	};
-// 	const handelUpdloadImage = (
-// 		e: React.ChangeEvent<HTMLInputElement>,
-// 		setProfileImage: React.Dispatch<React.SetStateAction<File | null>>,
-// 	) => {
-// 		if (e?.target.files) {
-// 			mutate(e.target.files[0]);
-// 			if (isSuccess) setProfileImage(e.target.files[0]);
-// 		}
-// 	};
-// 	const handleRemoveImage = (
-// 		setProfileImage: React.Dispatch<React.SetStateAction<File | null>>,
-// 	) => {
-// 		setProfileImage(null);
-// 	};
+	const handleImageChange = async (
+		event: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		if (event?.target?.files?.[0]) {
+			const file = event.target.files[0];
+			//@ts-ignore
+			updateImage?.mutate({ id: userId, data: { image: file } });
+		}
+	};
 
-// 	const [profileImage, setProfileImage] = useState<File | null>(null);
+	const handleEditClick = () => {
+		if (fileInputRef.current) {
+			fileInputRef.current.click();
+		}
+	};
 
-// 	const uploadImageRef = useRef<HTMLInputElement>(null);
-// 	return (
-// 		<div className="flex flex-col items-center justify-center">
-// 			<Image
-// 				className="object-cover w-20 h-20 rounded-full"
-// 				src={
-// 					profileImage
-// 						? URL.createObjectURL(profileImage)
-// 						: `${BACKEND_URL}/${image}`
-// 				}
-// 				alt="user Profile photo"
-// 				width={500}
-// 				height={500}
-// 			/>
-// 			<p>Change Photos</p>
-// 			<div>
-// 				<input
-// 					type="file"
-// 					className="hidden"
-// 					ref={uploadImageRef}
-// 					onChange={(e) => handelUpdloadImage(e, setProfileImage)}
-// 				/>
-// 				<Button
-// 					className="mr-5"
-// 					onClick={() => handleUpdateImage(uploadImageRef)}
-// 					variant={"ghost"}
-// 				>
-// 					Upload
-// 				</Button>
-// 				<Button
-// 					onClick={() => handleRemoveImage(setProfileImage)}
-// 					variant={"ghost"}
-// 				>
-// 					Remove
-// 				</Button>
-// 			</div>
-// 		</div>
-// 	);
-// }
+	return (
+		<div className="relative  group w-fit m-auto my-7">
+			{updateImage?.isPending && (
+				<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full">
+					<Spinner />
+				</div>
+			)}
+			<img
+				src={src}
+				alt="User profile"
+				className="w-32 h-32 rounded-full object-cover mb-4"
+			/>
+			{!updateImage?.isPending && (
+				<div
+					className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hidden group-hover:flex"
+					onClick={handleEditClick}
+					onKeyDown={(e) => {
+						if (e.key === "Enter") {
+							handleEditClick();
+						}
+					}}
+				>
+					<Edit3 className="w-6 h-6 text-white" />
+				</div>
+			)}
+			<input
+				type="file"
+				accept="image/*"
+				className="hidden"
+				onChange={handleImageChange}
+				ref={fileInputRef}
+			/>
+		</div>
+	);
+}
