@@ -17,7 +17,7 @@ export default function OurPharmacies() {
 			</main>
 		);
 
-	console.log(data?.pages);
+	console.log(data?.pages[0].results);
 
 	return (
 		<main className="max-w-screen max-h-[calc(100vh-60px)]">
@@ -34,8 +34,8 @@ export default function OurPharmacies() {
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
-					{Array.isArray(data?.pages?.[0]) &&
-						data.pages?.[0].map((pharmacy) => (
+					{Array.isArray(data?.pages?.[0]?.results) &&
+						data.pages?.[0]?.results.map((pharmacy) => (
 							<Marker
 								key={pharmacy.latitude}
 								position={[

@@ -3,96 +3,36 @@ import {
 	Conversation,
 	ConversationList,
 } from "@chatscope/chat-ui-kit-react";
+import { UserTypeCookie } from "@ikseer/lib/cookies.client";
+import type { Chat } from "@ikseer/lib/types";
 
-export function CreatedChatSidebar() {
+export function CreatedChatSidebar({
+	chatedWithMe,
+	setChatId,
+}: { chatedWithMe: Chat[]; setChatId: (id: string) => void }) {
+	const userType = UserTypeCookie.get();
 	return (
 		<ConversationList>
-			<Conversation
-				name="Lilly"
-				lastSenderName="Lilly"
-				info="Yes i can do it for you"
-				style={{ justifyContent: "start" }}
-			>
-				<Avatar
-					src="https://i.suar.me/oqmy7/m"
-					name="Lilly"
-					status="available"
-				/>
-			</Conversation>
+			{chatedWithMe?.map((chat) => {
+				const him =
+					userType === "doctor" ? chat.patient_profile : chat.doctor_profile;
 
-			<Conversation
-				name="Joe"
-				lastSenderName="Joe"
-				info="Yes i can do it for you"
-			>
-				<Avatar src="https://i.suar.me/oqmy7/m" name="Joe" status="dnd" />
-			</Conversation>
-
-			<Conversation
-				name="Emily"
-				lastSenderName="Emily"
-				info="Yes i can do it for you"
-				unreadCnt={3}
-			>
-				<Avatar
-					src="https://i.suar.me/oqmy7/m"
-					name="Emily"
-					status="available"
-				/>
-			</Conversation>
-
-			<Conversation
-				name="Kai"
-				lastSenderName="Kai"
-				info="Yes i can do it for you"
-				unreadDot
-			>
-				<Avatar
-					src="https://i.suar.me/oqmy7/m"
-					name="Kai"
-					status="unavailable"
-				/>
-			</Conversation>
-
-			<Conversation
-				name="Akane"
-				lastSenderName="Akane"
-				info="Yes i can do it for you"
-			>
-				<Avatar src="https://i.suar.me/oqmy7/m" name="Akane" status="eager" />
-			</Conversation>
-
-			<Conversation
-				name="Eliot"
-				lastSenderName="Eliot"
-				info="Yes i can do it for you"
-				onClick={() => {
-					console.log("must move to this convers");
-				}}
-			>
-				<Avatar src="https://i.suar.me/oqmy7/m" name="Eliot" status="away" />
-			</Conversation>
-
-			<Conversation
-				name="Zoe"
-				lastSenderName="Zoe"
-				info="Yes i can do it for you"
-				active
-			>
-				<Avatar src="https://i.suar.me/oqmy7/m" name="Zoe" status="dnd" />
-			</Conversation>
-
-			<Conversation
-				name="Patrik"
-				lastSenderName="Patrik"
-				info="Yes i can do it for you"
-			>
-				<Avatar
-					src="https://i.suar.me/oqmy7/m"
-					name="Patrik"
-					status="invisible"
-				/>
-			</Conversation>
+				return (
+					<Conversation
+						key={chat?.id}
+						name={`${him?.first_name} ${him?.last_name}`}
+						style={{ justifyContent: "start" }}
+						info="Click to view chat"
+						onClick={() => setChatId(chat?.id)}
+					>
+						<Avatar
+							src={him?.image || "https://i.suar.me/oqmy7/m"}
+							name={him?.first_name}
+							status="available"
+						/>
+					</Conversation>
+				);
+			})}
 		</ConversationList>
 	);
 }

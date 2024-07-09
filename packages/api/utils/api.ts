@@ -3,6 +3,7 @@ import { AccountsAPI } from "../services/accounts";
 import { OrdersAPI } from "../services/orders";
 import { PharmaciesAPI } from "../services/pharmacies";
 import { ProductsAPI } from "../services/products";
+import { ChatAPI, MessageAPI } from "./../services/chat";
 
 export function getAPI(http: AxiosInstance) {
 	return {
@@ -10,5 +11,7 @@ export function getAPI(http: AxiosInstance) {
 		products: new ProductsAPI(http),
 		orders: new OrdersAPI(http),
 		pharmacies: new PharmaciesAPI(http),
+		chat: new ChatAPI(http),
+		message: new MessageAPI(http),
 	};
 }

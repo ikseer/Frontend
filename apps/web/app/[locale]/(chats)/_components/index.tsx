@@ -4,18 +4,20 @@ import { MainContainer, Sidebar } from "@chatscope/chat-ui-kit-react";
 import { useGetDoctors, useGetPatients } from "@ikseer/api/hooks/accounts";
 import { chatHooks } from "@ikseer/api/hooks/chat";
 import { UserTypeCookie } from "@ikseer/lib/cookies.client";
-import {Skeleton} from "@ikseer/ui/components/ui/skeleton"
+import type { Chat } from "@ikseer/lib/types";
+import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
 import {
 	Tabs,
 	TabsContent,
 	TabsList,
 	TabsTrigger,
 } from "@ikseer/ui/components/ui/tabs";
+import { useState } from "react";
 import CurrentOpenedChat from "./opened-chat";
 import { CreatedChatSidebar } from "./sidebar-created-chat";
 import { NewChatSidebar } from "./sidebar-new-chat";
 
-// import 
+// import
 export default function MainChatComponent() {
 	const userType = UserTypeCookie.get();
 	const doctors = useGetDoctors();
@@ -23,50 +25,47 @@ export default function MainChatComponent() {
 	const chat = chatHooks.useInifinite({
 		pagination: {
 			pageSize: Number.MAX_SAFE_INTEGER,
-			pageIndex: 0
-		}
-	})
-	console.log(doctors, patient, userType, chat);
+			pageIndex: 0,
+		},
+	});
 
-	if (!doctors || !patient  || !chat) return (
-		<section className="page-container grid w-full grid-cols-3">
-			<div className=" col-span-1 mb-4 space-y-2">
-			{[...Array(5)].map((_, i) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-<div key={i} className="gap-x-2 flex items-center">
-				<Skeleton  className="w-12 h-12 rounded-full" />
-				<Skeleton  className="w-full h-12 mr-4" />
-			</div>
-			))}
-			</div>
-		  <Skeleton className="w-full h-full col-span-2 mr-4" />
-	  </section>
-	);
-	const userChat = chat?.data?.pages?.results
-	const currentDoctors = doctors?.data?.pages?.results
-	const  currentPatients = patient?.data?.pages?.results
+	if (!doctors || !patient || !chat)
+		return (
+			<section className="page-container grid w-full grid-cols-3">
+				<div className=" col-span-1 mb-4 space-y-2">
+					{[...Array(5)].map((_, i) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<div key={i} className="gap-x-2 flex items-center">
+							<Skeleton className="w-12 h-12 rounded-full" />
+							<Skeleton className="w-full h-12 mr-4" />
+						</div>
+					))}
+				</div>
+				<Skeleton className="w-full h-full col-span-2 mr-4" />
+			</section>
+		);
+	//@ts-ignore
+	const userChat: Chat[] = chat?.data?.pages?.[0]?.results;
+	const currentDoctors = doctors?.data?.results;
+	const currentPatients = patient?.data?.results;
 
-	const chatsWithMe = () => {
+	const NotChatsYet = () => {
 		if (userType === "doctor") {
-			if (userChat) {
-				return userChat?.filter(
-					(chat) => chat?.doctor?.id === currentDoctors?.id		
-				)
-			}
-		} else if (userType === "patient") {
-			if (userChat) {
-				return userChat?.filter(chat => chat?.patient?.id === currentPatients?.id)
-			}
-	}
-	const ChatsNotCreated = () => {
-		if (userType === "doctor") {
-			return userChat.filter(chat => chat?.doctor?.id !== currentDoctors?.id && chat?.patient?.id !== currentPatients?.id)
-		} else if (userType === "patient") {
-			return userChat.filter(chat => chat?.doctor?.id !== currentDoctors?.id && chat?.patient?.id !== currentPatients?.id)
+			return currentPatients?.filter(
+				(patient) =>
+					!userChat?.map((chat) => chat?.patient).includes(patient?.id),
+			);
 		}
-	}
-	console.log(ChatsNotCreated(), chatsWithMe())
+		if (userType === "patient") {
+			return currentDoctors?.filter(
+				(doctor) => !userChat?.map((chat) => chat?.doctor).includes(doctor?.id),
+			);
+		}
+	};
 
+	const currentNotChatsYet = NotChatsYet();
+	const [chatId, setChatId] = useState("");
+	console.log(userChat);
 	return (
 		<div className="hero min-hero relative">
 			<MainContainer responsive>
@@ -81,14 +80,17 @@ export default function MainChatComponent() {
 							</TabsTrigger>
 						</TabsList>
 						<TabsContent value="createdChatSidebar">
-							<CreatedChatSidebar />
+							<CreatedChatSidebar
+								chatedWithMe={userChat}
+								setChatId={setChatId}
+							/>
 						</TabsContent>
 						<TabsContent value="newchat">
-							<NewChatSidebar />
+							<NewChatSidebar noChatsYet={currentNotChatsYet} />
 						</TabsContent>
 					</Tabs>
 				</Sidebar>
-				<CurrentOpenedChat />
+				<CurrentOpenedChat chatId={chatId} userChat={userChat} />
 			</MainContainer>
 		</div>
 	);

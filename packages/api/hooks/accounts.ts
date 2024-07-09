@@ -185,6 +185,12 @@ export function useDeleteMe({
 // --------------------------
 // Patient
 // --------------------------
+export function useGetPatients() {
+	return useQuery({
+		queryKey: ["doctors"],
+		queryFn: () => clientAPI.accounts.getPatients(),
+	});
+}
 
 export function useGetPatient(id: string) {
 	return useQuery({
@@ -246,6 +252,12 @@ export function useDeletePatient(
 // --------------------------
 // Doctor
 // --------------------------
+export function useGetDoctors() {
+	return useQuery({
+		queryKey: ["doctors"],
+		queryFn: () => clientAPI.accounts.getDoctors(),
+	});
+}
 
 export function useGetDoctor(id: string) {
 	return useQuery({

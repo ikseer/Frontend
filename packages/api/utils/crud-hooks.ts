@@ -35,8 +35,10 @@ export function createCRUDHooks<
 	const useList = (
 		searchOps?: SearchOptions,
 		options?: UseQueryOptions<PaginationResult<T>>,
+		refetchInterval?: number,
 	) =>
 		useQuery({
+			refetchInterval: refetchInterval,
 			queryKey: keys.list(searchOps),
 			queryFn: () => crud.list(searchOps),
 			...options,
