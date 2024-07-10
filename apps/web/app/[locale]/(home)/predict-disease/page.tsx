@@ -277,8 +277,8 @@ export default function PredictDisease() {
 
 const DataTable = ({ data }: { data: Prediction }) => {
 	return (
-		<table className="min-w-full divide-y divide-gray-200">
-			<thead className="bg-gray-50">
+		<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+			<thead className="bg-gray-50 dark:bg-gray-950">
 				<tr>
 					<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 						Category
@@ -288,7 +288,7 @@ const DataTable = ({ data }: { data: Prediction }) => {
 					</th>
 				</tr>
 			</thead>
-			<tbody className="bg-white divide-y divide-gray-200">
+			<tbody className="divide-y divide-gray-200 dark:divide-gray-800">
 				<tr>
 					<td className="px-6 py-4 whitespace-nowrap">Predicted Disease</td>
 					<td className="px-6 py-4 whitespace-nowrap">
