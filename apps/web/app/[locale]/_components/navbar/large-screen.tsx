@@ -50,7 +50,7 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 							)}
 						>
 							<Image
-								src="/logo.jpg"
+								src="/en/icon.png"
 								alt="logo"
 								width={60}
 								height={40}

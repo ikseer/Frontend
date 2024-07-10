@@ -25,7 +25,7 @@ export default function CartItemView({
 	);
 	return (
 		<Table className={className}>
-			<TableCaption>A list of your recent invoices.</TableCaption>
+			<TableCaption>A list items added to the your cart.</TableCaption>
 			<TableHeader>
 				<TableRow>
 					<TableHead className="">Product</TableHead>

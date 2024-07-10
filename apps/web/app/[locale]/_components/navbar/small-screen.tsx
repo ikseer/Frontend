@@ -38,7 +38,7 @@ export function SmallScreenNavbar() {
 						aria-label="Ikseer"
 						href="/"
 					>
-						<Image src="/logo.jpg" alt="tekview logo" width={79} height={40} />
+						<Image src="/en/icon.png" alt="tekview logo" width={79} height={40} />
 					</Link>
 				</div>
 

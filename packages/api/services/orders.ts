@@ -34,11 +34,13 @@ export class OrdersAPI {
 			.put(`/orders/cart-item/${data.cartItemId}/`, data)
 			.then((res) => res.data);
 	};
+
 	deleteCartItem = async (id: string) => {
 		return await this.http
 			.delete(`/orders/cart-item/${id}/`)
 			.then((res) => res.data);
 	};
+
 	createOrder = async (
 		data: z.infer<typeof paymentSchema> & { user: string },
 	) => {

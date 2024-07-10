@@ -7,7 +7,6 @@ import { LuMail } from "react-icons/lu";
 import { LuKeyRound } from "react-icons/lu";
 import "../register/register.css";
 import { ErrorMsg } from "@/components/error-msg";
-import Spinner from "@/components/spinner";
 import { AFTER_LOGIN_REDIRECT } from "@/lib/constants";
 import { useZodForm } from "@/lib/use-zod-form";
 import { useLogin } from "@ikseer/api/hooks/accounts";
@@ -106,15 +105,9 @@ export default function Login() {
 					<Button
 						variant="submit"
 						className="w-3/4 h-[42px] my-5"
-						disabled={isPending}
+						isLoading={isPending}
 					>
-						{isPending ? (
-							<>
-								Login &nbsp; <Spinner />
-							</>
-						) : (
-							"Login"
-						)}
+						Login
 					</Button>
 
 					<div className="w-3/4">

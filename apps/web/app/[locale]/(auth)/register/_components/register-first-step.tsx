@@ -127,7 +127,7 @@ export function RegisterFirstStep() {
 						>
 							<LuKeyRound />
 						</label>
-						<FormInput name="password" placeholder={t("password")} />
+						<FormInput type="password" name="password" placeholder={t("password")} />
 					</section>
 					<section>
 						<section className="flex gap-x-6">
