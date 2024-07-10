@@ -265,7 +265,11 @@ export default function PredictDisease() {
 					Diagnose
 				</Button>
 
-				{data && <DataTable data={data} />}
+				{data && (
+					<div className="mt-8">
+						<DataTable data={data} />
+					</div>
+				)}
 			</form>
 		</div>
 	);
