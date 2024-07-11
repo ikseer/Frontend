@@ -36,7 +36,7 @@ export default function MainChatComponent() {
 	const currentDoctors = doctors?.data?.results;
 	const currentPatients = patient?.data?.results;
 
-	if (userChat?.length <= 0 || !currentDoctors || !currentPatients)
+	if (!userChat || !currentDoctors || !currentPatients)
 		return (
 			<section className="page-container grid w-full grid-cols-5">
 				<div className=" col-span-1 mb-4 space-y-2.5">

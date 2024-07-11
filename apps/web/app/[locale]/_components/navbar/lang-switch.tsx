@@ -25,7 +25,7 @@ export function LangSwitch() {
 		<Select onValueChange={(lang: Locale) => handleChange(lang)}>
 			<SelectTrigger className="w-[140px]">
 				<SelectValue
-					placeholder={locale === "ar" ? "العربيه (مصر)" : "English(UK)"}
+					placeholder={locale === "ar" ? "العربيه" : "English(UK)"}
 				/>
 			</SelectTrigger>
 			<SelectContent>

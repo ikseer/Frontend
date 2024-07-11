@@ -62,7 +62,9 @@ export default function ActiveOrders() {
 								{order.status === "pending" ? (
 									<span className="font-bold text-teal-600">Paid</span>
 								) : (
-									<span className=" font-bold text-red-500">Unpaid</span>
+									<span className=" font-bold text-red-500">
+										Cash on delivery
+									</span>
 								)}
 							</TableCell>
 						</TableRow>

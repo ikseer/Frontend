@@ -84,6 +84,16 @@ export default function BasicSettings() {
 						<NA>{userInfo.timezone}</NA>
 					</ViewInfo>
 				</DisplaySection>
+				<DisplaySection>
+					{userType === "doctor" && (
+						<>
+							<Label htmlFor="specialization">Specialization</Label>
+							<ViewInfo>
+								<NA>{userInfo?.specialization}</NA>
+							</ViewInfo>
+						</>
+					)}
+				</DisplaySection>
 				<BasicSettingsDialog />
 			</section>
 		</main>

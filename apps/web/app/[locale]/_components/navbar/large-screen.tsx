@@ -21,6 +21,7 @@ import {
 	ShoppingCart,
 	X,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import CartIcon from "./cart-icon";
 import { LangSwitch } from "./lang-switch";
@@ -31,6 +32,7 @@ export function LargeScreenNavbar() {
 	// const session = useCurrentUser();
 	const currentPath = usePathname();
 	const me = useGetMe();
+	const t = useTranslations("NavBar");
 
 	return (
 		<>
@@ -82,10 +84,10 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 						className="sm:block grow hs-collapse hidden overflow-hidden transition-all duration-300"
 					>
 						<div className="sm:flex-row sm:items-center ms:ms-7 gap-x-0 gap-y-4 sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7 flex flex-col mt-5">
-							<NavLink href="/products">Products</NavLink>
-							<NavLink href="/best-sellers">Best sellers</NavLink>
-							<NavLink href="/discounts">Discount</NavLink>
-							<NavLink href="/pharmacies">Pharmacies</NavLink>
+							<NavLink href="/products">{t("products")}</NavLink>
+							<NavLink href="/best-sellers">{t("best-sellers")}</NavLink>
+							<NavLink href="/discounts">{t("discount")}</NavLink>
+							<NavLink href="/pharmacies">{t("pharmacies")}</NavLink>
 							<div className="gap-x-2 sm:ms-auto flex items-center">
 								<LangSwitch />
 								<SwitchTheme />
@@ -103,7 +105,7 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 													: "text-teal-500",
 											)}
 										>
-											Login
+											{t("login")}
 										</Link>
 										<Link
 											href="/register"
@@ -113,7 +115,7 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 													: "text-teal-500",
 											)}
 										>
-											Register
+											{t("register")}
 										</Link>
 									</>
 								)}
@@ -123,7 +125,7 @@ dark:bg-zinc-950 border-b w-full text-sm  h-[70px] shadow-lg nav"
 					</div>
 				</nav>
 			</header>
-			<div className="nav hidden md:block" />
+			<div className="nav md:block hidden" />
 		</>
 	);
 }

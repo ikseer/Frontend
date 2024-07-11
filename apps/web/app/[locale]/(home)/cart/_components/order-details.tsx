@@ -22,7 +22,9 @@ export default function OrderDetails({
 				<p>{totalPrice} GEP</p>
 			</div>
 			<Button className="w-full">
-				<Link href="payment">Checkout</Link>
+				<Link href="payment" className={"w-full"}>
+					Checkout
+				</Link>
 			</Button>
 		</section>
 	);
