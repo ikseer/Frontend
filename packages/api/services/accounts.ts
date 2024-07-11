@@ -13,8 +13,8 @@ import { CRUD_API } from "../utils/crud-api";
 import { zNullish, zUsername } from "@ikseer/lib/utils";
 
 export class AccountsAPI {
-	users: CRUD_API<User, z.infer<typeof userSchema>>;
-	doctors: CRUD_API<Doctor, z.infer<typeof doctorSchema>>;
+	users: CRUD_API<User,User, z.infer<typeof userSchema>>;
+	doctors: CRUD_API<Doctor,Doctor, z.infer<typeof doctorSchema>>;
 
 	constructor(private http: AxiosInstance) {
 		this.users = new CRUD_API("/accounts/users/", http);

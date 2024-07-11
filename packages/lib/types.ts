@@ -135,11 +135,11 @@ export interface ProductCategory extends Entity {
 }
 
 export interface Cart extends Entity {
-	items: CartItems[];
+	items: CartItem[];
 	user: string;
 }
 
-export interface CartItems extends Entity {
+export interface CartItem extends Entity {
 	product_name: string;
 	quantity: number;
 	cart: string;
@@ -170,6 +170,28 @@ export interface Pharmacy extends Entity {
 	latitude: string | null;
 	/** Decimal number */
 	longitude: string | null;
+}
+
+export interface Order extends Entity {
+	first_name: string;
+	last_name: string;
+	street: string;
+	zip_code: string;
+	owner: string;
+	location: string;
+	phone: string;
+	user: string;
+	status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+	total_price: string;
+	order_items: string[];
+}
+
+export interface OrderItem extends Entity {
+	quantity: string;
+	/** UUID of the product */
+	product: string;
+	/** UUID of the order */
+	order: string;
 }
 
 export interface DiscountProduct {

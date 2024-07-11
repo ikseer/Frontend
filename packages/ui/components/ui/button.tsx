@@ -93,7 +93,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				ref={ref}
 				disabled={props.disabled || isLoading}
 			>
-				{isLoading ? (
+				{isLoading && iconOnly ? (
+					<LoadingSpinner size={24} className="text-inherit" />
+				) : isLoading ? (
 					<>
 						{children}
 						<span>&nbsp;</span>

@@ -1,7 +1,13 @@
-import type { CreateCartItem } from "@ikseer/lib/types";
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clientAPI } from "../utils/api.client";
+import { createCRUDHooks } from "../utils/crud-hooks";
+
+export const ordersHooks = createCRUDHooks("orders", clientAPI.orders.orders);
+export const cartItemHooks = createCRUDHooks(
+	"orders",
+	clientAPI.orders.cartItems,
+);
 
 export function useGetCart() {
 	return useQuery({
@@ -10,12 +16,12 @@ export function useGetCart() {
 	});
 }
 
-export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
+export function useCreateCartItem() {
 	const queryClient = useQueryClient();
 	const { toast } = useToast();
 	return useMutation({
-		mutationKey: ["create-cart-item", data.product, data.cart],
-		mutationFn: clientAPI.orders.createCartItem,
+		mutationKey: ["create-cart-item"],
+		mutationFn: clientAPI.orders.cartItems.create,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -33,13 +39,13 @@ export function useCreateCartItem(data: Omit<CreateCartItem, "quantity">) {
 }
 
 // TODO: handle the error message data to display correct error message when add or delete item.
-export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
+export function useEditCartItem() {
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationKey: ["edit-cart-item", data.product, data.cart],
-		mutationFn: clientAPI.orders.editCartItem,
+		mutationKey: ["edit-cart-item"],
+		mutationFn: clientAPI.orders.cartItems.update,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -56,13 +62,13 @@ export function useEditCartItem(data: Omit<CreateCartItem, "quantity">) {
 	});
 }
 
-export function useDeleteOrderItem(id: string) {
+export function useDeleteOrderItem() {
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationKey: ["delete-cart-item", id],
-		mutationFn: () => clientAPI.orders.deleteCartItem(id),
+		mutationKey: ["delete-cart-item"],
+		mutationFn: clientAPI.orders.cartItems.del,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["get-cart"] });
 			toast({
@@ -83,7 +89,7 @@ export default function useCreateOrder(onSuccess: (id: string) => void) {
 	const { toast } = useToast();
 	return useMutation({
 		mutationKey: ["create-order"],
-		mutationFn: clientAPI.orders.createOrder,
+		mutationFn: clientAPI.orders.orders.create,
 		onSuccess: (data) => {
 			onSuccess?.(data.id);
 			toast({
@@ -100,18 +106,11 @@ export default function useCreateOrder(onSuccess: (id: string) => void) {
 	});
 }
 
-export function useGetActiveOrders() {
-	return useQuery({
-		queryKey: ["get-active-orders"],
-		queryFn: () => clientAPI.orders.getActiveOrders(),
-	});
-}
-
 export function useGetPaymobToken(
 	onSuccess?: (data: { token: string }) => void,
 ) {
 	return useMutation({
-		mutationKey: ["get-first-paymob-access-token"],
+		mutationKey: ["get-paymob-access-token"],
 		mutationFn: clientAPI.orders.getPaymobToken,
 		onSuccess: (data) => {
 			onSuccess?.(data);

@@ -18,10 +18,14 @@ import { zFile } from "@ikseer/lib/utils";
 
 export class ProductsAPI {
 	images: CRUD_API<ProductImage>;
-	coupons: CRUD_API<ProductCoupon, z.infer<typeof couponSchema>>;
 	discounts: CRUD_API<ProductDiscount>;
-	products: CRUD_API<Product, z.infer<typeof productDetailsSchema>>;
-	categories: CRUD_API<ProductCategory, z.infer<typeof categorySchema>>;
+	coupons: CRUD_API<ProductCoupon, ProductCoupon, z.infer<typeof couponSchema>>;
+	products: CRUD_API<Product, Product, z.infer<typeof productDetailsSchema>>;
+	categories: CRUD_API<
+		ProductCategory,
+		ProductCategory,
+		z.infer<typeof categorySchema>
+	>;
 
 	constructor(private http: AxiosInstance) {
 		this.images = new CRUD_API("/products/product_image/", http, true);

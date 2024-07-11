@@ -1,6 +1,6 @@
 "use client";
 import NA from "@/components/NA";
-import { useGetActiveOrders } from "@ikseer/api/hooks/orders";
+import { ordersHooks } from "@ikseer/api/hooks/orders";
 import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
 import {
 	Table,
@@ -13,7 +13,7 @@ import {
 } from "@ikseer/ui/components/ui/table";
 
 export default function ActiveOrders() {
-	const { data } = useGetActiveOrders();
+	const { data } = ordersHooks.useList();
 	if (!data)
 		return (
 			<div>
@@ -59,7 +59,7 @@ export default function ActiveOrders() {
 								<NA>{order.zip_code}</NA>
 							</TableCell>
 							<TableCell>
-								{order.status === "pending" ? (
+								{order.status === "processing" ? (
 									<span className="font-bold text-teal-600">Paid</span>
 								) : (
 									<span className=" font-bold text-red-500">Unpaid</span>

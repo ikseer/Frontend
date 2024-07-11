@@ -8,7 +8,6 @@ import ImageView from "./image-view";
 
 export function ProductCard({ item }: { item: HomeProduct }) {
 	const numberOfSellers = item?.number_of_sales;
-	console.log(item, numberOfSellers > 900);
 	return (
 		<div className="bg-zinc-100 rounded-xl dark:bg-zinc-950 dark:border-zinc-700 dark:shadow-zinc-700 flex flex-col border shadow-lg">
 			<ImageView

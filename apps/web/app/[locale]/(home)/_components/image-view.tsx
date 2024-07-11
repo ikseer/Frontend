@@ -3,7 +3,7 @@ import { getLink } from "@ikseer/lib/utils";
 
 import Image from "next/image";
 import AddDeleteItem from "./add-delete-item";
-import WishList from "./wishlist";
+import AddToWishList from "./add-to-wishlist";
 
 export default function ImageView({
 	productId,
@@ -33,10 +33,10 @@ export default function ImageView({
 				</div>
 			</section>
 			<section className="group-hover:flex top-2 right-4 absolute z-10 items-center justify-center hidden w-10 h-10 p-2 rounded-lg">
-				<WishList id={productId} />
+				<AddToWishList id={productId} />
 			</section>
 			{topSales && (
-				<section className="group-hover:flex top-2 left-4 bg-gradient-to-r from-red-500 to-red-700 mix-blend-multiply absolute z-10 items-center justify-center hidden w-24 p-1 font-semibold font-bold text-black rounded-lg shadow-lg">
+				<section className="group-hover:flex top-2 left-4 bg-gradient-to-r from-red-500 to-red-700 mix-blend-multiply absolute z-10 items-center justify-center hidden w-24 p-1 font-semibold text-black rounded-lg shadow-lg">
 					Top Sales
 				</section>
 			)}

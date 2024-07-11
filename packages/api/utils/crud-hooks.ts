@@ -12,9 +12,10 @@ import type { SearchOptions } from "./types";
 
 export function createCRUDHooks<
 	T = Entity,
+	ByID_Data = T,
 	CreationData = Exclude<T, keyof Entity>,
 	UpdateData = CreationData,
->(key: string, crud: CRUD_API<T, CreationData, UpdateData>) {
+>(key: string, crud: CRUD_API<T, ByID_Data, CreationData, UpdateData>) {
 	const keys = {
 		getById: (id?: string) => [key, "by-id", id],
 		list: (searchOps?: SearchOptions) => [key, "list", searchOps],
@@ -24,7 +25,7 @@ export function createCRUDHooks<
 		delete: (id?: string) => [key, "delete", id],
 	};
 
-	const useGetById = (id?: string, options?: UseQueryOptions<T>) =>
+	const useGetById = (id?: string, options?: UseQueryOptions<ByID_Data>) =>
 		useQuery({
 			queryKey: keys.getById(id),
 			queryFn: () => crud.getById(id as string),
