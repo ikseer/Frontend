@@ -14,11 +14,15 @@ import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
 import { z } from "zod";
 import { CRUD_API } from "../utils/crud-api";
-import { zFile } from "@ikseer/lib/utils";
+import { zFile, zNullish } from "@ikseer/lib/utils";
 
 export class ProductsAPI {
 	images: CRUD_API<ProductImage>;
-	discounts: CRUD_API<ProductDiscount>;
+	discounts: CRUD_API<
+		ProductDiscount,
+		ProductDiscount,
+		z.infer<typeof discountSchema>
+	>;
 	coupons: CRUD_API<ProductCoupon, ProductCoupon, z.infer<typeof couponSchema>>;
 	products: CRUD_API<Product, Product, z.infer<typeof productDetailsSchema>>;
 	categories: CRUD_API<
@@ -142,4 +146,13 @@ export const couponSchema = z.object({
 export const categorySchema = z.object({
 	name: z.string().min(1),
 	image: zFile(),
+});
+
+export const discountSchema = z.object({
+	discount_type: z.enum(["amount", "percentage"]),
+	discount_amount: z.coerce.number().min(0),
+	end_date: zNullish(z.coerce.date()),
+	start_date: zNullish(z.coerce.date()),
+	active: z.boolean(),
+	product: z.string().uuid(),
 });
