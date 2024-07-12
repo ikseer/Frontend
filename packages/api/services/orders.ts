@@ -1,5 +1,5 @@
 import { PAYMOB_API_KEY, PAYMOB_INTEGRATION_ID } from "@ikseer/lib/constants";
-import type { Cart, CartItem, Order } from "@ikseer/lib/types";
+import type { Cart, CartItem, Order, VerboseOrder } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { z } from "zod";
 import { httpNoAuth } from "../utils/axios-non-auth";
@@ -21,11 +21,10 @@ export class OrdersAPI {
 	constructor(
 		private http: AxiosInstance,
 
-		public orders = new CRUD_API<
-			Order,
-			Omit<Order, "items"> & { items: CartItem[] },
-			OrderCreationData
-		>("/orders/orders/", http),
+		public orders = new CRUD_API<Order, VerboseOrder, OrderCreationData>(
+			"/orders/orders/",
+			http,
+		),
 
 		public cartItems = new CRUD_API<
 			CartItem,

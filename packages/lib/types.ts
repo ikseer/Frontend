@@ -186,25 +186,27 @@ export interface Order extends Entity {
 	order_items: string[];
 }
 
+export type VerboseOrder = Omit<Order, "order_items"> & {
+	order_items: OrderItem[];
+};
+
 export interface OrderItem extends Entity {
-	quantity: string;
+	quantity: number;
 	/** UUID of the product */
 	product: string;
 	/** UUID of the order */
 	order: string;
+	product_details: Product;
 }
 
 export interface DiscountProduct {
 	active: boolean;
 	after_price: number;
 	before_price: number;
-	created_at: string;
 	discount_amount: string;
 	discount_type: string;
 	end_date: string;
-	id: string;
 	image: string;
 	product: string;
 	start_date: string;
-	updated_at: string;
 }
