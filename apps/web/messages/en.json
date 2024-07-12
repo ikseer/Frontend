@@ -60,5 +60,13 @@
 		"errors": {
 			"something-went-wrong": "Something Went wrong"
 		}
+	},
+	"NavBar": {
+		"products": "Products",
+		"best-sellers": "Best sellers",
+		"discount": "Discount",
+		"pharmacies": "Pharmacies",
+		"login": "Login",
+		"register": "Register"
 	}
 }

@@ -199,7 +199,7 @@ export interface OrderItem extends Entity {
 	product_details: Product;
 }
 
-export interface DiscountProduct {
+export interface DiscountProduct extends Entity {
 	active: boolean;
 	after_price: number;
 	before_price: number;
@@ -209,4 +209,31 @@ export interface DiscountProduct {
 	image: string;
 	product: string;
 	start_date: string;
+	// id: string;
+}
+
+export interface Chat {
+	id: string;
+	message: string;
+	patient_profile: Patient;
+	doctor_profile: Doctor;
+	created_at: string;
+	updated_at: string;
+	patient: string;
+	doctor: string;
+}
+
+export interface Message {
+	id: string;
+	sender: {
+		id: string;
+		username: string;
+		email: string;
+	};
+	created_at: string;
+	updated_at: string;
+	message: string;
+	text: string;
+	timestamp: string;
+	conversation: string;
 }

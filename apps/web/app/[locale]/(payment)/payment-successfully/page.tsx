@@ -1,49 +1,76 @@
 "use client";
-
-import { useRouter } from "@/navigation";
+import { Link } from "@/navigation";
+import { Button } from "@ikseer/ui/components/ui/button";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableRow,
+} from "@ikseer/ui/components/ui/table";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
 export default function PaymentSuccessfully() {
-	const router = useRouter();
-	const searchParams = useSearchParams();
+	const t = useTranslations("Pricing");
 
 	return (
-		<div className="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen">
-			<div className="bg-white dark:bg-black p-8 rounded-lg shadow-md text-center">
-				<div className="text-6xl text-green-500 mb-4">🎉</div>
-				<h1 className="text-2xl font-bold mb-2">Payment Successful!</h1>
-				<p className="text-gray-700 dark:text-gray-300 mb-4">
-					Thank you for your payment. Your transaction was completed
-					successfully.
-				</p>
-				<div className="text-left">
+		<main className="flex items-center justify-center w-full py-10">
+			<section className="w-[600px] space-y-5 flex items-center justify-center flex-col ">
+				<Image
+					src="/payment/celebrate.png"
+					alt="payment celebration"
+					width={300}
+					height={300}
+				/>
+				<section className="space-y-1 text-center">
+					<h1 className="text-3xl font-bold">successfully</h1>
 					<p>
-						<strong>Transaction ID:</strong> {searchParams.get("id")}
+						Thank you for your payment, your transaction is completed
+						successfully
 					</p>
-					<p>
-						<strong>Amount Paid:</strong> EGP{" "}
-						{(
-							Number.parseInt(searchParams.get("amount_cents") as string) / 100
-						).toFixed(2)}
-					</p>
-					<p>
-						<strong>Order ID:</strong> {searchParams.get("order")}
-					</p>
-					<p>
-						<strong>Payment Date:</strong>{" "}
-						{new Date(
-							searchParams.get("created_at") as string,
-						).toLocaleDateString()}
-					</p>
-				</div>
-				<button
-					type="button"
-					className="mt-6 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-					onClick={() => router.push("/")}
-				>
-					Continue Shopping
-				</button>
-			</div>
-		</div>
+				</section>
+				<PaymentTable />
+				<Button className="w-full">
+					<Link href="/">{t("go-to-home-page")}</Link>
+				</Button>
+			</section>
+		</main>
+	);
+}
+
+export function PaymentTable() {
+	const t = useTranslations("Pricing");
+	const searchParams = useSearchParams();
+	const paidAmount = searchParams.get("amount_cents");
+	const paymentMethod = searchParams.get("source_data.sub_type");
+	const orderId = searchParams.get("order");
+
+	const invoices = [
+		{
+			label: t("paid-amount"),
+			value: Number(paidAmount) / 100,
+		},
+		{
+			label: t("payment-method"),
+			value: paymentMethod,
+		},
+		{
+			label: t("order-id"),
+			value: orderId,
+		},
+	];
+
+	return (
+		<Table className="border-[2px] border-gray-300">
+			<TableBody>
+				{invoices.map((invoice) => (
+					<TableRow key={invoice.label}>
+						<TableCell className="font-medium">{invoice.label}</TableCell>
+						<TableCell>{invoice.value}</TableCell>
+					</TableRow>
+				))}
+			</TableBody>
+		</Table>
 	);
 }

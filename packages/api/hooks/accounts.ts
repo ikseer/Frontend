@@ -2,8 +2,8 @@ import { ProfileIdCookie, UserTypeCookie } from "@ikseer/lib/cookies.client";
 import { useToast } from "@ikseer/ui/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clientAPI } from "../utils/api.client";
-import { setSession } from "../utils/session.client";
 import { createCRUDHooks } from "../utils/crud-hooks";
+import { setSession } from "../utils/session.client";
 
 export const usersHooks = createCRUDHooks("users", clientAPI.accounts.users);
 export const doctorsHooks = createCRUDHooks(
@@ -178,9 +178,23 @@ export function useGetMe() {
 	if (userType === "patient") return useGetPatient(profileId);
 }
 
+export function useUpdateMe({ onSuccess }: { onSuccess?: () => void }) {
+	const userId = ProfileIdCookie.get();
+	const userType = UserTypeCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useUpdateDoctor({ onSuccess });
+	if (userType === "patient") return useUpdatePatient({ onSuccess });
+}
+
 // --------------------------
 // Patient
 // --------------------------
+export function useGetPatients() {
+	return useQuery({
+		queryKey: ["patients"],
+		queryFn: () => clientAPI.accounts.getPatients(),
+	});
+}
 
 export function useGetPatient(id: string) {
 	return useQuery({
@@ -237,4 +251,133 @@ export function useDeletePatient(
 			});
 		},
 	});
+}
+
+// --------------------------
+// Doctor
+// --------------------------
+export function useGetDoctors() {
+	return useQuery({
+		queryKey: ["doctors"],
+		queryFn: () => clientAPI.accounts.getDoctors(),
+	});
+}
+
+export function useGetDoctor(id: string) {
+	return useQuery({
+		queryKey: ["doctor", id],
+		queryFn: () => clientAPI.accounts.getDoctor(id),
+	});
+}
+
+export function useCreateDoctor({
+	onSuccess,
+}: {
+	onSuccess?: (
+		data: Awaited<ReturnType<typeof clientAPI.accounts.createDoctor>>,
+	) => void;
+} = {}) {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: clientAPI.accounts.createDoctor,
+		onSuccess(data) {
+			onSuccess?.(data);
+			queryClient.invalidateQueries({
+				queryKey: ["deleted-doctors"],
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["doctors"],
+			});
+		},
+	});
+}
+
+export function useUpdateDoctor({ onSuccess }: { onSuccess?: () => void }) {
+	const queryClient = useQueryClient();
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.accounts.updateDoctor,
+		onSuccess() {
+			queryClient.invalidateQueries({
+				queryKey: ["doctor", ProfileIdCookie.get()],
+			});
+			onSuccess?.();
+			toast({
+				title: "Profile updated",
+				variant: "success",
+			});
+		},
+		onError() {
+			toast({
+				title: "Can't update profile",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useDeleteDoctor({
+	onSuccess,
+	method,
+}: { onSuccess?: () => void; method?: "hard" | "soft" } = {}) {
+	const userId = ProfileIdCookie.get();
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: () => clientAPI.accounts.deleteDoctor(userId as string, method),
+		onSuccess: () => {
+			onSuccess?.();
+			toast({
+				title: "Account deleted",
+				variant: "success",
+			});
+		},
+		onError: () => {
+			toast({
+				title: "Can't delete account",
+				variant: "error",
+			});
+		},
+	});
+}
+
+export function useUploadPatientImage() {
+	const queryClient = useQueryClient();
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.accounts.updatePatientImage,
+		onSuccess: () => {
+			toast({
+				title: "your profile image is updated",
+				variant: "success",
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["patient", ProfileIdCookie.get()],
+			});
+		},
+	});
+}
+
+export function useUploadDoctorImage() {
+	const queryClient = useQueryClient();
+	const { toast } = useToast();
+	return useMutation({
+		mutationFn: clientAPI.accounts.updateDoctorImage,
+		onSuccess: () => {
+			toast({
+				title: "your profile image is updated",
+				variant: "success",
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["doctor", ProfileIdCookie.get()],
+			});
+		},
+	});
+}
+
+export function useUpdateProfileImage() {
+	const userType = UserTypeCookie.get();
+	const userId = ProfileIdCookie.get();
+	if (!userId || !userType) return;
+	if (userType === "doctor") return useUploadDoctorImage();
+	if (userType === "patient") return useUploadPatientImage();
 }

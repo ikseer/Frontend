@@ -1,6 +1,6 @@
 "use client";
-import DividerText from "@/components/divider";
-import AuthShape from "@/components/thrid-party-shape";
+// import DividerText from "@/components/divider";
+// import AuthShape from "@/components/thrid-party-shape";
 import { Link, useRouter } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuKeyRound, LuMail, LuUser } from "react-icons/lu";
@@ -127,7 +127,11 @@ export function RegisterFirstStep() {
 						>
 							<LuKeyRound />
 						</label>
-						<FormInput type="password" name="password" placeholder={t("password")} />
+						<FormInput
+							type="password"
+							name="password"
+							placeholder={t("password")}
+						/>
 					</section>
 					<section>
 						<section className="flex gap-x-6">
@@ -171,17 +175,17 @@ export function RegisterFirstStep() {
 							{t("login")}
 						</Link>
 					</section>
-					<DividerText text={t("or")} />
-					<AuthShape
-						authImage="/auth/google.svg"
-						text={t("continue-with-google")}
-						className="w-3/4 m-auto"
-					/>
-					<AuthShape
-						authImage="/auth/facebook.svg"
-						text={t("continue-with-facebook")}
-						className="w-3/4 m-auto"
-					/>
+					{/*<DividerText text={t("or")} />*/}
+					{/*<AuthShape*/}
+					{/*	authImage="/auth/google.svg"*/}
+					{/*	text={t("continue-with-google")}*/}
+					{/*	className="w-3/4 m-auto"*/}
+					{/*/>*/}
+					{/*<AuthShape*/}
+					{/*	authImage="/auth/facebook.svg"*/}
+					{/*	text={t("continue-with-facebook")}*/}
+					{/*	className="w-3/4 m-auto"*/}
+					{/*/>*/}
 				</section>
 			</form>
 		</FormProvider>

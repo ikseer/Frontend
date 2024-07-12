@@ -4,17 +4,17 @@ import type {
 	Patient,
 	User,
 } from "@ikseer/lib/types";
+import { zNullish, zUsername } from "@ikseer/lib/utils";
 import type { AxiosInstance } from "axios";
 import { z } from "zod";
 import { httpNoAuth } from "../utils/axios-non-auth";
+import { CRUD_API } from "../utils/crud-api";
 import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
-import { CRUD_API } from "../utils/crud-api";
-import { zNullish, zUsername } from "@ikseer/lib/utils";
 
 export class AccountsAPI {
-	users: CRUD_API<User,User, z.infer<typeof userSchema>>;
-	doctors: CRUD_API<Doctor,Doctor, z.infer<typeof doctorSchema>>;
+	users: CRUD_API<User, User, z.infer<typeof userSchema>>;
+	doctors: CRUD_API<Doctor, Doctor, z.infer<typeof doctorSchema>>;
 
 	constructor(private http: AxiosInstance) {
 		this.users = new CRUD_API("/accounts/users/", http);
@@ -171,16 +171,79 @@ export class AccountsAPI {
 			.post(`/accounts/deleted-patient/restore/${id}/`)
 			.then((res) => res.data);
 	};
-}
 
-export const userSchema = z.object({
-	is_staff: z.boolean(),
-	first_name: z.string().min(2),
-	last_name: z.string().min(2),
-	username: zUsername(),
-	email: z.string().email(),
-	user_type: z.enum(["doctor", "patient", "employee"]),
-});
+	// -----------------------------------
+	// Doctors
+	// -----------------------------------
+
+	createDoctor = async (data: z.infer<typeof doctorSchema>) => {
+		return await this.http.post("accounts/doctor/", data);
+	};
+
+	getDoctors = async (options?: SearchOptions) => {
+		const params = getSearchParams(options);
+		return await this.http
+			.get<PaginationResult<Doctor>>("/accounts/doctor/", {
+				params,
+			})
+			.then((res) => res.data);
+	};
+
+	// getDeletedPatients = async (options?: SearchOptions) => {
+	// 	const params = getSearchParams(options);
+	// 	return await this.http
+	// 		.get<PaginationResult<Patient>>("/accounts/patient/deleted/", {
+	// 			params,
+	// 		})
+	// 		.then((res) => res.data);
+	// };
+
+	getDoctor = async (id?: string) => {
+		if (!id) return null;
+		return await this.http
+			.get(`/accounts/doctor/${id}/`)
+			.then((res) => res.data);
+	};
+
+	updateDoctor = async ({
+		...data
+	}: {
+		id: string;
+		newData: z.infer<typeof doctorSchema>;
+	}) => {
+		console.log(data, "data");
+		return await this.http
+			.patch(`/accounts/doctor/${data.id}/`, data)
+			.then((res) => res.data);
+	};
+
+	deleteDoctor = async (id: string, method?: "soft" | "hard") => {
+		return await this.http
+			.delete(`/accounts/doctor/${id}/?method=${method}`)
+			.then((res) => res.data);
+	};
+
+	updatePatientImage = async (data: {
+		id: string;
+		data: { image: string };
+	}) => {
+		return await this.http
+			.patchForm(`/accounts/patient/${data.id}/`, data.data)
+			.then((res) => res.data);
+	};
+
+	updateDoctorImage = async (data: { id: string; data: { image: string } }) => {
+		return await this.http
+			.patchForm(`/accounts/doctor/${data.id}/`, data.data)
+			.then((res) => res.data);
+	};
+
+	restoreDoctor = async (id: string) => {
+		return await this.http
+			.post(`/accounts/deleted-doctor/restore/${id}/`)
+			.then((res) => res.data);
+	};
+}
 
 export const doctorSchema = z.object({
 	first_name: z.string().min(2),
@@ -194,5 +257,14 @@ export const doctorSchema = z.object({
 	gender: zNullish(z.literal("female").or(z.literal("male"))),
 	price_for_reservation: zNullish(z.coerce.number()),
 	/** date in ISO format */
-	date_of_birth: zNullish(z.coerce.date()),
+	date_of_birth: z.union([zNullish(z.coerce.date()), z.string().optional()]),
+});
+
+export const userSchema = z.object({
+	is_staff: z.boolean(),
+	first_name: z.string().min(2),
+	last_name: z.string().min(2),
+	username: zUsername(),
+	email: z.string().email(),
+	user_type: z.enum(["doctor", "patient", "employee"]),
 });

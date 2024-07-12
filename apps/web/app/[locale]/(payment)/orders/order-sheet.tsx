@@ -1,18 +1,18 @@
 "use client";
 
+import { QueryComponent } from "@/components/query-component";
 import { ordersHooks } from "@ikseer/api/hooks/orders";
 import type { OrderItem, VerboseOrder } from "@ikseer/lib/types";
+import { Button } from "@ikseer/ui/components/ui/button";
 import {
 	Sheet,
 	SheetContent,
 	SheetFooter,
 	SheetTrigger,
 } from "@ikseer/ui/components/ui/sheet";
-import { QueryComponent } from "@/components/query-component";
-import { useState } from "react";
-import { Button } from "@ikseer/ui/components/ui/button";
-import { FileDownIcon } from "lucide-react";
 import jsPDF from "jspdf";
+import { FileDownIcon } from "lucide-react";
+import { useState } from "react";
 
 const OrderSheet = ({
 	orderId,
@@ -27,8 +27,8 @@ const OrderSheet = ({
 				<QueryComponent
 					query={query}
 					render={(order) => (
-						<div className="p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
-							<h2 className="text-xl font-bold mb-4" id="order-details">
+						<div className="max-w-2xl p-6 mx-auto rounded-lg shadow-lg">
+							<h2 className="mb-4 text-xl font-bold" id="order-details">
 								Order Details
 							</h2>
 							<div className="mb-4">
@@ -50,7 +50,7 @@ const OrderSheet = ({
 								</p>
 							</div>
 							<div>
-								<h3 className="text-lg font-semibold mb-2">Items</h3>
+								<h3 className="mb-2 text-lg font-semibold">Items</h3>
 								<ul>
 									{order.order_items.map((item) => (
 										<ItemComponent key={item.id} item={item} />
@@ -72,7 +72,7 @@ const OrderSheet = ({
 
 const ItemComponent = ({ item }: { item: OrderItem }) => {
 	return (
-		<li className="border-b py-2">
+		<li className="py-2 border-b">
 			<p>
 				<strong>Product:</strong> {item.product_details.name}
 			</p>
@@ -114,7 +114,7 @@ function downloadOrderPDF(order: VerboseOrder) {
 	}
 
 	// Save the PDF
-	doc.save("product-list.pdf");
+	doc.save("Ikseer-product-list.pdf");
 }
 
 export default OrderSheet;

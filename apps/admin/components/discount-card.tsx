@@ -32,9 +32,11 @@ export function DiscountCard({
 					<h3 className="text-lg font-semibold">
 						{discountAmount}% Off Sitewide
 					</h3>
-					{discount.end_date && <div className="bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs font-medium">
-						Expires {fmt.dateTime(new Date(discount.end_date))}
-					</div>}
+					{discount.end_date && (
+						<div className="bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs font-medium">
+							Expires {fmt.dateTime(new Date(discount.end_date))}
+						</div>
+					)}
 				</div>
 				<p className="text-muted-foreground text-sm mb-4">
 					Enjoy {discountAmount}% off your entire purchase on our website. Valid

@@ -5,11 +5,11 @@ import type { MRT_ColumnDef } from "mantine-react-table";
 import "mantine-react-table/styles.css"; //make sure MRT styles were imported in your app root (once)
 import { clientAPI } from "@ikseer/api/utils/api.client";
 import { getAvatarLink } from "@ikseer/lib/get-avatar";
+import NA from "@ikseer/ui/components/NA";
 import { useMemo } from "react";
 import useOurTable, {
 	type UseTableOptions,
 } from "../../../hooks/use-our-table";
-import NA from "@ikseer/ui/components/NA";
 
 export default function useUsersTable({
 	data,

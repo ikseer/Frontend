@@ -31,7 +31,9 @@ export default function Payment() {
 
 	const createOrder = useCreateOrder((order) => {
 		if (payNow) createPaymobOrderId.mutate(order);
-		else router.push("/orders");
+		setTimeout(() => {
+			router.push("/orders");
+		}, 4000);
 	});
 
 	const form = useZodForm({
@@ -77,7 +79,7 @@ export default function Payment() {
 						</div>
 						<div className="gap-x-2 flex items-center">
 							<Radio name="payment" value="payLater" />
-							<Label htmlFor="payLater">Pay later</Label>
+							<Label htmlFor="payLater">Cash on delivery</Label>
 						</div>
 					</section>
 					{form.formState.errors.payment?.message && (

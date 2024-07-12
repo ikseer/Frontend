@@ -36,6 +36,8 @@
 //   }
 // }
 
+export type {};
+
 declare global {
 	namespace Cypress {
 		interface Chainable {

@@ -1,6 +1,7 @@
 "use client";
 
 import UserForm from "@/components/forms/user";
+import { usersHooks } from "@ikseer/api/hooks/accounts";
 import type { userSchema } from "@ikseer/api/services/accounts";
 import { Box, Button, Flex, Menu } from "@mantine/core";
 import { Plus } from "lucide-react";
@@ -8,7 +9,6 @@ import { MantineReactTable } from "mantine-react-table";
 import { useState } from "react";
 import type { z } from "zod";
 import useUsersTable from "./use-users-table";
-import { usersHooks } from "@ikseer/api/hooks/accounts";
 
 export default function UsersCRUDTable() {
 	const [formState, setFormState] = useState<"update" | "create">();
