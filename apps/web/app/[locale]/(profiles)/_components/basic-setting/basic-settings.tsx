@@ -89,6 +89,7 @@ export default function BasicSettings() {
 						<>
 							<Label htmlFor="specialization">Specialization</Label>
 							<ViewInfo>
+								{/* @ts-ignore */}
 								<NA>{userInfo?.specialization}</NA>
 							</ViewInfo>
 						</>

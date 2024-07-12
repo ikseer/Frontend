@@ -1,6 +1,6 @@
 "use client";
-import DividerText from "@/components/divider";
-import AuthShape from "@/components/thrid-party-shape";
+// import DividerText from "@/components/divider";
+// import AuthShape from "@/components/thrid-party-shape";
 import { Link } from "@/navigation";
 import { FormProvider } from "react-hook-form";
 import { LuMail } from "react-icons/lu";
@@ -19,6 +19,7 @@ import { FormInput } from "@ikseer/ui/components/ui/input";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { z } from "zod";
+// import { OauthWithGoogle } from "@app/(auth)/oauth/google";
 
 const schema = z.object({
 	username: z.string().min(1),
@@ -67,7 +68,7 @@ export default function Login() {
 			>
 				<section
 					style={{ width: "550px" }}
-					className="bg-zinc-100 dark:bg-zinc-950 flex flex-col items-center justify-center h-full rounded-lg"
+					className="bg-zinc-100 dark:bg-zinc-950 flex flex-col items-center justify-center h-full rounded-lg py-8"
 				>
 					<h1 className=" mt-4 text-2xl font-bold">{t("welcome-to-ikseer")}</h1>
 					{error && <ErrorMsg>{errorMsg}</ErrorMsg>}
@@ -137,17 +138,13 @@ export default function Login() {
 							</Link>
 						</section>
 					</div>
-					<DividerText text={t("or")} />
-					<AuthShape
-						authImage="/auth/google.svg"
-						text={t("continue-with-google")}
-						className="w-3/4"
-					/>
-					<AuthShape
-						authImage="/auth/facebook.svg"
-						text={t("continue-with-facebook")}
-						className="w-3/4"
-					/>
+					{/*<DividerText text={t("or")} />*/}
+					{/*<OauthWithGoogle />*/}
+					{/*<AuthShape*/}
+					{/*	authImage="/auth/facebook.svg"*/}
+					{/*	text={t("continue-with-facebook")}*/}
+					{/*	className="w-3/4"*/}
+					{/*/>*/}
 				</section>
 			</form>
 		</FormProvider>

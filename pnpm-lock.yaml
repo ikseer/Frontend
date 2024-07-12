@@ -227,6 +227,9 @@ importers:
       "@radix-ui/react-switch":
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@react-oauth/google":
+        specifier: ^0.12.1
+        version: 0.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@tailwindcss/forms":
         specifier: ^0.5.7
         version: 0.5.7(tailwindcss@3.4.4)
@@ -2393,6 +2396,15 @@ packages:
       leaflet: ^1.9.0
       react: ^18.0.0
       react-dom: ^18.0.0
+
+  "@react-oauth/google@0.12.1":
+    resolution:
+      {
+        integrity: sha512-qagsy22t+7UdkYAiT5ZhfM4StXi9PPNvw0zuwNmabrWyMKddczMtBIOARflbaIj+wHiQjnMAsZmzsUYuXeyoSg==,
+      }
+    peerDependencies:
+      react: ">=16.8.0"
+      react-dom: ">=16.8.0"
 
   "@remirror/core-constants@2.0.2":
     resolution:
@@ -6297,6 +6309,11 @@ snapshots:
   "@react-leaflet/core@2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
     dependencies:
       leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  "@react-oauth/google@0.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+    dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 

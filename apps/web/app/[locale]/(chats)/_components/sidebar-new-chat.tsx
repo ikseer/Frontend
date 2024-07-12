@@ -35,7 +35,9 @@ export function NewChatSidebar({ noChatsYet }: { noChatsYet: Patient[] }) {
 						disabled={createChat.isPending}
 						onClick={() => {
 							createChat.mutate({
+								// @ts-ignore
 								patient: userType === "patient" ? profileId : chat?.id ?? "",
+								// @ts-ignore
 								doctor: userType === "doctor" ? profileId : chat?.id ?? "",
 							});
 						}}
