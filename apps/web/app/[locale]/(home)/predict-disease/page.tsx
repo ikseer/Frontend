@@ -1,5 +1,6 @@
 "use client";
 
+import { clientAPI } from "@ikseer/api/utils/api.client";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { Label } from "@ikseer/ui/components/ui/label";
 import {
@@ -9,8 +10,9 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@ikseer/ui/components/ui/select";
+import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const symptoms = {
 	itching: 0,
@@ -147,11 +149,44 @@ const symptoms = {
 	yellow_crust_ooze: 131,
 };
 
+type Prediction = Awaited<ReturnType<typeof clientAPI.ai.predictDisease>>;
+
 export default function PredictDisease() {
+	const [data, setData] = useState<Prediction>();
 	const [selected, setSelected] = useState<string[]>([]);
 	const unselected = Object.keys(symptoms).filter(
 		(key) => !selected.includes(key),
 	);
+
+	const predict = useMutation({
+		mutationFn: clientAPI.ai.predictDisease,
+		onSuccess(data) {
+			const re = /[\['\]]/g;
+			setData({
+				...data,
+				precaution: [
+					data.precaution[0].flatMap((item) =>
+						item.split(",").map((i) => i.replace(re, "").trim()),
+					),
+				],
+				medication: data.medication.flatMap((item) =>
+					item.split(",").map((i) => i.replace(re, "").trim()),
+				),
+				diet: data.diet.flatMap((item) =>
+					item.split(",").map((i) => i.replace(re, "").trim()),
+				),
+				workout: data.workout.flatMap((item) =>
+					item.split(",").map((i) => i.replace(re, "").trim()),
+				),
+			});
+		},
+	});
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies:
+	useEffect(() => {
+		setData(undefined);
+	}, [selected]);
+
 	return (
 		<div className="page-container">
 			<h1 className="text-3xl font-bold mb-3">Diagnosis of Diseases</h1>
@@ -220,8 +255,91 @@ export default function PredictDisease() {
 						</p>
 					)}
 				</div>
-				<Button>Diagnose</Button>
+				<Button
+					isLoading={predict.isPending}
+					disabled={selected.length === 0}
+					onClick={() => {
+						predict.mutate(selected);
+					}}
+				>
+					Diagnose
+				</Button>
+
+				{data && (
+					<div className="mt-8">
+						<DataTable data={data} />
+					</div>
+				)}
 			</form>
 		</div>
 	);
 }
+
+const DataTable = ({ data }: { data: Prediction }) => {
+	return (
+		<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+			<thead className="bg-gray-50 dark:bg-gray-950">
+				<tr>
+					<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+						Category
+					</th>
+					<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+						Details
+					</th>
+				</tr>
+			</thead>
+			<tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+				<tr>
+					<td className="px-6 py-4 whitespace-nowrap">Predicted Disease</td>
+					<td className="px-6 py-4 whitespace-nowrap">
+						{data.predicted_disease}
+					</td>
+				</tr>
+				<tr>
+					<td className="px-6 py-4 whitespace-nowrap">Description</td>
+					<td className="px-6 py-4 whitespace-nowrap">{data.description}</td>
+				</tr>
+				<tr>
+					<td className="px-6 py-4 whitespace-nowrap">Precaution</td>
+					<td className="px-6 py-4 whitespace-nowrap">
+						<ul className="list-disc list-inside">
+							{data.precaution[0].map((item) => (
+								<li key={item}>{item}</li>
+							))}
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td className="px-6 py-4 whitespace-nowrap">Medication</td>
+					<td className="px-6 py-4 whitespace-nowrap">
+						<ul className="list-disc list-inside">
+							{data.medication.map((item) => (
+								<li key={item}>{item}</li>
+							))}
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td className="px-6 py-4 whitespace-nowrap">Diet</td>
+					<td className="px-6 py-4 whitespace-nowrap">
+						<ul className="list-disc list-inside">
+							{data.diet.map((item) => (
+								<li key={item}>{item}</li>
+							))}
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td className="px-6 py-4 whitespace-nowrap">Workout</td>
+					<td className="px-6 py-4 whitespace-nowrap">
+						<ul className="list-disc list-inside">
+							{data.workout.map((item) => (
+								<li key={item}>{item}</li>
+							))}
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	);
+};

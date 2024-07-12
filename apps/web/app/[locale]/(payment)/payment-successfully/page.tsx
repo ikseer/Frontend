@@ -15,7 +15,7 @@ export default function PaymentSuccessfully() {
 	const t = useTranslations("Pricing");
 
 	return (
-		<main className="w-full py-10 flex items-center justify-center">
+		<main className="flex items-center justify-center w-full py-10">
 			<section className="w-[600px] space-y-5 flex items-center justify-center flex-col ">
 				<Image
 					src="/payment/celebrate.png"
@@ -24,8 +24,11 @@ export default function PaymentSuccessfully() {
 					height={300}
 				/>
 				<section className="space-y-1 text-center">
-					<h1 className="text-3xl font-bold">{t.rich("successful")}</h1>
-					<p>{t("complete-payment")}</p>
+					<h1 className="text-3xl font-bold">successfully</h1>
+					<p>
+						Thank you for your payment, your transaction is completed
+						successfully
+					</p>
 				</section>
 				<PaymentTable />
 				<Button className="w-full">

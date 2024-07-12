@@ -15,7 +15,7 @@ export interface PaginationResult<Data> {
 }
 
 export interface User extends Entity {
-	/** uri of the image */
+	/** URI of the image */
 	image: string | null;
 	first_name: string;
 	last_name: string;
@@ -28,7 +28,7 @@ export interface User extends Entity {
 	is_active: boolean;
 }
 
-export type UserType = "patient" | "doctor" | "admin";
+export type UserType = "patient" | "doctor" | "employee";
 
 export interface Patient extends User {
 	timezone: string;
@@ -128,12 +128,18 @@ export interface ProductCoupon extends Entity {
 	minimum_purchase_amount: string | null;
 }
 
+export interface ProductCategory extends Entity {
+	name: string;
+	/** URI of the image */
+	image: string | null;
+}
+
 export interface Cart extends Entity {
-	items: CartItems[];
+	items: CartItem[];
 	user: string;
 }
 
-export interface CartItems extends Entity {
+export interface CartItem extends Entity {
 	product_name: string;
 	quantity: number;
 	cart: string;
@@ -166,19 +172,44 @@ export interface Pharmacy extends Entity {
 	longitude: string | null;
 }
 
-export interface DiscountProduct {
+export interface Order extends Entity {
+	first_name: string;
+	last_name: string;
+	street: string;
+	zip_code: string;
+	owner: string;
+	location: string;
+	phone: string;
+	user: string;
+	status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+	total_price: string;
+	order_items: string[];
+}
+
+export type VerboseOrder = Omit<Order, "order_items"> & {
+	order_items: OrderItem[];
+};
+
+export interface OrderItem extends Entity {
+	quantity: number;
+	/** UUID of the product */
+	product: string;
+	/** UUID of the order */
+	order: string;
+	product_details: Product;
+}
+
+export interface DiscountProduct extends Entity {
 	active: boolean;
 	after_price: number;
 	before_price: number;
-	created_at: string;
 	discount_amount: string;
 	discount_type: string;
 	end_date: string;
-	id: string;
 	image: string;
 	product: string;
 	start_date: string;
-	updated_at: string;
+	// id: string;
 }
 
 export interface Chat {

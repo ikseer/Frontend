@@ -1,8 +1,9 @@
 import { PAYMOB_API_KEY, PAYMOB_INTEGRATION_ID } from "@ikseer/lib/constants";
-import type { Cart, CreateCartItem, EditCartItem } from "@ikseer/lib/types";
+import type { Cart, CartItem, Order, VerboseOrder } from "@ikseer/lib/types";
 import type { AxiosInstance } from "axios";
 import { z } from "zod";
 import { httpNoAuth } from "../utils/axios-non-auth";
+import { CRUD_API } from "../utils/crud-api";
 
 export const paymentSchema = z.object({
 	first_name: z.string(),
@@ -17,64 +18,27 @@ export const paymentSchema = z.object({
 });
 
 export class OrdersAPI {
-	constructor(private http: AxiosInstance) {}
+	constructor(
+		private http: AxiosInstance,
+
+		public orders = new CRUD_API<Order, VerboseOrder, OrderCreationData>(
+			"/orders/orders/",
+			http,
+		),
+
+		public cartItems = new CRUD_API<
+			CartItem,
+			CartItem,
+			{
+				product: string;
+				cart: string;
+				quantity: number;
+			}
+		>("/orders/cart-item/", http),
+	) {}
 
 	getCart = async () => {
 		return await this.http.get<Cart>("/orders/cart/").then((res) => res.data);
-	};
-
-	createCartItem = async (data: CreateCartItem) => {
-		return await this.http
-			.post("/orders/cart-item/", data)
-			.then((res) => res.data);
-	};
-
-	editCartItem = async (data: EditCartItem) => {
-		return await this.http
-			.put(`/orders/cart-item/${data.cartItemId}/`, data)
-			.then((res) => res.data);
-	};
-	deleteCartItem = async (id: string) => {
-		return await this.http
-			.delete(`/orders/cart-item/${id}/`)
-			.then((res) => res.data);
-	};
-	createOrder = async (
-		data: z.infer<typeof paymentSchema> & { user: string },
-	) => {
-		return await this.http
-			.post<{ id: string }>("/orders/orders/", data)
-			.then((res) => res.data);
-	};
-
-	getActiveOrders = async () => {
-		return await this.http
-			.get<{
-				counts: number;
-				next: string;
-				previous: string;
-				results: {
-					first_name: string;
-					last_name: string;
-					street: string;
-					zip_code: string;
-					owner: string;
-					location: string;
-					phone: string;
-					user: string;
-					status: string;
-					total_price: string;
-					order_items: {
-						id: string;
-						quantity: string;
-						product: string;
-						order: string;
-					}[];
-					created_at: string;
-					updated_at: string;
-				}[];
-			}>("/orders/orders/")
-			.then((res) => res.data);
 	};
 
 	createPaymobOrderId = async (order: string) => {
@@ -125,3 +89,16 @@ export class OrdersAPI {
 			.then((res) => res.data);
 	};
 }
+
+export type OrderCreationData = {
+	first_name: string;
+	last_name: string;
+	street: string;
+	zip_code: string;
+	phone: string;
+	country: string;
+	city: string;
+	email: string;
+	payment: string;
+	user: string;
+};

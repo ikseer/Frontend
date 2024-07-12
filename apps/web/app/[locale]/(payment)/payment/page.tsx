@@ -1,7 +1,6 @@
 "use client";
 import { ErrorMsg } from "@/components/error-msg";
 import Radio from "@/components/radio";
-import Spinner from "@/components/spinner";
 import { useZodForm } from "@/lib/use-zod-form";
 import { useRouter } from "@/navigation";
 import useCreateOrder, {
@@ -20,10 +19,7 @@ export default function Payment() {
 	const router = useRouter();
 	const [payNow, setPayNow] = useState(true);
 	const getPaymobToken = useGetPaymobToken((data) => {
-		window.open(
-			`https://accept.paymob.com/api/acceptance/iframes/831751?payment_token=${data.token}`,
-			"_blank",
-		);
+		window.location.href = `https://accept.paymob.com/api/acceptance/iframes/831751?payment_token=${data.token}`;
 	});
 
 	const createPaymobOrderId = useCreatePaymobOrderId((data) => {
@@ -90,15 +86,8 @@ export default function Payment() {
 						<ErrorMsg>{form.formState.errors.payment?.message}</ErrorMsg>
 					)}
 				</section>
-				<Button variant="submit" disabled={createOrder.isPending}>
-					{createOrder.isPending ? (
-						<>
-							{" "}
-							Create Order &nbsp; <Spinner />
-						</>
-					) : (
-						"Create Order"
-					)}
+				<Button variant="submit" isLoading={createOrder.isPending}>
+					Create Order
 				</Button>
 			</form>
 		</FormProvider>

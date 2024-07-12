@@ -1,5 +1,5 @@
 "use client";
-import type { CartItems } from "@ikseer/lib/types";
+import type { CartItem } from "@ikseer/lib/types";
 import { getLink } from "@ikseer/lib/utils";
 import {
 	Table,
@@ -18,14 +18,14 @@ import DeleteItemById from "../../_components/delete-item";
 export default function CartItemView({
 	cartItems,
 	className,
-}: { cartItems: CartItems[]; className?: string }) {
+}: { cartItems: CartItem[]; className?: string }) {
 	const totalPrice = cartItems.reduce(
 		(acc, curr) => acc + Number(curr.product_final_price * curr.quantity),
 		0,
 	);
 	return (
 		<Table className={className}>
-			<TableCaption>A list of your recent invoices.</TableCaption>
+			<TableCaption>A list items added to the your cart.</TableCaption>
 			<TableHeader>
 				<TableRow>
 					<TableHead className="">Product</TableHead>

@@ -43,10 +43,12 @@ export function BasicSettingsDialog() {
 	const data = me?.data;
 	const form = useZodForm({
 		schema: userType === "doctor" ? doctorSchema : Patientschema,
-		defaultValues: data,
+		defaultValues: data || undefined,
 	});
 
 	const userId = me?.data?.id;
+
+	if (!userId) return;
 
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>

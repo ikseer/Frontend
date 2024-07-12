@@ -13,8 +13,8 @@ export interface SessionInfo {
 	accessToken: string;
 	refreshToken: string;
 	userId: string;
-	userType: UserType;
-	profileId: string | null;
+	userType: UserType | "admin";
+	profileId: string;
 }
 
 export function setSession(
@@ -22,7 +22,7 @@ export function setSession(
 		accessToken: string;
 		refreshToken: string;
 		userId: string | null;
-		userType: UserType | null;
+		userType: UserType | "admin" | null;
 		profileId: string | null;
 	} | null,
 ) {

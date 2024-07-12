@@ -1,6 +1,6 @@
 "use client";
-import { useDeleteMe } from "@ikseer/api/hooks/accounts";
-import { setSession } from "@ikseer/api/utils/session.client";
+import { usersHooks } from "@ikseer/api/hooks/accounts";
+import { setSession, useCurrentUser } from "@ikseer/api/utils/session.client";
 import {
 	AlertDialog,
 	AlertDialogCancel,
@@ -16,10 +16,12 @@ import { useState } from "react";
 
 export function DeleteAccountDiaglog() {
 	const [isOpen, setIsOpen] = useState(false);
-	const onSuccess = () => {
-		setIsOpen(false);
-	};
-	const deleteAccount = useDeleteMe({ onSuccess, method: "hard" });
+	const userId = useCurrentUser()?.userId;
+	const deleteAccount = usersHooks.useDelete({
+		onSuccess: () => {
+			setIsOpen(false);
+		},
+	});
 
 	return (
 		<AlertDialog open={isOpen} onOpenChange={setIsOpen}>
@@ -39,7 +41,7 @@ export function DeleteAccountDiaglog() {
 					<Button
 						variant="danger"
 						onClick={() => {
-							deleteAccount?.mutate();
+							deleteAccount?.mutate({ id: userId as string });
 							setSession(null);
 							window.location.href = "/login";
 						}}

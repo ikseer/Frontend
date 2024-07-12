@@ -1,5 +1,6 @@
 "use client";
 import DoctorsCRUDTable from "@/components/datagrids/doctors/doctors-crud";
+import { Routes } from "@/lib/routes";
 import { Anchor, Box, Breadcrumbs, Title } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
@@ -11,7 +12,7 @@ export default function DoctorsPage() {
 				{t("doctors")}
 			</Title>
 			<Breadcrumbs mb="xl">
-				<Anchor href={"/dashboard"}>{t("dashboard")}</Anchor>
+				<Anchor href={Routes.dashboard()}>{t("dashboard")}</Anchor>
 				<span>{t("doctors")}</span>
 			</Breadcrumbs>
 			<DoctorsCRUDTable />

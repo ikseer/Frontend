@@ -2,9 +2,10 @@ import { cn } from "@ikseer/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
+import { LoadingSpinner } from "./loading-spinner";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
 	{
 		variants: {
 			variant: {
@@ -44,22 +45,45 @@ export interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
+	isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	(
-		{ className, variant, size, rounded, iconOnly, asChild = false, ...props },
+		{
+			children,
+			isLoading,
+			className,
+			variant,
+			size,
+			rounded,
+			iconOnly,
+			asChild = false,
+			...props
+		},
 		ref,
 	) => {
 		const Comp = asChild ? Slot : "button";
 		return (
 			<Comp
+				{...props}
 				className={cn(
 					buttonVariants({ variant, size, className, rounded, iconOnly }),
 				)}
 				ref={ref}
-				{...props}
-			/>
+				disabled={props.disabled || isLoading}
+			>
+				{isLoading && iconOnly ? (
+					<LoadingSpinner size={24} className="text-inherit" />
+				) : isLoading ? (
+					<>
+						{children}
+						<LoadingSpinner size={24} className="text-inherit" />
+					</>
+				) : (
+					children
+				)}
+			</Comp>
 		);
 	},
 );

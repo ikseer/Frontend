@@ -1,6 +1,7 @@
 "use client";
 import NA from "@/components/NA";
-import { useGetActiveOrders } from "@ikseer/api/hooks/orders";
+import { ordersHooks } from "@ikseer/api/hooks/orders";
+import { Button } from "@ikseer/ui/components/ui/button";
 import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
 import {
 	Table,
@@ -11,9 +12,11 @@ import {
 	TableHeader,
 	TableRow,
 } from "@ikseer/ui/components/ui/table";
+import { MoreHorizontal } from "lucide-react";
+import OrderSheet from "./order-sheet";
 
 export default function ActiveOrders() {
-	const { data } = useGetActiveOrders();
+	const { data } = ordersHooks.useList();
 	if (!data)
 		return (
 			<div>
@@ -35,6 +38,7 @@ export default function ActiveOrders() {
 						<TableHead>Price</TableHead>
 						<TableHead>zip code</TableHead>
 						<TableHead>Payment</TableHead>
+						<TableHead>More details</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
@@ -59,13 +63,20 @@ export default function ActiveOrders() {
 								<NA>{order.zip_code}</NA>
 							</TableCell>
 							<TableCell>
-								{order.status === "pending" ? (
+								{order.status === "processing" ? (
 									<span className="font-bold text-teal-600">Paid</span>
 								) : (
 									<span className=" font-bold text-red-500">
 										Cash on delivery
 									</span>
 								)}
+							</TableCell>
+							<TableCell>
+								<OrderSheet orderId={order.id}>
+									<Button size="sm" iconOnly variant="ghost">
+										<MoreHorizontal />
+									</Button>
+								</OrderSheet>
 							</TableCell>
 						</TableRow>
 					))}

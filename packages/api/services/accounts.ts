@@ -4,13 +4,23 @@ import type {
 	Patient,
 	User,
 } from "@ikseer/lib/types";
+import { zNullish, zUsername } from "@ikseer/lib/utils";
 import type { AxiosInstance } from "axios";
 import { z } from "zod";
 import { httpNoAuth } from "../utils/axios-non-auth";
+import { CRUD_API } from "../utils/crud-api";
 import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
 
 export class AccountsAPI {
+	users: CRUD_API<User, User, z.infer<typeof userSchema>>;
+	doctors: CRUD_API<Doctor, Doctor, z.infer<typeof doctorSchema>>;
+
+	constructor(private http: AxiosInstance) {
+		this.users = new CRUD_API("/accounts/users/", http);
+		this.doctors = new CRUD_API("/accounts/doctor/", http);
+	}
+
 	getStatistics = async () => {
 		return await this.http
 			.get<{
@@ -26,8 +36,6 @@ export class AccountsAPI {
 	// ------------------------
 	// Accounts
 	// ------------------------
-
-	constructor(private http: AxiosInstance) {}
 
 	checkUserName = async (username: string) => {
 		return await httpNoAuth
@@ -122,10 +130,10 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
-	getDeletedDoctors = async (options?: SearchOptions) => {
+	getDeletedPatients = async (options?: SearchOptions) => {
 		const params = getSearchParams(options);
 		return await this.http
-			.get<PaginationResult<Doctor>>("/accounts/doctor/deleted/", {
+			.get<PaginationResult<Patient>>("/accounts/patient/deleted/", {
 				params,
 			})
 			.then((res) => res.data);
@@ -181,14 +189,14 @@ export class AccountsAPI {
 			.then((res) => res.data);
 	};
 
-	getDeletedPatients = async (options?: SearchOptions) => {
-		const params = getSearchParams(options);
-		return await this.http
-			.get<PaginationResult<Patient>>("/accounts/patient/deleted/", {
-				params,
-			})
-			.then((res) => res.data);
-	};
+	// getDeletedPatients = async (options?: SearchOptions) => {
+	// 	const params = getSearchParams(options);
+	// 	return await this.http
+	// 		.get<PaginationResult<Patient>>("/accounts/patient/deleted/", {
+	// 			params,
+	// 		})
+	// 		.then((res) => res.data);
+	// };
 
 	getDoctor = async (id?: string) => {
 		if (!id) return null;
@@ -240,45 +248,23 @@ export class AccountsAPI {
 export const doctorSchema = z.object({
 	first_name: z.string().min(2),
 	last_name: z.string().min(2),
-	email: z.preprocess((val) => val || undefined, z.string().optional()),
+	email: zNullish(z.string().email()),
+	location: zNullish(z.string()),
 	specialization: z.string().min(2),
-	gender: z.preprocess(
-		(val) => val || undefined,
-		z.literal("female").or(z.literal("male")).optional(),
-	),
-	license_number: z.preprocess(
-		(val) => val || undefined,
-		z.string().optional(),
-	),
-	experience_years: z.preprocess(
-		(val) => val || undefined,
-		z.number().optional(),
-	),
-	work_days: z.preprocess((val) => val || undefined, z.string().optional()),
-	marital_status: z.preprocess(
-		(val) => val || undefined,
-		z.string().optional(),
-	),
-	bio: z.preprocess((val) => val || undefined, z.string().optional()),
-	timezone: z.string().optional(),
-	// address: z
-	// 	.object({
-	// 		street: z.string().optional(),
-	// 		city: z.string().optional(),
-	// 		governorate: z.string().optional(),
-	// 	})
-	// 	.optional(),
-	// phone: z
-	// 	.object({
-	// 		mobile: z.preprocess(
-	// 			(val) => val || undefined,
-	// 			z.string().min(3).optional(),
-	// 		),
-	// 	})
-	// 	.optional(),
+	approved: z.boolean(),
+	bio: zNullish(z.string()),
+	timezone: zNullish(z.coerce.string()),
+	gender: zNullish(z.literal("female").or(z.literal("male"))),
+	price_for_reservation: zNullish(z.coerce.number()),
 	/** date in ISO format */
-	date_of_birth: z.union([
-		z.preprocess((val) => val || undefined, z.date().optional()),
-		z.string().optional(),
-	]),
+	date_of_birth: z.union([zNullish(z.coerce.date()), z.string().optional()]),
+});
+
+export const userSchema = z.object({
+	is_staff: z.boolean(),
+	first_name: z.string().min(2),
+	last_name: z.string().min(2),
+	username: zUsername(),
+	email: z.string().email(),
+	user_type: z.enum(["doctor", "patient", "employee"]),
 });

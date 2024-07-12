@@ -21,7 +21,7 @@ export const chatSchema = z.object({
 ////////////////////////////////
 
 export class MessageAPI {
-	message: CRUD_API<PaginationResult<Message>, z.infer<typeof MessageSchema>>;
+	message: CRUD_API<Message, Message, z.infer<typeof MessageSchema>>;
 
 	constructor(private http: AxiosInstance) {
 		this.message = new CRUD_API("/chat/messages/", http);

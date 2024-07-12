@@ -12,9 +12,10 @@ import type { SearchOptions } from "./types";
 
 export function createCRUDHooks<
 	T = Entity,
+	ByID_Data = T,
 	CreationData = Exclude<T, keyof Entity>,
 	UpdateData = CreationData,
->(key: string, crud: CRUD_API<T, CreationData, UpdateData>) {
+>(key: string, crud: CRUD_API<T, ByID_Data, CreationData, UpdateData>) {
 	const keys = {
 		getById: (id?: string) => [key, "by-id", id],
 		list: (searchOps?: SearchOptions) => [key, "list", searchOps],
@@ -24,7 +25,10 @@ export function createCRUDHooks<
 		delete: (id?: string) => [key, "delete", id],
 	};
 
-	const useGetById = (id?: string, options?: UseQueryOptions<T>) =>
+	const useGetById = (
+		id?: string,
+		options?: Partial<UseQueryOptions<ByID_Data>>,
+	) =>
 		useQuery({
 			queryKey: keys.getById(id),
 			queryFn: () => crud.getById(id as string),
@@ -34,7 +38,7 @@ export function createCRUDHooks<
 
 	const useList = (
 		searchOps?: SearchOptions,
-		options?: UseQueryOptions<PaginationResult<T>>,
+		options?: Partial<UseQueryOptions<PaginationResult<T>>>,
 		refetchInterval?: number,
 	) =>
 		useQuery({
@@ -60,7 +64,9 @@ export function createCRUDHooks<
 				}),
 		});
 
-	const useCreate = (options?: UseMutationOptions<T, Error, CreationData>) => {
+	const useCreate = (
+		options?: Partial<UseMutationOptions<T, Error, CreationData>>,
+	) => {
 		const queryClient = useQueryClient();
 		return useMutation({
 			mutationKey: keys.create(),
@@ -79,10 +85,8 @@ export function createCRUDHooks<
 	};
 
 	const useUpdate = (
-		options?: UseMutationOptions<
-			T,
-			Error,
-			Partial<UpdateData> & { id: string }
+		options?: Partial<
+			UseMutationOptions<T, Error, Partial<UpdateData> & { id: string }>
 		>,
 	) => {
 		const queryClient = useQueryClient();
@@ -103,7 +107,7 @@ export function createCRUDHooks<
 	};
 
 	const useDelete = (
-		options?: UseMutationOptions<T, Error, { id: string }>,
+		options?: Partial<UseMutationOptions<T, Error, { id: string }>>,
 	) => {
 		const queryClient = useQueryClient();
 		return useMutation({

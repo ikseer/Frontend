@@ -8,6 +8,7 @@
 		}
 	},
 	"Forms": {
+		"username": "Username",
 		"bio": "Bio",
 		"add-new-patient": "Add new patient",
 		"main-details": "Main details",

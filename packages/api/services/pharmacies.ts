@@ -5,7 +5,7 @@ import { z } from "zod";
 import { CRUD_API } from "../utils/crud-api";
 
 export class PharmaciesAPI {
-	pharmacy: CRUD_API<Pharmacy, z.infer<typeof pharmacySchema>>;
+	pharmacy: CRUD_API<Pharmacy, Pharmacy, z.infer<typeof pharmacySchema>>;
 
 	constructor(private http: AxiosInstance) {
 		this.pharmacy = new CRUD_API("/pharmacy/pharmacy/", http);

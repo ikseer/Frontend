@@ -11,7 +11,9 @@ export const AccessTokenCookie = createCookieStorage(ACCESS_TOKEN_KEY);
 export const RefreshTokenCookie = createCookieStorage(REFRESH_TOKEN_KEY);
 export const ProfileIdCookie = createCookieStorage(PROFILE_ID_KEY);
 export const UserIdCookie = createCookieStorage(USER_ID_KEY);
-export const UserTypeCookie = createCookieStorage<UserType>(USER_TYPE_KEY);
+export const UserTypeCookie = createCookieStorage<UserType | "admin">(
+	USER_TYPE_KEY,
+);
 
 const THREE_DAYS_ms = 1000 * 60 * 60 * 24 * 3;
 

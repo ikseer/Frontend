@@ -9,7 +9,7 @@ import { cn } from "@ikseer/lib/utils";
 import { Button } from "@ikseer/ui/components/ui/button";
 import { Heart } from "lucide-react";
 
-export default function WishList({ id }: { id: string }) {
+export default function AddToWishList({ id }: { id: string }) {
 	const addToWishlist = useAddToWishList();
 	const userId = UserIdCookie.get();
 	const removeFromWishList = useRemoveFromWishList();
@@ -22,13 +22,19 @@ export default function WishList({ id }: { id: string }) {
 
 	return (
 		<Button
+			iconOnly
 			className="bg-zinc-500 hover:bg-zinc-400"
+			isLoading={removeFromWishList.isPending || addToWishlist.isPending}
 			onClick={() => {
 				if (isWishListed) removeFromWishList.mutate(wishListId as string);
 				else addToWishlist.mutate({ product: id, user: userId as string });
 			}}
 		>
-			<Heart className={cn(isWishListed ? "text-red-500" : "text-zinc-50")} />
+			<Heart
+				className={cn(
+					isWishListed ? "text-red-500 fill-red-500" : "text-zinc-50",
+				)}
+			/>
 		</Button>
 	);
 }
