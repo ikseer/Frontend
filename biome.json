@@ -24,5 +24,13 @@
 	"formatter": {
 		"enabled": true,
 		"lineEnding": "crlf"
-	}
+	},
+	"overrides": [
+		{
+			"include": ["**/cypress/**/*.ts"],
+			"linter": {
+				"enabled": false
+			}
+		}
+	]
 }

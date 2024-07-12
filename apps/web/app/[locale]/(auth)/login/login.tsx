@@ -103,6 +103,7 @@ export default function Login() {
 					</div>
 
 					<Button
+						type="submit"
 						variant="submit"
 						className="w-3/4 h-[42px] my-5"
 						isLoading={isPending}
