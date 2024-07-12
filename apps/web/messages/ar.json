@@ -7,12 +7,15 @@
 		"register-now": "سجل الان!",
 		"welcome-to-ikseer": "مرحبا بكم في اكسير",
 		"continue-with-facebook": "سجل دخول بواسطة فيس بوك",
-		"continue-with-google": "سجل دخول بواسطة جوجل"
+		"continue-with-google": "سجل دخول بواسطة جوجل",
+		"or": "أو"
 	},
 	"form": {
 		"username": "اسم المستخدم",
 		"password": "كلمة المرور",
-		"pin": "مكتب المدعي العام"
+		"pin": "مكتب المدعي العام",
+		"confirmPassword": "تأكيد كلمة المرور",
+		"newPassword": "كلمة المرور الجديدة"
 	},
 	"Register": {
 		"already-have-an-account": "هل لديك حساب،",
@@ -46,6 +49,24 @@
 		"reset-password": "إعادة تعيين كلمة المرور"
 	},
 	"ConfirmPin": {
-		"verification-required": ""
+		"verification-required": "",
+		"back": "خلف",
+		"didnt-get-the-code": "لم تحصل على الرمز؟",
+		"resent": "مستاء",
+		"submit": "يُقدِّم",
+		"to-continue-complete-this-verification-step-weve-sent-a-code-to-your-email-please-enter-it-below": "للمتابعة، أكمل خطوة التحقق هذه. \nلقد أرسلنا رمزًا إلى بريدك الإلكتروني. \nالرجاء إدخاله أدناه."
+	},
+	"Common": {
+		"errors": {
+			"something-went-wrong": "هناك خطأ ما"
+		}
+	},
+	"NavBar": {
+		"best-sellers": "الأكثر مبيعا",
+		"discount": "تخفيض",
+		"login": "تسجيل الدخول",
+		"pharmacies": "الصيدليات",
+		"products": "منتجات",
+		"register": "يسجل"
 	}
 }

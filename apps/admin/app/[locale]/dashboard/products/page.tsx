@@ -1,17 +1,17 @@
 "use client";
 
-import { Flex } from "@mantine/core";
-import { Plus } from "lucide-react";
+import ProductDetailsForm from "@/components/forms/product-details";
+import { ProductCard } from "@/components/product-card";
 import { productsHooks, useInfiniteProducts } from "@ikseer/api/hooks/products";
+import type { HomeProduct } from "@ikseer/lib/types";
 import { SkeletonCard } from "@ikseer/ui/components/card-skeleton";
+import { Flex } from "@mantine/core";
 import { Button, Input, Title } from "@mantine/core";
+import { debounce } from "lodash";
+import { Plus } from "lucide-react";
 import { Search } from "lucide-react";
 import { useCallback, useState } from "react";
-import { debounce } from "lodash";
-import ProductDetailsForm from "@/components/forms/product-details";
 import { revalidateProducts } from "./[productId]/_components/utils.server";
-import type { HomeProduct } from "@ikseer/lib/types";
-import { ProductCard } from "@/components/product-card";
 
 export default function ProductsPage() {
 	const [isCreating, setIsCreating] = useState(false);

@@ -1,317 +1,119 @@
 "use client";
-
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import { MainContainer, Sidebar } from "@chatscope/chat-ui-kit-react";
+import { useGetDoctors, useGetPatients } from "@ikseer/api/hooks/accounts";
+import { chatHooks } from "@ikseer/api/hooks/chat";
+import { UserTypeCookie } from "@ikseer/lib/cookies.client";
+import type { Chat, Patient } from "@ikseer/lib/types";
+import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
 import {
-	Avatar,
-	ChatContainer,
-	Conversation,
-	ConversationHeader,
-	ConversationList,
-	InfoButton,
-	MainContainer,
-	Message,
-	MessageInput,
-	MessageList,
-	MessageSeparator,
-	Search,
-	Sidebar,
-	TypingIndicator,
-	VideoCallButton,
-	VoiceCallButton,
-} from "@chatscope/chat-ui-kit-react";
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@ikseer/ui/components/ui/tabs";
+import { MessageSquare } from "lucide-react";
 import { useState } from "react";
+import CurrentOpenedChat from "./opened-chat";
+import { CreatedChatSidebar } from "./sidebar-created-chat";
+import { NewChatSidebar } from "./sidebar-new-chat";
 
+// import
 export default function MainChatComponent() {
-	const [messageInputValue, setMessageInputValue] = useState("");
+	const userType = UserTypeCookie.get();
+	const [chatId, setChatId] = useState("");
+	const doctors = useGetDoctors();
+	const patient = useGetPatients();
+	const chat = chatHooks.useInifinite({
+		pagination: {
+			pageSize: Number.MAX_SAFE_INTEGER,
+			pageIndex: 0,
+		},
+	});
 
+	//@ts-ignore
+	const userChat: Chat[] = chat?.data?.pages?.[0]?.results;
+	const currentDoctors = doctors?.data?.results;
+	const currentPatients = patient?.data?.results;
+
+	if (!userChat || !currentDoctors || !currentPatients)
+		return (
+			<section className="page-container grid w-full grid-cols-5">
+				<div className=" col-span-1 mb-4 space-y-2.5">
+					{[...Array(9)].map((_, i) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<div key={i} className="gap-x-2 flex items-center">
+							<Skeleton className="w-full h-12 mr-4" />
+						</div>
+					))}
+				</div>
+				<Skeleton className="w-full h-full col-span-4 mr-4" />
+			</section>
+		);
+	const NotChatsYet = () => {
+		if (userType === "doctor") {
+			return currentPatients?.filter(
+				(patient) =>
+					!userChat?.map((chat) => chat?.patient).includes(patient?.id),
+			);
+		}
+		if (userType === "patient") {
+			return currentDoctors?.filter(
+				(doctor) => !userChat?.map((chat) => chat?.doctor).includes(doctor?.id),
+			);
+		}
+	};
+
+	const currentNotChatsYet = NotChatsYet();
+
+	console.log(userChat, currentNotChatsYet, "must be patient");
 	return (
-		<div
-			style={{
-				height: "600px",
-				position: "relative",
-			}}
-		>
-			<MainContainer responsive>
-				<Sidebar position="left" scrollable={false}>
-					<Search placeholder="Search..." />
-					<ConversationList>
-						<Conversation
-							name="Lilly"
-							lastSenderName="Lilly"
-							info="Yes i can do it for you"
-							style={{ justifyContent: "start" }}
-						>
-							<Avatar
-								src="https://i.suar.me/oqmy7/m"
-								name="Lilly"
-								status="available"
-							/>
-						</Conversation>
+		<>
+			<div className="hero min-hero relative">
+				<MainContainer responsive>
+					<Sidebar position="left" scrollable={false} className="py-2">
+						<Tabs defaultValue="createdChatSidebar" className="w-full">
+							<TabsList className="text-zinc-950 w-full bg-blue-200 rounded-0 hidden md:flex">
+								<TabsTrigger value="createdChatSidebar" className="w-full">
+									Chats
+								</TabsTrigger>
+								<TabsTrigger value="newchat" className="w-full">
+									New chat
+								</TabsTrigger>
+							</TabsList>
+							<TabsContent value="createdChatSidebar">
+								<CreatedChatSidebar
+									chatedWithMe={userChat}
+									setChatId={setChatId}
+								/>
+							</TabsContent>
+							<TabsContent value="newchat">
+								<NewChatSidebar noChatsYet={currentNotChatsYet as Patient[]} />
+							</TabsContent>
+						</Tabs>
+					</Sidebar>
+					{chatId ? (
+						<CurrentOpenedChat chatId={chatId} userChat={userChat} />
+					) : (
+						<SelectChatToStartChat />
+					)}
+				</MainContainer>
+			</div>
+		</>
+	);
+}
 
-						<Conversation
-							name="Joe"
-							lastSenderName="Joe"
-							info="Yes i can do it for you"
-						>
-							<Avatar src="https://i.suar.me/oqmy7/m" name="Joe" status="dnd" />
-						</Conversation>
-
-						<Conversation
-							name="Emily"
-							lastSenderName="Emily"
-							info="Yes i can do it for you"
-							unreadCnt={3}
-						>
-							<Avatar
-								src="https://i.suar.me/oqmy7/m"
-								name="Emily"
-								status="available"
-							/>
-						</Conversation>
-
-						<Conversation
-							name="Kai"
-							lastSenderName="Kai"
-							info="Yes i can do it for you"
-							unreadDot
-						>
-							<Avatar
-								src="https://i.suar.me/oqmy7/m"
-								name="Kai"
-								status="unavailable"
-							/>
-						</Conversation>
-
-						<Conversation
-							name="Akane"
-							lastSenderName="Akane"
-							info="Yes i can do it for you"
-						>
-							<Avatar
-								src="https://i.suar.me/oqmy7/m"
-								name="Akane"
-								status="eager"
-							/>
-						</Conversation>
-
-						<Conversation
-							name="Eliot"
-							lastSenderName="Eliot"
-							info="Yes i can do it for you"
-						>
-							<Avatar
-								src="https://i.suar.me/oqmy7/m"
-								name="Eliot"
-								status="away"
-							/>
-						</Conversation>
-
-						<Conversation
-							name="Zoe"
-							lastSenderName="Zoe"
-							info="Yes i can do it for you"
-							active
-						>
-							<Avatar src="https://i.suar.me/oqmy7/m" name="Zoe" status="dnd" />
-						</Conversation>
-
-						<Conversation
-							name="Patrik"
-							lastSenderName="Patrik"
-							info="Yes i can do it for you"
-						>
-							<Avatar
-								src="https://i.suar.me/oqmy7/m"
-								name="Patrik"
-								status="invisible"
-							/>
-						</Conversation>
-					</ConversationList>
-				</Sidebar>
-
-				<ChatContainer>
-					<ConversationHeader>
-						<ConversationHeader.Back />
-						<Avatar src="https://i.suar.me/oqmy7/m" name="Zoe" />
-						<ConversationHeader.Content
-							userName="Zoe"
-							info="Active 10 mins ago"
-						/>
-						<ConversationHeader.Actions>
-							<VoiceCallButton />
-							<VideoCallButton />
-							<InfoButton />
-						</ConversationHeader.Actions>
-					</ConversationHeader>
-					<MessageList
-						typingIndicator={<TypingIndicator content="Zoe is typing" />}
-					>
-						<MessageSeparator content="Saturday, 30 November 2019" />
-
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "single",
-							}}
-						>
-							<Avatar src="https://i.suar.me/oqmy7/m" name="Zoe" />
-						</Message>
-
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Patrik",
-								direction: "outgoing",
-								position: "single",
-							}}
-							avatarSpacer
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "first",
-							}}
-							avatarSpacer
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "normal",
-							}}
-							avatarSpacer
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "normal",
-							}}
-							avatarSpacer
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "last",
-							}}
-						>
-							<Avatar src="https://i.suar.me/oqmy7/m" name="Zoe" />
-						</Message>
-
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Patrik",
-								direction: "outgoing",
-								position: "first",
-							}}
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Patrik",
-								direction: "outgoing",
-								position: "normal",
-							}}
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Patrik",
-								direction: "outgoing",
-								position: "normal",
-							}}
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Patrik",
-								direction: "outgoing",
-								position: "last",
-							}}
-						/>
-
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "first",
-							}}
-							avatarSpacer
-						/>
-						<Message
-							model={{
-								message: "Hello my friend",
-								sentTime: "15 mins ago",
-								sender: "Zoe",
-								direction: "incoming",
-								position: "last",
-							}}
-						>
-							<Avatar src="https://i.suar.me/oqmy7/m" name="Zoe" />
-						</Message>
-					</MessageList>
-					<MessageInput
-						placeholder="Type message here"
-						value={messageInputValue}
-						onChange={(val) => setMessageInputValue(val)}
-						onSend={() => setMessageInputValue("")}
-					/>
-				</ChatContainer>
-
-				{/* <Sidebar position="right">
-          <ExpansionPanel open title="INFO">
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </ExpansionPanel>
-          <ExpansionPanel title="LOCALIZATION">
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </ExpansionPanel>
-          <ExpansionPanel title="MEDIA">
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </ExpansionPanel>
-          <ExpansionPanel title="SURVEY">
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </ExpansionPanel>
-          <ExpansionPanel title="OPTIONS">
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </ExpansionPanel>
-        </Sidebar> */}
-			</MainContainer>
-		</div>
+function SelectChatToStartChat() {
+	return (
+		<section className=" w-full flex flex-col items-center justify-center p-4 bg-blue-200 rounded-md shadow-md">
+			<MessageSquare className="w-12 h-12 text-zinc-500 mb-4" />
+			<p className="text-lg font-semibold text-zinc-700 mb-2">
+				Select a chat to start a conversation
+			</p>
+			<p className="text-sm text-zinc-600 text-center">
+				Choose a user from the list to begin chatting. If you don't see anyone,
+				try refreshing or inviting friends to join!
+			</p>
+		</section>
 	);
 }

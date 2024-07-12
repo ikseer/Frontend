@@ -126,45 +126,47 @@ Supporting Arabic, a right-to-left (RTL) language, required careful handling of 
 ### How to setup this libraries
 
 1. **Tailwind CSS:**
-    - Install using pnpm:
 
-      ```bash
-      pnpm install -D tailwindcss
-      ```
+   - Install using pnpm:
 
-    - Create a Tailwind configuration file:
+     ```bash
+     pnpm install -D tailwindcss
+     ```
 
-         ```bash
-         npx tailwindcss init -p
-         ```
+   - Create a Tailwind configuration file:
 
-    - Include Tailwind in your CSS:
+     ```bash
+     npx tailwindcss init -p
+     ```
 
-         ```css
-         @tailwind base;
-         @tailwind components;
-         @tailwind utilities;
-         ```
+   - Include Tailwind in your CSS:
+
+     ```css
+     @tailwind base;
+     @tailwind components;
+     @tailwind utilities;
+     ```
 
 2. **Preline UI:**
-    - Install using pnpm:
 
-      ```bash
-      pnpm install preline
-      ```
+   - Install using pnpm:
 
-    - Configure Preline to work with Tailwind seamlessly
+     ```bash
+     pnpm install preline
+     ```
 
-    - Inlude this snippet in the the root of the app:
-  
-      ```js
-      useEffect(() => {
-        const loadPreline = async () => {
-          await import("preline/preline");
+   - Configure Preline to work with Tailwind seamlessly
 
-          window.HSStaticMethods.autoInit();
-        };
+   - Inlude this snippet in the the root of the app:
 
-        loadPreline();
-      }, [path]);
-      ```
+     ```js
+     useEffect(() => {
+     	const loadPreline = async () => {
+     		await import("preline/preline");
+
+     		window.HSStaticMethods.autoInit();
+     	};
+
+     	loadPreline();
+     }, [path]);
+     ```

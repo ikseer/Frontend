@@ -8,13 +8,13 @@ import type {
 	ProductDiscount,
 	ProductImage,
 } from "@ikseer/lib/types";
+import { zFile, zNullish } from "@ikseer/lib/utils";
 import type { AxiosInstance } from "axios";
+import { z } from "zod";
 import { httpNoAuth } from "../utils/axios-non-auth";
+import { CRUD_API } from "../utils/crud-api";
 import { getSearchParams } from "../utils/get-search-params";
 import type { SearchOptions } from "../utils/types";
-import { z } from "zod";
-import { CRUD_API } from "../utils/crud-api";
-import { zFile, zNullish } from "@ikseer/lib/utils";
 
 export class ProductsAPI {
 	images: CRUD_API<ProductImage>;

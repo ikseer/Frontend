@@ -85,9 +85,7 @@ export default function AddDeleteItem({
 			<Button
 				iconOnly
 				disabled={
-					createItem.isPending ||
-					updateItem.isPending ||
-					!productQuantity
+					createItem.isPending || updateItem.isPending || !productQuantity
 				}
 				className="w-7 h-7 rounded-full"
 				onClick={() => handleEditItem(productQuantity - 1)}

@@ -1,6 +1,6 @@
 "use client";
-import { setSession, useCurrentUser } from "@ikseer/api/utils/session.client";
 import { usersHooks } from "@ikseer/api/hooks/accounts";
+import { setSession, useCurrentUser } from "@ikseer/api/utils/session.client";
 import {
 	AlertDialog,
 	AlertDialogCancel,

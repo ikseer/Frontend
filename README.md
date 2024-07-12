@@ -1,7 +1,6 @@
-
-| App | Deployment status | Link |
-| --- | ----------------- | ---- |
-| Ikseer | [![Netlify Status](https://api.netlify.com/api/v1/badges/1cc24593-7229-46c0-8563-364fb9ccb9c0/deploy-status)](https://app.netlify.com/sites/ikseer/deploys) | https://ikseer.netlify.app |
+| App             | Deployment status                                                                                                                                                 | Link                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| Ikseer          | [![Netlify Status](https://api.netlify.com/api/v1/badges/1cc24593-7229-46c0-8563-364fb9ccb9c0/deploy-status)](https://app.netlify.com/sites/ikseer/deploys)       | https://ikseer.netlify.app       |
 | Admin dashboard | [![Netlify Status](https://api.netlify.com/api/v1/badges/04482d2b-b30b-4ecd-8d72-8ce841906da3/deploy-status)](https://app.netlify.com/sites/ikseer-admin/deploys) | https://ikseer-admin.netlify.app |
 
 ## General Links

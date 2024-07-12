@@ -5,11 +5,11 @@ import DiscountForm from "@/components/forms/discount";
 import { QueryComponent } from "@/components/query-compoenent";
 import { discountsHooks } from "@ikseer/api/hooks/products";
 import type { discountSchema } from "@ikseer/api/services/products";
+import type { Product } from "@ikseer/lib/types";
 import { Box, Button, Flex, Stack, Title } from "@mantine/core";
 import { Plus, Ticket } from "lucide-react";
 import { useState } from "react";
 import type { z } from "zod";
-import type { Product } from "@ikseer/lib/types";
 
 export function ProductDiscount({ product }: { product: Product }) {
 	const [formState, setFormState] = useState<"update" | "create">();

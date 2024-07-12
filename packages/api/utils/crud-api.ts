@@ -26,7 +26,9 @@ export class CRUD_API<
 	};
 
 	getById = async (id: string) => {
-		return await this.http.get<ByID_Data>(`${this.route}${id}`).then((res) => res.data);
+		return await this.http
+			.get<ByID_Data>(`${this.route}${id}`)
+			.then((res) => res.data);
 	};
 
 	list = async (options?: SearchOptions) => {
