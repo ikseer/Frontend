@@ -2,7 +2,6 @@
 import { useGetCart } from "@ikseer/api/hooks/orders";
 import { Skeleton } from "@ikseer/ui/components/ui/skeleton";
 import CartItemView from "./_components/cart-view";
-import { Coupon } from "./_components/coupon";
 import NoCartItem from "./_components/no-cart-items";
 import OrderDetails from "./_components/order-details";
 
@@ -30,7 +29,7 @@ export default function Cart() {
 				<CartItemView cartItems={cartItems} />
 			</section>
 			<section className="md:col-span-1 flex flex-col col-span-3 space-y-10">
-				<Coupon />
+				{/* <Coupon /> */}
 				<OrderDetails totalPrice={totalPrice} price={totalPrice} discount={0} />
 			</section>
 		</main>
